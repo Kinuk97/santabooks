@@ -21,8 +21,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.santabooks.www" />
-	
-	
+	<context:component-scan base-package="com.santabooks" />
 	
 </beans:beans>
