@@ -11,8 +11,46 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.santabooks.www">
+	<logger name="com.santabooks">
 		<level value="info" />
+	</logger>
+	
+	<!-- log4jdbc-remix Loggers -->
+	<!-- JDBC log -->
+	<logger name="jdbc.connection" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="console" />
+	</logger>
+
+	<logger name="jdbc.audit" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="console" />
+	</logger>
+
+	<logger name="jdbc.sqlonly" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="console" />
+	</logger>
+
+	<logger name="jdbc.sqltiming" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="console" />
+	</logger>
+
+	<logger name="jdbc.resultset" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="console" />
+	</logger>
+
+	<logger name="jdbc.resultsettable" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="console" />
+	</logger>
+
+	<!-- mybatis log -->
+	<logger name="org.mybatis" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="console" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
