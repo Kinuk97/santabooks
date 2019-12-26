@@ -19,5 +19,11 @@ public class LoginServiceImpl implements LoginService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+//	@Override
+//	public Member info(String id) {
+//		
+//		return MemberDao.selectById(id);
+//	}
 
 }

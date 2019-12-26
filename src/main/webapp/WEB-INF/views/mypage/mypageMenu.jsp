@@ -33,10 +33,10 @@
 		<ul class="navbar-nav mr-auto">
 
 			<li class="nav-item active">
-			<a class="nav-link" href="#">나의 정보<span class="sr-only">(current)</span>
+			<a class="nav-link" href="/mypage/main">나의 정보<span class="sr-only">(current)</span>
 			</a></li>
 			
-			<li class="nav-item"><a class="nav-link" href="#">구독 정보</a></li>
+			<li class="nav-item"><a class="nav-link" href="/mypage/subInfo">구독 정보</a></li>
 
 			<li class="nav-item"><a class="nav-link" href="#">즐겨찾기</a></li>
 			
@@ -55,7 +55,7 @@
 			
 			<li class="nav-item"><a class="nav-link" href="#">배송조회</a></li>
 			
-			<li class="nav-item"><a class="nav-link" href="#">회원탈퇴</a></li>
+			<li class="nav-item"><a class="nav-link" href="/mypage/drawal">회원탈퇴</a></li>
 
 		</ul>
 
