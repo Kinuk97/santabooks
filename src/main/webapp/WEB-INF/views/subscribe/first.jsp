@@ -93,6 +93,29 @@ function requestPayment() {
 <h1>정기구독</h1>
 
 
+<form action="/subscribe/first" method="post">
+	
+	<div>
+	<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req"> 기존 사용자 정보와 동일합니다. </label> <br>
+	
+		
+	<label for="subName">이름 입력</label>
+	<input type="text" id="subName" name="subName" placeholder="이름을 입력"/> <br>
+
+	<label for="subAdd">주소 입력</label>
+	<input type="text" id="subAdd" name="subAdd" placeholder="주소를 입력"/>  <br>
+
+	<label for="subTel">번호 입력</label>
+	<input type="text" id="subTel" name="subTel" placeholder="휴대폰 번호를 입력"/>  <br>
+
+	<label for="subTerm">배송 메시지 입력</label>
+	<input type="text" id="subTerm" name="subTerm" placeholder="배송 메세지를 입력"/>  <br>
+	
+	</div>
+
+</form>
+
+
 
 <button id="pay">결제</button>
 </div>
