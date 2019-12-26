@@ -87,8 +87,10 @@ body {
 			<div class="row">
 				<div class="column">
 					<div class="card">
-						<p>${review.review }</p>
-						<div class="text-right">${review.reviewDate }</div>
+						<div class="card-text">
+							<p>${review.review }</p>
+							<div class="text-right">${review.reviewDate }</div>
+						</div>
 					</div>
 				</div>
 			</div>
