@@ -1,6 +1,75 @@
 @charset "UTF-8";
 
+/* @font-face { font-family: 'BBTreeGB'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff'); font-weight: normal; font-style: normal; } */
+@font-face { font-family: 'Handon3gyeopsal600g'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/Handon3gyeopsal600g.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+* {
+	font-family: 'Handon3gyeopsal600g';
+}
+
 .header {
-	background-color: #147957;
-	min-height: 100px;
+	min-height: 70px;	
+}
+
+.navbar {
+	z-index: 9999;
+	
+}
+
+.nav-link {
+	color: white;
+}
+
+#navtitle {
+	font-size: 22px;
+}
+body {
+	background: rgba(20, 121, 87, 0.5);
+/* 	min-height: 2300px; */
+	
+}
+
+#nav1, #nav2 {
+	position: relative;
+    left: 1210px;
+}
+
+#btnmain {
+	 color: white;
+	 width: 230px;
+     display: scroll;
+     position:fixed;
+}
+
+.container {
+	position: relative;
+    top: 155px;
+}
+
+h1, h3 {
+	color: white;
+}
+
+h1 {
+	position: relative;
+    bottom: 15px;
+    font-size: 60px;
+}
+
+h3 {
+	position: relative;
+    bottom: 10px;
+    font-size: 30px;
+}
+img {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+}
+
+.section {
+	 display: scroll;
+     position:fixed;
 }

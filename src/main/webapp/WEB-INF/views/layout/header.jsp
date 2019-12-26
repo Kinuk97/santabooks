@@ -14,4 +14,22 @@
 </head>
 <body>
 
-	<div class="header"></div>
+	<div class="header">
+		<nav class="navbar navbar-expand-sm navbar-dark">
+	
+	  <!-- Links -->
+	  <ul class="navbar-nav">
+	    <li class="nav-brand" id="navtitle">
+	      <a class="nav-link" href="/main">Santabooks</a>
+	    </li>
+	    <li class="nav-item" id="nav1">
+	      <a class="nav-link" href="#">회원가입 &nbsp;&nbsp;&nbsp;|</a>
+	    </li>
+	    <li class="nav-item" id="nav2">
+	      <a class="nav-link" href="#">로그인</a>
+	    </li>
+	  </ul>
+
+</nav>
+	
+	</div>
