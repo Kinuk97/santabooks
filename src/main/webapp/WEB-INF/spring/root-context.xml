@@ -35,6 +35,8 @@
 		<property name="mapperLocations">
 			<array>
 				<value>classpath:/com/santabooks/**/dao/impl/**/*Mapper.xml</value>
+<!-- 				<value>classpath:/com/santabooks/subscribe/dao/impl/**/*Mapper.xml</value> -->
+<!-- 				<value>classpath:/com/santabooks/reviewSns/dao/impl/**/*Mapper.xml</value> -->
 			</array>
 		</property>
 	</bean>
