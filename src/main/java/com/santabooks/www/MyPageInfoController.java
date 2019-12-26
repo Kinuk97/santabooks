@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +18,11 @@ public class MyPageInfoController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MyPageInfoController.class);
 	
-//	@RequestMapping(value = "/mypage/main", method = RequestMethod.GET)
-//	public void main(HttpSession session, Model model) {
-//		
-//		String memberId = (String)session.getAttribute("loginid");
-//		
-//		 Member info = LoginService.info(memberId);
-//		 model.addAttribute("info", info);
-//		logger.info("메인 요청");
-//	}
+	@RequestMapping(value = "/mypage/main", method = RequestMethod.GET)
+	public void main(HttpSession session, Model model) {
+
+		logger.info("메인 요청");
+	}
 	
 	@RequestMapping(value = "/mypage/drawal", method = RequestMethod.GET)
 	public void drawal() {
@@ -39,7 +36,7 @@ public class MyPageInfoController {
 	
 	@RequestMapping(value = "/mypage/subInfo", method = RequestMethod.GET)
 	public void subInfo() {
-		logger.info("문의 요청");
+		logger.info("구독정보 요청");
 	}
 	
 	@RequestMapping(value = "/mypage/infoUpdate", method = RequestMethod.GET)

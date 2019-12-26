@@ -29,7 +29,7 @@
 
 				<div class="collapse navbar-collapse" id="navBar">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link" href="#">구독하기
+						<li class="nav-item"><a class="nav-link" href="/subscribe/agree">구독하기
 								<span class="sr-only">(current)</span>
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="/novel/list">소설</a></li>
