@@ -14,5 +14,11 @@
 		SELECT * FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns ORDER BY feedNo DESC)
 		B ORDER BY rnum) review_sns WHERE rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
+	
+	<select id="selectReviewByFeedNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
+		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
+		FROM review_sns r, book b
+		WHERE r.bookNo = b.bookNo AND feedNo = #{feedNo}
+	</select>
 </mapper>
   
