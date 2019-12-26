@@ -2,7 +2,7 @@ package com.santabooks.reviewSns.dto;
 
 public class Book {
 	private int bookNo;
-	private String bokkName;
+	private String bookName;
 	private String bookWriter;
 	private String bookPublisher;
 	private String publishingYear;
@@ -11,7 +11,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [bookNo=" + bookNo + ", bokkName=" + bokkName + ", bookWriter=" + bookWriter + ", bookPublisher="
+		return "Book [bookNo=" + bookNo + ", bookName=" + bookName + ", bookWriter=" + bookWriter + ", bookPublisher="
 				+ bookPublisher + ", publishingYear=" + publishingYear + ", bookContent=" + bookContent + ", genreNo="
 				+ genreNo + "]";
 	}
@@ -24,12 +24,12 @@ public class Book {
 		this.bookNo = bookNo;
 	}
 
-	public String getBokkName() {
-		return bokkName;
+	public String getBookName() {
+		return bookName;
 	}
 
-	public void setBokkName(String bokkName) {
-		this.bokkName = bokkName;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 
 	public String getBookWriter() {

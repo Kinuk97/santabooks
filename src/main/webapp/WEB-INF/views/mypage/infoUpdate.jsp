@@ -9,24 +9,24 @@
 
 <div class="container list-container">
 <form name="update" action="/mypage/infoUpdate" method="post" >
-      <input type="hidden" name="memberNo" value="${Member.memberId }" />
+      <input type="hidden" name="memberNo" value="${info.memberId }" />
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-2" style="font-size: 20px;">아이디</div>
-  <div class="col-md-4"style="font-size: 16px;">${Member.memberName }</div>
+  <div class="col-md-4"style="font-size: 16px;">${info.memberName }</div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-2" style="font-size: 20px;">이름</div>
-  <div class="col-md-4"style="font-size: 16px;">${Member.memberName }</div>
+  <div class="col-md-4"style="font-size: 16px;">${info.memberName }</div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-2"style="font-size: 20px;">닉네임</div>
   <div class="col-md-4">
-  <input type="text" class="form-control" id="memberNick" name="memberNick" value="${Member.memberNick }" />
+  <input type="text" class="form-control" id="memberNick" name="memberNick" value="${info.memberNick }" />
   </div>
   <div class="col-md-4"> 
   <a href="/member/check" target="_blank">
@@ -39,7 +39,7 @@
   <div class="col-md-1"></div>
   <div class="col-md-2" style="font-size: 20px;">비밀번호</div>
   <div class="col-md-4">
-  <input type="text" class="form-control" id="memberPw" name="memberPw" value="${Member.memberPw }" />
+  <input type="text" class="form-control" id="memberPw" name="memberPw" value="${info.memberPw }" />
 </div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
@@ -47,7 +47,7 @@
   <div class="col-md-1"></div>
   <div class="col-md-2" style="font-size: 20px;">생년월일</div>
   <div class="col-md-4">
-  <input type="text" class="form-control" id="memberBirth" name="memberBirth" value="${Member.memberBirth  }" />
+  <input type="text" class="form-control" id="memberBirth" name="memberBirth" value="${info.memberBirth  }" />
 </div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
@@ -55,7 +55,7 @@
   <div class="col-md-1"></div>
   <div class="col-md-2"style="font-size: 20px;">연락처</div>
   <div class="col-md-4">
-  	<input type="text" class="form-control" id="memberTel" name="memberTel" value="${Member.memberTel }" />
+  	<input type="text" class="form-control" id="memberTel" name="memberTel" value="${info.memberTel }" />
   </div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
@@ -63,7 +63,7 @@
   <div class="col-md-1"></div>
   <div class="col-md-2" style="font-size: 20px;">주소</div>
   <div class="col-md-4">
-  <input type="text" class="form-control" id="memberAdd" name="memberAdd" value="${Member.memberAdd }" />
+  <input type="text" class="form-control" id="memberAdd" name="memberAdd" value="${info.memberAdd }" />
 </div>
 <a href="/member/check" target="_blank">
   <button id = "nickcheck" class="btn btn-success">우편번호</button> </a>
