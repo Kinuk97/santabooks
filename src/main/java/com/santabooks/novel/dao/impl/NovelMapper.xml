@@ -40,4 +40,10 @@
 <!-- 				</if> -->
 <!-- 			</trim> -->
 	</select>
+	
+	<select id="selectBestNovel" resultType="com.santabooks.novel.dto.Novel">
+		 SELECT * FROM (
+	     	SELECT * FROM novel ORDER BY score DESC
+	     ) WHERE ROWNUM BETWEEN 1 AND 3
+	</select>
 </mapper>

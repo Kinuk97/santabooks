@@ -21,4 +21,11 @@ public interface NovelDao {
 	 * @return List<Novel> - 결과 LIST
 	 */
 	public List<Novel> selectNovelList(Paging paging);
+
+	/**
+	 * 별점순으로 3개 항목 가져오기
+	 * 
+	 * @return List<Novel> - 결과 목록
+	 */
+	public List<Novel> selectBestNovel();
 }
