@@ -14,11 +14,13 @@ public class Paging {
 	private int startNo;
 	private int endNo;
 
-	private int feedNo;
-	private int bookNo;
-	private int memberNo;
-	private String review;
-	private int privacy;
+	// 검색어
+	private String search;
+	// 제목? 내용? 제목 + 내용?
+	private int searchno;
+
+	// count(*) 할 테이블명
+	private String tableName;
 
 	public Paging() {
 
@@ -96,8 +98,8 @@ public class Paging {
 	public String toString() {
 		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
-				+ ", startNo=" + startNo + ", endNo=" + endNo + ", feedNo=" + feedNo + ", bookNo=" + bookNo
-				+ ", memberNo=" + memberNo + ", review=" + review + ", privacy=" + privacy + "]";
+				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchno=" + searchno
+				+ ", tableName=" + tableName + "]";
 	}
 
 	public int getCurPage() {
@@ -172,44 +174,28 @@ public class Paging {
 		this.endNo = endNo;
 	}
 
-	public int getFeedNo() {
-		return feedNo;
+	public String getSearch() {
+		return search;
 	}
 
-	public void setFeedNo(int feedNo) {
-		this.feedNo = feedNo;
+	public void setSearch(String search) {
+		this.search = search;
 	}
 
-	public int getBookNo() {
-		return bookNo;
+	public int getSearchno() {
+		return searchno;
 	}
 
-	public void setBookNo(int bookNo) {
-		this.bookNo = bookNo;
+	public void setSearchno(int searchno) {
+		this.searchno = searchno;
 	}
 
-	public int getMemberNo() {
-		return memberNo;
+	public String getTableName() {
+		return tableName;
 	}
 
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-	}
-
-	public String getReview() {
-		return review;
-	}
-
-	public void setReview(String review) {
-		this.review = review;
-	}
-
-	public int getPrivacy() {
-		return privacy;
-	}
-
-	public void setPrivacy(int privacy) {
-		this.privacy = privacy;
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
 	}
 
 }
