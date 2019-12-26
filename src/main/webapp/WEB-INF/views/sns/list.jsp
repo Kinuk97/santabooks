@@ -83,15 +83,7 @@ $(document).ready(function(){
 	
 
 
-<c:choose>
-	<c:when test="${not empty login }">
-		<button  type= "button" onclick="location.href = '/projectBoard/write';" class="btn btn-info" style="float:right; margin-top:30px; margin-right:15px;">&emsp;&emsp;새로운 게시글 작성&emsp;&emsp;</button>
-	</c:when>
-	
-	<c:otherwise>
-		<button id="btnNoLogWrite" type="button" class="btn btn-info" style="float:right; margin-top:30px; margin-right:15px;">&emsp;&emsp;새로운 게시글 작성&emsp;&emsp;</button>
-	</c:otherwise>
-</c:choose>
+
 </div>
 
 	

@@ -34,13 +34,15 @@
 		<!-- Mapper 파일 위치 설정 -->
 		<property name="mapperLocations">
 			<array>
-				<value>classpath:/com/santabooks/**/dao/impl/**/*DaoImpl.xml</value>
+				<value>classpath:/com/santabooks/**/dao/impl/**/*Mapper.xml</value>
+<!-- 				<value>classpath:/com/santabooks/reviewSns/dao/impl/**/*Mapper.xml</value> -->
 			</array>
 		</property>
 	</bean>
 	
 	<!-- 마이바티스 DAO 인터페이스 설정 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.santabooks"></property>
+<!-- 		<property name="basePackage" value="com.santabooks"></property> -->
+		<property name="basePackage" value="com.santabooks.reviewSns.dao.face"></property>
 	</bean>
 </beans>
