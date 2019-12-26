@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+/* 헤더 부분  */
+.bg-color {
+	background-color: #147957!important;
+}
+
+.navbar {
+	height: 100px;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.footer {
+	height: 80px;
+	margin-top: 10px;
+}
+
+#navBar span a {
+	color: white;
+}
+
+/* ================================ Layout CSS ========================================== */
+
+/* wrapper */
+.wrapper {
+	min-height: 600px;
+}
+
