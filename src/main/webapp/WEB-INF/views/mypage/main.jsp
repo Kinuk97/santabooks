@@ -56,18 +56,14 @@
     text-align: left;    
 }
 
-#my_info{
-	height: 50px;
-    line-height: 150%;
-    text-align: left;  
-}
-
 </style>
 
+<div class="container">
 <br>
 <div id = "mypage_info" >
-	<h2>나의 정보</h2>
+	<h2>📂 나의 정보</h2>
 </div>
+<hr>
 
 <div class = "container">
 
@@ -89,11 +85,14 @@
 </div>
 <br>
 <div id = "info_genre">
-	<label style="font-size: 20px;color: black"> 장르  </label>&nbsp;&nbsp;&nbsp;
+	<label style="font-size: 20px;color: black">관심 장르  </label>&nbsp;&nbsp;&nbsp;
 	<label style="font-size: 20px;color: black"><strong>${Member.genre }</strong> </label>
+	<br><br>
+	<a href="/mypage/infoUpdate"><button id="my_info" class="btn btn-success btn-sm">개인정보 수정</button></a>
+	<button id="qna" class="btn btn-primary btn-sm">1:1문의</button>
 </div>
 
-<button id="my_info" class="btn btn-success">개인정보 수정</button>
+</div>
 
 <br><br><br><br><br><br><br><br><br>
 
