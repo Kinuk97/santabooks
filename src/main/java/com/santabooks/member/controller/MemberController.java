@@ -24,15 +24,12 @@ public class MemberController {
 	public void main() {
 	}
 
-	
-	
-	// 회원가입 폼
-	@RequestMapping(value = "/member/join_form")
-	public void joinForm() {
-		logger.info("회원가입 접속!");
-	}
-	
+
 	// 회원가입	
+	@RequestMapping(value="/member/join", method=RequestMethod.GET)
+	public void join() { }
+	
+	
 	@RequestMapping(value="/member/join", method=RequestMethod.POST)
 		public String joinProcess(Member writer, Model model) {
 			boolean joinResult = memberService.join(writer);
