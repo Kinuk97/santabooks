@@ -13,7 +13,7 @@ $(document).ready(function() {
     	$("#navBar").find("li").eq(0).addClass("active");
     } else {
     	
-    	if (identifier == "") {
+    	if (identifier == "novel") {
     		$("#navBar").find("li").eq(1).addClass("active");
     		
     	} else if (identifier == "") {

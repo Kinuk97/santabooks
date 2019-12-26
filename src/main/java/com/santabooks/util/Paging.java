@@ -14,24 +14,16 @@ public class Paging {
 	private int startNo;
 	private int endNo;
 
+	// 검색어
 	private String search;
+	// 제목? 내용? 제목 + 내용?
 	private int searchno;
-	private int categoryno;
-	
 
-	private String proj_loc;
-	private String proj_progress;
-	private String proj_job;
-	private String proj_career;
-
-	private int interestno;
-	private int locationno;
-	private int jobno;
-	private int stateno;
-	private int careerno;
+	// count(*) 할 테이블명
+	private String tableName;
 
 	public Paging() {
-		
+
 	}
 
 	// 총 게시글 수를 입력받는 생성자
@@ -102,15 +94,12 @@ public class Paging {
 		endNo = curPage * listCount;
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
 				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchno=" + searchno
-				+ ", categoryno=" + categoryno + ", proj_loc=" + proj_loc + ", proj_progress=" + proj_progress
-				+ ", proj_job=" + proj_job + ", proj_career=" + proj_career + "]";
+				+ ", tableName=" + tableName + "]";
 	}
 
 	public int getCurPage() {
@@ -201,89 +190,12 @@ public class Paging {
 		this.searchno = searchno;
 	}
 
-	public int getCategoryno() {
-		return categoryno;
+	public String getTableName() {
+		return tableName;
 	}
 
-	public void setCategoryno(int categoryno) {
-		this.categoryno = categoryno;
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
 	}
-
-
-	public String getProj_loc() {
-		return proj_loc;
-	}
-
-	public void setProj_loc(String proj_loc) {
-		this.proj_loc = proj_loc;
-	}
-
-	public String getProj_progress() {
-		return proj_progress;
-	}
-
-	public void setProj_progress(String proj_progress) {
-		this.proj_progress = proj_progress;
-	}
-
-	public String getProj_job() {
-		return proj_job;
-	}
-
-	public void setProj_job(String proj_job) {
-		this.proj_job = proj_job;
-	}
-
-	public String getProj_career() {
-		return proj_career;
-	}
-
-	public void setProj_career(String proj_career) {
-		this.proj_career = proj_career;
-	}
-	
-	
-
-	public int getInterestno() {
-		return interestno;
-	}
-
-	public void setInterestno(int interestno) {
-		this.interestno = interestno;
-	}
-
-	public int getLocationno() {
-		return locationno;
-	}
-
-	public void setLocationno(int locationno) {
-		this.locationno = locationno;
-	}
-
-	public int getJobno() {
-		return jobno;
-	}
-
-	public void setJobno(int jobno) {
-		this.jobno = jobno;
-	}
-
-	public int getStateno() {
-		return stateno;
-	}
-
-	public void setStateno(int stateno) {
-		this.stateno = stateno;
-	}
-
-	public int getCareerno() {
-		return careerno;
-	}
-
-	public void setCareerno(int careerno) {
-		this.careerno = careerno;
-	}
-
-	
 
 }
