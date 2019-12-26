@@ -14,24 +14,14 @@ public class Paging {
 	private int startNo;
 	private int endNo;
 
-	private String search;
-	private int searchno;
-	private int categoryno;
-	
-
-	private String proj_loc;
-	private String proj_progress;
-	private String proj_job;
-	private String proj_career;
-
-	private int interestno;
-	private int locationno;
-	private int jobno;
-	private int stateno;
-	private int careerno;
+	private int feedNo;
+	private int bookNo;
+	private int memberNo;
+	private String review;
+	private int privacy;
 
 	public Paging() {
-		
+
 	}
 
 	// 총 게시글 수를 입력받는 생성자
@@ -102,15 +92,12 @@ public class Paging {
 		endNo = curPage * listCount;
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
-				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchno=" + searchno
-				+ ", categoryno=" + categoryno + ", proj_loc=" + proj_loc + ", proj_progress=" + proj_progress
-				+ ", proj_job=" + proj_job + ", proj_career=" + proj_career + "]";
+				+ ", startNo=" + startNo + ", endNo=" + endNo + ", feedNo=" + feedNo + ", bookNo=" + bookNo
+				+ ", memberNo=" + memberNo + ", review=" + review + ", privacy=" + privacy + "]";
 	}
 
 	public int getCurPage() {
@@ -185,105 +172,44 @@ public class Paging {
 		this.endNo = endNo;
 	}
 
-	public String getSearch() {
-		return search;
+	public int getFeedNo() {
+		return feedNo;
 	}
 
-	public void setSearch(String search) {
-		this.search = search;
+	public void setFeedNo(int feedNo) {
+		this.feedNo = feedNo;
 	}
 
-	public int getSearchno() {
-		return searchno;
+	public int getBookNo() {
+		return bookNo;
 	}
 
-	public void setSearchno(int searchno) {
-		this.searchno = searchno;
+	public void setBookNo(int bookNo) {
+		this.bookNo = bookNo;
 	}
 
-	public int getCategoryno() {
-		return categoryno;
+	public int getMemberNo() {
+		return memberNo;
 	}
 
-	public void setCategoryno(int categoryno) {
-		this.categoryno = categoryno;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
-
-	public String getProj_loc() {
-		return proj_loc;
+	public String getReview() {
+		return review;
 	}
 
-	public void setProj_loc(String proj_loc) {
-		this.proj_loc = proj_loc;
+	public void setReview(String review) {
+		this.review = review;
 	}
 
-	public String getProj_progress() {
-		return proj_progress;
+	public int getPrivacy() {
+		return privacy;
 	}
 
-	public void setProj_progress(String proj_progress) {
-		this.proj_progress = proj_progress;
+	public void setPrivacy(int privacy) {
+		this.privacy = privacy;
 	}
-
-	public String getProj_job() {
-		return proj_job;
-	}
-
-	public void setProj_job(String proj_job) {
-		this.proj_job = proj_job;
-	}
-
-	public String getProj_career() {
-		return proj_career;
-	}
-
-	public void setProj_career(String proj_career) {
-		this.proj_career = proj_career;
-	}
-	
-	
-
-	public int getInterestno() {
-		return interestno;
-	}
-
-	public void setInterestno(int interestno) {
-		this.interestno = interestno;
-	}
-
-	public int getLocationno() {
-		return locationno;
-	}
-
-	public void setLocationno(int locationno) {
-		this.locationno = locationno;
-	}
-
-	public int getJobno() {
-		return jobno;
-	}
-
-	public void setJobno(int jobno) {
-		this.jobno = jobno;
-	}
-
-	public int getStateno() {
-		return stateno;
-	}
-
-	public void setStateno(int stateno) {
-		this.stateno = stateno;
-	}
-
-	public int getCareerno() {
-		return careerno;
-	}
-
-	public void setCareerno(int careerno) {
-		this.careerno = careerno;
-	}
-
-	
 
 }
