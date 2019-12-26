@@ -15,5 +15,10 @@ public class MyPageInfoController {
 	public void main() {
 		logger.info("메인 요청");
 	}
+	
+	@RequestMapping(value = "/mypage/drawal", method = RequestMethod.GET)
+	public void drawal() {
+		logger.info("탈퇴 요청");
+	}
 
 }

@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.navbar {
+	height: 70px;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.footer {
+	height: 80px;
+	margin-top: 10px;
+}
+
+/* ================================ Layout CSS ========================================== */
+
+/* wrapper */
+.wrapper {
+	min-height: 600px;
+}
+
