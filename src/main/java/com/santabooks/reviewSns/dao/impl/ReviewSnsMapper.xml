@@ -4,13 +4,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="reviewSns.dao.face.ReviewSnsDao">
+<mapper namespace="com.santabooks.reviewSns.dao.face.ReviewSnsDao">
 	
 	<select id="selectCntAll" resultType="int">
 		SELECT COUNT(*) FROM review_sns
 	</select>
 	
-	<select id="selectAll" resultType="reivewSns.dto.ReviewSns" parameterType="util.Paging">
+	<select id="selectAll" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.util.Paging">
 		SELECT * FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns ORDER BY feedNo DESC)
 		B ORDER BY rnum) review_sns WHERE rnum BETWEEN #{startNo} AND #{endNo}
 	</select>

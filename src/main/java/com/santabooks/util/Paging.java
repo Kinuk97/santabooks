@@ -30,7 +30,9 @@ public class Paging {
 	private int stateno;
 	private int careerno;
 
-	
+	public Paging() {
+		
+	}
 
 	// 총 게시글 수를 입력받는 생성자
 	public Paging(int totalCount) {
