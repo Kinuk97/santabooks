@@ -16,8 +16,15 @@ public interface ReviewSnsService {
 	/**
 	 * 리뷰 리스트
 	 * @param reviewPaging
-	 * @return
+	 * @return List<ReviewSns> - 리뷰 목록
 	 */
 	public List<ReviewSns> snsList(Paging reviewPaging);
+	
+	/**
+	 * 리뷰 상세 보기
+	 * @param reviewSns
+	 * @return ReviewSns - 리뷰 내용
+	 */
+	public ReviewSns view(ReviewSns reviewSns);
 
 }

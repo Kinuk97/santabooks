@@ -7,7 +7,7 @@ import com.santabooks.member.service.face.LoginService;
 
 @Service
 public class LoginServiceImpl implements LoginService {
-
+	
 	@Override
 	public boolean login(Member writer) {
 		// TODO Auto-generated method stub
@@ -19,11 +19,5 @@ public class LoginServiceImpl implements LoginService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-//	@Override
-//	public Member info(String id) {
-//		
-//		return MemberDao.selectById(id);
-//	}
 
 }

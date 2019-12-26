@@ -27,4 +27,10 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 		return reviewSnsDao.selectAll(reviewPaging);
 	}
 
+	@Override
+	public ReviewSns view(ReviewSns reviewSns) {
+		
+		return reviewSnsDao.selectReviewByFeedNo(reviewSns);
+	}
+
 }
