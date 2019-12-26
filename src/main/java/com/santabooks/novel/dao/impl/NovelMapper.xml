@@ -4,7 +4,40 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.santabooks.novel.dao.face.NovelDao">
-	<select id="test" resultType="int">
-		SELECT 1 + 1 FROM dual
+	<select id="selectCntList" resultType="int" parameterType="com.santabooks.util.Paging">
+		SELECT count(*) FROM ${tableName}
+		
+			<trim prefix="WHERE" prefixOverrides="AND">
+				<if test="search != null and search != ''">
+					title LIKE '%' || #{search} || '%'
+				</if>
+<!-- 				<if test="searchno != 0"> -->
+					
+<!-- 				</if> -->
+			</trim>
+	</select>
+	
+	<select id="selectNovelList" resultType="com.santabooks.novel.dto.Novel" parameterType="com.santabooks.util.Paging">
+		select * from (
+			select rownum rnum, B.* FROM (
+				select * from ${tableName}
+		
+				<if test="search != null and search != ''">
+					WHERE title LIKE '%' || #{search} || '%' OR content LIKE '%' || #{search} || '%'
+				</if>
+				
+				order by novelNo desc
+		
+				) B ORDER BY rnum
+		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
+		
+<!-- 			<trim prefix="WHERE" prefixOverrides="AND"> -->
+<!-- 				<if test="search != null and search != ''"> -->
+<!-- 					title LIKE '%' || #{search} || '%' -->
+<!-- 				</if> -->
+<!-- 				<if test="searchno != 0"> -->
+					
+<!-- 				</if> -->
+<!-- 			</trim> -->
 	</select>
 </mapper>

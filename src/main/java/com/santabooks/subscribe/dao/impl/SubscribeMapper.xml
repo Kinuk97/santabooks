@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.santabooks.subscribe.dao.face.SubscribeDao">
+	
+	<insert id="insertSub" parameterType="com.santabooks.subscribe.dto.Subscription">
+		INSERT INTO Subscription (subNo, subDate, subAdd, subName, subTel, subTerm, subPay )
+		VALUES ( subscription_seq.nextval,  #{subDate}, #{subAdd}, #{subName}, #{subTel}, #{subTerm}, #{subPay})
+	
+	</insert>
+
+
+</mapper>

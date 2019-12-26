@@ -29,7 +29,7 @@ function requestPayment() {
 	    pg : 'html5_inicis', //PG사 - 'kakao':카카오페이, 'html5_inicis':이니시스(웹표준결제), 'nice':나이스페이, 'jtnet':제이티넷, 'uplus':LG유플러스, 'danal':다날, 'payco':페이코, 'syrup':시럽페이, 'paypal':페이팔
 	    pay_method : 'card', //결제방식 - 'samsung':삼성페이, 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
 	    merchant_uid : 'merchant_' + new Date().getTime(), //고유주문번호 - random, unique
-	    name : '주문명:결제테스트', //주문명 - 선택항목, 결제정보 확인을 위한 입력, 16자 이내로 작성
+	    name : '산타북스 정기구독', //주문명 - 선택항목, 결제정보 확인을 위한 입력, 16자 이내로 작성
 	    amount : 9900, //결제금액 - 필수항목
 	    buyer_email : 'iamport@siot.do', //주문자Email - 선택항목
 	    buyer_name : '구매자이름', //주문자명 - 선택항목
@@ -110,6 +110,9 @@ function requestPayment() {
 
 	<label for="subTerm">배송 메시지 입력</label>
 	<input type="text" id="subTerm" name="subTerm" placeholder="배송 메세지를 입력"/>  <br>
+
+	<label for="subPay">결제 정보</label>
+	<input type="text" id="subPay" name="subPay" placeholder="결제정보"/>  <br>
 	
 	<button> 완료 </button>
 	
