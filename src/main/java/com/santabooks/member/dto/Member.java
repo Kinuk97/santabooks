@@ -13,7 +13,6 @@ public class Member {
 	private String memberGender;
 	private String genre;
 	private String subcheck;
-	private int subNo;
 	
 	
 	@Override
@@ -21,7 +20,7 @@ public class Member {
 		return "Member [memberNo=" + memberNo + ", memberId=" + memberId + ", memberName=" + memberName
 				+ ", memberNick=" + memberNick + ", memberPw=" + memberPw + ", memberBirth=" + memberBirth
 				+ ", memberTel=" + memberTel + ", memberAdd=" + memberAdd + ", memberGender=" + memberGender
-				+ ", genre=" + genre + ", subcheck=" + subcheck + ", subNo=" + subNo + "]";
+				+ ", genre=" + genre + ", subcheck=" + subcheck + "]";
 	}
 
 
@@ -134,18 +133,8 @@ public class Member {
 		this.subcheck = subcheck;
 	}
 
-
-	public int getSubNo() {
-		return subNo;
-	}
-
-
-	public void setSubNo(int subNo) {
-		this.subNo = subNo;
-	}
 	
 	
 	
 
 }
-;
