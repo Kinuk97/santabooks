@@ -12,6 +12,9 @@ public class SubscribeController {
 
 	@RequestMapping(value="/subscribe/first")
 	public void pay() {}	
+
+	@RequestMapping(value="/subscribe/first",  method=RequestMethod.POST)
+	public void payment() {}	
 	
 	@RequestMapping(value="/pay/complete", method=RequestMethod.POST)
 	public void payComplete( ) { }
