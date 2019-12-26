@@ -33,7 +33,7 @@
 								<span class="sr-only">(current)</span>
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="/novel/list">소설</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">리뷰</a></li>
+						<li class="nav-item"><a class="nav-link" href="/sns/list">리뷰SNS</a></li>
 						<!-- 드롭다운 item -->
 <!-- 						<li class="nav-item dropdown"><a -->
 <!-- 							class="nav-link dropdown-toggle" href="#" id="dropdown07XL" -->
