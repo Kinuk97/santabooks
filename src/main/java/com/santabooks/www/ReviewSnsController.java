@@ -27,6 +27,7 @@ public class ReviewSnsController {
 		
 		int totalCount = reviewSnsService.selectCntAll();
 		
+		
 		Paging reviewPaging = new Paging(totalCount, paging.getCurPage());
 		
 		List<ReviewSns> list = reviewSnsService.snsList(reviewPaging);

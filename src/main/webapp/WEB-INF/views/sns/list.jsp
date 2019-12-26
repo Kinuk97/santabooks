@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<jsp:include page="/WEB-INF/views/layout/header.jsp">
+<jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 
 	<script type="text/javascript">
 	
@@ -18,7 +18,7 @@
 				type : "post",
 				url : "/sns/list",
 				data : { "curPage" : curPage, "feedNo" : "${paging.feedNo}", "memberNo" : "${paging.memberNo}",
-					"bookNo" : "${paging.bookNo}", "review" : "${paging.riview}","privacy" : "${paging.privacy}" }, 
+					"bookNo" : "${paging.bookNo}", "review" : "${paging.review}","privacy" : "${paging.privacy}" }, 
 				dataType : "json",
 				success : function(data) {
 					for (var i = 0; i < data.length; i++) {
@@ -83,7 +83,6 @@ $(document).ready(function(){
 	
 
 
-
 </div>
 
 	
@@ -109,7 +108,7 @@ $(document).ready(function(){
        
             <!--// 모달창 -->
 
-<jsp:include page="/WEB-INF/views/layout/paging.jsp">
-<jsp:include page="/WEB-INF/views/layout/footer.jsp">
+<jsp:include page="/WEB-INF/views/layout/paging.jsp"/>
+<jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
 
 
