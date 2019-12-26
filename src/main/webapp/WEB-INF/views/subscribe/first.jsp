@@ -110,6 +110,9 @@ function requestPayment() {
 
 	<label for="subTerm">배송 메시지 입력</label>
 	<input type="text" id="subTerm" name="subTerm" placeholder="배송 메세지를 입력"/>  <br>
+
+	<label for="subPay">결제 정보</label>
+	<input type="text" id="subPay" name="subPay" placeholder="결제정보"/>  <br>
 	
 	<button> 완료 </button>
 	
