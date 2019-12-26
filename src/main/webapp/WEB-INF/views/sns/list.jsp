@@ -108,7 +108,6 @@ $(document).ready(function(){
        
             <!--// 모달창 -->
 
-<jsp:include page="/WEB-INF/views/layout/paging.jsp"/>
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
 
 
