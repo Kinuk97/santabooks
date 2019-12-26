@@ -64,9 +64,9 @@ h2 {
 </style>
 
 <div class="container">
-<h1>회원탈퇴</h1><br><br>
+<h1>회원탈퇴</h1><hr><br><br>
 
-<p>"다음 사항을 꼭 확인해주세요.<br>
+<p>"다음 사항을 꼭 확인해주세요."<br>
 회원탈퇴 관련하여 자주 묻는 질문 (FAQ)<br><br>
 Q : 결제 정보는 어떻게 되나요?<br>
 A : 탈퇴 즉시 삭제되며 환불 받을 수 없습니다.<br><br>
@@ -81,7 +81,7 @@ A : 탈퇴가 완료되면 편법 이용행위를 방지하기 위하여 아이�
 </p>
 
 <div id = "div_currpw">
-	<input type="password" placeholder="비밀번호 입력" class="form-control pwinput" id="memberPw " name="memberPw "  />
+	<input type="password" placeholder="비밀번호 입력" class="form-control pwinput" id="memberPw " name="memberPw " />
 </div>
 
 <p>탈퇴가 완료된 계정은 다시 복구할 수 없습니다.</p>
@@ -90,10 +90,8 @@ A : 탈퇴가 완료되면 편법 이용행위를 방지하기 위하여 아이�
 		<small>위 내용을 이해했으며, 모두 동의합니다</small><br><br><br>
 
 <div id = "btns" class="text-center">
-         <button type="submit" id="btnCancel" class="btn btn-warning"
-         style="font-family: 'NIXGONB-Vb';">취소</button>
-         <button type="submit" id="btnOut" class="btn btn-danger"
-         style="font-family: 'NIXGONB-Vb';">회원 탈퇴</button>
+         <button type="submit" id="btnCancel" class="btn btn-warning">취소</button>
+         <button type="submit" id="btnOut" class="btn btn-danger">회원 탈퇴</button>
 </div>
 
 </div>
