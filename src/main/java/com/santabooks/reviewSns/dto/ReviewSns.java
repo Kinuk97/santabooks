@@ -6,11 +6,12 @@ public class ReviewSns {
 	private int memberNo;
 	private String review;
 	private int privacy;
+	private String reviewDate;
 
 	@Override
 	public String toString() {
 		return "ReviewSns [feedNo=" + feedNo + ", bookNo=" + bookNo + ", memberNo=" + memberNo + ", review=" + review
-				+ ", privacy=" + privacy + "]";
+				+ ", privacy=" + privacy + ", reviewDate=" + reviewDate + "]";
 	}
 
 	public int getFeedNo() {
@@ -51,6 +52,14 @@ public class ReviewSns {
 
 	public void setPrivacy(int privacy) {
 		this.privacy = privacy;
+	}
+
+	public String getReviewDate() {
+		return reviewDate;
+	}
+
+	public void setReviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
 	}
 
 }

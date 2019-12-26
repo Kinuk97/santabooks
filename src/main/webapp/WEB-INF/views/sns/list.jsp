@@ -1,113 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.net.URLEncoder" %>
-    
+	pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLEncoder"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<jsp:include page="/WEB-INF/views/layout/header.jsp"/>
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
+<style type="text/css">
+* {
+  box-sizing: border-box;
+}
 
-	<script type="text/javascript">
-	
-	var curPage = 1;
-	var loading = false;
-	var totalPage = "${paging.totalPage}";
-	
-	function reviewSnsList(){
-	    	$.ajax({
-				type : "post",
-				url : "/sns/list",
-				data : { "curPage" : curPage, "feedNo" : "${paging.feedNo}", "memberNo" : "${paging.memberNo}",
-					"bookNo" : "${paging.bookNo}", "review" : "${paging.review}","privacy" : "${paging.privacy}" }, 
-				dataType : "json",
-				success : function(data) {
-					for (var i = 0; i < data.length; i++) {
-						
-						var caption = $("<div class='caption caption-project' onclick=\"location.href='/sns/view?feedNo="+data[i].feedNo+"'\"></div>");
-						
-						caption.append($("<p></p>").text(data[i].reviews));
-						
-						var board = $("<div class='col-sm6 col-md-4 col-lg-3'></div>").append($("<div class='thumbnail'></div>").append(caption));
-						
-						$("#review").append(review);
-					}	
-					
-					loading = false;
-				},
-				error : function(e) {
-					console.log(e);
-				}
-			});
-	} // project end
-	
-	$(document).ready(function() {
-			
-		$(window).scroll(function() {
-			if (loading) {
-				return;
-			}
-			if (curPage >= totalPage) {
-				return;
-			}
-			
-			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-		    	loading = true;
-		    	curPage += 1;
-		    	projectList();
-			}
-		}); // scroll end
-	
-}); // document end
-</script>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-<script type="text/javascript">
-$(document).ready(function(){
-	
-	//경고 모달 호출 메서드
-	 function warningModal(content) {
-	    $(".modal-contents").text(content);
-	    $("#defaultModal").modal('show');
-	   }
-	
-	//로그인을 하지 않았는데 새로운 글 작성을 눌렀을 때
-	$("#btnNoLogWrite").click(function() {
-		warningModal("로그인이 필요합니다.");
-	});
-});
+/* Float four columns side by side */
+.column {
+  width: 60%;
+  padding: 0 10px;
+}
 
-</script>
+.card {
+	height: 200px;
+}
 
 
-<div id="review" class="container list-container">
-	<h1 class="text-center">리뷰</h1>
-	
+/* Remove extra left and right margins, due to padding in columns */
+.row {
+	margin: 0 -5px;
 
+}
 
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+</style>
+
+<div class="container">
+<c:forEach items="${reviewList }" var="review">
+	<div class="row">
+		<div class="column">
+			<div class="card">
+				<p>${review.review }</p>
+				<div class="text-right">${review.reviewDate }</div>
+			</div>
+		</div>
+	</div>
+	<br>
+</c:forEach>
 </div>
 
-	
-<br>	
-<hr>
 
-<!-- 모달창 -->
-            <div class="modal fade" id="defaultModal">
-               <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header panel-heading">
-                            <h4 class="modal-title">알림</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p class="modal-contents"></p>
-                        </div>
-                        <div class="modal-footer">
-                           <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-       
-            <!--// 모달창 -->
 
-<jsp:include page="/WEB-INF/views/layout/footer.jsp"/>
+
+<jsp:include page="/WEB-INF/views/layout/paging.jsp"/>
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
 
 
