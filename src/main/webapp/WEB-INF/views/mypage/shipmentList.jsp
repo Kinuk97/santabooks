@@ -7,22 +7,19 @@
 <jsp:include page="/WEB-INF/views/mypage/mypageMenu.jsp" />
 
 <style type="text/css">
-#newsbar{
-	border: 1.5px solid black;
-	float : right;
-	width: 79%;
-	height: 200px;
+#ship_list{
+	border: 1px solid black;
+	width: 70%;
+	height: 400px;
 	overflow: auto;
-	border: 1px solid #bcbcbc;
-
+	text-align: center;
 }
 </style>
 
 <div class="container">
 <h1>배송받은 책</h1><hr><br>
 
-	<div id="newsbar">
-		<div id="newsTable"></div>
+	<div id="ship_list" style="text-align: center">
 	</div>
 
 
