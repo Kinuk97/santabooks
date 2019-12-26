@@ -70,23 +70,23 @@
 </div>
 <div id = "info_name"> 
 	<label style="font-size: 20px;color: black"> 이름  </label>&nbsp;&nbsp;&nbsp;
-	<label style="font-size: 20px;color: black"><strong>${Member.memberName }</strong></label>
+	<label style="font-size: 20px;color: black"><strong>${info.memberName }</strong></label>
 
 </div>
 <br>
 <div id = "info_id">
 	<label style="font-size: 20px;color: black"> 아이디  </label>&nbsp;&nbsp;&nbsp;
-	<label style="font-size: 20px;color: black"><strong>${Member.memberId }</strong> </label>
+	<label style="font-size: 20px;color: black"><strong>${info.memberId }</strong> </label>
 </div>
 <br>
 <div id = "info_nick">
 	<label style="font-size: 20px;color: black"> 닉네임  </label>&nbsp;&nbsp;&nbsp;
-	<label style="font-size: 20px;color: black"><strong>${Member.member }</strong> </label>
+	<label style="font-size: 20px;color: black"><strong>${info.member }</strong> </label>
 </div>
 <br>
 <div id = "info_genre">
 	<label style="font-size: 20px;color: black">관심 장르  </label>&nbsp;&nbsp;&nbsp;
-	<label style="font-size: 20px;color: black"><strong>${Member.genre }</strong> </label>
+	<label style="font-size: 20px;color: black"><strong>${info.genre }</strong> </label>
 	<br><br>
 	<a href="/mypage/infoUpdate"><button id="my_info" class="btn btn-success btn-sm">개인정보 수정</button></a>
 	<button id="qna" class="btn btn-primary btn-sm">1:1문의</button>
