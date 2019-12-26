@@ -35,7 +35,7 @@ public class MemberController {
 			boolean joinResult = memberService.join(writer);
 			 
 			if(joinResult) {
-				logger.info("회원가입 성공");
+				logger.info("회원가입 성");
 				model.addAttribute("msg", "회원가입 성공");
 				model.addAttribute("url", "/main");
 			} else {
