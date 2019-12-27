@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 		for (var i = 0; i < paramTemp.length; i++) {
 			for (var j = 0; j < paramTemp[i].split("=").length; j++) {
-				if (paramTemp[i].split("=")[j] == "categoryNo") {
+				if (paramTemp[i].split("=")[j] == "category") {
 					identifier = paramTemp[i].split("=")[j + 1];
 				}
 			}
@@ -29,6 +29,8 @@ $(document).ready(function() {
 			$(".category").eq(3).children().addClass("active");
 		} else if (identifier == "4") {
 			$(".category").eq(4).children().addClass("active");
+		} else if (identifier == "5") {
+			$(".category").eq(5).children().addClass("active");
 		} else {
 			$(".category").eq(0).children().addClass("active");
 		}
