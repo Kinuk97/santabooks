@@ -18,6 +18,8 @@ public class Paging {
 	private String search;
 	// 제목? 내용? 제목 + 내용?
 	private int searchno;
+	// 소설 카테고리
+	private int category;
 
 	// count(*) 할 테이블명
 	private String tableName;
@@ -99,7 +101,7 @@ public class Paging {
 		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
 				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchno=" + searchno
-				+ ", tableName=" + tableName + "]";
+				+ ", category=" + category + ", tableName=" + tableName + "]";
 	}
 
 	public int getCurPage() {
@@ -188,6 +190,14 @@ public class Paging {
 
 	public void setSearchno(int searchno) {
 		this.searchno = searchno;
+	}
+
+	public int getCategory() {
+		return category;
+	}
+
+	public void setCategory(int category) {
+		this.category = category;
 	}
 
 	public String getTableName() {

@@ -35,8 +35,8 @@ public class NovelServiceImpl implements NovelService {
 	}
 	
 	@Override
-	public List<Novel> getBestNovel() {
-		return novelDao.selectBestNovel();
+	public List<Novel> getBestNovel(int category) {
+		return novelDao.selectBestNovel(category);
 	}
 
 	@Override
@@ -81,6 +81,7 @@ public class NovelServiceImpl implements NovelService {
 		resultPaging.setSearch(paging.getSearch());
 		resultPaging.setSearchno(paging.getSearchno());
 		resultPaging.setTableName(paging.getTableName());
+		resultPaging.setCategory(paging.getCategory());
 		
 		return resultPaging;
 	}
