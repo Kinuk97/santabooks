@@ -9,4 +9,5 @@ public interface MemberService  {
 
 	public boolean join(Member writer);
 
+
 }

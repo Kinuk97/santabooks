@@ -41,6 +41,7 @@
 // 날짜 추가하는 메소드
 $(function() {
     $( "#testDatepicker" ).datepicker({
+    	dateFormat: "yymmdd"
     });
 });
 </script>    
@@ -55,22 +56,22 @@ $(function() {
      
     <div class="col-sm-6">
     <h2>산타북스 회원가입</h2>
-    <form action="MemberJoinProc.jsp" method="post">
+    <form action="/member/join" method="post">
         <table class="table table-boardered">
             <tr>
                 <th>이메일</th>
-                <td><input type="text" class="form-control" name="id" placeholder="e-mail을 입력하세요">
+                <td><input type="text" class="form-control" name="memberId" placeholder="e-mail을 입력하세요">
             </tr>
             
               <tr>
                 <th>이름</th>
-                <td><input type="text" class="form-control" name="membername" placeholder="성함을 입력해주세요"></td>      
+                <td><input type="text" class="form-control" name="memberName" placeholder="성함을 입력해주세요"></td>      
             </tr>
             
             
               <tr>
                 <th>닉네임</th>
-                <td><input type="text" class="form-control" name="membernick" placeholder="닉네임을 입력해주세요"></td>      
+                <td><input type="text" class="form-control" name="memberNick" placeholder="닉네임을 입력해주세요"></td>      
             </tr>
             
           
@@ -81,12 +82,12 @@ $(function() {
              
             <tr>
                 <th>비밀번호확인</th>
-                <td><input type="password" class="form-control" name="memberPw"></td>        
+                <td><input type="password" class="form-control" name="memberPwChk"></td>        
             </tr>
              
                <tr>
                 <th>생년월일</th>
-                <td><input type="text" class="form-control" id="testDatepicker" name="memberBirth"></td>        
+                <td><input type="text" style="cursor: pointer;" class="form-control" id="testDatepicker" name="memberBirth" readonly="readonly"></td>        
             </tr>
             
                  <tr>
@@ -95,20 +96,35 @@ $(function() {
             </tr>
              
              
- 
+ 			<tr>
+                <th>주소</th>
+                <td><input type="text" class="form-control" name="memberAdd"></td>        
+            </tr>
              
-            
+             
              
                          
             <tr>
                 <th>성별</th>
                 <td>
-                <input type="radio"  name="gender" value="female">여성 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio"  name="gender" value="male">남성 &nbsp;&nbsp;
+                <input type="radio"  name="memberGender" value="female">여성 &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio"  name="memberGender" value="male">남성 &nbsp;&nbsp;
     
-                </td>     
+                </td>   
+                  
+            </tr>
+            
+                <tr>
+                <th>장르</th>
+                <td>
+                <input type="radio"  name="genre" value="female">추후삭제
             </tr>
              
+                             <tr>
+                <th>구독여부</th>
+                <td>
+                <input type="radio"  name="subcheck" value="female">추후삭제
+            </tr>
              
                          <tr>
                 <th>이용약관</th>

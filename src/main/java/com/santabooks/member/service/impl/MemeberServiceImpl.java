@@ -13,12 +13,12 @@ public class MemeberServiceImpl implements MemberService{
 	@Autowired private MemberDao memberDao;
 
 	@Override
-	public boolean join(Member writer) {
-		if(memberDao.selectByMemberid(writer)>0)
+	public boolean join(Member member) {
+		if(memberDao.selectByMemberId(member)>0)
 			return false;
 		
-		memberDao.join(writer);
-		if(memberDao.selectByMemberid(writer)>0)
+		memberDao.join(member);
+		if(memberDao.selectByMemberId(member)>0)
 			return true;
 		else return false;
 
