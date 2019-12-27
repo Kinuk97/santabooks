@@ -1,7 +1,5 @@
 package com.santabooks.www;
 
-import java.io.IOException;
-import java.io.Writer;
 import java.util.List;
 
 import org.slf4j.Logger;
