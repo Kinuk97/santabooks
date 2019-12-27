@@ -20,6 +20,6 @@
 		parameterType="com.santabooks.member.dto.Member" resultType="String">
 		SELECT memberNick FROM member
 		WHERE
-		MemberNick = #{memberNick }
+		MemberNick = #{memberId }
 	</select>
 </mapper>
