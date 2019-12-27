@@ -49,6 +49,11 @@
 	margin: 5px 8px;
 }
 
+ul .addNovel {
+	float: right;
+	color: #FFF;
+}
+
 /* a:link, a:visited { */
 /*   color: black; */
 /*   cursor: pointer; */

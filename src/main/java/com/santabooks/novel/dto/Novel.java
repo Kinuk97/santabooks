@@ -7,6 +7,13 @@ public class Novel {
 	private String discription;
 	private int score;
 	private String addDate;
+	private int category;
+
+	@Override
+	public String toString() {
+		return "Novel [novelNo=" + novelNo + ", memberNo=" + memberNo + ", title=" + title + ", discription="
+				+ discription + ", score=" + score + ", addDate=" + addDate + ", category=" + category + "]";
+	}
 
 	public int getNovelNo() {
 		return novelNo;
@@ -56,9 +63,12 @@ public class Novel {
 		this.addDate = addDate;
 	}
 
-	@Override
-	public String toString() {
-		return "Novel [novelNo=" + novelNo + ", memberNo=" + memberNo + ", title=" + title + ", discription="
-				+ discription + ", score=" + score + ", addDate=" + addDate + "]";
+	public int getCategory() {
+		return category;
 	}
+
+	public void setCategory(int category) {
+		this.category = category;
+	}
+
 }

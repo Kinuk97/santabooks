@@ -30,10 +30,11 @@ public interface NovelService {
 	
 	/**
 	 * 별점 순 3개 소설
+	 * @param category - 카테고리번호
 	 * 
 	 * @return List<Novel> - 결과 리스트
 	 */
-	public List<Novel> getBestNovel();
+	public List<Novel> getBestNovel(int category);
 	/**
 	 * 소설 상세보기
 	 * 

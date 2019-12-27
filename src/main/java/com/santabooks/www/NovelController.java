@@ -28,7 +28,7 @@ public class NovelController {
 
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", novelService.getNovelList(paging));
-		model.addAttribute("best", novelService.getBestNovel());
+		model.addAttribute("best", novelService.getBestNovel(paging.getCategory()));
 		model.addAttribute("url", req.getRequestURI());
 	}
 
