@@ -4,8 +4,7 @@ import com.santabooks.member.dto.Member;
 
 public interface LoginService {
 
-	public boolean login(Member writer);
-
-	public Object getMemberNick(Member writer);
+	public boolean login(Member member);
 	
+	public String getMemberNick(Member membmer);
 }
