@@ -10,14 +10,6 @@
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script>
-//     new daum.Postcode({
-//         oncomplete: function(data) {
-//             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-//             // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-//         }
-//     }).open();
-</script>
 
 
 <script type="text/javascript">
@@ -161,7 +153,12 @@ function requestPayment() {
     }
 </script>
 
+<script>
+function 
 
+
+
+</script>
 
 
 
@@ -200,14 +197,18 @@ function requestPayment() {
 			<input type="text" id="postCode" name="postCode" placeholder="우편번호">
 			<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 			
-		<label for="" class="col-2"></label>
+		<div style="margin-left: -75px">
+		<label for="" class="col-3"></label>
 			<input type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" >
 			<input type="text" id="jibunAddress" name="jibunAddress" placeholder="지번주소">
+		</div>	
 			<span id="guide" style="color:#999;display:none"></span>
-		<label for="" class="col-2"></label>
+			
+		<div  style="margin-left: -75px">
+		<label for="" class="col-3"></label>
 			<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
 			<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목">
-
+	</div>
 
 
 		<br><br>
@@ -225,7 +226,7 @@ function requestPayment() {
 	
 	
 		<br><br>
-		<button type="button" id="pay">결제</button>
+		<button type="button" id="pay" class="btn btn-light" style=" background-color: #dee2e6;" >결제</button>
 <!-- 		<button> 완료 </button> -->
 	</div>
 
