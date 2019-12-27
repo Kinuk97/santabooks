@@ -35,12 +35,20 @@ function check(){
 	     $("input:checkbox[id='hint']").prop("checked", true);
 	     
 		$.ajax({
-			type: "post",
-			url: "subscribe/getInfo",
-			data:
-			dataType:
-			success:
-			error:
+			type: "POST",
+			url: "/subscribe/getInfo",
+			data: {  },
+			dataType:"json",
+			success: function(res){
+// 				alert("Good")
+				console.log(res.member.memberName);
+				$("#subName").attr("value",res.member.memberName);
+				$("#subTel").attr("value",res.member.memberTel);
+			},
+			error: function(e){
+				console.log(e);
+				
+			}
 		})
 	     
 	console.log("체크_check")

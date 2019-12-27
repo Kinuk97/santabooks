@@ -1,5 +1,7 @@
 package com.santabooks.www;
 
+import java.io.Writer;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.santabooks.member.dto.Member;
 import com.santabooks.subscribe.dto.Subscription;
 import com.santabooks.subscribe.service.face.SubscribeService;
 
@@ -21,10 +24,19 @@ public class SubscribeController {
 	public void main() {}	
 
 	@RequestMapping(value="/subscribe/first", method=RequestMethod.GET)
-	public void pay() {}	
+	public void pay() {	}	
 
 	@RequestMapping(value="/subscribe/getInfo", method=RequestMethod.POST)
-	public ModelAndView getInfo(ModelAndView mav){
+	public ModelAndView getInfo(HttpSession session, ModelAndView mav){
+		String id = (String) session.getAttribute("MemberId");
+		System.out.println(id);
+		
+		Member member = subscribeservice.getInfo(id); 
+//		System.out.println(member);
+		
+		mav.addObject("member", member);
+		mav.setViewName("jsonView");
+		
 		return mav;
 	}
 	
