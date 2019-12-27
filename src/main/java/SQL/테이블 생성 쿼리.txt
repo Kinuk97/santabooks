@@ -131,7 +131,8 @@ CREATE TABLE Favorite (
 
 CREATE TABLE Score (
  memberNo NUMBER NOT NULL,
- episodeNo NUMBER NOT NULL
+ episodeNo NUMBER NOT NULL,
+ score NUMBER DEFAULT 0
 );
 
 -------------------------------------------------------------
