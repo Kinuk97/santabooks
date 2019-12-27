@@ -6,4 +6,20 @@
 
 <mapper namespace="com.santabooks.member.dao.face.LoginDao">
 
+
+	<select id="login"
+		parameterType="com.santabooks.member.dto.Member" resultType="int">
+			SELECT COUNT(*) FROM member
+	   		WHERE 1=1
+	   		AND memberId = #{memberId}
+	   		AND memberPw = #{memberPw}
+	</select>
+	
+	
+	<select id="getmemberNick"
+		parameterType="com.santabooks.member.dto.Member" resultType="String">
+		SELECT memberNick FROM member
+		WHERE
+		MemberNick = #{memberId }
+	</select>
 </mapper>

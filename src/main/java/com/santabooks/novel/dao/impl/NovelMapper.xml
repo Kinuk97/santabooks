@@ -47,4 +47,13 @@
 		     	ORDER BY score DESC
 	     ) WHERE ROWNUM BETWEEN 1 AND 3
 	</select>
+	
+	<insert id="insertNovel" parameterType="com.santabooks.novel.dto.Novel">
+		<selectKey order="BEFORE" keyColumn="novelNo" keyProperty="novelNo">
+		SELECT novel_seq.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO novel (novelNo, memberNo, title, discription, category)
+					VAUES (#{novelNo}, #{memberNo}, #{title}, #{discription}, #{category})
+	</insert>
 </mapper>

@@ -74,7 +74,7 @@
         <div class="form-group">
         	<div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control" id="id" name="id" placeholder="ID" required="required">
+                <input type="text" class="form-control" id="id" name="memberId" placeholder="ID" required="required">
             </div>
         </div>
 
@@ -82,7 +82,7 @@
 		<div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control" n id="pw" name="pw" placeholder="Password" required="required">
+                <input type="password" class="form-control" id="pw" name="memberPw" placeholder="Password" required="required">
             </div>
         </div>        
         <div class="form-group">

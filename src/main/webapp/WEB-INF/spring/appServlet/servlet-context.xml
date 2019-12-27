@@ -11,6 +11,17 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+	
+	<!-- 인터셉터 설정 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/novel/**" />
+			<exclude-mapping path="/novel/list"/>
+			<exclude-mapping path="/episode/list"/>
+			<exclude-mapping path="/episode/view"/>
+			<beans:bean class="com.santabooks.www.interceptor.LoginCheckInterceptor" />
+		</interceptor>
+	</interceptors>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />

@@ -19,8 +19,7 @@ public class NovelServiceImpl implements NovelService {
 	
 	@Override
 	public void addNovel(Novel novel) {
-		// TODO Auto-generated method stub
-		
+		novelDao.insertNovel(novel);
 	}
 
 	@Override

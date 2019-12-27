@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.santabooks.member.dto.Member;
 import com.santabooks.member.service.face.MemberService;
 
-
 @Controller
 public class MemberController {
 
@@ -24,29 +23,30 @@ public class MemberController {
 	public void main() {
 	}
 
-
-	// 회원가입	
-	@RequestMapping(value="/member/join", method=RequestMethod.GET)
-	public void join() { }
-	
-	
-	@RequestMapping(value="/member/join", method=RequestMethod.POST)
-		public String joinProcess(Member writer, Model model) {
-			boolean joinResult = memberService.join(writer);
-			 
-			if(joinResult) {
-				logger.info("회원가입 성");
-				model.addAttribute("msg", "회원가입 성공");
-				model.addAttribute("url", "/main");
-			} else {
-				logger.info("회원가입 실패");
-				model.addAttribute("msg", "회원가입 실패");
-				model.addAttribute("url", "/member/join");
-			}
-			return "util/alert";
-		}
-
-
+	// 회원가입
+	@RequestMapping(value = "/member/join", method = RequestMethod.GET)
+	public void join() {
 	}
 
+	@RequestMapping(value = "/member/join", method = RequestMethod.POST)
+	public String joinProcess(Member member, Model model) {
+		boolean joinResult = memberService.join(member);
 
+		if (joinResult) {
+			logger.info("회원가입 성공");
+			model.addAttribute("msg", "회원가입 성공");
+			model.addAttribute("url", "/member/welcome_join");
+		} else {
+			logger.info("회원가입 실패");
+			model.addAttribute("msg", "회원가입 실패");
+			model.addAttribute("url", "/member/join");
+		}
+		return "/member/alert";
+	}
+	
+	
+	@RequestMapping(value="/member/welcome_join", method=RequestMethod.GET)
+	public void joinSuccess() {
+	}
+
+}
