@@ -31,11 +31,11 @@ public class LoginController {
 
 	@RequestMapping(value="/member/login", method=RequestMethod.POST)
 	public String loginProcess(
-			Member writer,
+			Member member,
 			HttpSession session,
 			Model model) {
 		
-		boolean loginResult = loginService.login(writer);
+		boolean loginResult = loginService.login(member);
 		
 		if(loginResult) {
 			logger.info("로그인 성공");
@@ -43,22 +43,21 @@ public class LoginController {
 			model.addAttribute("url", "/main");
 			
 			session.setAttribute("login", true);
-			session.setAttribute("id", writer.getMemberId());
-			session.setAttribute("nick", loginService.getMemberNick(writer));
+			session.setAttribute("MemberId", member.getMemberId());
+			session.setAttribute("MemberNick", loginService.getMemberNick(member));
 			
 			logger.info("세션상태 : " + session.getAttribute("login"));
-			logger.info("세션 아이디 : " + session.getAttribute("id"));
+			logger.info("세션 아이디 : " + session.getAttribute("MemberId"));
 			
 		} else {
 			logger.info("로그인실패");
 			model.addAttribute("msg", "로그인 실패");
-			model.addAttribute("url", "/member/login");
+			model.addAttribute("url", "/member/login_fail");
 		}
 		
-		return "util/alert";
+		return "member/alert";
 	}
 	
-
 	// 로그아웃
 	@RequestMapping(value = "/member/logout", method = { RequestMethod.GET, RequestMethod.POST })
 	public String logout(HttpSession session) throws IOException {

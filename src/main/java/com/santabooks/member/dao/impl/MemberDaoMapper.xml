@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.santabooks.member.dao.face.MemberDao">
+
+	<select id="join"
+		parameterType="com.santabooks.member.dto.Member">
+		INSERT INTO member (memberNo, memberId, memberName, memberNick, memberPw, memberBirth, memberTel, memberAdd, memberGender, genre, subcheck  )
+		VALUES (member_seq.nextval, #{memberId }, #{memberName }, #{memberNick }, #{memberPw }, #{memberBirth }, #{memberTel }, #{memberAdd }, #{memberGender }, #{genre }, #{subcheck } )
+		
+	</select>
+
+	<select id="selectByMemberId" parameterType="com.santabooks.member.dto.Member"
+		resultType="int">
+		SELECT count(*) FROM member
+		WHERE memberId = #{memberId }
+	</select>
+	
+	
+
+
+</mapper>
+

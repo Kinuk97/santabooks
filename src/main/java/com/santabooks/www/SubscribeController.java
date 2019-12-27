@@ -23,14 +23,16 @@ public class SubscribeController {
 	public void pay() {}	
 
 	@RequestMapping(value="/subscribe/first",  method=RequestMethod.POST)
-	public String payment(Subscription subscription, HttpSession session) {
+	public String payment(Subscription subscription) {
 		
 //		System.out.println(subscribe);
-		subscribeservice.subscribe(subscription);
-		
-		
-		return "redirect:/";
+		subscribeservice.subscribe(subscription);	
+		return "redirect:/subscribe/final";
 	}	
+	@RequestMapping(value="/subscribe/final")
+	public void paymentfianl() {}
+	
+	
 	
 	@RequestMapping(value="/pay/complete", method=RequestMethod.POST)
 	public void payComplete( ) { }

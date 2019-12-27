@@ -27,6 +27,14 @@ public interface NovelService {
 	 * @return List<Novel> - 소설 목록
 	 */
 	public List<Novel> getNovelList(Paging paging);
+	
+	/**
+	 * 별점 순 3개 소설
+	 * @param category - 카테고리번호
+	 * 
+	 * @return List<Novel> - 결과 리스트
+	 */
+	public List<Novel> getBestNovel(int category);
 	/**
 	 * 소설 상세보기
 	 * 
@@ -68,6 +76,7 @@ public interface NovelService {
 	 * @return List<Episode>  - 게시글 목록 List
 	 */
 	public List<Episode> getEpisodeList(Episode episode);
+	
 	/**
 	 * 회차 상세보기
 	 * 

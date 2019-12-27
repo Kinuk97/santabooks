@@ -19,8 +19,7 @@ public class NovelServiceImpl implements NovelService {
 	
 	@Override
 	public void addNovel(Novel novel) {
-		// TODO Auto-generated method stub
-		
+		novelDao.insertNovel(novel);
 	}
 
 	@Override
@@ -32,6 +31,11 @@ public class NovelServiceImpl implements NovelService {
 	@Override
 	public List<Novel> getNovelList(Paging paging) {
 		return novelDao.selectNovelList(paging);
+	}
+	
+	@Override
+	public List<Novel> getBestNovel(int category) {
+		return novelDao.selectBestNovel(category);
 	}
 
 	@Override
@@ -72,10 +76,11 @@ public class NovelServiceImpl implements NovelService {
 
 	@Override
 	public Paging getPaging(Paging paging) {
-		Paging resultPaging = new Paging(novelDao.selectCntList(paging), paging.getCurPage());
+		Paging resultPaging = new Paging(novelDao.selectCntList(paging), paging.getCurPage(), 12);
 		resultPaging.setSearch(paging.getSearch());
 		resultPaging.setSearchno(paging.getSearchno());
 		resultPaging.setTableName(paging.getTableName());
+		resultPaging.setCategory(paging.getCategory());
 		
 		return resultPaging;
 	}
