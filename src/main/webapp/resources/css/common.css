@@ -29,3 +29,36 @@
 	min-height: 600px;
 }
 
+/* Novel List CSS */
+.bestNovel {
+	width: 80%;
+    margin: 10px auto;
+}
+
+.novelItem {
+	margin-bottom: 10px;
+}
+
+.card-img-top {
+	height: 150px;
+}
+
+.category {
+	float: left;
+	list-style: none;
+	margin: 5px 8px;
+}
+
+/* a:link, a:visited { */
+/*   color: black; */
+/*   cursor: pointer; */
+/* } */
+
+/* a:link:active, a:visited:active { */
+/* 	color: black; */
+/* } */
+
+/* a:hover { */
+/* 	text-decoration: none; */
+/* } */
+

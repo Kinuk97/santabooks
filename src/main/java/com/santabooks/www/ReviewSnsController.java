@@ -2,6 +2,8 @@ package com.santabooks.www;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class ReviewSnsController {
 	private ReviewSnsService reviewSnsService;
 
 	@RequestMapping(value = "/sns/list", method = RequestMethod.GET)
-	public void snsList(Model model, Paging paging) {
+	public void snsList(Model model, Paging paging, HttpServletRequest req) {
 
 		int totalCount = reviewSnsService.selectCntAll();
 
@@ -36,6 +38,7 @@ public class ReviewSnsController {
 
 		model.addAttribute("reviewList", list);
 		model.addAttribute("paging", reviewPaging);
+		model.addAttribute("url", req.getRequestURI());
 	}
 
 	@RequestMapping(value = "/sns/view", method = RequestMethod.GET)

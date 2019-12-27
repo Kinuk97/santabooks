@@ -1,5 +1,7 @@
 package com.santabooks.www;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,14 @@ public class NovelController {
 	private static final Logger logger = LoggerFactory.getLogger(NovelController.class);
 
 	@RequestMapping(value = "/novel/list", method = RequestMethod.GET)
-	public void showList(Paging paging, Model model) {
+	public void showList(Paging paging, Model model, HttpServletRequest req) {
 		paging.setTableName("novel");
 		paging = novelService.getPaging(paging);
 
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", novelService.getNovelList(paging));
+		model.addAttribute("best", novelService.getBestNovel());
+		model.addAttribute("url", req.getRequestURI());
 	}
 
 }
