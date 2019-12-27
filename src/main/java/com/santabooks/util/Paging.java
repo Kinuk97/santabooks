@@ -21,6 +21,7 @@ public class Paging {
 
 	// count(*) 할 테이블명
 	private String tableName;
+	private int bookNo;
 
 	public Paging() {
 
@@ -94,12 +95,13 @@ public class Paging {
 		endNo = curPage * listCount;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
 				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchno=" + searchno
-				+ ", tableName=" + tableName + "]";
+				+ ", tableName=" + tableName + ", bookNo=" + bookNo + "]";
 	}
 
 	public int getCurPage() {
@@ -197,5 +199,15 @@ public class Paging {
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
 	}
+
+	public int getBookNo() {
+		return bookNo;
+	}
+
+	public void setBookNo(int bookNo) {
+		this.bookNo = bookNo;
+	}
+
+	
 
 }
