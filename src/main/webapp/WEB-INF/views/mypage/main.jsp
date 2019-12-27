@@ -87,6 +87,13 @@
 <div id = "info_genre">
 	<label style="font-size: 20px;color: black">관심 장르  </label>&nbsp;&nbsp;&nbsp;
 	<label style="font-size: 20px;color: black"><strong>${info.genre }</strong> </label>
+
+<input type="checkbox" value="1" id="box1" name="chkbox">
+<input type="checkbox" value="2" id="box2" name="chkbox">
+<input type="checkbox" value="1" id="box3" name="chkbox">
+	
+	
+	
 	<br><br>
 	<a href="/mypage/infoUpdate"><button id="my_info" class="btn btn-success btn-sm">개인정보 수정</button></a>
 	<button id="qna" class="btn btn-primary btn-sm">1:1문의</button>

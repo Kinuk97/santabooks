@@ -24,6 +24,11 @@ public class MyPageInfoController {
 		logger.info("메인 요청");
 	}
 	
+	@RequestMapping(value = "/mypage/infoUpdate", method = RequestMethod.GET)
+	public void infoUpdate() {
+		logger.info("개인정보수정 요청");
+	}
+	
 	@RequestMapping(value = "/mypage/drawal", method = RequestMethod.GET)
 	public void drawal() {
 		logger.info("탈퇴 요청");
@@ -39,9 +44,5 @@ public class MyPageInfoController {
 		logger.info("구독정보 요청");
 	}
 	
-	@RequestMapping(value = "/mypage/infoUpdate", method = RequestMethod.GET)
-	public void infoUpdate() {
-		logger.info("개인정보수정 요청");
-	}
 
 }
