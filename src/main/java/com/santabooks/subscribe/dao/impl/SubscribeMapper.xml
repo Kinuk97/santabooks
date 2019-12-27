@@ -7,8 +7,11 @@
 <mapper namespace="com.santabooks.subscribe.dao.face.SubscribeDao">
 	
 	<insert id="insertSub" parameterType="com.santabooks.subscribe.dto.Subscription">
-		INSERT INTO Subscription (subNo, memberNo, subDate, subAdd, subName, subTel, subTerm, subPay )
-		VALUES ( subscription_seq.nextval, '1',  #{subDate}, #{subAdd}, #{subName}, #{subTel}, #{subTerm}, #{subPay})
+		INSERT INTO Subscription (subNo, memberNo, subDate, subName, subTel, subTerm, subPay,
+		postCode, roadAddress, jibunAddress, detailAddress, extrAaddress )
+		
+		VALUES ( subscription_seq.nextval, '1',  #{subDate}, #{subName}, #{subTel}, #{subTerm}, #{subPay}, 
+		#{postCode}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress} )
 	
 	</insert>
 
