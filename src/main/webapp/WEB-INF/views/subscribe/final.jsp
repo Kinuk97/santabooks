@@ -11,7 +11,7 @@
 
 <div class="container" style="width:630px;">
 <br>
-<div class="page-header" style="text-align: center;"><h2>정기구독 </h2></div><br><br>
+<div class="page-header" style="text-align: center;"><h2>구독 신청 완료</h2></div><br><br>
 
 
 <div style="text-align: center; width:630px;">
@@ -22,6 +22,10 @@
 
 
 <br><br><br><br>
+
+<div>
+
+</div>
 정기구독신청완료
 
 <a href = "/"><button>메인으로</button></a>
