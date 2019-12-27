@@ -23,8 +23,32 @@ $(document).ready(function() {
 	$("#pay").click(function() {
 		requestPayment();
 	});
+	
+
+
+	
 });
 
+function check(){
+	console.log("ㅎㅇㅎㅇㅎㅇㅎㅇㅎ")
+	if($("input:checkbox[id='hint']").is(":checked")){
+	     $("input:checkbox[id='hint']").prop("checked", true);
+	     
+		$.ajax({
+			type: "post",
+			url: "subscribe/getInfo",
+			data:
+			dataType:
+			success:
+			error:
+		})
+	     
+	console.log("체크_check")
+	}else{
+	     $("input:checkbox[id='hint']").prop("checked", false);
+	console.log("체크 NOpe")
+	}
+}
 // 결제 요청 - 결제 모듈 불러오기
 function requestPayment() {
 	IMP.request_pay({
@@ -154,7 +178,6 @@ function requestPayment() {
 </script>
 
 <script>
-function 
 
 
 
@@ -177,17 +200,17 @@ function
 </div>
 <br><br>
 
-<form action="/subscribe/first" method="post" >
+<form action="/subscribe/final" method="post" >
 	
-	<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req"> 기존 사용자 정보와 동일합니다. </label> <br><br>
+	<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req" onclick="check()"> 기존 사용자 정보와 동일합니다. </label> <br><br>
 	
 		
 	<div >
 		<label for="subName"  class="col-3">수령인</label>
-		<input type="text" id="subName" name="subName" placeholder="받으실 분의 이름을 입력하세요"  class="col-6"/> <br>
+		<input type="text" id="subName" name="subName" placeholder="받으실 분의 이름을 입력하세요"  class="col-6" /> <br><br>
 
 		<label for="subTel" class="col-3">휴대전화</label>
-		<input type="text" id="subTel" name="subTel" placeholder="휴대폰 번호를 입력하세요" class="col-6"/>  <br>
+		<input type="text" id="subTel" name="subTel" placeholder="휴대폰 번호를 입력하세요" class="col-6"/>  <br><br>
 
 		<label for="subTerm" class="col-3">배송 메모</label>
 		<input type="text" id="subTerm" name="subTerm" placeholder="배송 메세지를 입력하세요" class="col-6"/>  <br><br>
@@ -211,23 +234,21 @@ function
 	</div>
 
 
-		<br><br>
+		<br>
 		<label for="subPay" class="col-3">결제 정보</label>
 		
 		<select id="subPay" name="subPay"  class="col-6">	
 			<option value="">선택하세요</option>
 			<option value="card">카드</option>
-			<option value="deposit">무통장 입금</option>
+			<option value="deposit">무통장 입금  110-41071946 (신한은행) </option>
 		</select>
-		
-		
-<!-- 		<input type="text" id="subPay" name="subPay" placeholder="결제정보" class="col-6" />  <br> -->
-	
 	
 	
 		<br><br>
 		<button type="button" id="pay" class="btn btn-light" style=" background-color: #dee2e6;" >결제</button>
 <!-- 		<button> 완료 </button> -->
+
+		<br><br>
 	</div>
 
 </form>

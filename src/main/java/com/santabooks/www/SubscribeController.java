@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.subscribe.dto.Subscription;
 import com.santabooks.subscribe.service.face.SubscribeService;
@@ -22,6 +23,13 @@ public class SubscribeController {
 	@RequestMapping(value="/subscribe/first", method=RequestMethod.GET)
 	public void pay() {}	
 
+	@RequestMapping(value="/subscribe/getInfo", method=RequestMethod.POST)
+	public ModelAndView getInfo(ModelAndView mav){
+		return mav;
+	}
+	
+	
+	
 	@RequestMapping(value="/subscribe/first",  method=RequestMethod.POST)
 	public String payment(Subscription subscription) {
 		

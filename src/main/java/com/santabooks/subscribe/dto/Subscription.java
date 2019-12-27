@@ -9,11 +9,14 @@ public class Subscription {
 	private String subTel;
 	private String subTerm;
 	private String subPay;
+	
+	// 주소 API
 	private String postCode;
 	private String roadAddress;
 	private String jibunAddress;
 	private String detailAddress;
 	private String extraAddress;
+	
 	@Override
 	public String toString() {
 		return "Subscription [subNo=" + subNo + ", memberNo=" + memberNo + ", subDate=" + subDate + ", subName="
