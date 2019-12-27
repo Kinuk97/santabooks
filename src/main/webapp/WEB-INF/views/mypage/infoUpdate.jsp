@@ -22,6 +22,21 @@ jQuery(document).ready(function($) {
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	//작성버튼 동작
+	$("#btnUpdate").click(function() {
+		alert("수정 되었습니다.");
+	});
+	
+	//취소버튼 동작
+	$("#btnCancel").click(function() {
+		history.go(-1);
+	});
+});
+</script>
+
 <style type="text/css">
 #selCnt {
 	width: 180px;
@@ -110,17 +125,18 @@ jQuery(document).ready(function($) {
   <div class="col-md-2"></div>
 <table>
     <tr>
+    	<td><label>소설 ㅣ </label></td>
         <td><label><input type="checkbox" name="chk" value="1" />로맨스</label></td>
         <td><label><input type="checkbox" name="chk" value="2" />추리</label></td>
         <td><label><input type="checkbox" name="chk" value="3" />판타지</label></td>
         <td><label><input type="checkbox" name="chk" value="4" />스릴러</label></td>
         <td><label><input type="checkbox" name="chk" value="5" />액션</label></td>
-        <td><label><input type="checkbox" name="chk" value="6" />로판</label></td>
+        <td><label><input type="checkbox" name="chk" value="6" />로맨스 판타지</label></td>
         <td><label><input type="checkbox" name="chk" value="7" />미스터리</label></td>
         <td><label><input type="checkbox" name="chk" value="8" />공포</label></td>
+     	<td><label><input type="checkbox" name="chk" value="9" />무협</label></td>
     </tr>
     <tr>
-     	<td><label><input type="checkbox" name="chk" value="9" />무협</label></td>
         <td><label><input type="checkbox" name="chk" value="10" />여행</label></td>
         <td><label><input type="checkbox" name="chk" value="11" />과학</label></td>
         <td><label><input type="checkbox" name="chk" value="12" />게임</label></td>
@@ -132,7 +148,7 @@ jQuery(document).ready(function($) {
 </table>
 </div><br>
 <div class="text-center">
-       <button type="button" id="btnUpdate" class="btn btn-info">정보 수정</button>
+       <button type="submit" id="btnUpdate" class="btn btn-info">정보 수정</button>
          <button type="button" id="btnCancel" class="btn btn-danger">취소</button>
 </div>
 
