@@ -9,11 +9,11 @@
 		
 			<trim prefix="WHERE" prefixOverrides="AND">
 				<if test="search != null and search != ''">
-					title LIKE '%' || #{search} || '%'
+					AND title LIKE '%' || #{search} || '%'
 				</if>
-<!-- 				<if test="searchno != 0"> -->
-					
-<!-- 				</if> -->
+				<if test="category gt 0 and category lt 5">
+					AND category = #{category}
+				</if>
 			</trim>
 	</select>
 	
@@ -22,28 +22,38 @@
 			select rownum rnum, B.* FROM (
 				select * from ${tableName}
 		
+			<trim prefix="WHERE" prefixOverrides="AND">
 				<if test="search != null and search != ''">
-					WHERE title LIKE '%' || #{search} || '%' OR content LIKE '%' || #{search} || '%'
+					AND title LIKE '%' || #{search} || '%'
 				</if>
+				<if test="category gt 0 and category lt 5">
+					AND category = #{category}
+				</if>
+			</trim>
 				
 				order by novelNo desc
 		
 				) B ORDER BY rnum
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 		
-<!-- 			<trim prefix="WHERE" prefixOverrides="AND"> -->
-<!-- 				<if test="search != null and search != ''"> -->
-<!-- 					title LIKE '%' || #{search} || '%' -->
-<!-- 				</if> -->
-<!-- 				<if test="searchno != 0"> -->
-					
-<!-- 				</if> -->
-<!-- 			</trim> -->
 	</select>
 	
 	<select id="selectBestNovel" resultType="com.santabooks.novel.dto.Novel">
 		 SELECT * FROM (
-	     	SELECT * FROM novel ORDER BY score DESC
+	     	SELECT * FROM novel
+			<if test="category gt 0 and category lt 5">
+		     	WHERE category = #{category}
+	     	</if>
+		     	ORDER BY score DESC
 	     ) WHERE ROWNUM BETWEEN 1 AND 3
 	</select>
+	
+	<insert id="insertNovel" parameterType="com.santabooks.novel.dto.Novel">
+		<selectKey order="BEFORE" keyColumn="novelNo" keyProperty="novelNo">
+		SELECT novel_seq.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO novel (novelNo, memberNo, title, discription, category)
+					VAUES (#{novelNo}, #{memberNo}, #{title}, #{discription}, #{category})
+	</insert>
 </mapper>

@@ -5,15 +5,24 @@ public class Subscription {
 	private int subNo;
 	private int memberNo;
 	private String subDate;
-	private String subAdd;
 	private String subName;
 	private String subTel;
 	private String subTerm;
 	private String subPay;
+	
+	// 주소 API
+	private String postCode;
+	private String roadAddress;
+	private String jibunAddress;
+	private String detailAddress;
+	private String extraAddress;
+	
 	@Override
 	public String toString() {
-		return "Subscription [subNo=" + subNo + ", memberNo=" + memberNo + ", subDate=" + subDate + ", subAdd=" + subAdd
-				+ ", subName=" + subName + ", subTel=" + subTel + ", subTerm=" + subTerm + ", subPay=" + subPay + "]";
+		return "Subscription [subNo=" + subNo + ", memberNo=" + memberNo + ", subDate=" + subDate + ", subName="
+				+ subName + ", subTel=" + subTel + ", subTerm=" + subTerm + ", subPay=" + subPay + ", postCode="
+				+ postCode + ", roadAddress=" + roadAddress + ", jibunAddress=" + jibunAddress + ", detailAddress="
+				+ detailAddress + ", extraAddress=" + extraAddress + "]";
 	}
 	public int getSubNo() {
 		return subNo;
@@ -32,12 +41,6 @@ public class Subscription {
 	}
 	public void setSubDate(String subDate) {
 		this.subDate = subDate;
-	}
-	public String getSubAdd() {
-		return subAdd;
-	}
-	public void setSubAdd(String subAdd) {
-		this.subAdd = subAdd;
 	}
 	public String getSubName() {
 		return subName;
@@ -63,7 +66,38 @@ public class Subscription {
 	public void setSubPay(String subPay) {
 		this.subPay = subPay;
 	}
+	public String getPostCode() {
+		return postCode;
+	}
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
+	public String getRoadAddress() {
+		return roadAddress;
+	}
+	public void setRoadAddress(String roadAddress) {
+		this.roadAddress = roadAddress;
+	}
+	public String getJibunAddress() {
+		return jibunAddress;
+	}
+	public void setJibunAddress(String jibunAddress) {
+		this.jibunAddress = jibunAddress;
+	}
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+	public String getExtraAddress() {
+		return extraAddress;
+	}
+	public void setExtraAddress(String extraAddress) {
+		this.extraAddress = extraAddress;
+	}
 	
+
 
 	
 	

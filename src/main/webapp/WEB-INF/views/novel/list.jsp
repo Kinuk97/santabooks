@@ -10,14 +10,15 @@
 	
 	<div class="col-12">
 		<ul>
-			<!-- 여기서부터 장르 거르기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 작업 중 -->
-			<li class="category"><a href="" class="btn btn-outline-success">전체</a></li>
-			<li class="category"><a href="" class="btn btn-outline-success">현판</a></li>
-			<li class="category"><a href="" class="btn btn-outline-success">로맨스</a></li>
-			<li class="category"><a href="" class="btn btn-outline-success">로판</a></li>
-			<li class="category"><a href="" class="btn btn-outline-success">무협</a></li>
+			<li class="category"><a href="/novel/list" class="btn btn-outline-success">전체</a></li>
+			<li class="category"><a href="/novel/list?category=1" class="btn btn-outline-success">판타지</a></li>
+			<li class="category"><a href="/novel/list?category=2" class="btn btn-outline-success">현판</a></li>
+			<li class="category"><a href="/novel/list?category=3" class="btn btn-outline-success">로맨스</a></li>
+			<li class="category"><a href="/novel/list?category=4" class="btn btn-outline-success">로판</a></li>
+			<li class="category"><a href="/novel/list?category=5" class="btn btn-outline-success">무협</a></li>
+			<li class="category addNovel"><a class="btn btn-success">소설 등록하기</a></li>
 		</ul>
-		<div style="clear: both;"></div>
+		<div style="clear: both;" class="text-right"></div>
 	</div>
 
 	<hr>
@@ -34,8 +35,20 @@
 			  <img src="/resources/images/logo.png" class="card-img-top" alt="...">
 			  <div class="card-body">
 			    <h5 class="card-title">${novel.title }</h5>
-			    <p class="card-text">${novel.discription }</p>
-			    <a href="#" class="btn btn-primary">Go somewhere</a>
+			    <p class="card-text">
+			    ${novel.discription }
+			    <br>
+			    <c:forEach begin="1" end="5" step="1" varStatus="i">
+			    	<c:choose>
+			    		<c:when test="${i.count <= novel.score }">
+					    <img alt="..." src="/resources/images/novel/star-fill.svg">
+			    		</c:when>
+			    		<c:otherwise>
+					    <img alt="..." src="/resources/images/novel/star.svg">
+			    		</c:otherwise>
+			    	</c:choose>
+			    </c:forEach>
+			    </p>
 			  </div>
 			</div>
 		</div>
@@ -51,8 +64,20 @@
 			  <img src="/resources/images/logo.png" class="card-img-top" alt="...">
 			  <div class="card-body">
 			    <h5 class="card-title">${novel.title }</h5>
-			    <p class="card-text">${novel.discription }</p>
-			    <a href="#" class="btn btn-primary">Go somewhere</a>
+			    <p class="card-text">
+			    ${novel.discription }
+			    <br>
+			    <c:forEach begin="1" end="5" step="1" varStatus="i">
+			    	<c:choose>
+			    		<c:when test="${i.count <= novel.score }">
+					    <img alt="..." src="/resources/images/novel/star-fill.svg">
+			    		</c:when>
+			    		<c:otherwise>
+					    <img alt="..." src="/resources/images/novel/star.svg">
+			    		</c:otherwise>
+			    	</c:choose>
+			    </c:forEach>
+			    </p>
 			  </div>
 			</div>
 		</div>

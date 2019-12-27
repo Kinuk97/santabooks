@@ -19,7 +19,7 @@
 		<!-- navbar-expand-lg에서 -lg를 지우면 container보다 살짝 넓어짐 -->
 		<nav class="navbar navbar-expand navbar-dark bg-color">
 			<div class="container-xl">
-				<a class="navbar-brand" href="#">SantaBooks</a>
+				<a class="navbar-brand" href="/">SantaBooks</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navBar"
 					aria-controls="#navBar" aria-expanded="false"

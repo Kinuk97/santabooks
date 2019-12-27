@@ -25,7 +25,16 @@ public interface NovelDao {
 	/**
 	 * 별점순으로 3개 항목 가져오기
 	 * 
+	 * @param category - 카테고리
+	 * 
 	 * @return List<Novel> - 결과 목록
 	 */
-	public List<Novel> selectBestNovel();
+	public List<Novel> selectBestNovel(int category);
+
+	/**
+	 * 소설 등록하기
+	 * 
+	 * @param novel - 소설 정보
+	 */
+	public void insertNovel(Novel novel);
 }

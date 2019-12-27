@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.santabooks.novel.dto.Novel;
 import com.santabooks.novel.service.face.NovelService;
 import com.santabooks.util.Paging;
 
@@ -28,8 +29,19 @@ public class NovelController {
 
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", novelService.getNovelList(paging));
-		model.addAttribute("best", novelService.getBestNovel());
+		model.addAttribute("best", novelService.getBestNovel(paging.getCategory()));
 		model.addAttribute("url", req.getRequestURI());
+	}
+	
+	
+	@RequestMapping(value = "/novel/add", method = RequestMethod.GET)
+	public void addNovel() {
+		
+	}
+	
+	@RequestMapping(value = "/novel/add", method = RequestMethod.POST)
+	public void addNovel(Novel novel) {
+		novelService.addNovel(novel);
 	}
 
 }

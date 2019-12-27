@@ -11,6 +11,17 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+	
+	<!-- 인터셉터 설정 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/novel/**" />
+			<exclude-mapping path="/novel/list"/>
+			<exclude-mapping path="/episode/list"/>
+			<exclude-mapping path="/episode/view"/>
+			<beans:bean class="com.santabooks.www.interceptor.LoginCheckInterceptor" />
+		</interceptor>
+	</interceptors>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -19,6 +30,16 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+	
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0"/>
+	</beans:bean>
+	
+	<!-- JON응답용 jsonView 스프링 빈 등록하기 -->
+	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<beans:property name="contentType" value="application/json;charset=utf-8"/>
 	</beans:bean>
 	
 	<context:component-scan base-package="com.santabooks.www, com.santabooks.*.service, com.santabooks.member.controller" />

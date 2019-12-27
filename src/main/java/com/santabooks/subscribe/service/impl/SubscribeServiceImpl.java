@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.santabooks.member.dto.Member;
 import com.santabooks.subscribe.dao.face.SubscribeDao;
 import com.santabooks.subscribe.dto.Subscription;
 import com.santabooks.subscribe.service.face.SubscribeService;
@@ -23,6 +24,11 @@ public class SubscribeServiceImpl implements SubscribeService {
 		
 		subscribeDao.insertSub(subscription);
 		
+	}
+
+	@Override
+	public Member getInfo(String id) {
+		return subscribeDao.getInfo(id);
 	}
 
 }
