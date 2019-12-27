@@ -11,14 +11,27 @@
 	</select>
 	
 	<select id="selectAll" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.util.Paging">
-		SELECT * FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns ORDER BY feedNo DESC)
-		B ORDER BY rnum) review_sns WHERE rnum BETWEEN #{startNo} AND #{endNo}
+		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
+		FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns ORDER BY feedNo DESC)B ORDER BY rnum)r, book b 
+		WHERE rnum BETWEEN #{startNo} AND #{endNo} AND (r.bookNo = b.bookNo)
 	</select>
 	
 	<select id="selectReviewByFeedNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
 		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
 		FROM review_sns r, book b
 		WHERE r.bookNo = b.bookNo AND feedNo = #{feedNo}
+	</select>
+	
+	<select id="selectReviewByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
+		SELECT feedNo, bookNo, memberNo, review, privacy, reviewDate
+		FROM (SELECT * FROM review_sns ORDER BY reviewDate DESC)review_sns
+		WHERE bookNo = #{bookNo} AND ROWNUM BETWEEN 1 AND 3
+	</select>
+	
+	<select id="selectAllByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.util.Paging">
+		SELECT feedNo, bookNo, memberNo, review, privacy, reviewDate
+		FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns ORDER BY feedNo DESC)B ORDER BY rnum)r
+		WHERE rnum BETWEEN #{startNo} AND #{endNo} AND bookNo = #{bookNo}
 	</select>
 </mapper>
   

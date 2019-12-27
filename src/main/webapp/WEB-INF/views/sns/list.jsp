@@ -6,6 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <style type="text/css">
 
 * {
@@ -54,7 +55,6 @@ body {
 	border: 2px solid rgba(20, 121, 87,.25);
 	color: black;
 	padding: 16px 32px;
-	text-align: center;
 	font-size: 16px;
 	margin: 4px 2px;
 	transition: 0.3s;
@@ -82,17 +82,38 @@ body {
 	border: 2px solid rgba(20, 121, 87, .25);
 }
 
+#searchBtn{
+	width:100px;
+	background-color:rgba(20, 121, 87,.25); 
+	border:none; 
+	color: black;
+}
+
 </style>
 </head>
-<body>
-
 
 	<div class="container">
-		<div>검색창 들어갈예정</div>
+	<br>
+		<div id="search">
+			<center>
+				<form action="/book/list" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+					<div class="input-group">
+					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하세요" 
+					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
+					 <div class="input-group-append">
+					<button class="btn btn-primary" id ="searchBtn" type="submit">검색</button>
+					</div>
+					</div>
+				</form>
+
+			</center>
+		</div>
+			
+		<br><br>
 		<div style="position: relative;">
 		<div style="position: absolute; z-index: 1; right: 4px; top: 4px;">
 			<button class="btn btn-secondary" id="writeBtn">리뷰 작성</button>
-	</div>
+		</div>
 
 			<div id="bookRecommand">
 				<div class="card sidenav" style="height: 600px;">
@@ -103,9 +124,10 @@ body {
 				<c:forEach items="${reviewList }" var="review">
 					<div class="row">
 						<div class="column" onclick="location.href='/sns/view?feedNo=${review.feedNo}'">
-			 
 							<div class="card" id="review">
 								<div class="card-text">
+									<p>${review.bookName }</p>
+									<p>${review.bookWriter }</p>
 									<p>${review.review }</p>
 									<div class="text-right">${review.reviewDate }</div>
 								</div>
