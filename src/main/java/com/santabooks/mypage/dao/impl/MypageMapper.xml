@@ -4,6 +4,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.santabooks.mypage.dao.face.MypageDao">
+<mapper namespace="com.santabooks.mypage.dao.face.MypageDao">
 
+<select id="selectById" parameterType="String" resultType="com.santabooks.member.dto.Member">
+		SELECT memberName, memberId, memberNick FROM member
+		WHERE 1=1
+			AND memberId = #{value }
+			AND memberId = #{memberId }
+</select>
+	
+<select id="infoUpdateView" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.member.dto.Member">
+		SELECT * FROM member
+		WHERE memberId = #{memberId}
+</select>
+	
+<update id="infoUpdate" parameterType="com.santabooks.member.dto.Member">
+		UPDATE member
+		SET memberNick = #{memberNick }, memberPw = #{memberPw }, memberBirth = #{memberBirth }, memberTel = #{memberTel }, memberAdd = #{memberAdd }
+		WHERE memberNo = #{memberNo }
+	</update>
+	
+	
 </mapper>

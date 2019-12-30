@@ -38,7 +38,7 @@
 			
 			<li class="nav-item"><a class="nav-link" href="/mypage/subInfo">구독 정보</a></li>
 
-			<li class="nav-item"><a class="nav-link" href="#">즐겨찾기</a></li>
+			<li class="nav-item"><a class="nav-link" href="/mypage/favorite">즐겨찾기</a></li>
 			
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="dropdown03"
@@ -51,9 +51,9 @@
 						class="dropdown-item" href="#">작성한 댓글</a>
 
 				</div></li>
-			<li class="nav-item"><a class="nav-link" href="#">받은 책 내역</a></li>
+			<li class="nav-item"><a class="nav-link" href="/mypage/shipmentList">받은 책 내역</a></li>
 			
-			<li class="nav-item"><a class="nav-link" href="#">배송조회</a></li>
+			<li class="nav-item"><a class="nav-link" href="/mypage/shipmentChk">배송조회</a></li>
 			
 			<li class="nav-item"><a class="nav-link" href="/mypage/drawal">회원탈퇴</a></li>
 

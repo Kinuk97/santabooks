@@ -11,22 +11,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.santabooks.member.dto.Member;
-import com.santabooks.member.service.face.LoginService;
+import com.santabooks.mypage.service.face.MypageService;
 
 @Controller
 public class MyPageInfoController {
+	
+	 @Autowired private MypageService mypageService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MyPageInfoController.class);
 	
 	@RequestMapping(value = "/mypage/main", method = RequestMethod.GET)
 	public void main(HttpSession session, Model model) {
-
-		logger.info("메인 요청");
+		   
+		   String id = (String)session.getAttribute("MemberId");
+		   
+		   Member info = mypageService.info(id);
+		   
+		   model.addAttribute("info", info);
+		   
+		   logger.info("개인정보조회 요청");
+		   
+	   }
+	
+	@RequestMapping(value = "/mypage/infoUpdate", method = RequestMethod.GET)
+	public void infoUpdate(Member member, HttpSession session, Model model) {
+		
+		member = mypageService.infoUpdateView(member);
+		model.addAttribute("view", member);
+		
+		logger.info(member.toString());
+		logger.info("개인정보수정 요청");
+	}
+	
+	@RequestMapping(value="/mypage/infoUpdate", method=RequestMethod.POST)
+	public String updateProcess(Member member) {
+		mypageService.infoUpdate(member);
+		
+		return "redirect:/mypage/main?memberId="+member.getMemberId();
 	}
 	
 	@RequestMapping(value = "/mypage/drawal", method = RequestMethod.GET)
 	public void drawal() {
-		logger.info("탈퇴 요청");
+		
 	}
 	
 	@RequestMapping(value = "/mypage/qna", method = RequestMethod.GET)
@@ -39,9 +65,9 @@ public class MyPageInfoController {
 		logger.info("구독정보 요청");
 	}
 	
-	@RequestMapping(value = "/mypage/infoUpdate", method = RequestMethod.GET)
-	public void infoUpdate() {
-		logger.info("개인정보수정 요청");
+	@RequestMapping(value = "/mypage/subCancel", method = RequestMethod.GET)
+	public void subCancel() {
+		logger.info("구독취소 요청");
 	}
-
+	
 }
