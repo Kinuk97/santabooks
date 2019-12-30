@@ -23,6 +23,7 @@ public class Paging {
 
 	// count(*) 할 테이블명
 	private String tableName;
+	private int bookNo;
 
 	public Paging() {
 
@@ -101,7 +102,9 @@ public class Paging {
 		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
 				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchno=" + searchno
-				+ ", category=" + category + ", tableName=" + tableName + "]";
+
+				+ ", tableName=" + tableName + ", bookNo=" + bookNo + ", category=" + category + "]";
+
 	}
 
 	public int getCurPage() {
@@ -206,6 +209,14 @@ public class Paging {
 
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
+	}
+
+	public int getBookNo() {
+		return bookNo;
+	}
+
+	public void setBookNo(int bookNo) {
+		this.bookNo = bookNo;
 	}
 
 }

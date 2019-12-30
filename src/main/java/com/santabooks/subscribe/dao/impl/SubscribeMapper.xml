@@ -16,4 +16,9 @@
 	</insert>
 
 
+	<select id="getInfo" parameterType="String" resultType="com.santabooks.member.dto.Member">
+		SELECT memberName, memberTel FROM member
+		WHERE memberId = #{id}
+	</select>
+
 </mapper>
