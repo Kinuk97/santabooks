@@ -48,11 +48,11 @@ $(document).ready(function() {
 
 <div class="container list-container">
 <form name="update" action="/mypage/infoUpdate" method="post" >
-      <input type="hidden" name="memberNo" value="${info.memberId }" />
+      <input type="hidden" name="memberNo" value="${info.memberNo }" />
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-2" style="font-size: 20px;">아이디</div>
-  <div class="col-md-4"style="font-size: 16px;">${info.memberName }</div>
+  <div class="col-md-4"style="font-size: 16px;">${info.memberId }</div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
 <div class="row">
@@ -76,9 +76,17 @@ $(document).ready(function() {
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
 <div class="row">
   <div class="col-md-1"></div>
-  <div class="col-md-2" style="font-size: 20px;">비밀번호</div>
+  <div class="col-md-2" style="font-size: 20px;">현재 비밀번호</div>
   <div class="col-md-4">
-  <input type="text" class="form-control" id="memberPw" name="memberPw" value="${info.memberPw }" />
+  <input type="password" class="form-control" id="memberPw" name="memberPw" placeholder="현재 비밀번호를 입력하세요." value="${info.memberPw }" />
+</div>
+</div>
+<div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-2" style="font-size: 20px;">수정 비밀번호</div>
+  <div class="col-md-4">
+  <input type="password" class="form-control" id="memberPw" name="memberPw" placeholder="변경할 비밀번호를 입력하세요." value="${info.memberPw }" />
 </div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>

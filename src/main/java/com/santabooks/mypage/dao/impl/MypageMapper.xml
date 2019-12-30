@@ -6,4 +6,12 @@
   
   <mapper namespace="com.santabooks.mypage.dao.face.MypageDao">
 
+<select id="selectById" parameterType="String" resultType="com.santabooks.member.dto.Member">
+		SELECT memberName, memberId, memberNick FROM member
+		WHERE 1=1
+			AND memberId = #{value }
+			AND memberId = #{memberId }
+</select>
+	
+	
 </mapper>

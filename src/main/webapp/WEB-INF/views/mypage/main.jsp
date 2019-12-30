@@ -56,18 +56,20 @@
     text-align: left;    
 }
 
+.container {
+	text-align: center;
+}
+
 </style>
 
-<div class="container">
 <br>
 <div id = "mypage_info" >
-	<h2>📂 나의 정보</h2>
+	<h2>📂 ${info.memberNick }님의 마이페이지</h2>
 </div>
 <hr>
 
-<div class = "container">
+<div class = "container" style="height: 350px; width: 30%; border:1px solid black; border-radius: 25px;">
 
-</div>
 <div id = "info_name"> 
 	<label style="font-size: 20px;color: black"> 이름  </label>&nbsp;&nbsp;&nbsp;
 	<label style="font-size: 20px;color: black"><strong>${info.memberName }</strong></label>
@@ -81,7 +83,7 @@
 <br>
 <div id = "info_nick">
 	<label style="font-size: 20px;color: black"> 닉네임  </label>&nbsp;&nbsp;&nbsp;
-	<label style="font-size: 20px;color: black"><strong>${info.member }</strong> </label>
+	<label style="font-size: 20px;color: black"><strong>${info.memberNick }</strong> </label>
 </div>
 <br>
 <div id = "info_genre">
