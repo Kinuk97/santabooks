@@ -7,7 +7,7 @@ public class Member {
 	private String memberName;
 	private String memberNick;
 	private String memberPw;
-	private int memberBirth;
+	private long memberBirth;
 	private String memberTel;
 	private String memberAdd;
 	private String memberGender;
@@ -74,12 +74,12 @@ public class Member {
 	}
 
 
-	public int getMemberBirth() {
+	public long getMemberBirth() {
 		return memberBirth;
 	}
 
 
-	public void setMemberBirth(int memberBirth) {
+	public void setMemberBirth(long memberBirth) {
 		this.memberBirth = memberBirth;
 	}
 

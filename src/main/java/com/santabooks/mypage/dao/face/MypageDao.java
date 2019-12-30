@@ -11,5 +11,9 @@ public interface MypageDao {
 	 * @return Member - 조회된 회원 정보
 	 */
 	public Member selectById(String id);
+	
+	public Member infoUpdateView(Member member);
+
+	public void infoUpdate(Member member);
 
 }

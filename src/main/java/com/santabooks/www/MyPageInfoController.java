@@ -34,9 +34,20 @@ public class MyPageInfoController {
 	   }
 	
 	@RequestMapping(value = "/mypage/infoUpdate", method = RequestMethod.GET)
-	public void infoUpdate(Member infoUpdate, HttpSession session, Model model) {
+	public void infoUpdate(Member member, HttpSession session, Model model) {
 		
+		member = mypageService.infoUpdateView(member);
+		model.addAttribute("view", member);
+		
+		logger.info(member.toString());
 		logger.info("개인정보수정 요청");
+	}
+	
+	@RequestMapping(value="/mypage/infoUpdate", method=RequestMethod.POST)
+	public String updateProcess(Member member) {
+		mypageService.infoUpdate(member);
+		
+		return "redirect:/mypage/main?memberId="+member.getMemberId();
 	}
 	
 	@RequestMapping(value = "/mypage/drawal", method = RequestMethod.GET)

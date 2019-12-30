@@ -47,25 +47,25 @@ $(document).ready(function() {
 <h1>개인정보 수정</h1><hr><br>
 
 <div class="container list-container">
-<form name="update" action="/mypage/infoUpdate" method="post" >
-      <input type="hidden" name="memberNo" value="${info.memberNo }" />
+<form name="infoUpdateView" action="/mypage/infoUpdate" method="post" >
+      <input type="hidden" name="memberNo" value="${view.memberNo }" />
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-2" style="font-size: 20px;">아이디</div>
-  <div class="col-md-4"style="font-size: 16px;">${info.memberId }</div>
+  <div class="col-md-4"style="font-size: 16px;">${view.memberId }</div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-2" style="font-size: 20px;">이름</div>
-  <div class="col-md-4"style="font-size: 16px;">${info.memberName }</div>
+  <div class="col-md-4"style="font-size: 16px;">${view.memberName }</div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-2"style="font-size: 20px;">닉네임</div>
   <div class="col-md-4">
-  <input type="text" class="form-control" id="memberNick" name="memberNick" value="${info.memberNick }" />
+  <input type="text" class="form-control" id="memberNick" name="memberNick" value="${view.memberNick }" />
   </div>
   <div class="col-md-4"> 
   <a href="/member/check" target="_blank">
@@ -76,17 +76,9 @@ $(document).ready(function() {
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
 <div class="row">
   <div class="col-md-1"></div>
-  <div class="col-md-2" style="font-size: 20px;">현재 비밀번호</div>
-  <div class="col-md-4">
-  <input type="password" class="form-control" id="memberPw" name="memberPw" placeholder="현재 비밀번호를 입력하세요." value="${info.memberPw }" />
-</div>
-</div>
-<div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
-<div class="row">
-  <div class="col-md-1"></div>
   <div class="col-md-2" style="font-size: 20px;">수정 비밀번호</div>
   <div class="col-md-4">
-  <input type="password" class="form-control" id="memberPw" name="memberPw" placeholder="변경할 비밀번호를 입력하세요." value="${info.memberPw }" />
+  <input type="password" class="form-control" id="memberPw" name="memberPw" placeholder="변경할 비밀번호를 입력하세요." value="${view.memberPw }" />
 </div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
@@ -94,7 +86,7 @@ $(document).ready(function() {
   <div class="col-md-1"></div>
   <div class="col-md-2" style="font-size: 20px;">생년월일</div>
   <div class="col-md-4">
-  <input type="text" class="form-control" id="memberBirth" name="memberBirth" value="${info.memberBirth  }" />
+  <input type="text" class="form-control" id="memberBirth" name="memberBirth" value="${view.memberBirth  }" />
 </div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
@@ -102,7 +94,7 @@ $(document).ready(function() {
   <div class="col-md-1"></div>
   <div class="col-md-2"style="font-size: 20px;">연락처</div>
   <div class="col-md-4">
-  	<input type="text" class="form-control" id="memberTel" name="memberTel" value="${info.memberTel }" />
+  	<input type="text" class="form-control" id="memberTel" name="memberTel" value="${view.memberTel }" />
   </div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
@@ -110,7 +102,7 @@ $(document).ready(function() {
   <div class="col-md-1"></div>
   <div class="col-md-2" style="font-size: 20px;">주소</div>
   <div class="col-md-4">
-  <input type="text" class="form-control" id="memberAdd" name="memberAdd" value="${info.memberAdd }" />
+  <input type="text" class="form-control" id="memberAdd" name="memberAdd" value="${view.memberAdd }" />
 </div>
 <a href="/member/check" target="_blank">
   <button id = "nickcheck" class="btn btn-success">우편번호</button> </a>

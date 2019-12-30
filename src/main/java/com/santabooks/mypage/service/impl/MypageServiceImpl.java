@@ -17,4 +17,15 @@ public class MypageServiceImpl implements MypageService {
 		return mypageDao.selectById(id);
 	}
 
+	@Override
+	public Member infoUpdateView(Member member) {
+		
+		return mypageDao.infoUpdateView(member);
+	}
+
+	@Override
+	public void infoUpdate(Member member) {
+		mypageDao.infoUpdate(member);
+	}
+
 }
