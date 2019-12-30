@@ -32,6 +32,7 @@ $(document).ready(function() {
 	
 	//취소버튼 동작
 	$("#btnCancel").click(function() {
+		alert("취소 하시겠습니까?");
 		history.go(-1);
 	});
 });
