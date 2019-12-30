@@ -16,7 +16,7 @@
 			<li class="category"><a href="/novel/list?category=3" class="btn btn-outline-success">로맨스</a></li>
 			<li class="category"><a href="/novel/list?category=4" class="btn btn-outline-success">로판</a></li>
 			<li class="category"><a href="/novel/list?category=5" class="btn btn-outline-success">무협</a></li>
-			<li class="category addNovel"><a class="btn btn-success">소설 등록하기</a></li>
+			<li class="category addNovel"><a class="btn btn-success" href="/novel/add">소설 등록하기</a></li>
 		</ul>
 		<div style="clear: both;" class="text-right"></div>
 	</div>
@@ -34,7 +34,7 @@
 			<div class="card">
 			  <img src="/resources/images/logo.png" class="card-img-top" alt="...">
 			  <div class="card-body">
-			    <h5 class="card-title">${novel.title }</h5>
+			    <h5 class="card-title"><a href="/novel/view?novelNo=${novel.novelNo }">${novel.title }</a></h5>
 			    <p class="card-text">
 			    ${novel.discription }
 			    <br>
@@ -63,7 +63,7 @@
 			<div class="card">
 			  <img src="/resources/images/logo.png" class="card-img-top" alt="...">
 			  <div class="card-body">
-			    <h5 class="card-title">${novel.title }</h5>
+			    <h5 class="card-title"><a href="/novel/view?novelNo=${novel.novelNo }">${novel.title }</a></h5>
 			    <p class="card-text">
 			    ${novel.discription }
 			    <br>

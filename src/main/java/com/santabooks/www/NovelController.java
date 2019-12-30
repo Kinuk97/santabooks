@@ -33,6 +33,18 @@ public class NovelController {
 		model.addAttribute("url", req.getRequestURI());
 	}
 	
+	@RequestMapping(value = "/novel/view", method = RequestMethod.GET)
+	public void showList(Model model, Paging paging) {
+		
+		paging.setTableName("episode");
+		
+		paging = novelService.getPaging(paging);
+		
+		model.addAttribute("episodeList", novelService.getEpisodeList(paging));
+		model.addAttribute("novel", novelService.getNovelByNovelNo(paging));
+		model.addAttribute("paging", paging);
+	}
+	
 	
 	@RequestMapping(value = "/novel/add", method = RequestMethod.GET)
 	public void addNovel() {
@@ -40,8 +52,10 @@ public class NovelController {
 	}
 	
 	@RequestMapping(value = "/novel/add", method = RequestMethod.POST)
-	public void addNovel(Novel novel) {
+	public String addNovel(Novel novel) {
 		novelService.addNovel(novel);
+		
+		return "redirect:/novel/view?novelNo=" + novel.getNovelNo();
 	}
 
 }
