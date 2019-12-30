@@ -1,0 +1,2 @@
+CREATE USER santabooks IDENTIFIED BY 1234;
+GRANT DBA TO santabooks;

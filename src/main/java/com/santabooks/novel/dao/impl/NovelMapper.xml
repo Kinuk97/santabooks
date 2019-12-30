@@ -78,4 +78,12 @@
 		INSERT INTO novel (novelNo, memberNo, title, discription, category)
 					VALUES (#{novelNo}, #{memberNo}, #{title}, #{discription}, #{category})
 	</insert>
+	<insert id="insertEpisode" parameterType="com.santabooks.novel.dto.Episode">
+		<selectKey order="BEFORE" keyColumn="novelNo" keyProperty="novelNo" resultType="int">
+		SELECT episode_seq.nextval AS novelNo FROM dual
+		</selectKey>
+		
+		INSERT INTO episode (episodeNo, novelNo, title, content)
+					VALUES (#{episodeNo}, #{novelNo}, #{title}, #{content})
+	</insert>
 </mapper>

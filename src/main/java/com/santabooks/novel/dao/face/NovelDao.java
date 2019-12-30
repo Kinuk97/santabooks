@@ -54,4 +54,11 @@ public interface NovelDao {
 	 * @param novel - 소설 정보
 	 */
 	public void insertNovel(Novel novel);
+
+	/**
+	 * 회차 등록하기
+	 * 
+	 * @param episode - 연재내용
+	 */
+	public void insertEpisode(Episode episode);
 }
