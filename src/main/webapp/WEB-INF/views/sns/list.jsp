@@ -126,8 +126,7 @@ body {
 						<div class="column" onclick="location.href='/sns/view?feedNo=${review.feedNo}'">
 							<div class="card" id="review">
 								<div class="card-text">
-									<p>${review.bookName }</p>
-									<p>${review.bookWriter }</p>
+									<h4>${review.bookName } | ${review.bookWriter }</h4>
 									<p>${review.review }</p>
 									<div class="text-right">${review.reviewDate }</div>
 								</div>

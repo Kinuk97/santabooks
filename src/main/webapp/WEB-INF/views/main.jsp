@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/layout/main_header.jsp"></jsp:include>
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 </script>
@@ -18,7 +17,9 @@
 	 랜덤으로 보내드립니다.
 	 <br>월 9,900원 산타북스와 함께하세요.
 	</h3>
-	<a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="/subscribe/agree">이용하러가기</a>
+	
+
+		<a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="/subscribe/agree">이용하러가기</a>
 	</section>
 	
 	</div>

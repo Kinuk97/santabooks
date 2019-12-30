@@ -8,5 +8,8 @@ public interface SubscribeService {
 	public void subscribe(Subscription subscription);
 
 	public Member getInfo(String id);
+
+	public int getmemNo(String memberId);
+
 	
 }
