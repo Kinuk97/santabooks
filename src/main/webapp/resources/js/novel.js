@@ -43,6 +43,7 @@ $(document).ready(function() {
 	
 	// 소설 이미지 등록하면 미리보기 보여주기
 	$("#input_img").on("change", showImage);
+	
 	$("#imageBtn").on("click", function() {
 		$("#input_img").click();
 	});

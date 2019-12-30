@@ -1,6 +1,10 @@
 package com.santabooks.mypage.service.face;
 
+import java.util.List;
+
 import com.santabooks.member.dto.Member;
+import com.santabooks.mypage.dto.QnA;
+import com.santabooks.util.Paging;
 
 public interface MypageService {
 	
@@ -21,5 +25,9 @@ public interface MypageService {
 	public Member infoUpdateView(Member member);
 
 	public void infoUpdate(Member member);
+
+	public Paging getPaging(Paging inData);
+
+	public List<QnA> list(Paging paging);
 
 }

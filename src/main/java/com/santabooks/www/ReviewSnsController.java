@@ -71,16 +71,27 @@ public class ReviewSnsController {
 	public void reviewList(Model model, Paging paging, HttpServletRequest req, ReviewSns reviewSns) {
 		int totalCount = reviewSnsService.selectCntAll();
 
-		logger.info("bookno : "+reviewSns);
+		logger.info("bookno : " + reviewSns);
 		Paging reviewPaging = new Paging(totalCount, paging.getCurPage());
-		
+		reviewPaging.setBookNo(reviewSns.getBookNo());
+		logger.info("책번호 제발 나와라 : " + reviewPaging);
+
 		List<ReviewSns> list = reviewSnsService.reviewList(reviewPaging);
 
 		logger.info(list.toString());
 		logger.info("페이징 정보 : " + reviewPaging);
-
+		
+		model.addAttribute("bookName",list.get(6)); // list에 bookName(6번쨰) 요소 추출
 		model.addAttribute("reviewList", list);
 		model.addAttribute("paging", reviewPaging);
 		model.addAttribute("url", req.getRequestURI());
+	}
+	@RequestMapping(value = "/sns/detailview", method = RequestMethod.GET)
+	public void reviewView(ReviewSns reviewSns, Model model ) {
+		
+		ReviewSns review = reviewSnsService.detailView(reviewSns);
+		logger.info("리뷰속리뷰 : " + review.toString());
+		
+		model.addAttribute("review", review);
 	}
 }

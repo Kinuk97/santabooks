@@ -1,5 +1,7 @@
 package com.santabooks.www;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.santabooks.member.dto.Member;
+import com.santabooks.mypage.dto.QnA;
 import com.santabooks.mypage.service.face.MypageService;
+import com.santabooks.util.Paging;
 
 @Controller
 public class MyPageInfoController {
@@ -55,8 +59,16 @@ public class MyPageInfoController {
 		
 	}
 	
-	@RequestMapping(value = "/mypage/qna", method = RequestMethod.GET)
-	public void qna() {
+	@RequestMapping(value = "/mypage/qnaList", method = RequestMethod.GET)
+	public void list(Paging inData, Model model) {
+		
+		Paging paging = mypageService.getPaging(inData);
+		model.addAttribute("paging", paging);
+		logger.info(paging.toString());
+		
+		List<QnA> list = mypageService.list(paging);
+		model.addAttribute("list", list);
+		
 		logger.info("문의 요청");
 	}
 	

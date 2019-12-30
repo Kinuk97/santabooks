@@ -3,6 +3,7 @@ package com.santabooks.novel.dto;
 public class Novel {
 	private int novelNo;
 	private int memberNo;
+	private String memberName;
 	private String title;
 	private String discription;
 	private int score;
@@ -11,8 +12,9 @@ public class Novel {
 
 	@Override
 	public String toString() {
-		return "Novel [novelNo=" + novelNo + ", memberNo=" + memberNo + ", title=" + title + ", discription="
-				+ discription + ", score=" + score + ", addDate=" + addDate + ", category=" + category + "]";
+		return "Novel [novelNo=" + novelNo + ", memberNo=" + memberNo + ", memberName=" + memberName + ", title="
+				+ title + ", discription=" + discription + ", score=" + score + ", addDate=" + addDate + ", category="
+				+ category + "]";
 	}
 
 	public int getNovelNo() {
@@ -29,6 +31,14 @@ public class Novel {
 
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+	}
+
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
 	public String getTitle() {
