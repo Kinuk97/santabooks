@@ -49,38 +49,47 @@
 	<div class="column">
 		<div class="card" id="bookInfo" style="height: 1000px;">
 			<div class="card-text">
-				<h4 style="font-weight: bold;">책 정보</h4>
-				<ul>
-					<li>책이름 : ${review.bookName }</li>
-					<li>작가 : ${review.bookWriter }</li>
-					<li>출판사 : ${review.bookPublisher }</li>
-					<li>출판년도 : ${review.publishingYear }</li>
-				</ul>
+				<div style="padding: 0px 20px 0px 20px;">
+					<h4 style="font-weight: bold;">책 정보</h4>
+					<ul>
+						<li>책이름 : ${review.bookName }</li>
+						<li>작가 : ${review.bookWriter }</li>
+						<li>출판사 : ${review.bookPublisher }</li>
+						<li>출판년도 : ${review.publishingYear }</li>
+					</ul>
+				</div>
 				<hr>
 				
+				<div style="padding: 0px 20px 0px 20px;">
 				<h4 style="font-weight: bold;">책 내용</h4>
 				${review.bookContent }
+				</div>
 				<hr>
 				
-					<h4 style="font-weight: bold;">리뷰</h4>
-					<a href="/sns/reviewall?bookNo=${review.bookNo }">더보기</a>
+				<div style=" position: relative; padding: 0px 20px 0px 20px;">
+					<h4 style="font-weight: bold; display: contents;">리뷰</h4>
+
+					<a href="/sns/reviewall?bookNo=${review.bookNo }"
+						style="color: #ff2f6e; text-decoration: none; font-weight: bold; position: absolute; right: 20px;">더보기</a>
+
+				</div>
 				
 				<br>
+				<div class="row">
 				<c:forEach items="${list }" var="list">
-						<div class="column" onclick="location.href='/sns/view?feedNo=${list.feedNo}'" 
-						style="width: 300px; height: 300px;">
+						<div class="column"onclick="location.href='/sns/detailview?feedNo=${list.feedNo}'" 
+						style="width: 300px; height: 300px; padding: 4px;margin-right: 65px;">
 							<div class="card" id="review">
 								<div class="card-text">
-									<p>${list.bookName }</p>
-									<p>${list.bookWriter }</p>
 									<p>${list.review }</p>
+									<br><br><br><br><br><br><br><br>
 									<div class="text-right">${list.reviewDate }</div>
 								</div>
 							</div>
 						</div>
-					<br>
-					<br>
+						
 				</c:forEach>
+				</div>
 			</div>
 		</div>
 	</div>

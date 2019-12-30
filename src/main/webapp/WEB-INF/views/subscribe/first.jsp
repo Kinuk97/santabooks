@@ -24,8 +24,29 @@ $(document).ready(function() {
 		requestPayment();
 	});
 	
-
-
+	
+	
+	$("#pay_2").click(function() {
+		requestDesposit();
+	})
+	
+	
+	
+	$("#subPay").change(function() {
+		
+		$("#subPayText").hide();
+		
+		if( 'card' == $(this).val() ) {
+			$("#pay").show();
+			$("#pay_2").hide();
+			$("#message").hide();
+		}
+		if( 'deposit' == $(this).val() ) {
+			$("#pay").hide();
+			$("#pay_2").show();
+			$("#message").show();
+		}
+	})
 	
 });
 
@@ -54,9 +75,16 @@ function check(){
 	console.log("체크_check")
 	}else{
 	     $("input:checkbox[id='hint']").prop("checked", false);
-	console.log("체크 NOpe")
+	 	 $("#subName").attr("value", "");
+		 $("#subTel").attr("value", "");
 	}
 }
+
+function requestDesposit() {
+	$("form").submit();
+}	
+
+
 // 결제 요청 - 결제 모듈 불러오기
 function requestPayment() {
 	IMP.request_pay({
@@ -208,9 +236,9 @@ function requestPayment() {
 </div>
 <br><br>
 
-<form action="/subscribe/final" method="post" >
+<form action="/subscribe/first" method="post" >
 	
-	<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req" onclick="check()"> 기존 사용자 정보와 동일합니다. </label> <br><br>
+	<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req" onclick="check()"> 회원가입 정보와 동일합니다. </label> <br><br>
 	
 		
 	<div >
@@ -247,19 +275,24 @@ function requestPayment() {
 		
 		<select id="subPay" name="subPay"  class="col-6">	
 			<option value="">선택하세요</option>
-			<option value="card">카드</option>
+			<option value="card" >카드</option>
 			<option value="deposit">무통장 입금  110-41071946 (신한은행) </option>
 		</select>
+		<br>
+		<span id="subPayText">결제 방법을 선택하세요</span>
+		<span id="message" style="display: none;"> 110-414-071946 신한은행 <br> 0000년 00월 00일 00시 00분까지 9,900 입급해주세요</span>
 	
 	
 		<br><br>
-		<button type="button" id="pay" class="btn btn-light" style=" background-color: #dee2e6;" >결제</button>
-<!-- 		<button> 완료 </button> -->
-
+		<button type="button" id="pay" class="btn btn-light" style=" background-color: #dee2e6; display: none;" >결제</button>
+		<button type="button" id="pay_2" class="btn btn-light" style=" background-color: #dee2e6; display: none;" >결제</button>
+		<br>
 		<br><br>
 	</div>
 
 </form>
+
+
 
 
 

@@ -8,12 +8,12 @@
 	
 	<!-- 처음으로 가기 -->
 	<c:if test="${paging.curPage ne 1 }">
-	<li class="page-item"><a class="page-link" href="${url }?curPage=1&search=${paging.search }&category=${paging.category}">&larr;처음</a></li>
+	<li class="page-item"><a class="page-link" href="${url }?curPage=1&search=${paging.search }&category=${paging.category}&bookNo=${paging.bookNo}">&larr;처음</a></li>
 	</c:if>
 		
 	<!-- 이전 페이징 리스트로 가기 -->
 	<c:if test="${paging.startPage gt paging.pageCount }">
-	<li class="page-item"><a class="page-link" href="${url }?curPage=${paging.startPage - paging.pageCount }&search=${paging.search }&category=${paging.category}">&laquo;</a></li>
+	<li class="page-item"><a class="page-link" href="${url }?curPage=${paging.startPage - paging.pageCount }&search=${paging.search }&category=${paging.category}&bookNo=${paging.bookNo}">&laquo;</a></li>
 	</c:if>
 	<c:if test="${paging.startPage le paging.pageCount }">
 	<li class="disabled page-item"><a class="page-link">&laquo;</a></li>
@@ -21,7 +21,7 @@
 		
 	<!-- 이전 페이지로 가기 -->
 	<c:if test="${paging.curPage ne 1 }">
-	<li class="page-item"><a class="page-link" href="${url }?curPage=${paging.curPage - 1 }&search=${paging.search }&category=${paging.category}">&lt;</a></li>
+	<li class="page-item"><a class="page-link" href="${url }?curPage=${paging.curPage - 1 }&search=${paging.search }&category=${paging.category}&bookNo=${paging.bookNo}">&lt;</a></li>
 	</c:if>
 		
 		
@@ -33,10 +33,10 @@
 	<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="i">
  	<c:choose>
 		<c:when test="${paging.curPage eq i }">
-			<li class="active page-item"><a class="page-link" href="${url }?curPage=${i }&search=${paging.search }&category=${paging.category}">${i }</a>
+			<li class="active page-item"><a class="page-link" href="${url }?curPage=${i }&search=${paging.search }&category=${paging.category}&bookNo=${paging.bookNo}">${i }</a>
 		</c:when>
 		<c:otherwise>
-			<li class="page-item"><a class="page-link" href="${url }?curPage=${i }&search=${paging.search }&category=${paging.category}">${i }</a>
+			<li class="page-item"><a class="page-link" href="${url }?curPage=${i }&search=${paging.search }&category=${paging.category}&bookNo=${paging.bookNo}">${i }</a>
 		</c:otherwise>
  	</c:choose>
 	</c:forEach>
@@ -47,12 +47,12 @@
 	
 	<!-- 다음 페이지로 가기 -->
 	<c:if test="${paging.curPage ne paging.totalPage }">
-	<li class="page-item"><a class="page-link" href="${url }?curPage=${paging.curPage + 1 }&search=${paging.search }&category=${paging.category}">&gt;</a></li>
+	<li class="page-item"><a class="page-link" href="${url }?curPage=${paging.curPage + 1 }&search=${paging.search }&category=${paging.category}&bookNo=${paging.bookNo}">&gt;</a></li>
 	</c:if>
 	
 	<!-- 다음 페이징 리스트로 가기 -->
 	<c:if test="${paging.endPage ne paging.totalPage }">
-	<li class="page-item"><a class="page-link" href="${url }?curPage=${paging.startPage + paging.pageCount }&search=${paging.search }&category=${paging.category}">&raquo;</a></li>
+	<li class="page-item"><a class="page-link" href="${url }?curPage=${paging.startPage + paging.pageCount }&search=${paging.search }&category=${paging.category}&bookNo=${paging.bookNo}">&raquo;</a></li>
 	</c:if>
 	<c:if test="${paging.endPage eq paging.totalPage }">
 	<li class="disabled page-item"><a class="page-link">&raquo;</a></li>
@@ -60,7 +60,7 @@
 
 	<!-- 끝 페이지로 가기 -->
 	<c:if test="${paging.curPage ne paging.totalPage }">
-	<li class="page-item"><a href="${url }?curPage=${paging.totalPage }&search=${paging.search }&category=${paging.category}" class="page-link">&rarr;끝</a></li>
+	<li class="page-item"><a href="${url }?curPage=${paging.totalPage }&search=${paging.search }&category=${paging.category}&bookNo=${paging.bookNo}" class="page-link">&rarr;끝</a></li>
 	</c:if>
 	
 	</ul>

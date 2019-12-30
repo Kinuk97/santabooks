@@ -46,6 +46,14 @@ public interface ReviewSnsDao {
 	 */
 	public List<ReviewSns> selectAllByBookNo(Paging reviewPaging);
 	
+	/**
+	 * 리뷰 상세보기 안에 있는 리뷰 상세리뷰 조회
+	 * 
+	 * @param reviewSns
+	 * @return
+	 */
+	public ReviewSns selectDetailReviewByFeedNo(ReviewSns reviewSns);
+	
 	
 
 }

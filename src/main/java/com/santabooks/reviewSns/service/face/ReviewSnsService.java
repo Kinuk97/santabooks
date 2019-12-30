@@ -17,7 +17,7 @@ public interface ReviewSnsService {
 	/**
 	 * 리뷰 리스트
 	 * 
-	 * @param reviewPaging
+	 * @param reviewPaging - 페이징 객체
 	 * @return List<ReviewSns> - 리뷰 목록
 	 */
 	public List<ReviewSns> snsList(Paging reviewPaging);
@@ -55,6 +55,14 @@ public interface ReviewSnsService {
 	 * @return
 	 */
 	public List<ReviewSns> reviewList(Paging reviewPaging);
+	
+	/**
+	 * 리뷰 상세보기안에 있는 리뷰 상세 보기
+	 * 
+	 * @param reviewSns
+	 * @return
+	 */
+	public ReviewSns detailView(ReviewSns reviewSns);
 	
 
 }

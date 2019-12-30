@@ -9,4 +9,6 @@ public interface SubscribeDao {
 
 	public Member getInfo(String id);
 
+	public int getmemNo(String memberId);
+
 }

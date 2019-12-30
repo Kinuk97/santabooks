@@ -22,7 +22,42 @@
 		UPDATE member
 		SET memberNick = #{memberNick }, memberPw = #{memberPw }, memberBirth = #{memberBirth }, memberTel = #{memberTel }, memberAdd = #{memberAdd }
 		WHERE memberNo = #{memberNo }
-	</update>
+</update>
+
+	<sql id="selectBoard">
+		SELECT
+			qnaNo
+			, memberNo
+			, qnaTitle
+			, qnaContent
+			, writeDate
+			, hit
+		FROM QnA
+	</sql>
+
+	<sql id="selectRownum">
+		SELECT
+			rownum rnum, B.*
+		FROM (
+			<include refid="selectBoard" />
+			ORDER BY qnaNo DESC
+		) B
+		ORDER BY rnum
+	</sql>
 	
+	<select id="selectPageList" parameterType="com.santabooks.util.Paging" resultType="com.santabooks.mypage.dto.QnA">
+		SELECT * FROM (
+			<include refid="selectRownum" />
+		) R
+		<where>
+			rnum BETWEEN #{startNo} AND #{endNo}
+		</where>
+	</select>
+
+	<select id="selectCntAll" resultType="int">
+		SELECT count(*) FROM (
+			<include refid="selectBoard" />
+		) CNT
+	</select>
 	
 </mapper>
