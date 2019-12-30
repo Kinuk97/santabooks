@@ -10,7 +10,11 @@
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-
+<style type="text/css">
+body{
+	background-color: #F7F7F4;
+}
+</style>
 
 <script type="text/javascript">
 
@@ -24,13 +28,9 @@ $(document).ready(function() {
 		requestPayment();
 	});
 	
-	
-	
 	$("#pay_2").click(function() {
 		requestDesposit();
 	})
-	
-	
 	
 	$("#subPay").change(function() {
 		
@@ -81,12 +81,45 @@ function check(){
 }
 
 function requestDesposit() {
-	$("form").submit();
+	var is_empty=false;
+	$('#subscribeform').find('input[id!="extraAddress"]').each(function() {
+		
+		
+		
+		if(!$(this).val()) {
+			is_empty = true;
+		}
+	})
+	
+	if(is_empty) {
+		alert('값을 모두 입력해 주세요')
+	} else {		
+		$("form").submit();
+	}
+			
 }	
+
+
+
+
 
 
 // 결제 요청 - 결제 모듈 불러오기
 function requestPayment() {
+	
+	var is_empty=false;
+	$('#subscribeform').find('input[id!="extraAddress"]').each(function() {
+		
+// 		if( $(this).is( $('input[name="subTerm"]') ) ) return;
+		
+		if(!$(this).val()) {
+			is_empty = true;
+		}
+	})
+	if(is_empty) {
+		alert('값을 모두 입력해 주세요')
+	} else {		
+	
 	IMP.request_pay({
 	    pg : 'html5_inicis', //PG사 - 'kakao':카카오페이, 'html5_inicis':이니시스(웹표준결제), 'nice':나이스페이, 'jtnet':제이티넷, 'uplus':LG유플러스, 'danal':다날, 'payco':페이코, 'syrup':시럽페이, 'paypal':페이팔
 	    pay_method : 'card', //결제방식 - 'samsung':삼성페이, 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
@@ -149,9 +182,8 @@ function requestPayment() {
 	    alert(msg);
 	});
 }
-
+}
 </script>
-
 
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -213,20 +245,12 @@ function requestPayment() {
     }
 </script>
 
-<script>
 
-
-
-</script>
-
-
-
-<body style="background-color:#F7F7F4">
 <div style="text-align: center">
 
 <div class="container" style="width:630px; ">
 <br>
-<div class="page-header" style="text-align: center;"><h2>정기구독 </h2></div><br><br>
+<div class="page-header" style="text-align: center;"><h2> 정기구독 </h2></div><br><br>
 
 
 <div style="text-align: center; width:630px;">
@@ -236,12 +260,16 @@ function requestPayment() {
 </div>
 <br><br>
 
-<form action="/subscribe/first" method="post" >
+<form action="/subscribe/first" method="post" id="subscribeform"  >
 	
 	<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req" onclick="check()"> 회원가입 정보와 동일합니다. </label> <br><br>
 	
 		
-	<div >
+
+		
+		<label for="memberID"  class="col-3">아이디</label>  ${MemberId } <br><br>
+	
+
 		<label for="subName"  class="col-3">수령인</label>
 		<input type="text" id="subName" name="subName" placeholder="받으실 분의 이름을 입력하세요"  class="col-6" /> <br><br>
 
@@ -264,10 +292,10 @@ function requestPayment() {
 			<span id="guide" style="color:#999;display:none"></span>
 			
 		<div  style="margin-left: -75px">
-		<label for="" class="col-3"></label>
+			<label for="" class="col-3"></label>
 			<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
 			<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목">
-	</div>
+		</div>
 
 
 		<br>
@@ -275,12 +303,12 @@ function requestPayment() {
 		
 		<select id="subPay" name="subPay"  class="col-6">	
 			<option value="">선택하세요</option>
-			<option value="card" >카드</option>
+			<option value="card" >카드 / 간편결제</option>
 			<option value="deposit">무통장 입금  110-41071946 (신한은행) </option>
 		</select>
 		<br>
 		<span id="subPayText">결제 방법을 선택하세요</span>
-		<span id="message" style="display: none;"> 110-414-071946 신한은행 <br> 0000년 00월 00일 00시 00분까지 9,900 입급해주세요</span>
+		<span id="message" style="display: none;"> 110-414-071946 신한은행 <br> 0000년 00월 00일 00시 00분까지 9,900 입금해주세요</span>
 	
 	
 		<br><br>
@@ -288,7 +316,7 @@ function requestPayment() {
 		<button type="button" id="pay_2" class="btn btn-light" style=" background-color: #dee2e6; display: none;" >결제</button>
 		<br>
 		<br><br>
-	</div>
+
 
 </form>
 
@@ -298,7 +326,6 @@ function requestPayment() {
 
 </div>
 </div>
-</body>
 
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>

@@ -3,9 +3,13 @@
 <!DOCTYPE html>
 <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 
+<style type="text/css">
+body{
+	background-color: #F7F7F4;
+}
+</style>
 
 
-<body style="background-color:#F7F7F4">
 
 <div style="text-align: center">
 
@@ -33,7 +37,6 @@
 </div></div>
 <br><br>
 
-</body>
 
 
 
