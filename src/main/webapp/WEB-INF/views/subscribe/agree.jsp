@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <script type="text/javascript">
 function chk() {
 	var req = document.form.req.checked;
@@ -64,7 +64,6 @@ function nochk() {
 
 <br>
 <br>
-
 <div style="text-align: center;">
 	<tr>
 		<td align="center" valign="top">

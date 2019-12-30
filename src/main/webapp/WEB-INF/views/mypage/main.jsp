@@ -56,18 +56,20 @@
     text-align: left;    
 }
 
+.container {
+	text-align: center;
+}
+
 </style>
 
-<div class="container">
 <br>
 <div id = "mypage_info" >
-	<h2>📂 나의 정보</h2>
+	<h2>📂 ${info.memberNick }님의 마이페이지</h2>
 </div>
 <hr>
 
-<div class = "container">
+<div class = "container" style="height: 350px; width: 30%; border:1px solid black; border-radius: 25px;">
 
-</div>
 <div id = "info_name"> 
 	<label style="font-size: 20px;color: black"> 이름  </label>&nbsp;&nbsp;&nbsp;
 	<label style="font-size: 20px;color: black"><strong>${info.memberName }</strong></label>
@@ -81,14 +83,16 @@
 <br>
 <div id = "info_nick">
 	<label style="font-size: 20px;color: black"> 닉네임  </label>&nbsp;&nbsp;&nbsp;
-	<label style="font-size: 20px;color: black"><strong>${info.member }</strong> </label>
+	<label style="font-size: 20px;color: black"><strong>${info.memberNick }</strong> </label>
 </div>
 <br>
 <div id = "info_genre">
 	<label style="font-size: 20px;color: black">관심 장르  </label>&nbsp;&nbsp;&nbsp;
 	<label style="font-size: 20px;color: black"><strong>${info.genre }</strong> </label>
+
 	<br><br>
-	<a href="/mypage/infoUpdate"><button id="my_info" class="btn btn-success btn-sm">개인정보 수정</button></a>
+	<a href="/mypage/infoUpdate?memberId=${info.memberId }"><button id="my_info" class="btn btn-success btn-sm">개인정보 수정</button></a>
+	<a href="/mypage/drawal"><button id="memberDrawal" class="btn btn-danger btn-sm">회원탈퇴</button></a>
 	<button id="qna" class="btn btn-primary btn-sm">1:1문의</button>
 </div>
 

@@ -21,7 +21,6 @@ public class SubscribeServiceImpl implements SubscribeService {
 		LocalDateTime date = LocalDateTime.now();
 		
 		subscription.setSubDate(date.toString());
-		
 		subscribeDao.insertSub(subscription);
 		
 	}
@@ -30,5 +29,12 @@ public class SubscribeServiceImpl implements SubscribeService {
 	public Member getInfo(String id) {
 		return subscribeDao.getInfo(id);
 	}
+
+	@Override
+	public int getmemNo(String memberId) {
+		return subscribeDao.getmemNo(memberId);
+	}
+
+
 
 }
