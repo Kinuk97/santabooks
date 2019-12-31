@@ -2,6 +2,7 @@ package com.santabooks.reviewSns.service.face;
 
 import java.util.List;
 
+import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.NaverBook;
 import com.santabooks.reviewSns.dto.ReviewSns;
 import com.santabooks.util.Paging;
@@ -71,5 +72,19 @@ public interface ReviewSnsService {
 	 */
 	public void write(ReviewSns reviewSns);
 	
+	/**
+	 * 별점 입력
+	 * 
+	 * @param grade
+	 */
+	public void addGrade(Grade grade);
+	
+	/**
+	 * 
+	 * 
+	 * @param numOfRows
+	 * @return
+	 */
+//	public String geturl(String numOfRows);	
 
 }

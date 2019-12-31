@@ -44,5 +44,11 @@
 		INSERT INTO review_sns(feedNo, bookNo, memberNo, review, privacy)
 		VALUES(review_sns_seq.nextval, #{bookNo}, #{memberNo}, #{review}, #{privacy}) 
 	</insert>
+
+	<insert id="insertGrade" parameterType="com.santabooks.reviewSns.dto.Grade">
+		INSERT INTO grade(grade, memberNo, feedNo)
+		VALUES(#{grade}, #{memberNo}, #{feedNo}) 
+	</insert>
+	
 </mapper>
   
