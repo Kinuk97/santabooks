@@ -52,33 +52,51 @@ body{
 	color: black;
 }
 
+.starR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+.starR.on{background-position:0 0;}
+
 </style>
 
 <script type="text/javascript">
 
+	
 	$(document).ready(function() {
 
 		//리뷰 작성
 		$("#reviewWrite").click(function() {
 			$("#writeForm").submit();
 		});
+		
+		// 별점
+		$('.starRev span').click(function() {
+			$(this).parent().children('span').removeClass('on');
+			$(this).addClass('on').prevAll('span').addClass('on');
+			return false;
+		});
 
 	});
-	
-	
-// 	function check() {
 
-// 		if ($("input:checkbox[id='privacy']").is(":checked")) {
-// 			$("input:checkbox[id='privacy']").prop("checked", true);
+	// 	function check() {
 
-// 			$("#privacy").attr("value", 1);
-			
-// 		} else {
-// 			$("input:checkbox[id='privacy']").prop("checked", false);
-// 			$("#privacy").attr("value", 0);
-			
-// 		}
-// 	}
+	// 		if ($("input:checkbox[id='privacy']").is(":checked")) {
+	// 			$("input:checkbox[id='privacy']").prop("checked", true);
+
+	// 			$("#privacy").attr("value", 1);
+
+	// 		} else {
+	// 			$("input:checkbox[id='privacy']").prop("checked", false);
+	// 			$("#privacy").attr("value", 0);
+
+	// 		}
+	// 	}
 </script>
 
 <input type="hidden" value="${review.feedNo }" name="feedNo" />
@@ -89,10 +107,20 @@ body{
 
 	(평점들갈 예정)
 	<hr>
-
+	<div style="position: relative;">
 	<button class="btn btn-secondary" id="subBtn"
 		onclick="location.href='/subscribe/agree'">구독 하기</button>
-	&nbsp;&nbsp;&nbsp;&nbsp; (별점으로 평가하기 들어갈 예정)
+	<div class="starRev" style="position: absolute; z-index:1; left: 230px; top:-18px;">
+		<div>
+			<small>평가하기</small>
+		</div>
+		<span class="starR on">별1</span> 
+		<span class="starR">별2</span> 
+		<span class="starR">별3</span> 
+		<span class="starR">별4</span> 
+		<span class="starR">별5</span>
+	</div>
+	</div>
 	<hr>
 
 	<div class="card" style="height: 70px; margin-bottom: 10px;">
