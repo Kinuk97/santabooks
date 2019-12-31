@@ -83,9 +83,6 @@ function check(){
 function requestDesposit() {
 	var is_empty=false;
 	$('#subscribeform').find('input[id!="extraAddress"]').each(function() {
-		
-		
-		
 		if(!$(this).val()) {
 			is_empty = true;
 		}
@@ -262,7 +259,7 @@ function requestPayment() {
 
 <form action="/subscribe/first" method="post" id="subscribeform"  >
 	
-	<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req" onclick="check()"> 회원가입 정보와 동일합니다. </label> <br><br>
+	<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req" onclick="check()"/> 회원가입 정보와 동일합니다. </label> <br><br>
 	
 		
 
