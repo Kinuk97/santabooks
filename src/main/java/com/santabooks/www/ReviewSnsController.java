@@ -45,7 +45,7 @@ public class ReviewSnsController {
 
 	@RequestMapping(value = "/sns/view", method = RequestMethod.GET)
 	public void reviewDetail(ReviewSns reviewSns, Model model) {
-
+				
 		ReviewSns review = reviewSnsService.view(reviewSns);
 
 		List<ReviewSns> list = reviewSnsService.snsListInBook(review);
@@ -86,6 +86,7 @@ public class ReviewSnsController {
 		model.addAttribute("paging", reviewPaging);
 		model.addAttribute("url", req.getRequestURI());
 	}
+	
 	@RequestMapping(value = "/sns/detailview", method = RequestMethod.GET)
 	public void reviewView(ReviewSns reviewSns, Model model ) {
 		
@@ -93,5 +94,15 @@ public class ReviewSnsController {
 		logger.info("리뷰속리뷰 : " + review.toString());
 		
 		model.addAttribute("review", review);
+	}
+	
+	@RequestMapping(value="/sns/write", method = RequestMethod.POST)
+	public String reviewWrite(ReviewSns reviewSns) {
+		logger.info("글작성전 정보 : " + reviewSns);
+		
+		reviewSnsService.write(reviewSns);
+		logger.info("글작성후 정보 : " + reviewSns);
+		
+		return "redirect:/sns/list";
 	}
 }

@@ -5,6 +5,10 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <style type="text/css">
+body{
+	background-color:#F7F7F4;
+}
+
 #subBtn {
 	background-color: rgba(20, 121, 87, .25);
 	border: none;
@@ -12,7 +16,7 @@
 	color: black;
 }
 
-#review{
+#reviewCard{
 	width: 300px;
     height: 300px;
     left:50px;
@@ -23,13 +27,59 @@
 	background-color: #f1f1f1;
 }
 
-#review:hover {
+#reviewCard:hover {
     border-color: #147957;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(20, 121, 87,.0);
 }
 
+#writeBtn{
+	background-color:rgba(20, 121, 87,.25); 
+	border:none; 
+	color: black;
+	width: 200px;
+}
+
+#reviewWrite{
+	background-color:rgba(20, 121, 87,.25); 
+	border:none; 
+	color: black;
+}
+
+#cancel{
+	background-color: #f1f1f1;
+	border:none; 
+	color: black;
+}
+
 </style>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+
+		//리뷰 작성
+		$("#reviewWrite").click(function() {
+			$("#writeForm").submit();
+		});
+
+	});
+	
+	
+// 	function check() {
+
+// 		if ($("input:checkbox[id='privacy']").is(":checked")) {
+// 			$("input:checkbox[id='privacy']").prop("checked", true);
+
+// 			$("#privacy").attr("value", 1);
+			
+// 		} else {
+// 			$("input:checkbox[id='privacy']").prop("checked", false);
+// 			$("#privacy").attr("value", 0);
+			
+// 		}
+// 	}
+</script>
 
 <input type="hidden" value="${review.feedNo }" name="feedNo" />
 <div class="container">
@@ -45,7 +95,14 @@
 	&nbsp;&nbsp;&nbsp;&nbsp; (별점으로 평가하기 들어갈 예정)
 	<hr>
 
-
+	<div class="card" style="height: 70px; margin-bottom: 10px;">
+		<div class="card-text" style="margin: 16px;">
+			${MemberId }님의 생각을 글로 적어보세요. &nbsp;&nbsp;&nbsp;&nbsp;
+			<button class="btn btn-secondary" id="writeBtn" data-toggle="modal"
+				data-target="#writeModal">리뷰 작성</button>
+		</div>
+	</div>
+	
 	<div class="column">
 		<div class="card" id="bookInfo" style="height: 1000px;">
 			<div class="card-text">
@@ -79,7 +136,7 @@
 				<c:forEach items="${list }" var="list">
 						<div class="column"onclick="location.href='/sns/detailview?feedNo=${list.feedNo}'" 
 						style="width: 300px; height: 300px; padding: 4px;margin-right: 65px;">
-							<div class="card" id="review">
+							<div class="card" id="reviewCard">
 								<div class="card-text">
 									<p>${list.review }</p>
 									<br><br><br><br><br><br><br><br>
@@ -90,12 +147,62 @@
 						
 				</c:forEach>
 				</div>
+				<br><hr>
+				
+				<div style="padding: 0px 20px 0px 20px;">
+					<h4 style="font-weight: bold;">별점 그래프</h4>
+				</div>
+				
 			</div>
 		</div>
 	</div>
 
-
 </div>
+
+<form action="/sns/write" method="post" id="writeForm">
+	<div class="modal fade" id="writeModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">리뷰 작성</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<input type="hidden" value="${review.memberNo }" id="memberNo" name="memberNo" /> 
+					<input type="hidden" value="${review.bookNo }" id="bookNo" name="bookNo" />
+					<input type="hidden" value="${review.bookName }" id="bookName" name="bookName" />
+					<input type="hidden" value="${review.bookWriter }" id="bookWriter" name="bookWriter" />
+					<input type="hidden" value="${review.bookPublisher }" id="bookPublisher" name="bookPublisher" />
+					<input type="hidden" value="${review.publishingYear }" id="publishingYear" name="publishingYear" />
+					<input type="hidden" value="${review.bookContent }" id="bookContent" name="bookContent" />
+					<input type="hidden" value="${review.genreNo }" id="genreNo" name="genreNo" />
+					 
+					(책이름 띄울 예정)
+					<hr>
+					<textarea type="text" name="review" id="review"
+						placeholder="이 작품에 대한 생각을 표현해 주세요." required="required"
+						style="border: none; width: 460px; height: 200px;"></textarea>
+					<hr>
+					<p><strong>공개 / 비공개</strong></p>
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" id="privacy" name ="privacy" class="custom-control-input" >
+						<label class="custom-control-label" for="privacyCheck">공개</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" id="reviewWrite">작성</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						id="cancel">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
 
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

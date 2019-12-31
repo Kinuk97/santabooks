@@ -39,5 +39,10 @@
 		FROM review_sns r, book b
 		WHERE r.bookNo = b.bookNo AND feedNo = #{feedNo}
 	</select>
+	
+	<insert id="insert" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
+		INSERT INTO review_sns(feedNo, bookNo, memberNo, review, privacy)
+		VALUES(review_sns_seq.nextval, #{bookNo}, #{memberNo}, #{review}, #{privacy}) 
+	</insert>
 </mapper>
   

@@ -52,7 +52,7 @@ $(document).ready(function() {
 		<div class="column">
 			<div class="card" id="review">
 				<div class="card-text">
-					(작성자 들어갈 예정)&nbsp;&nbsp;&nbsp;(작성자가 준 별점 들어갈 예정)
+					<h5 style="font-weight: bold;">${MemberId }</h5>(작성자가 준 별점 들어갈 예정)
 					<hr>
 					<p>${review.review }</p>
 					<p class="text-right">${review.reviewDate }</p>
