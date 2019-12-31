@@ -173,4 +173,11 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 		return reviewSnsDao.selectDetailReviewByFeedNo(reviewSns);
 	}
 
+	@Override
+	public void write(ReviewSns reviewSns) {
+		
+		reviewSnsDao.insert(reviewSns);
+		
+	}
+
 }

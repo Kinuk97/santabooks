@@ -54,6 +54,13 @@ public interface ReviewSnsDao {
 	 */
 	public ReviewSns selectDetailReviewByFeedNo(ReviewSns reviewSns);
 	
+	/**
+	 * 리뷰 삽입
+	 * 
+	 * @param reviewSns - 리뷰 내용
+	 */
+	public void insert(ReviewSns reviewSns);
+	
 	
 
 }

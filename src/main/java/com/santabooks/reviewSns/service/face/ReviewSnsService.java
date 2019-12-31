@@ -64,5 +64,12 @@ public interface ReviewSnsService {
 	 */
 	public ReviewSns detailView(ReviewSns reviewSns);
 	
+	/**
+	 * 리뷰 작성
+	 * 
+	 * @param reviewSns
+	 */
+	public void write(ReviewSns reviewSns);
+	
 
 }
