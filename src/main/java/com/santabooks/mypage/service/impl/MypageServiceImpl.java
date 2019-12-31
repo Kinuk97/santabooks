@@ -48,4 +48,23 @@ public class MypageServiceImpl implements MypageService {
 		return mypageDao.selectPageList(paging);
 	}
 
+	@Override
+	public boolean checkPw(String id) {
+		if ( mypageDao.selectCnt(id) > 0 ) {
+			return true;
+		} 
+		
+		return false;
+	}
+
+	@Override
+	public Member info(Member member) {
+		return mypageDao.selectInfoByMemberNo(member);
+	}
+
+	@Override
+	public void InfoDelete(Member member) {
+		mypageDao.delete(member);
+	}
+
 }

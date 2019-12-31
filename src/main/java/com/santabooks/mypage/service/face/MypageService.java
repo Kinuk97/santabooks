@@ -30,4 +30,10 @@ public interface MypageService {
 
 	public List<QnA> list(Paging paging);
 
+	public boolean checkPw(String id);
+
+	public Member info(Member member);
+	
+	public void InfoDelete(Member member);
+
 }
