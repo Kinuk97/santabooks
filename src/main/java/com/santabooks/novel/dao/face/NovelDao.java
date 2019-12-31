@@ -49,6 +49,14 @@ public interface NovelDao {
 	public List<Episode> selectEpisodeByNovelNo(Paging paging);
 
 	/**
+	 * 회차 상세보기
+	 * 
+	 * @param episode - episodeNo
+	 * @return Episode - 회차 정보
+	 */
+	public Episode selectEpisodeByEpisodeNo(Episode episode);
+
+	/**
 	 * 소설 등록하기
 	 * 
 	 * @param novel - 소설 정보
@@ -61,4 +69,5 @@ public interface NovelDao {
 	 * @param episode - 연재내용
 	 */
 	public void insertEpisode(Episode episode);
+
 }
