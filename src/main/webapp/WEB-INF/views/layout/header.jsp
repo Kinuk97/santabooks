@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,9 +50,16 @@
 <!-- 						<input class="form-control" type="text" placeholder="Search" -->
 <!-- 							aria-label="Search"> -->
 <!-- 					</form> -->
+					<c:if test="${not login}">	
 						<span>
 							<a href="/member/login">로그인</a> / <a href="/member/join">회원가입</a>
 						</span>
+					</c:if>
+					<c:if test="${login}">	
+						<span>
+							<a href="/member/logout">로그아웃</a>
+						</span>
+					</c:if>
 				</div>
 			</div>
 		</nav>
