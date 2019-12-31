@@ -16,7 +16,10 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/novel/**" />
+			<mapping path="/episode/**" />
+			<mapping path="/subscribe/**" />
 			<exclude-mapping path="/novel/list"/>
+			<exclude-mapping path="/novel/view"/>
 			<exclude-mapping path="/episode/list"/>
 			<exclude-mapping path="/episode/view"/>
 			<beans:bean class="com.santabooks.www.interceptor.LoginCheckInterceptor" />
