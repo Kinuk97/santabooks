@@ -24,4 +24,10 @@ public interface MypageDao {
 
 	public List<QnA> selectPageList(Paging paging);
 
+	public int selectCnt(String id);
+
+	public Member selectInfoByMemberNo(Member member);
+	
+	public void delete(Member member);
+
 }
