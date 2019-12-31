@@ -21,8 +21,8 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public String getMemberNick(Member member) {
-		return loginDao.getmemberNick(member);
+	public Member getMember(Member member) {
+		return loginDao.getmember(member);
 	}
 
 

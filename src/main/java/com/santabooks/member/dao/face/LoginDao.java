@@ -6,7 +6,7 @@ public interface LoginDao {
 	
 	public int login(Member member);
 
-	public String getmemberNick(Member member);
+	public Member getmember(Member member);
 
 
 }

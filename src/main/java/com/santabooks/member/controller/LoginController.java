@@ -42,9 +42,12 @@ public class LoginController {
 			model.addAttribute("msg", "로그인 성공");
 			model.addAttribute("url", "/main");
 			
+			Member user = loginService.getMember(member);
+			
 			session.setAttribute("login", true);
 			session.setAttribute("MemberId", member.getMemberId());
-			session.setAttribute("MemberNick", loginService.getMemberNick(member));
+			session.setAttribute("MemberNick", user.getMemberNick());
+			session.setAttribute("MemberNo", user.getMemberNo());
 			
 			logger.info("세션상태 : " + session.getAttribute("login"));
 			logger.info("세션 아이디 : " + session.getAttribute("MemberId"));

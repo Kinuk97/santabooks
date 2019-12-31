@@ -17,9 +17,9 @@
 	
 	
 	<select id="getmemberNick"
-		parameterType="com.santabooks.member.dto.Member" resultType="String">
-		SELECT memberNick FROM member
+		parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.member.dto.Member">
+		SELECT memberNo, memberNick, memberId FROM member
 		WHERE
-		MemberNick = #{memberId }
+		memberId = #{memberId }
 	</select>
 </mapper>
