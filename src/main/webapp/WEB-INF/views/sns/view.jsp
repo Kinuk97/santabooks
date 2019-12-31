@@ -122,7 +122,8 @@ body{
 	</div>
 	</div>
 	<hr>
-
+	
+	<c:if test="${not empty login }">
 	<div class="card" style="height: 70px; margin-bottom: 10px;">
 		<div class="card-text" style="margin: 16px;">
 			${MemberNick }님의 생각을 글로 적어보세요. &nbsp;&nbsp;&nbsp;&nbsp;
@@ -130,6 +131,7 @@ body{
 				data-target="#writeModal">리뷰 작성</button>
 		</div>
 	</div>
+	</c:if>
 	
 	<div class="column">
 		<div class="card" id="bookInfo" style="height: 1000px;">
