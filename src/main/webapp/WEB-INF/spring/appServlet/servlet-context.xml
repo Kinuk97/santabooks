@@ -50,8 +50,5 @@
 		<beans:property name="contentType" value="application/json;charset=utf-8"/>
 	</beans:bean>
 	
-	<!-- DownloadView 클래스를 down이라는 이름의 스프링 빈으로 등록하기 -->
-	<beans:bean id="down" class="com.santabooks.file.view.DownloadView" />
-	
 	<context:component-scan base-package="com.santabooks.www, com.santabooks.*.service, com.santabooks.member.controller" />
 </beans:beans>
