@@ -81,5 +81,10 @@ public class NovelServiceImpl implements NovelService {
 	public Novel getNovelByNovelNo(Paging paging) {
 		return novelDao.selectNovelByNovelNo(paging);
 	}
+	
+	@Override
+	public Episode getEpisode(Episode episode) {
+		return novelDao.selectEpisodeByEpisodeNo(episode);
+	}
 
 }
