@@ -54,9 +54,47 @@ public class MyPageInfoController {
 		return "redirect:/mypage/main?memberId="+member.getMemberId();
 	}
 	
-	@RequestMapping(value = "/mypage/drawal", method = RequestMethod.GET)
-	public void drawal() {
+	@RequestMapping(value="/mypage/deletePwChk", method=RequestMethod.GET)
+	public void drawalPwChk() {
+		logger.info("회원탈퇴 비밀번호 확인 요청");
+	}
+	
+	@RequestMapping(value="/mypage/deletePwChk", method=RequestMethod.POST)
+	public String deletePwCheckProc(Member member, HttpSession session) {
+
+		String id = (String)session.getAttribute("MemberId");
+		logger.info(member.toString());
 		
+		boolean isPw = mypageService.checkPw(id);
+		
+		// 비밀번호 체크 성공
+		if( isPw ) {
+			return "redirect:/mypage/delete?memberId=" + member.getMemberId();
+		}
+		
+		// 비밀번호 체크 실패
+		return "redirect:/mypage/deletePwChk";
+	}
+	
+	@RequestMapping(value = "/mypage/delete", method = RequestMethod.GET)
+	public String drawal(Member member, Model model) {
+		logger.info(member.toString());
+		member = mypageService.info(member);
+		model.addAttribute("member", member);
+		
+		return "/mypage/deleteOk";
+	}
+	
+	@RequestMapping(value="/mypage/delete", method=RequestMethod.POST)
+	public String drawalProc(Member member, HttpSession session) {
+		
+		logger.info(member.toString());
+		
+		mypageService.InfoDelete(member);
+		
+		session.invalidate();
+		
+		return "/main";
 	}
 	
 	@RequestMapping(value = "/mypage/qnaList", method = RequestMethod.GET)
