@@ -2,6 +2,7 @@ package com.santabooks.novel.dao.face;
 
 import java.util.List;
 
+import com.santabooks.novel.dto.Episode;
 import com.santabooks.novel.dto.Novel;
 import com.santabooks.util.Paging;
 
@@ -30,6 +31,22 @@ public interface NovelDao {
 	 * @return List<Novel> - 결과 목록
 	 */
 	public List<Novel> selectBestNovel(int category);
+	
+	/**
+	 * 소설 정보 가져오기
+	 * 
+	 * @param paging - 소설번호 DTO
+	 * @return Novel - 소설 정보
+	 */
+	public Novel selectNovelByNovelNo(Paging paging);
+
+	/**
+	 * 소설 회차보는 쿼리
+	 * 
+	 * @param paging - 소설 번호가 담겨있는 DTO
+	 * @return List<Episode> - 회차 목록
+	 */
+	public List<Episode> selectEpisodeByNovelNo(Paging paging);
 
 	/**
 	 * 소설 등록하기
@@ -37,4 +54,11 @@ public interface NovelDao {
 	 * @param novel - 소설 정보
 	 */
 	public void insertNovel(Novel novel);
+
+	/**
+	 * 회차 등록하기
+	 * 
+	 * @param episode - 연재내용
+	 */
+	public void insertEpisode(Episode episode);
 }

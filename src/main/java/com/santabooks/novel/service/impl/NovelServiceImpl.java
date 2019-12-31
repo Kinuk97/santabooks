@@ -16,7 +16,7 @@ public class NovelServiceImpl implements NovelService {
 
 	@Autowired
 	private NovelDao novelDao;
-	
+
 	@Override
 	public void addNovel(Novel novel) {
 		novelDao.insertNovel(novel);
@@ -25,53 +25,39 @@ public class NovelServiceImpl implements NovelService {
 	@Override
 	public void modifyNovel(Novel novel) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public List<Novel> getNovelList(Paging paging) {
 		return novelDao.selectNovelList(paging);
 	}
-	
+
 	@Override
 	public List<Novel> getBestNovel(int category) {
 		return novelDao.selectBestNovel(category);
 	}
 
 	@Override
-	public Novel viewNovel(Novel novel) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void addEpisode(Episode episode) {
-		// TODO Auto-generated method stub
-		
+		novelDao.insertEpisode(episode);
 	}
 
 	@Override
 	public void modifyEpisode(Episode episode) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeEpisode(Episode episode) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public List<Episode> getEpisodeList(Episode episode) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Episode viewEpisode(Episode episode) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Episode> getEpisodeList(Paging paging) {
+		return novelDao.selectEpisodeByNovelNo(paging);
 	}
 
 	@Override
@@ -81,8 +67,19 @@ public class NovelServiceImpl implements NovelService {
 		resultPaging.setSearchno(paging.getSearchno());
 		resultPaging.setTableName(paging.getTableName());
 		resultPaging.setCategory(paging.getCategory());
-		
+		resultPaging.setNovelNo(paging.getNovelNo());
+
 		return resultPaging;
+	}
+
+	@Override
+	public Episode viewEpidode(Episode episode) {
+		return null;
+	}
+
+	@Override
+	public Novel getNovelByNovelNo(Paging paging) {
+		return novelDao.selectNovelByNovelNo(paging);
 	}
 
 }

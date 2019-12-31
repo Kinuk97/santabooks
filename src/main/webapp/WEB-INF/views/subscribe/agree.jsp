@@ -3,6 +3,15 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+
+<style type="text/css">
+body{
+	background-color: #F7F7F4;
+}
+</style>
+
+
+
 <script type="text/javascript">
 function chk() {
 	var req = document.form.req.checked;
@@ -25,7 +34,7 @@ function nochk() {
 	
 	}
 	
-	</script>
+</script>
 	
 	
 <body style="background-color:#F7F7F4">

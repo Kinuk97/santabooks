@@ -6,5 +6,5 @@ public interface LoginService {
 
 	public boolean login(Member member);
 	
-	public String getMemberNick(Member membmer);
+	public Member getMember(Member membmer);
 }

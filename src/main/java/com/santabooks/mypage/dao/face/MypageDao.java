@@ -1,6 +1,10 @@
 package com.santabooks.mypage.dao.face;
 
+import java.util.List;
+
 import com.santabooks.member.dto.Member;
+import com.santabooks.mypage.dto.QnA;
+import com.santabooks.util.Paging;
 
 public interface MypageDao {
 
@@ -15,5 +19,15 @@ public interface MypageDao {
 	public Member infoUpdateView(Member member);
 
 	public void infoUpdate(Member member);
+
+	public int selectCntAll();
+
+	public List<QnA> selectPageList(Paging paging);
+
+	public int selectCnt(String id);
+
+	public Member selectInfoByMemberNo(Member member);
+	
+	public void delete(Member member);
 
 }

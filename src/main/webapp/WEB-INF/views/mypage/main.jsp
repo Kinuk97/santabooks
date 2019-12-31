@@ -92,8 +92,8 @@
 
 	<br><br>
 	<a href="/mypage/infoUpdate?memberId=${info.memberId }"><button id="my_info" class="btn btn-success btn-sm">개인정보 수정</button></a>
-	<a href="/mypage/drawal"><button id="memberDrawal" class="btn btn-danger btn-sm">회원탈퇴</button></a>
-	<button id="qna" class="btn btn-primary btn-sm">1:1문의</button>
+	<a href="/mypage/deletePwChk"><button id="memberDrawal" class="btn btn-danger btn-sm">회원탈퇴</button></a>
+	<a href="/mypage/qnaList"><button id="qna" class="btn btn-primary btn-sm">1:1문의</button></a>
 </div>
 
 </div>
