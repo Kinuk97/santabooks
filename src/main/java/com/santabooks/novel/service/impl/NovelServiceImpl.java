@@ -1,9 +1,15 @@
 package com.santabooks.novel.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.santabooks.novel.dao.face.NovelDao;
 import com.santabooks.novel.dto.Episode;
@@ -16,6 +22,8 @@ public class NovelServiceImpl implements NovelService {
 
 	@Autowired
 	private NovelDao novelDao;
+	@Autowired
+	private ServletContext context;
 
 	@Override
 	public void addNovel(Novel novel) {
@@ -81,10 +89,44 @@ public class NovelServiceImpl implements NovelService {
 	public Novel getNovelByNovelNo(Paging paging) {
 		return novelDao.selectNovelByNovelNo(paging);
 	}
-	
+
 	@Override
 	public Episode getEpisode(Episode episode) {
 		return novelDao.selectEpisodeByEpisodeNo(episode);
+	}
+
+	@Override
+	public void fileSave(Novel novel) {
+		MultipartFile file = novel.getUpload();
+		
+		// 파일이 저장될 경로
+		String storedPath = context.getRealPath("upload");
+
+		// UUID
+		String uid = UUID.randomUUID().toString().split("-")[4];
+
+		// 저장될 파일의 이름 (원본명 + UUID)
+		String fileName = file.getOriginalFilename() + "_" + uid;
+
+		// 저장될 파일 객체
+		File dest = new File(storedPath, fileName);
+
+		try {
+			if (file != null && !file.isEmpty()) {
+				// 실제 파일 저장
+				file.transferTo(dest);
+				
+				novel.setImgOriginName(file.getOriginalFilename());
+				novel.setImgStoredName(fileName);
+				
+//				fileDao.insertFile(filetest);
+			}
+			
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

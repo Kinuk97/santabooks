@@ -47,6 +47,14 @@
 		    </li>
 		  </ul>
 		</div>
+		
+		<hr>
+		
+		<a class="btn btn-success" href="/novel/view?novelNo=${novel.novelNo }">목록</a>
+		<c:if test="${MemberNo == novel.memberNo }">
+			<a class="btn btn-info" href="/episode/modify">수정</a>
+			<a class="btn btn-danger" href="/episode/remove">삭제</a>
+		</c:if>
 	</div>
 </div>
 

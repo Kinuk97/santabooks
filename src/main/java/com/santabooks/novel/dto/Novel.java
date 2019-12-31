@@ -1,5 +1,7 @@
 package com.santabooks.novel.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Novel {
 	private int novelNo;
 	private int memberNo;
@@ -9,12 +11,17 @@ public class Novel {
 	private int score;
 	private String addDate;
 	private int category;
+	private String imgOriginName;
+	private String imgStoredName;
+
+	private MultipartFile upload;
 
 	@Override
 	public String toString() {
 		return "Novel [novelNo=" + novelNo + ", memberNo=" + memberNo + ", memberName=" + memberName + ", title="
 				+ title + ", discription=" + discription + ", score=" + score + ", addDate=" + addDate + ", category="
-				+ category + "]";
+				+ category + ", imgOriginName=" + imgOriginName + ", imgStoredName=" + imgStoredName + ", upload="
+				+ upload + "]";
 	}
 
 	public int getNovelNo() {
@@ -79,6 +86,30 @@ public class Novel {
 
 	public void setCategory(int category) {
 		this.category = category;
+	}
+
+	public String getImgOriginName() {
+		return imgOriginName;
+	}
+
+	public void setImgOriginName(String imgOriginName) {
+		this.imgOriginName = imgOriginName;
+	}
+
+	public String getImgStoredName() {
+		return imgStoredName;
+	}
+
+	public void setImgStoredName(String imgStoredName) {
+		this.imgStoredName = imgStoredName;
+	}
+
+	public MultipartFile getUpload() {
+		return upload;
+	}
+
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
 	}
 
 }

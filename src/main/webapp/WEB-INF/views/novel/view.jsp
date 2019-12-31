@@ -29,7 +29,12 @@
 		    		</c:otherwise>
 		    	</c:choose>
 		    	</c:forEach>
-	        	<button class="btn btn-warning" style="float: right"><img alt="..." src="/resources/images/novel/heart.svg" class="icon"></button>
+		        	<button class="btn btn-warning" style="float: right"><img alt="..." src="/resources/images/novel/heart.svg" class="icon"></button>
+				<c:if test="${MemberNo == novel.memberNo }">
+				<a style="float: right;" class="btn btn-info" href="/episode/modify?novelNo=${novel.novelNo }">수정</a>
+				<a style="float: right;" class="btn btn-danger" href="/episode/remove?novelNo=${novel.novelNo }">삭제</a>
+				<a style="float: right;" href="/episode/add?novelNo=${novel.novelNo }" class="btn btn-success">연재하기</a>
+				</c:if>
 	        	<div style="clear: both;"></div>
 	        </div>
 	      </td>
@@ -57,8 +62,10 @@
 	</div>
 	
 	<div class="text-right">
-		<a href="/episode/add?novelNo=${novel.novelNo }" class="btn btn-success">연재하기</a>
+		<a class="btn btn-success" href="/novel/view?novelNo=${novel.novelNo }">목록</a>
 	</div>
+	
+	<jsp:include page="/WEB-INF/views/layout/paging.jsp"/>
 </div>
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

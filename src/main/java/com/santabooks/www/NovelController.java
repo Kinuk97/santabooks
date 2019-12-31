@@ -37,15 +37,18 @@ public class NovelController {
 	}
 
 	@RequestMapping(value = "/novel/view", method = RequestMethod.GET)
-	public void showList(Model model, Paging paging) {
+	public void showList(Model model, Paging paging, HttpServletRequest req) {
 
 		paging.setTableName("episode");
 
 		paging = novelService.getPaging(paging);
+		
+		logger.info(paging.toString());
 
 		model.addAttribute("episodeList", novelService.getEpisodeList(paging));
 		model.addAttribute("novel", novelService.getNovelByNovelNo(paging));
 		model.addAttribute("paging", paging);
+		model.addAttribute("url", req.getRequestURI());
 	}
 
 	@RequestMapping(value = "/novel/add", method = RequestMethod.GET)
@@ -57,10 +60,26 @@ public class NovelController {
 	public String addNovel(Novel novel, HttpSession session) {
 		novel.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
 
+		
+		
 		novelService.addNovel(novel);
 
 		return "redirect:/novel/view?novelNo=" + novel.getNovelNo();
 	}
+	
+	@RequestMapping(value = "/novel/modify", method = RequestMethod.GET)
+	public void modifyovel() {
+		
+	}
+	
+	@RequestMapping(value = "/novel/modify", method = RequestMethod.POST)
+	public String modifyovel(Novel novel) {
+		novelService.modifyNovel(novel);
+		
+		return "redirect:/novel/view?novelNo=" + novel.getNovelNo();
+	}
+	
+	
 
 	@RequestMapping(value = "/episode/add", method = RequestMethod.GET)
 	public void addEpisode(@RequestParam(defaultValue = "0") int novelNo, Model model) {
