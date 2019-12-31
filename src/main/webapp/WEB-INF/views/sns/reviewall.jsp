@@ -55,7 +55,7 @@ $(document).ready(function() {
 		<div class="column">
 			<div class="card" id="review">
 				<div class="card-text">
-					<h5 style="font-weight: bold;">${MemberId }</h5>(작성자가 준 별점 들어갈 예정)
+					<h5 style="font-weight: bold;">${MemberNick }</h5>(작성자가 준 별점 들어갈 예정)
 					<hr>
 					<p>${review.review }</p>
 					<br><br><br>

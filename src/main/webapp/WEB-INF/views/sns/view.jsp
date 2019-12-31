@@ -97,7 +97,7 @@ body{
 
 	<div class="card" style="height: 70px; margin-bottom: 10px;">
 		<div class="card-text" style="margin: 16px;">
-			${MemberId }님의 생각을 글로 적어보세요. &nbsp;&nbsp;&nbsp;&nbsp;
+			${MemberNick }님의 생각을 글로 적어보세요. &nbsp;&nbsp;&nbsp;&nbsp;
 			<button class="btn btn-secondary" id="writeBtn" data-toggle="modal"
 				data-target="#writeModal">리뷰 작성</button>
 		</div>
