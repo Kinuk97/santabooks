@@ -5,8 +5,6 @@
 
 <script type="text/javascript" src="/resources/js/novel.js"></script>
 
-<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-
 <div class="container" style="width: 75%; padding-top: 10%;">
 
 	<form action="/novel/add" method="post">
@@ -33,7 +31,7 @@
 			<div class="form-group row">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-10">
-					<button type="submit" class="btn btn-primary">등록하기</button>
+					<button type="button" id="addEpisodeBtn" class="btn btn-primary">등록하기</button>
 				</div>
 			</div>
 		</div>
