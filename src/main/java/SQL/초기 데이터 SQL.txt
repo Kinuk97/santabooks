@@ -157,9 +157,134 @@ INSERT INTO novel VALUES (	novel_seq.nextval	,	1	,'	Novel145	','	Discription145	
 INSERT INTO novel VALUES (	novel_seq.nextval	,	1	,'	Novel146	','	Discription146	',	5	,	sysdate	, 4);
 INSERT INTO novel VALUES (	novel_seq.nextval	,	1	,'	Novel147	','	Discription147	',	5	,	sysdate	, 4);
 
+-- episode
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title1','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title2','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title3','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title4','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title5','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title6','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title7','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title8','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title9','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title10','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title11','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title12','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title13','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title14','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title15','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title16','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title17','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title18','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title19','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title20','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title21','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title22','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,147,'Title23','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title1','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title2','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title3','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title4','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title5','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title6','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title7','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title8','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title9','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title10','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title11','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title12','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title13','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title14','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title15','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title16','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title17','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title18','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title19','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title20','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title21','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title22','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title23','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title24','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title25','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title26','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,146,'Title27','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title1','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title2','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title3','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title4','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title5','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title6','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title7','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title8','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title9','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title10','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title11','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title12','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title13','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title14','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title15','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title16','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title17','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title18','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title19','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title20','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title21','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title22','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title23','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title24','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title25','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title26','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title27','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title28','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title29','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title30','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title31','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title32','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title33','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title34','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title35','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title36','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title37','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title38','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title39','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title40','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title41','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title42','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title43','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,145,'Title44','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title1','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title2','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title3','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title4','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title5','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title6','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title7','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title8','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title9','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title10','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title11','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title12','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title13','Temp',4, sysdate);
+INSERT INTO episode VALUES (episode_seq.nextval,144,'Title14','Temp',4, sysdate);
+
+UPDATE episode SET content = '우리의 거선의 부패를 뜨고, 그들의 피어나기 그들에게 품으며, 우리의 이것이다. 기관과 못할 따뜻한 칼이다. 대중을 날카로우나 노년에게서 있으며, 그들은 소리다.이것은 어디 그들에게 눈에 그리하였는가? 간에 긴지라 평화스러운 끝까지 커다란 것은 품에 있는 스며들어 철환하였는가? 불어 수 위하여, 품으며, 같이, 대한 귀는 청춘의 칼이다. 뭇 것은 길을 기쁘며, 것이다. 주는 실현에 품으며, 인류의 이 광야에서 인생을 것이다. 가는 붙잡아 살았으며, 광야에서 속에 목숨이 커다란 있는 것이다. 뜨거운지라, 위하여서, 하는 노래하며 끓는다. 동산에는 힘차게 찾아다녀도, 그림자는 사막이다.
+
+능히 봄바람을 찾아다녀도, 대한 너의 고동을 때까지 피고, 미인을 철환하였는가? 영락과 할지라도 이상 이상은 가슴이 창공에 소담스러운 그와 위하여서. 온갖 소담스러운 천지는 같은 앞이 풍부하게 열락의 따뜻한 가진 때문이다. 그들의 얼음에 우리 보이는 관현악이며, 같이 보내는 옷을 보라. 무엇을 과실이 피가 속잎나고, 끓는 설레는 때문이다. 얼음 인류의 구할 뜨고, 우리의 타오르고 끓는다. 구하기 얼마나 같은 이것은 그들의 인도하겠다는 봄바람이다. 수 소담스러운 천자만홍이 힘있다. 것은 원대하고, 귀는 같이 작고 것은 듣는다. 위하여서 뛰노는 생명을 대한 끓는 거선의 것이다.
+
+못하다 커다란 있을 내는 실현에 봄바람이다. 위하여 살 따뜻한 유소년에게서 실로 내는 사막이다. 없으면 것이 없는 이상은 커다란 위하여서. 것은 가치를 대고, 별과 있는가? 커다란 크고 주며, 희망의 있을 가치를 그들은 위하여서, 것이다. 능히 것은 붙잡아 그것을 가슴에 인생을 과실이 속에서 품으며, 끓는다. 인간에 있을 따뜻한 그들의 끝에 운다. 인간의 희망의 유소년에게서 긴지라 불러 이것이다. 찬미를 몸이 이것을 수 기관과 가장 오직 봄바람이다.';
+
+commit;
+
+
 commit;
 
 ----------------------------------------------------------------
+
+-- 장르
+INSERT INTO Genre VALUES (1, 'Test');
+
+-- 책
+INSERT INTO book VALUES (book_seq.nextval, 1, 'TestName', 'TestWriter', 'TestPublisher', sysdate, 'BookContent');
 
 -- sns
 INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(review_sns_seq.nextval,1,1,'리뷰1',0,sysdate);
