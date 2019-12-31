@@ -28,7 +28,7 @@ body{
 <br><br><br><br>
 
 <div>
-
+<!-- <a href="https://tracker.delivery/#/kr.epost/1111111111111" target="_blank">배송조회</a> -->
 </div>
 정기구독신청완료
 
