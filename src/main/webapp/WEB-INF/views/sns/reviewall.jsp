@@ -14,7 +14,7 @@
 }
 
 .card {
-	height: 300px;
+	height: 380px;
 }
 
 .card {
@@ -61,8 +61,10 @@ $(document).ready(function() {
 					<br><br><br>
 					<p class="text-right">${review.reviewDate }</p>
 					<hr>
-					(좋아요 들어갈 예정	)
-				</div>
+					&nbsp;&nbsp;<i class="far fa-thumbs-up"></i>&nbsp;(좋아요 개수)
+					<hr>
+						<button style="color: #ff2f6e; font-weight: bold; border:none;">좋아요</button>
+					</div>
 			</div>
 
 		</div>

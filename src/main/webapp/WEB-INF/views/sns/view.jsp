@@ -77,11 +77,30 @@ body{
 		
 		// 별점
 		$('.starRev span').click(function() {
-			$(this).parent().children('span').removeClass('on');
-			$(this).addClass('on').prevAll('span').addClass('on');
+			
+			$ajax({
+				type: "POST",
+				url: "/sns/view?feedNo=${review.feedNo }",
+				data: { },
+				dataType: "json",
+				sucess: function(res){
+					
+				},
+				error: function(e){
+					
+				}
+			})
+			
+			$(this).parent().children('span').removeClass('on'); /* 별점의 on 클래스 전부 제거 */ 
+			$(this).addClass('on').prevAll('span').addClass('on'); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+			$("#starForm").submit();
 			return false;
+			
+// 			if ($("input:checkbox[id='star2']").is(":checked")){
+// 				$("#star2").attr("value", 2);
+// 			}
 		});
-
+			c
 	});
 
 	// 	function check() {
@@ -105,7 +124,7 @@ body{
 	<h5 style="color: #696969; font-weight: bold;">${review.bookWriter }</h5>
 	<hr>
 
-	(평점들갈 예정)
+	<p style="font-weight: bold;">평점 ★( 평점 평균들어갈예정 ex)3.0 )</p>
 	<hr>
 	<div style="position: relative;">
 	<button class="btn btn-secondary" id="subBtn"
@@ -114,11 +133,15 @@ body{
 		<div>
 			<small>평가하기</small>
 		</div>
-		<span class="starR on">별1</span> 
-		<span class="starR">별2</span> 
-		<span class="starR">별3</span> 
-		<span class="starR">별4</span> 
-		<span class="starR">별5</span>
+		<form action="/sns/view?feedNo=${review.feedNo }" method="post" id="starForm">
+		<input type="hidden" value="${review.memberNo }" id="memberNo" name="memberNo" />
+		<input type="hidden" value="${review.feedNo }" id="feedNo" name="feedNo" />
+		<span class="starR on"><input type="checkbox" value=1  name="grade" id="star1">별1</span> 
+		<span class="starR"><input type="checkbox" value=2 name="grade" id="star2">별2</span> 
+		<span class="starR"><input type="checkbox" value=3 name="grade" id="star3">별3</span> 
+		<span class="starR"><input type="checkbox" value=4 name="grade" id="star4">별4</span> 
+		<span class="starR"><input type="checkbox" value=5 name="grade" id="star5">별5</span>
+		</form>
 	</div>
 	</div>
 	<hr>
@@ -195,7 +218,7 @@ body{
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">리뷰 작성</h4>
+					<h4 class="modal-title" id="myModalLabel" style="font-weight: bold;">리뷰 작성</h4>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">×</span>
@@ -212,7 +235,7 @@ body{
 					<input type="hidden" value="${review.bookContent }" id="bookContent" name="bookContent" />
 					<input type="hidden" value="${review.genreNo }" id="genreNo" name="genreNo" />
 					 
-					(책이름 띄울 예정)
+					<h5>${review.bookName }</h5>
 					<hr>
 					<textarea type="text" name="review" id="review"
 						placeholder="이 작품에 대한 생각을 표현해 주세요." required="required"

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.ReviewSns;
 import com.santabooks.reviewSns.service.face.ReviewSnsService;
 import com.santabooks.util.Paging;
@@ -44,16 +45,33 @@ public class ReviewSnsController {
 	}
 
 	@RequestMapping(value = "/sns/view", method = RequestMethod.GET)
-	public void reviewDetail(ReviewSns reviewSns, Model model) {
+	public void reviewDetail(ReviewSns reviewSns, Model model, Grade grade) {
 				
 		ReviewSns review = reviewSnsService.view(reviewSns);
 
 		List<ReviewSns> list = reviewSnsService.snsListInBook(review);
+		
 		logger.info("리뷰 : " + review.toString());
 		logger.info("리스트 : " + list.toString());
 
 		model.addAttribute("review", review);
 		model.addAttribute("list", list);
+	}
+
+	@RequestMapping(value = "/sns/view", method = RequestMethod.POST)
+	public void reviewDetailPost(ReviewSns reviewSns, Model model, Grade grade) {
+		
+//		ReviewSns review = reviewSnsService.view(reviewSns);
+//		
+//		List<ReviewSns> list = reviewSnsService.snsListInBook(review);
+//		
+//		logger.info("리뷰 : " + review.toString());
+//		logger.info("리스트 : " + list.toString());
+	
+		reviewSnsService.addGrade(grade);
+		
+//		model.addAttribute("review", review);
+//		model.addAttribute("list", list);
 	}
 
 	@RequestMapping("/book/list")
