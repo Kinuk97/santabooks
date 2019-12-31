@@ -22,7 +22,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public Member getMember(Member member) {
-		return loginDao.getmember(member);
+		return loginDao.getMember(member);
 	}
 
 
