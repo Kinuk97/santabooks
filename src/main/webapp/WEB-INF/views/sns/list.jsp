@@ -115,6 +115,7 @@ body {
 		<div style="position: relative;">
 
 			<div id="bookRecommand" style="position: absolute; z-index: 1; right: 4px; top: 4px;">
+				
 				<div class="card sidenav" style="height: 710px;">
 					<div class="card-text">책추천 들어갈 예정</div>
 				</div>
