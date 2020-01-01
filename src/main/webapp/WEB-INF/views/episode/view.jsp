@@ -11,7 +11,16 @@
 	<table class="table" style="border: 1px solid #CCC; border-collapse: separate;">
 	  <tbody>
 	    <tr>
-	      <td rowspan="3" colspan="2" style="width: 37px;"><img src="/resources/images/logo.png" width="100%"></td>
+	      <td rowspan="3" colspan="2" class="img_wrap">
+	      <c:choose>
+	      	<c:when test="${novel.imgOriginName != null }">
+		    	<img src="/upload/${novel.imgStoredName }"alt="...">
+	      	</c:when>
+	      	<c:otherwise>
+			    <img src="/resources/images/logo.png" alt="...">
+	      	</c:otherwise>
+	      </c:choose>
+	      </td>
 	      <td>${novel.title }</td>
 	      <td>${novel.memberName }</td>
 	    </tr>
@@ -47,6 +56,14 @@
 		    </li>
 		  </ul>
 		</div>
+		
+		<hr>
+		
+		<a class="btn btn-success" href="/novel/view?novelNo=${novel.novelNo }">목록</a>
+		<c:if test="${MemberNo == novel.memberNo }">
+			<a class="btn btn-info" href="/episode/modify">수정</a>
+			<a class="btn btn-danger" href="/episode/remove">삭제</a>
+		</c:if>
 	</div>
 </div>
 

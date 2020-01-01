@@ -64,10 +64,25 @@ public interface NovelDao {
 	public void insertNovel(Novel novel);
 
 	/**
+	 * 소설 소개 수정하기
+	 * 
+	 * @param novel - 소설 수정 내용
+	 */
+	public void updateNovel(Novel novel);
+	
+	/**
+	 * 소설 표지 설정하기
+	 * 
+	 * @param novel - 파일 정보
+	 */
+	public void updateNovelImg(Novel novel);
+
+	/**
 	 * 회차 등록하기
 	 * 
 	 * @param episode - 연재내용
 	 */
 	public void insertEpisode(Episode episode);
+
 
 }

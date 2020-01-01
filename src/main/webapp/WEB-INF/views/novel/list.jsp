@@ -32,7 +32,16 @@
 	<c:forEach items="${best }" var="novel">
 		<div class="col-4">
 			<div class="card">
-			  <img src="/resources/images/logo.png" class="card-img-top" alt="...">
+			  <div class="img_wrap_list">
+			  <c:choose>
+		      	<c:when test="${novel.imgOriginName != null }">
+			    	<img src="/upload/${novel.imgStoredName }" class="card-img-top" alt="...">
+		      	</c:when>
+		      	<c:otherwise>
+				    <img src="/resources/images/logo.png" class="card-img-top" alt="...">
+		      	</c:otherwise>
+		      </c:choose>
+			  </div>
 			  <div class="card-body">
 			    <h5 class="card-title"><a href="/novel/view?novelNo=${novel.novelNo }">${novel.title }</a></h5>
 			    <p class="card-text">
@@ -61,7 +70,14 @@
 	<c:forEach items="${list }" var="novel">
 		<div class="col-3 novelItem">
 			<div class="card">
-			  <img src="/resources/images/logo.png" class="card-img-top" alt="...">
+			  <c:choose>
+		      	<c:when test="${novel.imgOriginName != null }">
+			    	<img src="/upload/${novel.imgStoredName }" class="card-img-top" alt="...">
+		      	</c:when>
+		      	<c:otherwise>
+				    <img src="/resources/images/logo.png" class="card-img-top" alt="...">
+		      	</c:otherwise>
+		      </c:choose>
 			  <div class="card-body">
 			    <h5 class="card-title"><a href="/novel/view?novelNo=${novel.novelNo }">${novel.title }</a></h5>
 			    <p class="card-text">

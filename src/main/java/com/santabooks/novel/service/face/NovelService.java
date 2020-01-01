@@ -111,4 +111,12 @@ public interface NovelService {
 	 * @return 조회 에피소드
 	 */
 	public Episode getEpisode(Episode episode);
+	
+	/**
+	 * file 저장하는 메소드
+	 * 
+	 * @param novel - DTO
+	 */
+	public void fileSave(Novel novel);
+	
 }
