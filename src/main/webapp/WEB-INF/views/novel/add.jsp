@@ -10,7 +10,9 @@
 	<form action="/novel/add" method="post" enctype="multipart/form-data">
 		<div class="col-3 text-center" style="float: left;">
 			<input id="input_img" type="file" name="upload" style="display: none;">
-			<img id="img" class="img-thumbnail" width="100%" height="200px" src="/resources/images/logo.png" />
+			<div class="img_wrap_add">
+				<img id="img" class="img-thumbnail" src="/resources/images/logo.png" />
+			</div>
 			<br><br>
 			<button class="btn btn-success" id="imageBtn" type="button">사진 업로드</button>
 		</div>

@@ -82,6 +82,14 @@
 		INSERT INTO novel (novelNo, memberNo, title, discription, category)
 					VALUES (#{novelNo}, #{memberNo}, #{title}, #{discription}, #{category})
 	</insert>
+	
+	<update id="updateNovel" parameterType="com.santabooks.novel.dto.Novel">
+		UPDATE novel SET title = #{title}, discription = #{discription}, category = #{category} WHERE novelNo = #{novelNo}
+	</update>
+	<update id="updateNovelImg" parameterType="com.santabooks.novel.dto.Novel">
+		UPDATE novel SET imgOriginName = #{imgOriginName}, imgStoredName = #{imgStoredName} WHERE novelNo = #{novelNo}
+	</update>
+	
 	<insert id="insertEpisode" parameterType="com.santabooks.novel.dto.Episode">
 		<selectKey order="BEFORE" keyColumn="episodeNo" keyProperty="episodeNo" resultType="int">
 			SELECT episode_seq.nextval AS episodeNo FROM dual

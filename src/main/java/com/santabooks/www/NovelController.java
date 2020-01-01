@@ -43,8 +43,6 @@ public class NovelController {
 
 		paging = novelService.getPaging(paging);
 		
-		logger.info(paging.toString());
-
 		model.addAttribute("episodeList", novelService.getEpisodeList(paging));
 		model.addAttribute("novel", novelService.getNovelByNovelNo(paging));
 		model.addAttribute("paging", paging);

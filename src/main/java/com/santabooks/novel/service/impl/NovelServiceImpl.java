@@ -7,6 +7,8 @@ import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +22,8 @@ import com.santabooks.util.Paging;
 @Service
 public class NovelServiceImpl implements NovelService {
 
+	private static final Logger logger = LoggerFactory.getLogger(NovelServiceImpl.class);
+
 	@Autowired
 	private NovelDao novelDao;
 	@Autowired
@@ -28,6 +32,8 @@ public class NovelServiceImpl implements NovelService {
 	@Override
 	public void addNovel(Novel novel) {
 		novelDao.insertNovel(novel);
+
+		fileSave(novel);
 	}
 
 	@Override
@@ -98,7 +104,7 @@ public class NovelServiceImpl implements NovelService {
 	@Override
 	public void fileSave(Novel novel) {
 		MultipartFile file = novel.getUpload();
-		
+
 		// 파일이 저장될 경로
 		String storedPath = context.getRealPath("upload");
 
@@ -106,22 +112,39 @@ public class NovelServiceImpl implements NovelService {
 		String uid = UUID.randomUUID().toString().split("-")[4];
 
 		// 저장될 파일의 이름 (원본명 + UUID)
-		String fileName = file.getOriginalFilename() + "_" + uid;
+		String fileName = uid + "_" + file.getOriginalFilename();
+
+		boolean check = false;
+		
+		// 확장자 구분
+		if (fileName.substring(fileName.indexOf(".") + 1).equals("jpeg")) {
+			check = true;
+		} else if (fileName.substring(fileName.indexOf(".") + 1).equals("png")) {
+			check = true;
+		} else if (fileName.substring(fileName.indexOf(".") + 1).equals("mpg")) {
+			check = true;
+		} else if (fileName.substring(fileName.indexOf(".") + 1).equals("jpg")) {
+			check = true;
+		} else {
+			logger.info("확장자 없음");
+		}
 
 		// 저장될 파일 객체
 		File dest = new File(storedPath, fileName);
-
+		
 		try {
-			if (file != null && !file.isEmpty()) {
+			if (check && file != null && !file.isEmpty()) {
 				// 실제 파일 저장
 				file.transferTo(dest);
-				
+
 				novel.setImgOriginName(file.getOriginalFilename());
 				novel.setImgStoredName(fileName);
-				
-//				fileDao.insertFile(filetest);
+
+				novelDao.updateNovelImg(novel);
+			} else {
+				logger.info("파일 저장 실패 : 확장자 혹은 파일이 존재하지 않습니다.");
 			}
-			
+
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

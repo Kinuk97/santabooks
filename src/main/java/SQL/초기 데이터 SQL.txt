@@ -582,3 +582,15 @@ INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(
 INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(review_sns_seq.nextval,1,1,'리뷰297',1,sysdate);
 INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(review_sns_seq.nextval,1,1,'리뷰298',1,sysdate);
 INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(review_sns_seq.nextval,1,1,'리뷰299',1,sysdate);
+
+
+
+
+
+
+
+
+
+
+
+commit;
