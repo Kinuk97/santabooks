@@ -31,17 +31,19 @@ public class SubscribeController {
 	public String payment(Subscription subscription, HttpSession session) {
 		
 		String memberId = (String) session.getAttribute("MemberId");
-		System.out.println(memberId);
+//		System.out.println(memberId);
 		
 		int memberNo = (int) subscribeservice.getmemNo(memberId);
-		System.out.println(memberNo);
+//		System.out.println(memberNo);
 		
 		session.setAttribute("memberNo", memberNo);
 		
 		subscription.setMemberNo(memberNo);
-		System.out.println(subscription);
+//		System.out.println(subscription);
+		
 		
 		subscribeservice.subscribe(subscription);	
+		
 		return "redirect:/subscribe/final";
 	}	
 

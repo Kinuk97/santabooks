@@ -7,6 +7,17 @@
 body{
 	background-color: #F7F7F4;
 }
+
+#gd{
+	width: 630px;
+	height: 350px;	
+	border-radius: 50px;
+	text-align: center;
+	background-color: #FFFFFF;
+}
+#button{
+	background-color: #5BB88B;
+}
 </style>
 
 
@@ -24,16 +35,19 @@ body{
 </div>
 
 
-<br><br><br><br>
+<br><br><br>
 
-<div>
+<div id="gd">
 <!-- <a href="https://tracker.delivery/#/kr.epost/1111111111111" target="_blank">배송조회</a> -->
+
+
+<h4 style="padding: 58px">정기구독신청이 완료되었습니다.</h4> <br>
+<h6>감사합니다 ♥</h6>
+<br><br>
+<a href = "/"><button class="btn" id="button">메인으로</button></a>
+
 </div>
-정기구독신청완료
-
-<a href = "/"><button>메인으로</button></a>
-
-</div></div>
+</div>
 <br><br>
 
 
