@@ -50,7 +50,6 @@ CREATE TABLE Novel (
  memberNo NUMBER NOT NULL,
  title VARCHAR2(100) NOT NULL,
  discription VARCHAR2(150) NOT NULL,
- score NUMBER DEFAULT 0,
  addDate VARCHAR2(100) DEFAULT sysdate,
  category NUMBER NOT NULL,
  imgOriginName VARCHAR2(150),
@@ -138,7 +137,7 @@ CREATE TABLE Favorite (
 CREATE TABLE Score (
  memberNo NUMBER NOT NULL,
  episodeNo NUMBER NOT NULL,
- score NUMBER DEFAULT 0
+ score NUMBER NOT NULL
 );
 
 -------------------------------------------------------------

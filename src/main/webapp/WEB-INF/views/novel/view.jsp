@@ -11,7 +11,7 @@
 	<table class="table" style="border: 1px solid #CCC; border-collapse: separate;">
 	  <tbody>
 	    <tr>
-	      <td rowspan="3" colspan="2" class="img_wrap">
+	      <td rowspan="3" colspan="2" class="img_wrap" style="width: 17%;">
 	      <c:choose>
 	      	<c:when test="${novel.imgOriginName != null }">
 		    	<img src="/upload/${novel.imgStoredName }">
@@ -21,8 +21,8 @@
 	      	</c:otherwise>
 	      </c:choose>
 	      </td>
-	      <td>${novel.title }</td>
-	      <td>${novel.memberName }</td>
+	      <td style="width: 55%;">${novel.title }</td>
+	      <td style="width: 28%;">${novel.memberName }</td>
 	    </tr>
 	    <tr>
 	      <td colspan="2" style="padding-top: 10px;">
@@ -71,7 +71,7 @@
 	</div>
 	
 	<div class="text-right">
-		<a class="btn btn-success" href="/novel/view?novelNo=${novel.novelNo }">목록</a>
+		<a class="btn btn-success" href="/novel/list">목록</a>
 	</div>
 	
 	<jsp:include page="/WEB-INF/views/layout/paging.jsp"/>

@@ -9,20 +9,13 @@ public class Novel {
 	private String title;
 	private String discription;
 	private int score;
+	private int cntScore;
 	private String addDate;
 	private int category;
 	private String imgOriginName;
 	private String imgStoredName;
 
 	private MultipartFile upload;
-
-	@Override
-	public String toString() {
-		return "Novel [novelNo=" + novelNo + ", memberNo=" + memberNo + ", memberName=" + memberName + ", title="
-				+ title + ", discription=" + discription + ", score=" + score + ", addDate=" + addDate + ", category="
-				+ category + ", imgOriginName=" + imgOriginName + ", imgStoredName=" + imgStoredName + ", upload="
-				+ upload + "]";
-	}
 
 	public int getNovelNo() {
 		return novelNo;
@@ -72,6 +65,14 @@ public class Novel {
 		this.score = score;
 	}
 
+	public int getCntScore() {
+		return cntScore;
+	}
+
+	public void setCntScore(int cntScore) {
+		this.cntScore = cntScore;
+	}
+
 	public String getAddDate() {
 		return addDate;
 	}
@@ -110,6 +111,14 @@ public class Novel {
 
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
+	}
+
+	@Override
+	public String toString() {
+		return "Novel [novelNo=" + novelNo + ", memberNo=" + memberNo + ", memberName=" + memberName + ", title="
+				+ title + ", discription=" + discription + ", score=" + score + ", cntScore=" + cntScore + ", addDate="
+				+ addDate + ", category=" + category + ", imgOriginName=" + imgOriginName + ", imgStoredName="
+				+ imgStoredName + ", upload=" + upload + "]";
 	}
 
 }
