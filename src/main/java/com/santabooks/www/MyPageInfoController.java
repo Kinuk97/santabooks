@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.mypage.dto.QnA;
@@ -26,16 +27,16 @@ public class MyPageInfoController {
 	
 	@RequestMapping(value = "/mypage/main", method = RequestMethod.GET)
 	public void main(HttpSession session, Model model) {
+		
+		int no = (int)session.getAttribute("MemberNo");
+		
+		Member info = mypageService.info(no);
 		   
-		   String id = (String)session.getAttribute("MemberId");
+		model.addAttribute("info", info);
 		   
-		   Member info = mypageService.info(id);
+		logger.info("개인정보조회 요청");
 		   
-		   model.addAttribute("info", info);
-		   
-		   logger.info("개인정보조회 요청");
-		   
-	   }
+	}
 	
 	@RequestMapping(value = "/mypage/infoUpdate", method = RequestMethod.GET)
 	public void infoUpdate(Member member, HttpSession session, Model model) {
@@ -45,6 +46,7 @@ public class MyPageInfoController {
 		
 		logger.info(member.toString());
 		logger.info("개인정보수정 요청");
+		
 	}
 	
 	@RequestMapping(value="/mypage/infoUpdate", method=RequestMethod.POST)
@@ -54,9 +56,68 @@ public class MyPageInfoController {
 		return "redirect:/mypage/main?memberId="+member.getMemberId();
 	}
 	
-	@RequestMapping(value = "/mypage/drawal", method = RequestMethod.GET)
-	public void drawal() {
+	@RequestMapping(value = "/mypage/infoPwChk", method = RequestMethod.POST)
+	public ModelAndView infoPwChk(Member member, HttpSession session, String memberPw, ModelAndView mav) {
 		
+		
+		member.setMemberId((String)session.getAttribute("MemberId"));
+		System.out.println(session.getAttribute("MemberId"));
+		member.setMemberPw(memberPw);
+		
+		int result = mypageService.infoPwChk(member);
+		
+		mav.addObject("password", result);
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/mypage/deletePwChk", method=RequestMethod.GET)
+	public void drawalPwChk() {
+		logger.info("회원탈퇴 비밀번호 확인 요청");
+	}
+	
+	@RequestMapping(value="/mypage/deletePwChk", method=RequestMethod.POST)
+	public String deletePwCheckProc(Member member, HttpSession session) {
+
+		String id = (String)session.getAttribute("MemberId");
+		logger.info(member.toString());
+		
+		boolean isPw = mypageService.checkPw(id);
+		
+		// 비밀번호 체크 성공
+		if( isPw ) {
+			return "redirect:/mypage/delete?memberId=" + member.getMemberId();
+		}
+		
+		// 비밀번호 체크 실패
+		return "redirect:/mypage/deletePwChk";
+	}
+	
+	@RequestMapping(value = "/mypage/delete", method = RequestMethod.GET)
+	public String drawal(Member member, Model model) {
+		logger.info(member.toString());
+		member = mypageService.info(member);
+		model.addAttribute("member", member);
+		
+		return "/mypage/deleteOk";
+	}
+	
+	@RequestMapping(value="/mypage/delete", method=RequestMethod.POST)
+	public String drawalProc(Member member, HttpSession session) {
+		
+		logger.info(member.toString());
+		
+		mypageService.InfoDelete(member);
+		
+		session.invalidate();
+		
+		return "/main";
+	}
+	
+	@RequestMapping(value = "/mypage/qna", method = RequestMethod.GET)
+	public void qna() {
+		logger.info("고객센터 요청");
 	}
 	
 	@RequestMapping(value = "/mypage/qnaList", method = RequestMethod.GET)
@@ -70,6 +131,25 @@ public class MyPageInfoController {
 		model.addAttribute("list", list);
 		
 		logger.info("문의 요청");
+	}
+	
+	@RequestMapping(value = "/mypage/qnaWrite", method = RequestMethod.GET)
+	public void qnaWrite() {
+		logger.info("문의글쓰기 요청");
+	}
+	
+	@RequestMapping(value = "/mypage/qnaWrite", method = RequestMethod.POST)
+	public String qnaWriteProc(Member member, HttpSession session) {
+		
+		// 작성자 아이디 추가
+		member.setMemberId((String) session.getAttribute("MemberId"));
+
+		mypageService.write(member);
+
+		logger.info("문의글쓰기 요청");
+
+		return "redirect:/qna/list";
+				
 	}
 	
 	@RequestMapping(value = "/mypage/subInfo", method = RequestMethod.GET)

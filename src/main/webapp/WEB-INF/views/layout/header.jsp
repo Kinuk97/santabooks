@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <title>SantaBooks</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <link href="/resources/css/common.css" rel="stylesheet">
@@ -49,9 +50,16 @@
 <!-- 						<input class="form-control" type="text" placeholder="Search" -->
 <!-- 							aria-label="Search"> -->
 <!-- 					</form> -->
+					<c:if test="${not login}">	
 						<span>
 							<a href="/member/login">로그인</a> / <a href="/member/join">회원가입</a>
 						</span>
+					</c:if>
+					<c:if test="${login}">	
+						<span>
+							<a href="/member/logout">로그아웃</a>
+						</span>
+					</c:if>
 				</div>
 			</div>
 		</nav>

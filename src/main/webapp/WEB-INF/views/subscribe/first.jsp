@@ -83,9 +83,6 @@ function check(){
 function requestDesposit() {
 	var is_empty=false;
 	$('#subscribeform').find('input[id!="extraAddress"]').each(function() {
-		
-		
-		
 		if(!$(this).val()) {
 			is_empty = true;
 		}
@@ -245,13 +242,9 @@ function requestPayment() {
     }
 </script>
 
-
-<div style="text-align: center">
-
-<div class="container" style="width:630px; ">
+<div class="container" style="width:650px;">
 <br>
-<div class="page-header" style="text-align: center;"><h2> 정기구독 </h2></div><br><br>
-
+<div class="page-header"><h2>정기구독</h2></div><span class="text-secondary">배송정보 입력 및 결제</span><hr><br>
 
 <div style="text-align: center; width:630px;">
 <button type="button" class="btn btn-light" style="width: 200px; background-color: #dee2e6;">1. 이용약관 동의</button>
@@ -262,44 +255,48 @@ function requestPayment() {
 
 <form action="/subscribe/first" method="post" id="subscribeform"  >
 	
-	<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req" onclick="check()"> 회원가입 정보와 동일합니다. </label> <br><br>
+	<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req" onclick="check()"/> 회원가입 정보와 동일합니다. </label> <br><br>
 	
 		
 
 		
-		<label for="memberID"  class="col-3">아이디</label>  ${MemberId } <br><br>
+		<label for="memberID"  class="col-5">아이디</label>  ${MemberId } <br><br>
 	
 
-		<label for="subName"  class="col-3">수령인</label>
+		<label for="subName"  class="col-5">수령인</label>
 		<input type="text" id="subName" name="subName" placeholder="받으실 분의 이름을 입력하세요"  class="col-6" /> <br><br>
 
-		<label for="subTel" class="col-3">휴대전화</label>
+		<label for="subTel" class="col-5">휴대전화</label>
 		<input type="text" id="subTel" name="subTel" placeholder="휴대폰 번호를 입력하세요" class="col-6"/>  <br><br>
 
-		<label for="subTerm" class="col-3">배송 메모</label>
+		<label for="subTerm" class="col-5">배송 메모</label>
 		<input type="text" id="subTerm" name="subTerm" placeholder="배송 메세지를 입력하세요" class="col-6"/>  <br><br>
 
 
-		<label for="subAdd_1" class="col-3">배송지 주소</label>
-			<input type="text" id="postCode" name="postCode" placeholder="우편번호">
-			<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+		<label for="subAdd_1" class="col-5">배송지 주소
+			<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호" class="btn btn-secondary btn-sm" 
+			style="height: 25px;font-size: 10px; position: relative; bottom: 3px;"><br></label>
+			<input type="text" id="postCode" name="postCode" placeholder="우편번호" class="col-6">
 			
 		<div style="margin-left: -75px">
-		<label for="" class="col-3"></label>
-			<input type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" >
-			<input type="text" id="jibunAddress" name="jibunAddress" placeholder="지번주소">
+		<label for="" class="col-5"></label>
+		
+			<input type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" style="width: 175px;" >
+			<input type="text" id="jibunAddress" name="jibunAddress" placeholder="지번주소" style="width: 175px;">
 		</div>	
 			<span id="guide" style="color:#999;display:none"></span>
 			
 		<div  style="margin-left: -75px">
-			<label for="" class="col-3"></label>
-			<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
-			<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목">
+			<label for="" class="col-5"></label>
+			<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" style="width: 175px;">
+			<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" style="width: 175px;">
 		</div>
 
 
-		<br>
-		<label for="subPay" class="col-3">결제 정보</label>
+		<br><br><br>
+		
+		<div style="position: relative;">
+		<label for="subPay" class="col-5">결제 정보</label>
 		
 		<select id="subPay" name="subPay"  class="col-6">	
 			<option value="">선택하세요</option>
@@ -307,13 +304,17 @@ function requestPayment() {
 			<option value="deposit">무통장 입금  110-41071946 (신한은행) </option>
 		</select>
 		<br>
+		<div style="position: absolute; right: 50px;">
 		<span id="subPayText">결제 방법을 선택하세요</span>
 		<span id="message" style="display: none;"> 110-414-071946 신한은행 <br> 0000년 00월 00일 00시 00분까지 9,900 입금해주세요</span>
+		</div>
+		</div>
 	
 	
 		<br><br>
-		<button type="button" id="pay" class="btn btn-light" style=" background-color: #dee2e6; display: none;" >결제</button>
-		<button type="button" id="pay_2" class="btn btn-light" style=" background-color: #dee2e6; display: none;" >결제</button>
+		
+		<button type="button" id="pay" class="btn btn-light" style=" background-color: #dee2e6; display: none; position: relative; left: 280px; top: 7px;"  >결제</button>
+		<button type="button" id="pay_2" class="btn btn-light" style=" background-color: #dee2e6; display: none; position: relative; left: 280px; top: 30px;" >결제</button>
 		<br>
 		<br><br>
 
@@ -322,9 +323,6 @@ function requestPayment() {
 
 
 
-
-
-</div>
 </div>
 
 

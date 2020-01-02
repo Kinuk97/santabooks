@@ -29,6 +29,7 @@ public class SubscribeController {
 	
 	@RequestMapping(value="/subscribe/first",  method=RequestMethod.POST)
 	public String payment(Subscription subscription, HttpSession session) {
+		
 		String memberId = (String) session.getAttribute("MemberId");
 		System.out.println(memberId);
 		

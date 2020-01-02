@@ -16,15 +16,24 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/novel/**" />
+			<mapping path="/episode/**" />
+			<mapping path="/subscribe/**" />
+			<mapping path="/reviewSns/**" />
 			<exclude-mapping path="/novel/list"/>
+			<exclude-mapping path="/novel/view"/>
 			<exclude-mapping path="/episode/list"/>
 			<exclude-mapping path="/episode/view"/>
+			<exclude-mapping path="/sns/list"/>
+			<exclude-mapping path="/sns/view"/>
+			<exclude-mapping path="/sns/reivewall"/>
+			<exclude-mapping path="/sns/detailview"/>
 			<beans:bean class="com.santabooks.www.interceptor.LoginCheckInterceptor" />
 		</interceptor>
 	</interceptors>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/upload/**" location="/upload/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -37,9 +46,19 @@
 		<beans:property name="order" value="0"/>
 	</beans:bean>
 	
-	<!-- JON응답용 jsonView 스프링 빈 등록하기 -->
+	<!-- JSON응답용 jsonView 스프링 빈 등록하기 -->
 	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 		<beans:property name="contentType" value="application/json;charset=utf-8"/>
+	</beans:bean>
+	
+	<!-- 파일 업로드 Resolver -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 메모리에서 파일 처리하는 사이즈 제한 : 1MB -->
+		<beans:property name="maxInMemorySize" value="1048576" />
+		<!-- 한번 요청할 때 최대 파일 사이즈 제한 : 10MB -->
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+		<!-- 파일 당 최대 사이즈 제한 : 5MB -->
+		<beans:property name="maxUploadSizePerFile" value="5242880"></beans:property>
 	</beans:bean>
 	
 	<context:component-scan base-package="com.santabooks.www, com.santabooks.*.service, com.santabooks.member.controller" />

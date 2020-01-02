@@ -14,7 +14,7 @@
 }
 
 .card {
-	height: 300px;
+	height: 380px;
 }
 
 .card {
@@ -55,13 +55,16 @@ $(document).ready(function() {
 		<div class="column">
 			<div class="card" id="review">
 				<div class="card-text">
-					(작성자 들어갈 예정)&nbsp;&nbsp;&nbsp;(작성자가 준 별점 들어갈 예정)
+					<h5 style="font-weight: bold;">${MemberNick }</h5>(작성자가 준 별점 들어갈 예정)
 					<hr>
 					<p>${review.review }</p>
+					<br><br><br>
 					<p class="text-right">${review.reviewDate }</p>
 					<hr>
-					(좋아요 들어갈 예정	)
-				</div>
+					&nbsp;&nbsp;<i class="far fa-thumbs-up"></i>&nbsp;(좋아요 개수)
+					<hr>
+						<button style="color: #ff2f6e; font-weight: bold; border:none;">좋아요</button>
+					</div>
 			</div>
 
 		</div>

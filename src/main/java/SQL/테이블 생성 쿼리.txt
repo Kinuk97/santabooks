@@ -52,7 +52,9 @@ CREATE TABLE Novel (
  discription VARCHAR2(150) NOT NULL,
  score NUMBER DEFAULT 0,
  addDate VARCHAR2(100) DEFAULT sysdate,
- category NUMBER NOT NULL
+ category NUMBER NOT NULL,
+ imgOriginName VARCHAR2(150),
+ imgStoredName VARCHAR2(200)
 );
 
 CREATE TABLE category (
@@ -118,7 +120,7 @@ CREATE TABLE Episode (
  title VARCHAR2(100) NOT NULL,
  content VARCHAR2(4000) NOT NULL,
  score NUMBER NULL,
- addDate VARCHAR2(100) NOT NULL
+ addDate VARCHAR2(100) DEFAULT sysdate
 );
 
 CREATE TABLE comment_TABLE (

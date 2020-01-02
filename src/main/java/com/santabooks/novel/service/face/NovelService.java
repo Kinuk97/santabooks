@@ -103,4 +103,20 @@ public interface NovelService {
 	 * @return Paging - 결과 Paging
 	 */
 	public Paging getPaging(Paging paging);
+
+	/**
+	 * 에피소드 내용 가져오기
+	 * 
+	 * @param episode - 에피소드 번호
+	 * @return 조회 에피소드
+	 */
+	public Episode getEpisode(Episode episode);
+	
+	/**
+	 * file 저장하는 메소드
+	 * 
+	 * @param novel - DTO
+	 */
+	public void fileSave(Novel novel);
+	
 }

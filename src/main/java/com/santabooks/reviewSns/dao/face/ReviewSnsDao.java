@@ -2,6 +2,7 @@ package com.santabooks.reviewSns.dao.face;
 
 import java.util.List;
 
+import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.ReviewSns;
 import com.santabooks.util.Paging;
 
@@ -53,6 +54,20 @@ public interface ReviewSnsDao {
 	 * @return
 	 */
 	public ReviewSns selectDetailReviewByFeedNo(ReviewSns reviewSns);
+	
+	/**
+	 * 리뷰 삽입
+	 * 
+	 * @param reviewSns - 리뷰 내용
+	 */
+	public void insert(ReviewSns reviewSns);
+	
+	/**
+	 * 별점 삽입
+	 * 
+	 * @param grade
+	 */
+	public void insertGrade(Grade grade);
 	
 	
 

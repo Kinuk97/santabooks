@@ -90,9 +90,11 @@ body {
 }
 
 </style>
+
+
 </head>
 
-	<div class="container">
+	<div class="container" style="width:950px" >
 	<br>
 		<div id="search">
 			<center>
@@ -111,12 +113,9 @@ body {
 			
 		<br><br>
 		<div style="position: relative;">
-		<div style="position: absolute; z-index: 1; right: 4px; top: 4px;">
-			<button class="btn btn-secondary" id="writeBtn">리뷰 작성</button>
-		</div>
 
-			<div id="bookRecommand">
-				<div class="card sidenav" style="height: 600px;">
+			<div id="bookRecommand" style="position: absolute; z-index: 1; right: 4px; top: 4px;">
+				<div class="card sidenav" style="height: 710px;">
 					<div class="card-text">책추천 들어갈 예정</div>
 				</div>
 			</div>
@@ -126,7 +125,13 @@ body {
 						<div class="column" onclick="location.href='/sns/view?feedNo=${review.feedNo}'">
 							<div class="card" id="review">
 								<div class="card-text">
+									<div style="position: relative;">
 									<h4>${review.bookName } | ${review.bookWriter }</h4>
+									<div style="position: absolute; z-index:1; right: 7px; top:9px;">
+									<small>${MemberNick }</small>
+									</div>
+									</div>
+									<hr>
 									<p>${review.review }</p>
 									<div class="text-right">${review.reviewDate }</div>
 								</div>
@@ -140,6 +145,5 @@ body {
 		</div>
 	</div>
 
-
-	<jsp:include page="/WEB-INF/views/layout/paging.jsp" />
+<jsp:include page="/WEB-INF/views/layout/paging.jsp" />
 	<jsp:include page="/WEB-INF/views/layout/footer.jsp" />

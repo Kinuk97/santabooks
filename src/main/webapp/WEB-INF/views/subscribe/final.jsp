@@ -11,11 +11,10 @@ body{
 
 
 
-<div style="text-align: center">
-
-<div class="container" style="width:630px;">
+	
+<div class="container" style="width:650px;">
 <br>
-<div class="page-header" style="text-align: center;"><h2>구독 신청 완료</h2></div><br><br>
+<div class="page-header"><h2>정기구독</h2></div><span class="text-secondary">구독 신청 완료</span><hr><br>
 
 
 <div style="text-align: center; width:630px;">
@@ -28,7 +27,7 @@ body{
 <br><br><br><br>
 
 <div>
-
+<!-- <a href="https://tracker.delivery/#/kr.epost/1111111111111" target="_blank">배송조회</a> -->
 </div>
 정기구독신청완료
 

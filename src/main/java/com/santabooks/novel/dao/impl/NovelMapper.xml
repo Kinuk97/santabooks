@@ -62,12 +62,16 @@
 	</select>
 	
 	<select id="selectEpisodeByNovelNo" resultType="com.santabooks.novel.dto.Episode" parameterType="com.santabooks.util.Paging">
-     	select * from (
-			select rownum rnum, B.* FROM (
-				select * from episode WHERE novelNo = #{novelNo} order by novelNo desc
+     	SELECT * FROM (
+			SELECT rownum rnum, B.* FROM (
+				SELECT * FROM episode WHERE novelNo = #{novelNo} ORDER BY episodeNo DESC
 			) B ORDER BY rnum
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 		
+	</select>
+	
+	<select id="selectEpisodeByEpisodeNo" resultType="com.santabooks.novel.dto.Episode" parameterType="com.santabooks.novel.dto.Episode">
+		SELECT * FROM episode WHERE episodeNo = #{episodeNo}
 	</select>
 	
 	<insert id="insertNovel" parameterType="com.santabooks.novel.dto.Novel">
@@ -78,12 +82,21 @@
 		INSERT INTO novel (novelNo, memberNo, title, discription, category)
 					VALUES (#{novelNo}, #{memberNo}, #{title}, #{discription}, #{category})
 	</insert>
+	
+	<update id="updateNovel" parameterType="com.santabooks.novel.dto.Novel">
+		UPDATE novel SET title = #{title}, discription = #{discription}, category = #{category} WHERE novelNo = #{novelNo}
+	</update>
+	<update id="updateNovelImg" parameterType="com.santabooks.novel.dto.Novel">
+		UPDATE novel SET imgOriginName = #{imgOriginName}, imgStoredName = #{imgStoredName} WHERE novelNo = #{novelNo}
+	</update>
+	
 	<insert id="insertEpisode" parameterType="com.santabooks.novel.dto.Episode">
-		<selectKey order="BEFORE" keyColumn="novelNo" keyProperty="novelNo" resultType="int">
-		SELECT episode_seq.nextval AS novelNo FROM dual
+		<selectKey order="BEFORE" keyColumn="episodeNo" keyProperty="episodeNo" resultType="int">
+			SELECT episode_seq.nextval AS episodeNo FROM dual
 		</selectKey>
 		
 		INSERT INTO episode (episodeNo, novelNo, title, content)
 					VALUES (#{episodeNo}, #{novelNo}, #{title}, #{content})
 	</insert>
+	
 </mapper>

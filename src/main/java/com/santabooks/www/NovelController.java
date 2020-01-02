@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.santabooks.novel.dto.Episode;
 import com.santabooks.novel.dto.Novel;
@@ -36,15 +37,16 @@ public class NovelController {
 	}
 
 	@RequestMapping(value = "/novel/view", method = RequestMethod.GET)
-	public void showList(Model model, Paging paging) {
+	public void showList(Model model, Paging paging, HttpServletRequest req) {
 
 		paging.setTableName("episode");
 
 		paging = novelService.getPaging(paging);
-
+		
 		model.addAttribute("episodeList", novelService.getEpisodeList(paging));
 		model.addAttribute("novel", novelService.getNovelByNovelNo(paging));
 		model.addAttribute("paging", paging);
+		model.addAttribute("url", req.getRequestURI());
 	}
 
 	@RequestMapping(value = "/novel/add", method = RequestMethod.GET)
@@ -54,25 +56,49 @@ public class NovelController {
 
 	@RequestMapping(value = "/novel/add", method = RequestMethod.POST)
 	public String addNovel(Novel novel, HttpSession session) {
-		// 아직 로그인하면 멤버번호를 저장안함....
-//		novel.setMemberNo(Integer.parseInt((String) session.getAttribute("memberNo")));
+		novel.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
+
+		
 		
 		novelService.addNovel(novel);
 
 		return "redirect:/novel/view?novelNo=" + novel.getNovelNo();
 	}
+	
+	@RequestMapping(value = "/novel/modify", method = RequestMethod.GET)
+	public void modifyovel() {
+		
+	}
+	
+	@RequestMapping(value = "/novel/modify", method = RequestMethod.POST)
+	public String modifyovel(Novel novel) {
+		novelService.modifyNovel(novel);
+		
+		return "redirect:/novel/view?novelNo=" + novel.getNovelNo();
+	}
+	
+	
 
 	@RequestMapping(value = "/episode/add", method = RequestMethod.GET)
-	public void addEpisode(int novelNo, Model model) {
+	public void addEpisode(@RequestParam(defaultValue = "0") int novelNo, Model model) {
 		model.addAttribute("novelNo", novelNo);
 	}
 
 	@RequestMapping(value = "/episode/add", method = RequestMethod.POST)
 	public String addEpisode(Episode episode) {
 		novelService.addEpisode(episode);
-		
+
 		// list? view?
-		return "redirect:/";
+		return "redirect:/novel/view?novelNo=" + episode.getNovelNo();
+	}
+
+	@RequestMapping(value = "/episode/view", method = RequestMethod.GET)
+	public void viewEpisode(Model model, Paging paging, Episode episode) {
+
+		paging.setTableName("episode");
+		
+		model.addAttribute("novel", novelService.getNovelByNovelNo(paging));
+		model.addAttribute("episode", novelService.getEpisode(episode));
 	}
 
 }

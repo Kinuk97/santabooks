@@ -10,7 +10,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#btnWrite").click(function() {
-		$(location).attr("href", "/board/write");
+		$(location).attr("href", "/mypage/qnaWrite");
 	});
 })
 </script>
