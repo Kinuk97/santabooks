@@ -4,6 +4,8 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="query" value="&searchType=${paging.searchType}&keyword=${paging.keyword }"/>
+
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,7 +25,7 @@ body {
 }
 
 .card {
-	height: 200px;
+	height: 300px;
 }
 
 .row {
@@ -78,7 +80,7 @@ body {
 	z-index: 1; 
 	right: 4px; 
 	width: 300px;
-	top: 80px;  
+	top: 100px;  
 	border: 2px solid rgba(20, 121, 87, .25);
 	
 }
@@ -93,7 +95,8 @@ body {
 	position: absolute; 
 	z-index: 1; 
 	right: 20px; 
-	width: 300px; 
+	width: 300px;
+	top: 24px; 
 	
 }
 
@@ -108,6 +111,10 @@ body {
 			<center>
 				<form action="/sns/list" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
+					<select name="searchType" class="bg-light border-0">
+						<option value="bookName">제목</option>
+						<option value="bookWriter">작가</option>
+					</select>
 					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하세요" 
 					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
 					 <div class="input-group-append">
@@ -120,7 +127,7 @@ body {
 		<br><br>
 		<div style="position: relative;">
 
-			<div style="position: absolute; z-index: 1; right: 4px; top: 4px;">
+			<div style="position: sticky; z-index: 1; right: 4px; top: 4px;">
 			<div id="naverSearch">
 			&nbsp;&nbsp;&nbsp;&nbsp;<img src="/resources/images/naver.ico" style="height:20px;">&nbsp;<small style="font-weight: bold;">네이버 검색</small>
 			<center>
@@ -137,7 +144,7 @@ body {
 			</div>
 			<br>
 			
-				<div class="card sidenav" id="bookRecommand" style="height: 630px;">
+				<div class="card sidenav" id="bookRecommand" style="height: 575px;">
 					<div class="card-text">책추천 들어갈 예정</div>
 				</div>
 				
@@ -150,12 +157,15 @@ body {
 								<div class="card-text">
 									<div style="position: relative;">
 									<h4>${review.bookName } | ${review.bookWriter }</h4>
-									<div style="position: absolute; z-index:1; right: 7px; top:9px;">
-									<small>${MemberNick }</small>
-									</div>
+									<hr>
+<!-- 									<div style="position: absolute; z-index:1; right: 7px; top:9px;"> -->
+									<input type="hidden" value="${member.memberNick }">
+									<small>작성자 : ${review.memberNick }</small>
+<!-- 									</div> -->
 									</div>
 									<hr>
 									<p>${review.review }</p>
+									<br><br><br>
 									<div class="text-right">${review.reviewDate }</div>
 								</div>
 							</div>

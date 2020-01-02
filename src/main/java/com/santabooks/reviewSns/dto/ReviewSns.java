@@ -16,12 +16,15 @@ public class ReviewSns {
 	private String bookContent;
 	private int genreNo;
 
+	// member
+	private String memberNick;
+
 	@Override
 	public String toString() {
 		return "ReviewSns [feedNo=" + feedNo + ", bookNo=" + bookNo + ", memberNo=" + memberNo + ", review=" + review
 				+ ", privacy=" + privacy + ", reviewDate=" + reviewDate + ", bookName=" + bookName + ", bookWriter="
 				+ bookWriter + ", bookPublisher=" + bookPublisher + ", publishingYear=" + publishingYear
-				+ ", bookContent=" + bookContent + ", genreNo=" + genreNo + "]";
+				+ ", bookContent=" + bookContent + ", genreNo=" + genreNo + ", memberNick=" + memberNick + "]";
 	}
 
 	public int getFeedNo() {
@@ -118,6 +121,14 @@ public class ReviewSns {
 
 	public void setGenreNo(int genreNo) {
 		this.genreNo = genreNo;
+	}
+
+	public String getMemberNick() {
+		return memberNick;
+	}
+
+	public void setMemberNick(String memberNick) {
+		this.memberNick = memberNick;
 	}
 
 }
