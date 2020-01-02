@@ -11,4 +11,5 @@ public interface SubscribeDao {
 
 	public int getmemNo(String memberId);
 
+
 }
