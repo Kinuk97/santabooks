@@ -147,5 +147,13 @@ public interface NovelService {
 	 * @param score - memberNo, episodeNo
 	 */
 	public Score removeScore(Score score);
+	
+	/**
+	 * 내 별점 확인하기
+	 * 
+	 * @param score - episodeNo, memberNo
+	 * @return Score
+	 */
+	public Score getMyScore(Score score);
 
 }

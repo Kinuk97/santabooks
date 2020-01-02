@@ -3,6 +3,7 @@
  */
 
 $(document).ready(function() {
+	drawStars($("#score").val());
 
 	// 리스트 필터 버튼 active 보여주기
 	var url = location.href;
@@ -107,9 +108,9 @@ function drawStars(score) {
 	$("#starSpan").html("");
 	for (var i = 1; i <= 5; i++) {
 		if (i <= score) {
-			$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star-fill.svg'>");
+			$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star-fill.svg' class='icon'>");
 		} else {
-			$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star.svg'>");
+			$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star.svg' class='icon'>");
 		}
 	}
 }

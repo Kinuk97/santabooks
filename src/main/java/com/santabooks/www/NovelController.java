@@ -119,7 +119,7 @@ public class NovelController {
 	}
 
 	@RequestMapping(value = "/episode/view", method = RequestMethod.GET)
-	public void viewEpisode(Model model, Episode episode) {
+	public void viewEpisode(Model model, Episode episode, HttpSession session) {
 		// 평점 옵션
 //		Map<Integer, String> ratingOptions = new HashMap<Integer, String>();
 //		ratingOptions.put(0, "☆☆☆☆☆");
@@ -131,6 +131,22 @@ public class NovelController {
 //		model.addAttribute("ratingOptions", ratingOptions);
 
 		episode = novelService.getEpisode(episode);
+		
+		
+		Object memberNo = session.getAttribute("MemberNo");
+
+		if (memberNo != null) {
+			Score score = new Score();
+			score.setEpisodeNo(episode.getEpisodeNo());
+			try {
+				score.setMemberNo(Integer.parseInt(memberNo.toString()));
+				
+				model.addAttribute("myScore", novelService.getMyScore(score));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
+		
 
 		model.addAttribute("episode", episode);
 		model.addAttribute("novel", novelService.getNovelByNovelNo(episode.getNovelNo()));

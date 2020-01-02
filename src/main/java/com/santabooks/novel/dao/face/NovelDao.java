@@ -118,6 +118,14 @@ public interface NovelDao {
 	public int selectCntScoreByMemberNo(Score score);
 	
 	/**
+	 * 내가 별점을 몇점줬는지 확인하기
+	 * 
+	 * @param score - memberNo, episodeNo
+	 * @return - 결과
+	 */
+	public Score selectScoreByMemberNo(Score score);
+	
+	/**
 	 * 별점 수정하는 쿼리
 	 * 
 	 * @param score - 수정 내용 DTO
@@ -146,7 +154,7 @@ public interface NovelDao {
 	public void deleteScore(Score score);
 	
 	/**
-	 * 점수 조회하는 쿼리
+	 * 회차의 점수 조회하는 쿼리
 	 * 
 	 * @param score - 회차 정보
 	 * @return 점수

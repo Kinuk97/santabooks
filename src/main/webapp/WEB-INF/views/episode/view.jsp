@@ -44,16 +44,16 @@
 		    <li class="list-group-item">
 		    	<b>${episode.title }</b>
 		    	<span id="starSpan">
-		    	<c:forEach begin="1" end="5" step="1" varStatus="i">
-		    	<c:choose>
-		    		<c:when test="${i.count <= episode.score }">
-				    <img alt="..." src="/resources/images/novel/star-fill.svg" class="icon">
-		    		</c:when>
-		    		<c:otherwise>
-				    <img alt="..." src="/resources/images/novel/star.svg" class="icon">
-		    		</c:otherwise>
-		    	</c:choose>
-	        	</c:forEach>
+<%-- 		    	<c:forEach begin="1" end="5" step="1" varStatus="i"> --%>
+<%-- 		    	<c:choose> --%>
+<%-- 		    	<c:when test="${i.count <= episode.score }"> --%>
+<!-- 		    		<img alt="..." src="/resources/images/novel/star-fill.svg" class="icon"> -->
+<%-- 		    	</c:when> --%>
+<%-- 		    	<c:otherwise> --%>
+<!-- 		    		<img alt="..." src="/resources/images/novel/star.svg" class="icon"> -->
+<%-- 		    	</c:otherwise> --%>
+<%-- 		    	</c:choose> --%>
+<%-- 	        	</c:forEach> --%>
 		    	</span>
 		    	<span style="float: right;">${episode.addDate }</span>
 		    	<hr>
@@ -72,10 +72,10 @@
 			<a class="btn btn-danger" href="/episode/remove?episodeNo=${episode.episodeNo }&novelNo=${episode.novelNo}">삭제</a>
 		</c:if>
 	</div>
-	
-	<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top;">
+	<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top;" value="${myScore }">
 </div>
 
 <input type="text" id="episodeNo" hidden="hidden" value="${episode.episodeNo }">
+<input type="text" id="score" hidden="hidden" value="${episode.score }">
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

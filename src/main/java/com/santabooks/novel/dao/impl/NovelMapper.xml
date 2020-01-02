@@ -127,8 +127,12 @@
 	<select id="selectCntScoreByMemberNo" parameterType="com.santabooks.novel.dto.Score" resultType="int">
 		SELECT count(*) FROM score WHERE episodeNo = #{episodeNo} AND memberNo = #{memberNo}
 	</select>
+	<select id="selectScoreByMemberNo" parameterType="com.santabooks.novel.dto.Score" resultType="com.santabooks.novel.dto.Score">
+		SELECT * FROM score WHERE episodeNo = #{episodeNo} AND memberNo = #{memberNo}
+	</select>
+	
 	<select id="selectScore" parameterType="com.santabooks.novel.dto.Score" resultType="com.santabooks.novel.dto.Score">
-		SELECT score FROM score WHERE episodeNo = #{episodeNo} AND memberNo = #{memberNo}
+		SELECT score FROM score WHERE episodeNo = #{episodeNo}
 	</select>
 	<insert id="insertScore" parameterType="com.santabooks.novel.dto.Score">
 		INSERT INTO score VALUES (#{memberNo}, #{episodeNo}, #{score})

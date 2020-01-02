@@ -201,4 +201,9 @@ public class NovelServiceImpl implements NovelService {
 		
 		return novelDao.selectScore(score);
 	}
+	
+	@Override
+	public Score getMyScore(Score score) {
+		return novelDao.selectScoreByMemberNo(score);
+	}
 }
