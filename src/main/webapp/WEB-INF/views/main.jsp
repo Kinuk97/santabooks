@@ -2,8 +2,11 @@
 	pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/layout/main_header.jsp"></jsp:include>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js" charset="utf-8"></script>
-<script type="text/javascript">
-</script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+
+
 
 <div class="wrapper">
 	<div class="container">
@@ -19,7 +22,7 @@
 	</h3>
 	
 
-		<a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="/subscribe/agree">이용하러가기</a>
+		<a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="subscribe/agree"  onclick="check()">이용하러가기</a>
 	</section>
 	
 	</div>
