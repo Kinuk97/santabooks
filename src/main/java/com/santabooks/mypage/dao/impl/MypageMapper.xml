@@ -19,7 +19,7 @@
 	
 <update id="infoUpdate" parameterType="com.santabooks.member.dto.Member">
 		UPDATE member
-		SET memberNick = #{memberNick }, memberPw = #{memberPw }, memberBirth = #{memberBirth }, memberTel = #{memberTel }, memberAdd = #{memberAdd }
+		SET memberNick = #{memberNick }, memberPw = #{memberPw }, memberBirth = #{memberBirth }, memberTel = #{memberTel }, postCode = #{postCode }, roadAddress = #{roadAddress }, jibunAddress = #{jibunAddress }, detailAddress = #{detailAddress }, extraAddress = #{extraAddress }
 		WHERE memberNo = #{memberNo }
 </update>
 
@@ -27,7 +27,6 @@
 		SELECT
 			qnaNo
 			, memberNo
-			, memberNick
 			, qnaTitle
 			, qnaContent
 			, writeDate
@@ -94,9 +93,28 @@
 		WHERE qnaNo = #{qnaNo }
 	</update>
 	
-	<select id="selectQnaByQnaNo" parameterType="com.santabooks.mypage.dto.QnA">
+	<select id="selectQnaByQnaNo" parameterType="com.santabooks.mypage.dto.QnA" resultType="com.santabooks.mypage.dto.QnA">
 		<include refid="selectBoard"/>
 		WHERE qnaNo = #{qnaNo }
 	</select>
+	
+	<update id="qnaUpdate" parameterType="com.santabooks.mypage.dto.QnA">
+		UPDATE QnA
+		SET qnaTitle = #{qnaTitle }, qnaContent = #{qnaContent }
+		WHERE qnaNo = #{qnaNo }
+	</update>
+	
+	<update id="qnaDelete" parameterType="com.santabooks.mypage.dto.QnA">
+		DELETE QnA
+		WHERE qnaNo = #{qnaNo }
+	</update>
+	
+	<select id="selectBySub" parameterType="int" resultType="com.santabooks.member.dto.Member">
+		SELECT M.memberNo,M.memberName,M.memberId, M.memberNick, M.subCheck, S.postCode, S.roadAddress, S.jibunAddress, S.detailAddress, S.extraAddress, S.subDate
+	 	FROM member M, subscription S
+ 		WHERE M.memberNo = S.memberNo
+ 		AND M.memberNo = #{M.memberNo}
+
+</select>
 	
 </mapper>

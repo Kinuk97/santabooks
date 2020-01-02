@@ -28,5 +28,11 @@
 		WHERE memberID = #{memberId}
 	
 	</select>
+	
+	<select id="getsubNo" parameterType="String" resultType="com.santabooks.subscribe.dto.Subscription">
+	select subscription.subNo from member,subscription 
+	WHERE member.memberNo = subscription.memberNo
+	AND member.memberId = #{memberId}
+	</select>
 
 </mapper>

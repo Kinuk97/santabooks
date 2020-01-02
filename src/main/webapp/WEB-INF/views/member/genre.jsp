@@ -7,17 +7,16 @@
 
 <script src="https://ajax.googleapis.com/jquery/3.3.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-$("input[type='checkbox']").on("click", function(){
-var count=$("input:checked[type='checkbox']").length;
+$(document).ready(function() {
+	$("input[type='checkbox']").on("click", function() {
+		var count = $("input:checked[type='checkbox']").length;
 
-if(count>5){
-$(this).attr("checked", false);
-alert("5개까지만 선택할 수 있습니다")
-}	
-});	
+		if (count > 5) {
+			$(this).prop("checked", false);
+			alert("5개까지만 선택할 수 있습니다")
+		}
+	});
 });
-
 </script>
 
 <div style="text-align: center">
@@ -54,7 +53,7 @@ alert("5개까지만 선택할 수 있습니다")
 
 
 <div class="text-center">
-       <button type="submit" id="btnUpdate" class="btn btn-info">정보 수정</button>
+       <button type="submit" id="btnUpdate" class="btn btn-info">선택 완료</button>
 </div>       
 
 

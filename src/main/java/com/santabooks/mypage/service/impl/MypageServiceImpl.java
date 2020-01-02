@@ -83,5 +83,20 @@ public class MypageServiceImpl implements MypageService {
 		
 		return mypageDao.selectQnaByQnaNo(viewQna);
 	}
-	
+
+	@Override
+	public void qnaUpdate(QnA qna) {
+		mypageDao.qnaUpdate(qna);
+	}
+
+	@Override
+	public void qnaDelete(QnA qna) {
+		mypageDao.qnaDelete(qna);
+	}
+
+	@Override
+	public Member subInfo(int subNo) {
+		return mypageDao.selectBySub(subNo);
+	}
+
 }

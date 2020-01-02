@@ -22,6 +22,11 @@
 	</h3>
 	
 
+<%-- 	<c:if test="${0 eq subscription.subNo }"> --%>
+<!-- 		<h6>널이다</h6> -->
+<%-- 	</c:if> --%>
+
+
 		<a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="subscribe/agree"  onclick="check()">이용하러가기</a>
 	</section>
 	

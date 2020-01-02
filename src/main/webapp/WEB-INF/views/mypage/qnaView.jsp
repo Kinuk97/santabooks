@@ -35,14 +35,14 @@ td:not(.info) {
 <td class="info">글번호</td><td colspan="3">${viewQna.qnaNo }</td>
 </tr>
 
-<tr>
-<td class="info">아이디</td><td>${viewQna.memberId }</td>
-<td class="info">닉네임</td><td>${viewQna.memberNick }</td>
-</tr>
+<!-- <tr> -->
+<%-- <td class="info">아이디</td><td>${viewQna.memberId }</td> --%>
+<%-- <td class="info">닉네임</td><td>${viewQna.memberNick }</td> --%>
+<!-- </tr> -->
 
-<tr>
-<td class="info">조회수</td><td>${viewQna.hit }</td>
-<td class="info">작성일</td><td><fmt:formatDate value="${viewQna.writeDate }"/></td></tr>
+<!-- <tr> -->
+<%-- <td class="info">조회수</td><td>${viewQna.hit }</td> --%>
+<%-- <td class="info">작성일</td><td><fmt:formatDate value="${viewQna.writeDate }"/></td></tr> --%>
 
 <tr>
 <td class="info">제목</td><td colspan="3">${viewQna.qnaTitle }</td>
@@ -57,9 +57,9 @@ td:not(.info) {
 <!-- 버튼 영역 -->
 <div class="text-center">
 	<a href="/mypage/qnaList"><button class="btn btn-default">목록</button></a>
-	<c:if test="${id eq view.writerId }">
-		<a href="/mypage/update?qnaNo=${viewQna.qnaNo }"><button class="btn btn-primary">수정</button></a>
-		<a href="/mypage/delete?qnadNo=${viewQna.qnaNo }"><button class="btn btn-danger">삭제</button></a>
+	<c:if test="${memberId eq viewQna.memberNo }">
+		<a href="/mypage/qnaUpdate?qnaNo=${viewQna.qnaNo }"><button class="btn btn-primary">수정</button></a>
+		<a href="/mypage/anqDelete?qnadNo=${viewQna.qnaNo }"><button class="btn btn-danger">삭제</button></a>
 	</c:if>
 </div><!-- 버튼 영역 end -->
 

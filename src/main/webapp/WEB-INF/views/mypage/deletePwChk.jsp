@@ -7,36 +7,51 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		//탈퇴버튼 동작
-		$("#btnOut").on("click",function() {
-			 // 현재 비밀번호 입력
-	        if($("#memberPw").val() ==''){
-	            alert('현재 비밀번호를 입력하세요');
-	            $("#memberPw").focus();
-	            return false;
-	        }
-	     // 현재 비밀번호 일치 여부 확인
-			 if($("#memberPw").val() != "${membercurrPw }" ){
-				 alert('현재 비밀번호가 일치하지 않습니다');
-				 $("#memberPw").focus();
-		            return false;
-			 }
-			if(confirm("회원 탈퇴를 진행하시겠습니까?") == true){
-			alert("회원탈퇴가 완료되었습니다");
-				$("form").submit();	
-			}
-			else{
-// 				history.go(-1);
-				return;
-			}
+		$('#memberPw').blur(function() {
+			var memberPw = $('#memberPw').val();
+			console.log(memberPw)
+			$.ajax({
 
-		});
-		
+				type : "post",
+				url : "/mypage/infoPwChk",
+				data : {"memberPw" : memberPw},
+				datatype : "json",
+				success : function(res) {
+
+					if (res.password == 1) {
+						console.log("결과값 1")
+						$('#blurPw').css('color', 'green')
+						$('#blurPw').text('현재 비밀번호가 일치합니다.')
+					} else {
+						console.log("결과값2")
+						$('#blurPw').css('color', 'red')
+						$('#blurPw').text('현재 비밀번호가 일치하지않습니다.')
+					}
+
+				},
+				error : function(e) {
+					console.log(e)
+				}
+			})
+		})
+
 		// 취소 버튼
 		$("#btnCancel").click(function() {
 			location.href = "/mypage/main";
 		});
-		
+
+		// 확인 버튼
+		$("#btnDelete").click(function() {
+			var delConfirm = confirm('정말 탈퇴하시겠습니까?');
+			if (delConfirm) {
+			$(location).attr("href", "/mypage/delete?memberNo=${viewBuser.userno}");
+			      alert('탈퇴 되었습니다.');
+			   }
+			   else {
+			      alert('탈퇴가 취소되었습니다.');
+			   }
+		});
+
 	});
 </script>
 
@@ -83,9 +98,11 @@ A : 탈퇴가 완료되면 편법 이용행위를 방지하기 위하여 아이�
 <div id = "div_currpw">
 	<form action="/mypage/deletePwChk" method="post">
 		<input type="password" placeholder="비밀번호 입력" class="form-control pwinput" id="memberPw" name="memberPw" />
+		<div class="pw_font" id="blurPw"></div><br><br>
 <input type="checkbox" id="checkBox_01" required="required" style="width:10px" />
 		<small>위 내용을 이해했으며, 모두 동의합니다</small><br><br><br>
-	<button>확인</button>
+	<button id="btnDelete" class="btn btn-warning">확인</button>
+	<button id="btnCancel" class="btn btn-danger">취소</button>
 	</form>
 </div>
 

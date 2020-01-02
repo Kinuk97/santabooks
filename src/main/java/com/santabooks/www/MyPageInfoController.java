@@ -1,6 +1,8 @@
 package com.santabooks.www;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.santabooks.member.dto.Member;
 import com.santabooks.mypage.dto.QnA;
 import com.santabooks.mypage.service.face.MypageService;
+import com.santabooks.subscribe.dto.Subscription;
 import com.santabooks.util.Paging;
 
 @Controller
@@ -167,8 +170,42 @@ public class MyPageInfoController {
 		return "/mypage/qnaView";
 	}
 	
+	@RequestMapping(value="/mypage/qnaUpdate", method=RequestMethod.GET)
+	public void qnaUpdate(QnA qna, HttpSession session, Model model) {
+		
+		qna = mypageService.qnaView(qna);
+		model.addAttribute("viewQna", qna);
+	}
+
+	@RequestMapping(value="/mypage/qnaUpdate", method=RequestMethod.POST)
+	public String qnaUpdateProc(QnA qna) {
+		mypageService.qnaUpdate(qna);
+		
+		return "redirect:/mypage/qnaView?qnaNo="+qna.getQnaNo();
+	}
+
+	@RequestMapping(value="/mypage/anqDelete", method=RequestMethod.GET)
+	public String qnaDeleteProc(QnA qna, Model model) {
+		mypageService.qnaDelete(qna);
+		
+		model.addAttribute("msg", "게시글 삭제 완료");
+		model.addAttribute("url", "/mypage/qnaList");
+		
+		return "util/alert";
+	}
+	
 	@RequestMapping(value = "/mypage/subInfo", method = RequestMethod.GET)
-	public void subInfo() {
+	public void subInfo(Member member, Subscription subScription, HttpSession session, Model model) {
+		
+		logger.info("membeRNo : " + session.getAttribute("MemberNo") );
+		
+		int subNo = (Integer)session.getAttribute("MemberNo");
+		logger.info("subNo : " + subNo);
+		
+		Member subInfo = mypageService.subInfo(subNo);
+		
+		model.addAttribute("subInfo", subInfo);
+		logger.info("jsp로가는 subInfo : " + subInfo.toString());
 		logger.info("구독정보 요청");
 	}
 	

@@ -55,7 +55,7 @@
 			
 			<li class="nav-item"><a class="nav-link" href="/mypage/shipmentChk">배송조회</a></li>
 			
-			<li class="nav-item"><a class="nav-link" href="/mypage/drawal">회원탈퇴</a></li>
+			<li class="nav-item"><a class="nav-link" href="/mypage/deletePwChk">회원탈퇴</a></li>
 
 			<li class="nav-item"><a class="nav-link" href="/mypage/qna">문의</a></li>
 		</ul>
