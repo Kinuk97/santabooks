@@ -86,7 +86,7 @@ function check(){
 		 $("#roadAddress").attr("value", "");
 		 $("#jibunAddress").attr("value", "");
 		 $("#detailAddress").attr("value", "");
-		 $("#subTextraAddressel").attr("value", "");
+		 $("#extraAddress").attr("value", "");
 	}
 }
 
