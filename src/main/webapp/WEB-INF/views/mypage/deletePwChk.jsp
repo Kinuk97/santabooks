@@ -83,19 +83,19 @@ A : 탈퇴가 완료되면 편법 이용행위를 방지하기 위하여 아이�
 <div id = "div_currpw">
 	<form action="/mypage/deletePwChk" method="post">
 		<input type="password" placeholder="비밀번호 입력" class="form-control pwinput" id="memberPw" name="memberPw" />
+<input type="checkbox" id="checkBox_01" required="required" style="width:10px" />
+		<small>위 내용을 이해했으며, 모두 동의합니다</small><br><br><br>
 	<button>확인</button>
 	</form>
 </div>
 
 <p>탈퇴가 완료된 계정은 다시 복구할 수 없습니다.</p>
 
-<input type="checkbox" id="checkBox_01" required="required" style="width:10px" />
-		<small>위 내용을 이해했으며, 모두 동의합니다</small><br><br><br>
 
-<div id = "btns" class="text-center">
-         <button type="submit" id="btnCancel" class="btn btn-warning">취소</button>
-         <button type="submit" id="btnOut" class="btn btn-danger">회원 탈퇴</button>
-</div>
+<!-- <div id = "btns" class="text-center"> -->
+<!--          <button type="submit" id="btnCancel" class="btn btn-warning">취소</button> -->
+<!--          <button type="submit" id="btnOut" class="btn btn-danger">회원 탈퇴</button> -->
+<!-- </div> -->
 
 </div>
 

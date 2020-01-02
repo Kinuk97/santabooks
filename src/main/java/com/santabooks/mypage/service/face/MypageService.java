@@ -11,10 +11,10 @@ public interface MypageService {
 	/**
 	 * 회원 상제정보
 	 * 
-	 * @param id - 로그인 아이디
+	 * @param no - 로그인 아이디
 	 * @return Member - 회원 정보
 	 */
-	public Member info(String id);
+	public Member info(int no);
 	
 	/**
 	 * 개인정보 수정
@@ -35,5 +35,9 @@ public interface MypageService {
 	public Member info(Member member);
 	
 	public void InfoDelete(Member member);
+
+	public void write(Member member);
+
+	public int infoPwChk(Member member);
 
 }
