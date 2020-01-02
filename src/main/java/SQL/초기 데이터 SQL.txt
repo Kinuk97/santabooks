@@ -1,5 +1,47 @@
 -- 사용자
-INSERT INTO member VALUES (member_seq.nextval, 'a@naver.com', 'TestID_1', 'TestNick', '1234', 23423, '345343',  'gender', '장르', 'check', '12345','서울시', '강남구', 'KH', '정보교육원');
+INSERT INTO member VALUES (member_seq.nextval,'a1@naver.com', 'TestName1', 'TestNick1', '1234','19961023','서울 강남구','서울 강남구 논현동 200-7','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a2@naver.com', 'TestName2', 'TestNick2', '1234','19970617','서울 강남구','서울 강남구 논현동 200-8','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a3@naver.com', 'TestName3', 'TestNick3', '1234','19971227','서울 강남구','서울 강남구 논현동 200-9','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a4@naver.com', 'TestName4', 'TestNick4', '1234','19900101','서울 강남구','서울 강남구 논현동 200-10','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a5@naver.com', 'TestName5', 'TestNick5', '1234','19900102','서울 강남구','서울 강남구 논현동 200-11','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a6@naver.com', 'TestName6', 'TestNick6', '1234','19900103','서울 강남구','서울 강남구 논현동 200-12','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a7@naver.com', 'TestName7', 'TestNick7', '1234','19900101','서울 강남구','서울 강남구 논현동 200-13','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a8@naver.com', 'TestName8', 'TestNick8', '1234','19910202','서울 강남구','서울 강남구 논현동 200-14','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a9@naver.com', 'TestName9', 'TestNick9', '1234','19910203','서울 강남구','서울 강남구 논현동 200-15','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a10@naver.com', 'TestName10', 'TestNick10', '1234','19910204','서울 강남구','서울 강남구 논현동 200-16','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a11@naver.com', 'TestName11', 'TestNick11', '1234','19910205','서울 강남구','서울 강남구 논현동 200-17','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a12@naver.com', 'TestName12', 'TestNick12', '1234','19910206','서울 강남구','서울 강남구 논현동 200-18','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a13@naver.com', 'TestName13', 'TestNick13', '1234','19910207','서울 강남구','서울 강남구 논현동 200-19','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a14@naver.com', 'TestName14', 'TestNick14', '1234','19910208','서울 강남구','서울 강남구 논현동 200-20','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a15@naver.com', 'TestName15', 'TestNick15', '1234','19920315','서울 강남구','서울 강남구 논현동 200-21','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a16@naver.com', 'TestName16', 'TestNick16', '1234','19920316','서울 강남구','서울 강남구 논현동 200-22','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a17@naver.com', 'TestName17', 'TestNick17', '1234','19920317','서울 강남구','서울 강남구 논현동 200-23','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a18@gmail.com', 'TestName18', 'TestNick18', '1234','19920318','서울 강남구','서울 강남구 논현동 200-24','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a19@gmail.com', 'TestName19', 'TestNick19', '1234','19920319','서울 강남구','서울 강남구 논현동 200-25','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a20@gmail.com', 'TestName20', 'TestNick20', '1234','19920320','서울 강남구','서울 강남구 논현동 200-26','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a21@gmail.com', 'TestName21', 'TestNick21', '1234','19920321','서울 강남구','서울 강남구 논현동 200-27','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a22@gmail.com', 'TestName22', 'TestNick22', '1234','19920322','서울 강남구','서울 강남구 논현동 200-28','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a23@gmail.com', 'TestName23', 'TestNick23', '1234','19920315','서울 강남구','서울 강남구 논현동 200-29','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a24@gmail.com', 'TestName24', 'TestNick24', '1234','19920316','서울 강남구','서울 강남구 논현동 200-30','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a25@gmail.com', 'TestName25', 'TestNick25', '1234','19930418','서울 강남구','서울 강남구 논현동 200-31','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a26@gmail.com', 'TestName26', 'TestNick26', '1234','19930419','서울 강남구','서울 강남구 논현동 200-32','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a27@gmail.com', 'TestName27', 'TestNick27', '1234','19930420','서울 강남구','서울 강남구 논현동 200-33','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a28@gmail.com', 'TestName28', 'TestNick28', '1234','19930421','서울 강남구','서울 강남구 논현동 200-34','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a29@gmail.com', 'TestName29', 'TestNick29', '1234','19930422','서울 강남구','서울 강남구 논현동 200-35','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a30@gmail.com', 'TestName30', 'TestNick30', '1234','19930423','서울 강남구','서울 강남구 논현동 200-36','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a31@gmail.com', 'TestName31', 'TestNick31', '1234','19930424','서울 강남구','서울 강남구 논현동 200-37','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a32@gmail.com', 'TestName32', 'TestNick32', '1234','19940506','서울 강남구','서울 강남구 논현동 200-38','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a33@gmail.com', 'TestName33', 'TestNick33', '1234','19940507','서울 강남구','서울 강남구 논현동 200-39','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a34@gmail.com', 'TestName34', 'TestNick34', '1234','19940508','서울 강남구','서울 강남구 논현동 200-40','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a35@gmail.com', 'TestName35', 'TestNick35', '1234','19940509','서울 강남구','서울 강남구 논현동 200-41','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a36@gmail.com', 'TestName36', 'TestNick36', '1234','19940510','서울 강남구','서울 강남구 논현동 200-42','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a37@gmail.com', 'TestName37', 'TestNick37', '1234','19940511','서울 강남구','서울 강남구 논현동 200-43','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a38@gmail.com', 'TestName38', 'TestNick38', '1234','19950905','서울 강남구','서울 강남구 논현동 200-44','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a39@gmail.com', 'TestName39', 'TestNick39', '1234','19950906','서울 강남구','서울 강남구 논현동 200-45','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a40@gmail.com', 'TestName40', 'TestNick40', '1234','19950907','서울 강남구','서울 강남구 논현동 200-46','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a41@gmail.com', 'TestName41', 'TestNick41', '1234','19950908','서울 강남구','서울 강남구 논현동 200-47','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a42@gmail.com', 'TestName42', 'TestNick42', '1234','19950909','서울 강남구','서울 강남구 논현동 200-48','KH','(논현동));
+INSERT INTO member VALUES (member_seq.nextval,'a43@gmail.com', 'TestName43', 'TestNick43', '1234','19950910','서울 강남구','서울 강남구 논현동 200-49','KH','(논현동));
 
 -- 카테고리
 INSERT INTO category VALUES (1, '판타지');
