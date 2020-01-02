@@ -11,5 +11,7 @@ public interface SubscribeService {
 
 	public int getmemNo(String memberId);
 
+	public Subscription getsubNo(String memberId);
+
 	
 }

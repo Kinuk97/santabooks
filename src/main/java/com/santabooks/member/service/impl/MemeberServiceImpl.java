@@ -23,6 +23,12 @@ public class MemeberServiceImpl implements MemberService{
 		else return false;
 
 	}
+
+	@Override
+	public Object memberNickCheck(String usernick) {
+
+		return memberDao.selectAll();
+	}
 	
 	
 	
