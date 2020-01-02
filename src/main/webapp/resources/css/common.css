@@ -81,3 +81,10 @@ ul .addNovel {
     width: 100%;
     height: 204px;
 }
+
+.star img {
+	width: 40px;
+}
+.empty-stars {
+	vertical-align: super;
+}

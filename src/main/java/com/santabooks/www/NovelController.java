@@ -11,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.novel.dto.Episode;
 import com.santabooks.novel.dto.Novel;
+import com.santabooks.novel.dto.Score;
 import com.santabooks.novel.service.face.NovelService;
 import com.santabooks.util.Paging;
 
@@ -42,9 +44,9 @@ public class NovelController {
 		paging.setTableName("episode");
 
 		paging = novelService.getPaging(paging);
-		
+
 		model.addAttribute("episodeList", novelService.getEpisodeList(paging));
-		model.addAttribute("novel", novelService.getNovelByNovelNo(paging));
+		model.addAttribute("novel", novelService.getNovelByNovelNo(paging.getNovelNo()));
 		model.addAttribute("paging", paging);
 		model.addAttribute("url", req.getRequestURI());
 	}
@@ -58,26 +60,30 @@ public class NovelController {
 	public String addNovel(Novel novel, HttpSession session) {
 		novel.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
 
-		
-		
 		novelService.addNovel(novel);
 
 		return "redirect:/novel/view?novelNo=" + novel.getNovelNo();
 	}
-	
+
 	@RequestMapping(value = "/novel/modify", method = RequestMethod.GET)
-	public void modifyovel() {
-		
+	public void modifyNovel(Model model, Novel novel) {
+		model.addAttribute("novel", novelService.getNovelByNovelNo(novel.getNovelNo()));
+
 	}
-	
+
 	@RequestMapping(value = "/novel/modify", method = RequestMethod.POST)
-	public String modifyovel(Novel novel) {
+	public String modifyNovel(Novel novel) {
 		novelService.modifyNovel(novel);
-		
+
 		return "redirect:/novel/view?novelNo=" + novel.getNovelNo();
 	}
-	
-	
+
+	@RequestMapping(value = "/novel/remove", method = RequestMethod.GET)
+	public String removeNovel(Novel novel) {
+		novelService.removeNovel(novel);
+
+		return "redirect:/novel/list";
+	}
 
 	@RequestMapping(value = "/episode/add", method = RequestMethod.GET)
 	public void addEpisode(@RequestParam(defaultValue = "0") int novelNo, Model model) {
@@ -88,17 +94,68 @@ public class NovelController {
 	public String addEpisode(Episode episode) {
 		novelService.addEpisode(episode);
 
-		// list? view?
+		return "redirect:/novel/view?novelNo=" + episode.getNovelNo();
+	}
+
+	@RequestMapping(value = "/episode/modify", method = RequestMethod.GET)
+	public void modifyEpisode(Episode episode, Model model) {
+		model.addAttribute("episode", novelService.getEpisode(episode));
+	}
+
+	@RequestMapping(value = "/episode/modify", method = RequestMethod.POST)
+	public String modifyEpisode(Episode episode) {
+		novelService.modifyEpisode(episode);
+
+		logger.info(episode.toString());
+
+		return "redirect:/episode/view?episodeNo=" + episode.getEpisodeNo();
+	}
+
+	@RequestMapping(value = "/episode/remove", method = RequestMethod.GET)
+	public String removeEpisode(Episode episode) {
+		novelService.removeEpisode(episode);
+
 		return "redirect:/novel/view?novelNo=" + episode.getNovelNo();
 	}
 
 	@RequestMapping(value = "/episode/view", method = RequestMethod.GET)
-	public void viewEpisode(Model model, Paging paging, Episode episode) {
+	public void viewEpisode(Model model, Episode episode) {
+		// 평점 옵션
+//		Map<Integer, String> ratingOptions = new HashMap<Integer, String>();
+//		ratingOptions.put(0, "☆☆☆☆☆");
+//		ratingOptions.put(1, "★☆☆☆☆");
+//		ratingOptions.put(2, "★★☆☆☆");
+//		ratingOptions.put(3, "★★★☆☆");
+//		ratingOptions.put(4, "★★★★☆");
+//		ratingOptions.put(5, "★★★★★");
+//		model.addAttribute("ratingOptions", ratingOptions);
 
-		paging.setTableName("episode");
+		episode = novelService.getEpisode(episode);
+
+		model.addAttribute("episode", episode);
+		model.addAttribute("novel", novelService.getNovelByNovelNo(episode.getNovelNo()));
+	}
+
+	@RequestMapping(value = "/episode/score/add", method = RequestMethod.POST)
+	public ModelAndView addScore(Score score, HttpSession session, ModelAndView mav) {
+		score.setMemberNo((Integer) session.getAttribute("MemberNo"));
+
+		mav.addObject("score", novelService.addScore(score));
+
+		mav.setViewName("jsonView");
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/episode/score/remove", method = RequestMethod.POST)
+	public ModelAndView removeScore(Score score, HttpSession session, ModelAndView mav) {
+		score.setMemberNo((Integer) session.getAttribute("MemberNo"));
+
+		mav.addObject("score", novelService.removeScore(score));
+
+		mav.setViewName("jsonView");
 		
-		model.addAttribute("novel", novelService.getNovelByNovelNo(paging));
-		model.addAttribute("episode", novelService.getEpisode(episode));
+		return mav;
 	}
 
 }
