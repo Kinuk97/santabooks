@@ -1,5 +1,5 @@
 -- 사용자
-INSERT INTO member VALUES (member_seq.nextval, 'a@naver.com', 'TestID_1', 'TestNick', '1234', 23423, '345343', 'rdrde', 'gender', '장르', 'check');
+INSERT INTO member VALUES (member_seq.nextval, 'a@naver.com', 'TestID_1', 'TestNick', '1234', 23423, '345343',  'gender', '장르', 'check', '12345','서울시', '강남구', 'KH', '정보교육원');
 
 -- 카테고리
 INSERT INTO category VALUES (1, '판타지');
