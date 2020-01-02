@@ -65,6 +65,11 @@ function check(){
 				console.log(res.member.memberName);
 				$("#subName").attr("value",res.member.memberName);
 				$("#subTel").attr("value",res.member.memberTel);
+				$("#postCode").attr("value",res.member.postCode);
+				$("#roadAddress").attr("value",res.member.roadAddress);
+				$("#jibunAddress").attr("value",res.member.jibunAddress);
+				$("#detailAddress").attr("value",res.member.detailAddress);
+				$("#extraAddress").attr("value",res.member.extraAddress);
 			},
 			error: function(e){
 				console.log(e);
@@ -77,6 +82,11 @@ function check(){
 	     $("input:checkbox[id='hint']").prop("checked", false);
 	 	 $("#subName").attr("value", "");
 		 $("#subTel").attr("value", "");
+		 $("#postCode").attr("value", "");
+		 $("#roadAddress").attr("value", "");
+		 $("#jibunAddress").attr("value", "");
+		 $("#detailAddress").attr("value", "");
+		 $("#extraAddress").attr("value", "");
 	}
 }
 

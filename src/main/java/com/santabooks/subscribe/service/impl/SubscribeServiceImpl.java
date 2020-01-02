@@ -35,6 +35,12 @@ public class SubscribeServiceImpl implements SubscribeService {
 		return subscribeDao.getmemNo(memberId);
 	}
 
+	@Override
+	public Subscription getsubNo(String memberId) {
+		return subscribeDao.getsubNo(memberId);
+	}
+
+
 
 
 }

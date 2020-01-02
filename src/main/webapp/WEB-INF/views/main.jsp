@@ -18,9 +18,14 @@
 	<h1>SantaBooks</h1>
 	<h3>매월 10일, 관심사에 알맞는 추천 책을<br>
 	 랜덤으로 보내드립니다.
-	 <br>월 9,900원 산타북스와 함께하세요.
+	 <br>월 9,900원 산타북스와 함께하세요. ${subscription.subNo }
 	</h3>
 	
+
+<%-- 	<c:if test="${0 eq subscription.subNo }"> --%>
+<!-- 		<h6>널이다</h6> -->
+<%-- 	</c:if> --%>
+
 
 		<a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="subscribe/agree"  onclick="check()">이용하러가기</a>
 	</section>

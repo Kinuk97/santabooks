@@ -1,11 +1,10 @@
 package com.santabooks.www;
 
-import java.io.Writer;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +16,7 @@ import com.santabooks.subscribe.service.face.SubscribeService;
 @Controller
 public class SubscribeController {
 
+	
 	@Autowired private SubscribeService subscribeservice;
 	
 	
@@ -24,24 +24,25 @@ public class SubscribeController {
 	public void main() {}	
 
 	@RequestMapping(value="/subscribe/first", method=RequestMethod.GET)
-	public void pay() {	}	
+	public void pay() {}	
 
 	
 	@RequestMapping(value="/subscribe/first",  method=RequestMethod.POST)
 	public String payment(Subscription subscription, HttpSession session) {
 		
 		String memberId = (String) session.getAttribute("MemberId");
-		System.out.println(memberId);
 		
 		int memberNo = (int) subscribeservice.getmemNo(memberId);
-		System.out.println(memberNo);
 		
 		session.setAttribute("memberNo", memberNo);
 		
 		subscription.setMemberNo(memberNo);
-		System.out.println(subscription);
+		
+//		subscription = subscribeservice.getsubNo(memberId);
+//		System.out.println("섭넘버가져와: " +subscription);
 		
 		subscribeservice.subscribe(subscription);	
+		
 		return "redirect:/subscribe/final";
 	}	
 
@@ -61,7 +62,17 @@ public class SubscribeController {
 	
 	
 	@RequestMapping(value="/subscribe/final")
-	public void paymentfianl() {}
+	public void paymentfianl(Subscription subscription, HttpSession session, Model model) {
+	
+		String memberId = (String) session.getAttribute("MemberId");
+		subscription = subscribeservice.getsubNo(memberId);		
+		model.addAttribute("subscription", subscription);
+		
+//		System.out.println("섭넘버가져와: " +subscription);
+		
+		
+		
+	}
 	
 
 	
