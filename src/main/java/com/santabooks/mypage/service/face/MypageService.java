@@ -42,4 +42,10 @@ public interface MypageService {
 
 	public QnA qnaView(QnA viewQna);
 
+	public void qnaUpdate(QnA qna);
+
+	public void qnaDelete(QnA qna);
+
+	public Member subInfo(int subNo);
+
 }

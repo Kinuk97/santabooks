@@ -38,4 +38,10 @@ public interface MypageDao {
 
 	public void updateHit(QnA viewQna);
 
+	public void qnaUpdate(QnA qna);
+
+	public void qnaDelete(QnA qna);
+
+	public Member selectBySub(int subNo);
+
 }
