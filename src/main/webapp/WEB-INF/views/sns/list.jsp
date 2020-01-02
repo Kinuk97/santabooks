@@ -54,7 +54,6 @@ body {
 }
 
 #review {
-	border: 2px solid rgba(20, 121, 87,.25);
 	color: black;
 	padding: 16px 32px;
 	font-size: 16px;
@@ -81,7 +80,6 @@ body {
 	right: 4px; 
 	width: 300px;
 	top: 100px;  
-	border: 2px solid rgba(20, 121, 87, .25);
 	
 }
 
