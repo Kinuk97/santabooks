@@ -43,6 +43,7 @@ body{
 
 <h4 style="padding: 58px">정기구독신청이 완료되었습니다.</h4> <br>
 <h6>감사합니다 ♥</h6>
+<h4>${subscription.subNo }</h4>
 <br><br>
 <a href = "/"><button class="btn" id="button">메인으로</button></a>
 
