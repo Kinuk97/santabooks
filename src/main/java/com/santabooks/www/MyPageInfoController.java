@@ -1,6 +1,8 @@
 package com.santabooks.www;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -199,9 +201,11 @@ public class MyPageInfoController {
 		
 		int subNo = (Integer)session.getAttribute("MemberNo");
 		logger.info("subNo : " + subNo);
-		Member subInfo = mypageService.subInfo(subNo);
-		model.addAttribute("subInfo", subInfo);
 		
+		Member subInfo = mypageService.subInfo(subNo);
+		
+		model.addAttribute("subInfo", subInfo);
+		logger.info("jsp로가는 subInfo : " + subInfo.toString());
 		logger.info("구독정보 요청");
 	}
 	
