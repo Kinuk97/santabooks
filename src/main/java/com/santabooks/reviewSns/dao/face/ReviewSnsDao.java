@@ -2,6 +2,8 @@ package com.santabooks.reviewSns.dao.face;
 
 import java.util.List;
 
+import com.santabooks.member.dto.Member;
+import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.ReviewSns;
 import com.santabooks.util.Paging;
@@ -13,7 +15,7 @@ public interface ReviewSnsDao {
 	 * 
 	 * @return int - 게시물 총 개수
 	 */
-	public int selectCntAll();
+	public int selectCntAll(Paging paging);
 
 	/**
 	 * 리뷰리스트 전체 조회
@@ -68,6 +70,28 @@ public interface ReviewSnsDao {
 	 * @param grade
 	 */
 	public void insertGrade(Grade grade);
+	
+	/**
+	 * 책 번호에 해당하는 책정보 조회
+	 * 
+	 * @param reviewSns
+	 * @return
+	 */
+	public Book selectBookByBookNo(int bookNo);
+	
+	/**
+	 * 멤버 번호에 해당하는 멤버 정보 조회
+	 * @param memberNo
+	 * @return
+	 */
+	public Member selectMemberByMemberNo(Member member);
+	
+	/**
+	 * 리뷰 모두보기에서 리뷰 총 갯수 조회
+	 * @param paging
+	 * @return
+	 */
+	public int selectCntAll2(Paging paging);
 	
 	
 

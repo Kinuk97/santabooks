@@ -22,7 +22,6 @@ body{
     left:50px;
     
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-	border: 2px solid rgba(20, 121, 87,.25);
 	padding: 16px;
 	background-color: #f1f1f1;
 }

@@ -4,6 +4,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#bookTable").click(function(){
+		$(location).attr("href", "https://book.naver.com/search/search.nhn?sm=sta_hty.book&sug=&where=nexearch&query=${keyword}");
+	})
+});
+</script>
+
 <style type="text/css">
 
 #searchBtn {
@@ -20,6 +28,7 @@
 			<center>
 				<form action="/book/list" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
+					<img src="/resources/images/naver.ico" style="height:35px;"> &nbsp;
 					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하세요" 
 					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
 					 <div class="input-group-append">
@@ -31,7 +40,7 @@
 			</center>
 		</div>
 		<br><br>
-    <table>
+   <table id="bookTable">
         <tr>
             <td colspan="7" width="100%" bgcolor="pink"></td>
         </tr>

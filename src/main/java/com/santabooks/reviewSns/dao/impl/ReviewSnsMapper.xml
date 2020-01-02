@@ -6,14 +6,23 @@
 
 <mapper namespace="com.santabooks.reviewSns.dao.face.ReviewSnsDao">
 	
-	<select id="selectCntAll" resultType="int">
-		SELECT COUNT(*) FROM review_sns
+	<select id="selectCntAll" resultType="int" parameterType="com.santabooks.util.Paging">
+		SELECT COUNT(*) FROM review_sns r, book b
+		WHERE 1=1 AND r.bookNo = b.bookNo
+		<if test="keyword != null and !keyword.equals('')">
+		AND ${searchType} like '%'||#{keyword}||'%'
+		</if>
 	</select>
 	
 	<select id="selectAll" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.util.Paging">
-		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
-		FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns ORDER BY feedNo DESC)B ORDER BY rnum)r, book b 
-		WHERE rnum BETWEEN #{startNo} AND #{endNo} AND (r.bookNo = b.bookNo)
+		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, m.memberId, m.memberNick
+		FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns 
+		ORDER BY feedNo DESC)B ORDER BY rnum)r, book b, member m
+		WHERE 1=1 AND
+		<if test="keyword != null and !keyword.equals('')">
+		${searchType} like '%'||#{keyword}||'%' AND
+		</if>
+		rnum BETWEEN #{startNo} AND #{endNo} AND (r.bookNo = b.bookNo) AND (r.memberNo = m.memberNo)
 	</select>
 	
 	<select id="selectReviewByFeedNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
@@ -29,9 +38,9 @@
 	</select>
 	
 	<select id="selectAllByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.util.Paging">
-		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
-		FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns ORDER BY feedNo DESC)B ORDER BY rnum)r, book b
-		WHERE rnum BETWEEN #{startNo} AND #{endNo} AND r.bookNo = b.bookNo AND r.bookNo = #{bookNo}
+		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, m.memberId, m.memberNick
+		FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns ORDER BY feedNo DESC)B ORDER BY rnum)r, book b, member m
+		WHERE rnum BETWEEN #{startNo} AND #{endNo} AND r.bookNo = b.bookNo AND m.memberNo = r.memberNo AND r.bookNo = #{bookNo}
 	</select>
 	
 	<select id="selectDetailReviewByFeedNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
@@ -49,6 +58,23 @@
 		INSERT INTO grade(grade, memberNo, feedNo)
 		VALUES(#{grade}, #{memberNo}, #{feedNo}) 
 	</insert>
+	
+	<select id="selectBookByBookNo" parameterType="int" resultType="com.santabooks.reviewSns.dto.Book">
+		SELECT b.bookno, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
+		FROM book b
+		WHERE b.bookNo=#{bookNo}
+	</select>
+	
+	<select id="selectMemberByMemberNo" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.member.dto.Member">
+		SELECT m.memberId, m.memberNick
+		FROM member m, review_sns r
+		WHERE m.memberNo = r.memberNo AND m.memberNo = #{memberNo}
+	</select>
+	
+	<select id="selectCntAll2" resultType="int" parameterType="com.santabooks.util.Paging">
+		SELECT COUNT(*) FROM review_sns r, book b
+		WHERE 1=1 AND r.bookNo = b.bookNo AND b.bookNo = #{bookNo}
+	</select>
 	
 </mapper>
   

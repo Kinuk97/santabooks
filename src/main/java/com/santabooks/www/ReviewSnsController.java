@@ -3,6 +3,7 @@ package com.santabooks.www;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.santabooks.member.dto.Member;
+import com.santabooks.member.service.face.LoginService;
+import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.ReviewSns;
 import com.santabooks.reviewSns.service.face.ReviewSnsService;
@@ -29,16 +33,25 @@ public class ReviewSnsController {
 
 	@RequestMapping(value = "/sns/list", method = RequestMethod.GET)
 	public void snsList(Model model, Paging paging, HttpServletRequest req) {
-
-		int totalCount = reviewSnsService.selectCntAll();
+		
+//		member.setMemberNo((int) session.getAttribute("MemberNo"));
+//		Member user = reviewSnsService.getMember(member);
+//		logger.info("멤버 닉네임 제발 나와라! : " + user);
+		
+		int totalCount = reviewSnsService.selectCntAll(paging);
 
 		Paging reviewPaging = new Paging(totalCount, paging.getCurPage());
+		reviewPaging.setKeyword(paging.getKeyword());
+		reviewPaging.setSearchType(paging.getSearchType());
+		reviewPaging.setMemberId(paging.getMemberId());
+		reviewPaging.setMemberNick(paging.getMemberNick());
 
 		List<ReviewSns> list = reviewSnsService.snsList(reviewPaging);
 
 		logger.info(list.toString());
 		logger.info("페이징 정보 : " + reviewPaging);
-
+		
+//		model.addAttribute("member",user);
 		model.addAttribute("reviewList", list);
 		model.addAttribute("paging", reviewPaging);
 		model.addAttribute("url", req.getRequestURI());
@@ -82,16 +95,21 @@ public class ReviewSnsController {
 			mav.addObject("bookList", reviewSnsService.searchBook(keyword, 10, 1));
 		}
 		mav.setViewName("/sns/naverBookList");
+		mav.addObject("keyword", keyword);
 		return mav;
 	}
 
 	@RequestMapping(value = "/sns/reviewall", method = RequestMethod.GET)
-	public void reviewList(Model model, Paging paging, HttpServletRequest req, ReviewSns reviewSns) {
-		int totalCount = reviewSnsService.selectCntAll();
+	public void reviewList(Model model, Paging paging, HttpServletRequest req, ReviewSns reviewSns, int bookNo) {
+		int totalCount = reviewSnsService.selectCntAll2(paging);
 
+		Book bookInfo =  reviewSnsService.getBook(bookNo);
+		
 		logger.info("bookno : " + reviewSns);
 		Paging reviewPaging = new Paging(totalCount, paging.getCurPage());
 		reviewPaging.setBookNo(reviewSns.getBookNo());
+		reviewPaging.setMemberId(paging.getMemberId());
+		reviewPaging.setMemberNick(paging.getMemberNick());
 		logger.info("책번호 제발 나와라 : " + reviewPaging);
 
 		List<ReviewSns> list = reviewSnsService.reviewList(reviewPaging);
@@ -99,7 +117,7 @@ public class ReviewSnsController {
 		logger.info(list.toString());
 		logger.info("페이징 정보 : " + reviewPaging);
 		
-		model.addAttribute("bookName",list.get(6)); // list에 bookName(6번쨰) 요소 추출
+		model.addAttribute("bookName", bookInfo);
 		model.addAttribute("reviewList", list);
 		model.addAttribute("paging", reviewPaging);
 		model.addAttribute("url", req.getRequestURI());
@@ -115,10 +133,11 @@ public class ReviewSnsController {
 	}
 	
 	@RequestMapping(value="/sns/write", method = RequestMethod.POST)
-	public String reviewWrite(ReviewSns reviewSns) {
+	public String reviewWrite(ReviewSns reviewSns, Member member, Model model) {
 		logger.info("글작성전 정보 : " + reviewSns);
 		
 		reviewSnsService.write(reviewSns);
+		
 		logger.info("글작성후 정보 : " + reviewSns);
 		
 		return "redirect:/sns/list";
