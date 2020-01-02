@@ -2,6 +2,8 @@ package com.santabooks.reviewSns.service.face;
 
 import java.util.List;
 
+import com.santabooks.member.dto.Member;
+import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.NaverBook;
 import com.santabooks.reviewSns.dto.ReviewSns;
@@ -11,9 +13,10 @@ public interface ReviewSnsService {
 	
 	/**
 	 * 페이징을 위한 리뷰 총 개수 
+	 * @param paging 
 	 * @return int - 총 게시물 수
 	 */
-	public int selectCntAll();
+	public int selectCntAll(Paging paging);
 	
 	/**
 	 * 리뷰 리스트
@@ -78,6 +81,29 @@ public interface ReviewSnsService {
 	 * @param grade
 	 */
 	public void addGrade(Grade grade);
+	
+	/**
+	 * 책 번호에 해당하는 책 정보 가져오기
+	 * 
+	 * @param bookNo
+	 * @return
+	 */
+	public Book getBook(int bookNo);
+	
+	/**
+	 * 멤버 번호에 해당하는 멤버 정보 가져오기
+	 * @param memberNo
+	 * @return
+	 */
+	public Member getMember(Member member);
+	
+	/**
+	 * 리뷰 모두보기에서 페이징 위한 리뷰 갯수
+	 * 
+	 * @param paging
+	 * @return
+	 */
+	public int selectCntAll2(Paging paging);
 	
 	/**
 	 * 

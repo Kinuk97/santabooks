@@ -27,6 +27,13 @@ public class Paging {
 	private String tableName;
 	private int bookNo;
 
+	private String searchType;
+	private String keyword;
+
+	// member 정보
+	private String memberId;
+	private String memberNick;
+
 	public Paging() {
 
 	}
@@ -105,7 +112,8 @@ public class Paging {
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
 				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchno=" + searchno
 				+ ", category=" + category + ", novelNo=" + novelNo + ", tableName=" + tableName + ", bookNo=" + bookNo
-				+ "]";
+				+ ", searchType=" + searchType + ", keyword=" + keyword + ", memberId=" + memberId + ", memberNick="
+				+ memberNick + "]";
 	}
 
 	public int getCurPage() {
@@ -226,6 +234,38 @@ public class Paging {
 
 	public void setBookNo(int bookNo) {
 		this.bookNo = bookNo;
+	}
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getMemberNick() {
+		return memberNick;
+	}
+
+	public void setMemberNick(String memberNick) {
+		this.memberNick = memberNick;
 	}
 
 }

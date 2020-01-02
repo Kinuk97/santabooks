@@ -4,10 +4,13 @@
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
+
+<link href="/resources/rating/css/star-rating.css" rel="stylesheet">
+<script type="text/javascript" src="/resources/rating/js/star-rating.js"></script>
+<link href="/resources/css/common.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/novel.js"></script>
 
 <div class="container">
-
 	<table class="table" style="border: 1px solid #CCC; border-collapse: separate;">
 	  <tbody>
 	    <tr>
@@ -40,7 +43,7 @@
 		  <ul class="list-group list-group-flush">
 		    <li class="list-group-item">
 		    	<b>${episode.title }</b>
-		    	<span>
+		    	<span id="starSpan">
 		    	<c:forEach begin="1" end="5" step="1" varStatus="i">
 		    	<c:choose>
 		    		<c:when test="${i.count <= episode.score }">
@@ -58,15 +61,21 @@
 		    </li>
 		  </ul>
 		</div>
-		
-		<hr>
-		
+	</div>
+	
+	<hr>
+	
+	<div class="text-center">
 		<a class="btn btn-success" href="/novel/view?novelNo=${novel.novelNo }">목록</a>
 		<c:if test="${MemberNo == novel.memberNo }">
-			<a class="btn btn-info" href="/episode/modify">수정</a>
-			<a class="btn btn-danger" href="/episode/remove">삭제</a>
+			<a class="btn btn-info" href="/episode/modify?episodeNo=${episode.episodeNo }">수정</a>
+			<a class="btn btn-danger" href="/episode/remove?episodeNo=${episode.episodeNo }&novelNo=${episode.novelNo}">삭제</a>
 		</c:if>
 	</div>
+	
+	<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top;">
 </div>
+
+<input type="text" id="episodeNo" hidden="hidden" value="${episode.episodeNo }">
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

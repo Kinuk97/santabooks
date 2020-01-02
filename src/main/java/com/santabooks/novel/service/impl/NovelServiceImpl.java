@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.santabooks.novel.dao.face.NovelDao;
 import com.santabooks.novel.dto.Episode;
 import com.santabooks.novel.dto.Novel;
+import com.santabooks.novel.dto.Score;
 import com.santabooks.novel.service.face.NovelService;
 import com.santabooks.util.Paging;
 
@@ -38,8 +39,24 @@ public class NovelServiceImpl implements NovelService {
 
 	@Override
 	public void modifyNovel(Novel novel) {
-		// TODO Auto-generated method stub
+		novelDao.updateNovel(novel);
 
+		fileSave(novel);
+	}
+
+	@Override
+	public void removeNovel(Novel novel) {
+		// comment 삭제즐겨찾기 삭제별점 삭제에피소드 삭제게시글 삭제 사진 파일 삭제
+		// 참조조건으로 삭제설정했음
+		Novel result = novelDao.selectNovelByNovelNo(novel.getNovelNo());
+
+		logger.info("소설 조회 : " + result);
+
+		novelDao.deleteNovel(novel);
+
+		logger.info("소설 삭제");
+
+		fileDelete(result);
 	}
 
 	@Override
@@ -59,14 +76,12 @@ public class NovelServiceImpl implements NovelService {
 
 	@Override
 	public void modifyEpisode(Episode episode) {
-		// TODO Auto-generated method stub
-
+		novelDao.updateEpisode(episode);
 	}
 
 	@Override
 	public void removeEpisode(Episode episode) {
-		// TODO Auto-generated method stub
-
+		novelDao.deleteEpisode(episode);
 	}
 
 	@Override
@@ -92,8 +107,8 @@ public class NovelServiceImpl implements NovelService {
 	}
 
 	@Override
-	public Novel getNovelByNovelNo(Paging paging) {
-		return novelDao.selectNovelByNovelNo(paging);
+	public Novel getNovelByNovelNo(int novelNo) {
+		return novelDao.selectNovelByNovelNo(novelNo);
 	}
 
 	@Override
@@ -115,7 +130,7 @@ public class NovelServiceImpl implements NovelService {
 		String fileName = uid + "_" + file.getOriginalFilename();
 
 		boolean check = false;
-		
+
 		// 확장자 구분
 		if (fileName.substring(fileName.indexOf(".") + 1).equals("jpeg")) {
 			check = true;
@@ -131,7 +146,7 @@ public class NovelServiceImpl implements NovelService {
 
 		// 저장될 파일 객체
 		File dest = new File(storedPath, fileName);
-		
+
 		try {
 			if (check && file != null && !file.isEmpty()) {
 				// 실제 파일 저장
@@ -152,4 +167,38 @@ public class NovelServiceImpl implements NovelService {
 		}
 	}
 
+	@Override
+	public void fileDelete(Novel novel) {
+		File file = new File(context.getRealPath("upload"), "" + novel.getImgStoredName());
+
+		if (file.exists()) {
+			file.delete();
+		}
+	}
+
+	@Override
+	public Score addScore(Score score) {
+		int cntResult = novelDao.selectCntScoreByMemberNo(score);
+
+		if (cntResult != 1) {
+			// 남긴 별점이 없을 경우
+			novelDao.insertScore(score);
+		} else {
+			// 이미 남긴 별점이 있을 경우
+			novelDao.updateScore(score);
+		}
+
+		novelDao.updateEpisodeScore(score);
+		
+		return novelDao.selectScore(score);
+	}
+
+	@Override
+	public Score removeScore(Score score) {
+		novelDao.deleteScore(score);
+		
+		novelDao.updateEpisodeScore(score);
+		
+		return novelDao.selectScore(score);
+	}
 }

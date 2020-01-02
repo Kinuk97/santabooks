@@ -30,6 +30,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import com.santabooks.member.dto.Member;
 import com.santabooks.reviewSns.dao.face.ReviewSnsDao;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
@@ -47,9 +48,9 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	private static String clientSecret = "JRaHbpGPrW";
 	
 	@Override
-	public int selectCntAll() {
+	public int selectCntAll(Paging paging) {
 		
-		return reviewSnsDao.selectCntAll();
+		return reviewSnsDao.selectCntAll(paging);
 	}
 
 	@Override
@@ -201,6 +202,24 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 		
 		reviewSnsDao.insertGrade(grade);
 		
+	}
+
+	@Override
+	public Book getBook(int bookNo) {
+		
+		return reviewSnsDao.selectBookByBookNo(bookNo);
+	}
+
+	@Override
+	public Member getMember(Member member) {
+		
+		return reviewSnsDao.selectMemberByMemberNo(member);
+	}
+
+	@Override
+	public int selectCntAll2(Paging paging) {
+		
+		return reviewSnsDao.selectCntAll2(paging);
 	}
 	
 //	@Override
