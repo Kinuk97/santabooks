@@ -13,7 +13,7 @@ $(document).ready(function() {
     	$("#navBar").find("li").eq(0).addClass("active");
     } else {
     	
-    	if (identifier == "novel") {
+    	if (identifier == "novel" || identifier == "episode") {
     		$("#navBar").find("li").eq(1).addClass("active");
     		
     	} else if (identifier == "") {

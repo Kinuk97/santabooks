@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.santabooks.novel.dto.Episode;
 import com.santabooks.novel.dto.Novel;
+import com.santabooks.novel.dto.Score;
 import com.santabooks.util.Paging;
 
 public interface NovelService {
@@ -38,14 +39,14 @@ public interface NovelService {
 	 * @return List<Novel> - 결과 리스트
 	 */
 	public List<Novel> getBestNovel(int category);
-	
+
 	/**
 	 * 소설 정보 가져오기
 	 * 
-	 * @param novel - novelNo DTO
+	 * @param novelNo - novelNo
 	 * @return Novel - 소설정보
 	 */
-	public Novel getNovelByNovelNo(Paging paging);
+	public Novel getNovelByNovelNo(int novelNo);
 
 //	public void addFavorite(Favorite favorite);
 //	public void removeFavorite(Favorite favorite);
@@ -111,12 +112,40 @@ public interface NovelService {
 	 * @return 조회 에피소드
 	 */
 	public Episode getEpisode(Episode episode);
-	
+
+	/**
+	 * 파일삭제
+	 * 
+	 * @param novel - 소설번호
+	 */
+	public void removeNovel(Novel novel);
+
 	/**
 	 * file 저장하는 메소드
 	 * 
 	 * @param novel - DTO
 	 */
 	public void fileSave(Novel novel);
-	
+
+	/**
+	 * file 삭제하는 메소드
+	 * 
+	 * @param novel - 파일 이름 DTO
+	 */
+	public void fileDelete(Novel novel);
+
+	/**
+	 * 별점 추가하는 메소드 별점을 db score에 넣고 episode 수정
+	 * 
+	 * @param score - 별점 정보 DTO
+	 */
+	public Score addScore(Score score);
+
+	/**
+	 * 별점 취소하는 기능
+	 * 
+	 * @param score - memberNo, episodeNo
+	 */
+	public Score removeScore(Score score);
+
 }

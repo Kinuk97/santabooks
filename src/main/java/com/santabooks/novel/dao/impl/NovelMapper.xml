@@ -46,7 +46,7 @@
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
 	
-	<select id="selectNovelByNovelNo" parameterType="com.santabooks.util.Paging" resultType="com.santabooks.novel.dto.Novel">
+	<select id="selectNovelByNovelNo" parameterType="int" resultType="com.santabooks.novel.dto.Novel">
 		SELECT novel.*, 
 		(
 			SELECT membername FROM member WHERE novel.memberNo = memberno
@@ -64,14 +64,14 @@
 				SELECT membername FROM member WHERE novel.memberNo = memberno
 			) AS memberName,
 			(
-				SELECT avg(score) FROM episode WHERE novelNo = novel.novelNO
+				SELECT avg(score) FROM episode WHERE novelNo = novel.novelNo
 			) AS score
 			 FROM novel
 			<if test="category gt 0 and category lt 5">
 		     	WHERE category = #{category}
 	     	</if>
-		     	ORDER BY score DESC
-	     ) WHERE ROWNUM BETWEEN 1 AND 3
+		     	ORDER BY score ASC
+	     ) novel WHERE ROWNUM BETWEEN 1 AND 3 ORDER BY novel.score DESC
 	</select>
 	
 	<select id="selectEpisodeByNovelNo" resultType="com.santabooks.novel.dto.Episode" parameterType="com.santabooks.util.Paging">
@@ -102,6 +102,10 @@
 		UPDATE novel SET imgOriginName = #{imgOriginName}, imgStoredName = #{imgStoredName} WHERE novelNo = #{novelNo}
 	</update>
 	
+	<delete id="deleteNovel" parameterType="com.santabooks.novel.dto.Novel">
+		DELETE FROM novel WHERE novelNo = #{novelNo}
+	</delete>
+	
 	<insert id="insertEpisode" parameterType="com.santabooks.novel.dto.Episode">
 		<selectKey order="BEFORE" keyColumn="episodeNo" keyProperty="episodeNo" resultType="int">
 			SELECT episode_seq.nextval AS episodeNo FROM dual
@@ -112,5 +116,32 @@
 						(SELECT avg(score) FROM score WHERE episodeNo = #{episodeNo} )
 					)
 	</insert>
+	
+	<update id="updateEpisode" parameterType="com.santabooks.novel.dto.Episode">
+		UPDATE episode SET title = #{title}, content = #{content} WHERE episodeNo = #{episodeNo}
+	</update>
+	<delete id="deleteEpisode" parameterType="com.santabooks.novel.dto.Episode">
+		DELETE FROM episode WHERE episodeNo = #{episodeNo}
+	</delete>
+
+	<select id="selectCntScoreByMemberNo" parameterType="com.santabooks.novel.dto.Score" resultType="int">
+		SELECT count(*) FROM score WHERE episodeNo = #{episodeNo} AND memberNo = #{memberNo}
+	</select>
+	<select id="selectScore" parameterType="com.santabooks.novel.dto.Score" resultType="com.santabooks.novel.dto.Score">
+		SELECT score FROM score WHERE episodeNo = #{episodeNo} AND memberNo = #{memberNo}
+	</select>
+	<insert id="insertScore" parameterType="com.santabooks.novel.dto.Score">
+		INSERT INTO score VALUES (#{memberNo}, #{episodeNo}, #{score})
+	</insert>
+	<update id="updateScore" parameterType="com.santabooks.novel.dto.Score">
+		UPDATE score SET score = #{score} WHERE episodeNo = #{episodeNo} AND memberNo = #{memberNo}
+	</update>
+	<update id="updateEpisodeScore" parameterType="com.santabooks.novel.dto.Score">
+		UPDATE episode SET score = (SELECT AVG(score) FROM score WHERE episodeNo = episode.episodeNo) WHERE episodeNo = #{episodeNo}
+	</update>
+	<delete id="deleteScore" parameterType="com.santabooks.novel.dto.Score">
+		DELETE FROM score WHERE episodeNo = #{episodeNo} AND memberNo = #{memberNo}
+	</delete>
+	
 	
 </mapper>

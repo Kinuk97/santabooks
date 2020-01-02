@@ -47,7 +47,72 @@ $(document).ready(function() {
 		$("#input_img").click();
 	});
 	
+	var categoryNo = $("#novelCategory").data("category");
+	
+	if (categoryNo == "1") {
+		$("#customRadio").attr("checked", true);
+	} else if (categoryNo == "2") {
+		$("#customRadio2").attr("checked", true);
+	} else if (categoryNo == "3") {
+		$("#customRadio3").attr("checked", true);
+	} else if (categoryNo == "4") {
+		$("#customRadio4").attr("checked", true);
+	} else if (categoryNo == "5") {
+		$("#customRadio5").attr("checked", true);
+	}
+	
+	// 별점주는 기능
+	$(".rating-stars").on("click", function() {
+		$.ajax({
+	 		type: "POST"
+	 		, url: "/episode/score/add"
+			, data: {
+				"episodeNo" : $("#episodeNo").val(),
+				"score" : $("#rating-system").val()
+			}
+			, dataType: "json"
+			, success: function( res ) {
+				drawStars(res.score.score);
+			}
+			, error: function(e) {
+				console.log(e);
+			}
+		});
+	});
+	// 별점 취소하는 기능
+	$("#removeScore").on("click", function() {
+		$.ajax({
+	 		type: "POST"
+	 		, url: "/episode/score/remove"
+			, data: {
+				"episodeNo" : $("#episodeNo").val(),
+			}
+			, dataType: "json"
+			, success: function( res ) {
+				if (res.score != null) {
+					drawStars(res.score.score);
+				} else {
+					drawStars(0);
+				}
+			}
+			, error: function(e) {
+				console.log(e);
+			}
+		});
+	});
+	
 });
+
+function drawStars(score) {
+	$("#starSpan").html("");
+	for (var i = 1; i <= 5; i++) {
+		if (i <= score) {
+			$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star-fill.svg'>");
+		} else {
+			$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star.svg'>");
+		}
+	}
+}
 
 // 선택한 파일
 var sel_file;
@@ -60,6 +125,8 @@ function showImage(e) {
 	filesArr.forEach(function(f) {
 		if (!f.type.match("image.*")) {
 			alert("이미지만 업로드 가능합니다.");
+			$("input[type='file']").val("");
+			$("#img").attr("src", "/resources/images/logo.png");
 			return;
 		}
 
