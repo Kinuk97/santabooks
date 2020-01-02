@@ -50,7 +50,6 @@ CREATE TABLE Novel (
  memberNo NUMBER NOT NULL,
  title VARCHAR2(100) NOT NULL,
  discription VARCHAR2(150) NOT NULL,
- score NUMBER DEFAULT 0,
  addDate VARCHAR2(100) DEFAULT sysdate,
  category NUMBER NOT NULL,
  imgOriginName VARCHAR2(150),
@@ -63,17 +62,21 @@ CREATE TABLE category (
 );
 
 CREATE TABLE MEMBER (
- memberNo NUMBER PRIMARY KEY,
- memberId VARCHAR2(200) NOT NULL,
- memberName VARCHAR2(100) NOT NULL,
- memberNick VARCHAR2(150) NOT NULL,
- memberPw VARCHAR2(100) NOT NULL,
- memberBirth NUMBER NOT NULL,
- memberTel VARCHAR2(100) NOT NULL,
- memberAdd VARCHAR2(300) NOT NULL,
- memberGender VARCHAR2(100) NOT NULL,
- genre VARCHAR2(150) NOT NULL,
- subcheck VARCHAR2(100) NOT NULL
+memberNo NUMBER PRIMARY KEY,
+memberId VARCHAR2(200) NOT NULL,
+memberName VARCHAR2(100) NOT NULL,
+memberNick VARCHAR2(150) NOT NULL,
+memberPw VARCHAR2(100) NOT NULL,
+memberBirth NUMBER NOT NULL,
+memberTel VARCHAR2(100) NOT NULL,
+memberGender VARCHAR2(100) NOT NULL,
+genre VARCHAR2(150) NOT NULL,
+subcheck VARCHAR2(100) NOT NULL,
+postcode VARCHAR2(100) NOT NULL,
+roadaddress VARCHAR2(100) NOT NULL,
+jibunaddress VARCHAR2(100) NOT NULL,
+detailaddress VARCHAR2(100),
+extraaddress VARCHAR2(100)
 );
 
 CREATE TABLE Genre (
@@ -138,7 +141,7 @@ CREATE TABLE Favorite (
 CREATE TABLE Score (
  memberNo NUMBER NOT NULL,
  episodeNo NUMBER NOT NULL,
- score NUMBER DEFAULT 0
+ score NUMBER NOT NULL
 );
 
 -------------------------------------------------------------

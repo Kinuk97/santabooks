@@ -11,7 +11,7 @@
 	<table class="table" style="border: 1px solid #CCC; border-collapse: separate;">
 	  <tbody>
 	    <tr>
-	      <td rowspan="3" colspan="2" class="img_wrap">
+	      <td rowspan="3" colspan="2" class="img_wrap" style="width: 17%;">
 	      <c:choose>
 	      	<c:when test="${novel.imgOriginName != null }">
 		    	<img src="/upload/${novel.imgStoredName }"alt="...">
@@ -21,23 +21,13 @@
 	      	</c:otherwise>
 	      </c:choose>
 	      </td>
-	      <td>${novel.title }</td>
-	      <td>${novel.memberName }</td>
+	      <td style="width: 55%;">${novel.title }</td>
+	      <td style="width: 28%;">${novel.memberName }</td>
 	    </tr>
 	    <tr>
 	      <td colspan="2" style="padding-top: 10px;">
 	        <div style="height: 65px;">${novel.discription }</div>
    	        <div>
-   	        <c:forEach begin="1" end="5" step="1" varStatus="i">
-	    	<c:choose>
-	    		<c:when test="${i.count <= novel.score }">
-			    <img alt="..." src="/resources/images/novel/star-fill.svg" class="icon">
-	    		</c:when>
-	    		<c:otherwise>
-			    <img alt="..." src="/resources/images/novel/star.svg" class="icon">
-	    		</c:otherwise>
-	    	</c:choose>
-	        </c:forEach>
    	        <button class="btn btn-warning" style="float: right"><img alt="..." src="/resources/images/novel/heart.svg" class="icon"></button>
    	        </div>
    	        <div style="clear: both;"></div>
@@ -50,6 +40,18 @@
 		  <ul class="list-group list-group-flush">
 		    <li class="list-group-item">
 		    	<b>${episode.title }</b>
+		    	<span>
+		    	<c:forEach begin="1" end="5" step="1" varStatus="i">
+		    	<c:choose>
+		    		<c:when test="${i.count <= episode.score }">
+				    <img alt="..." src="/resources/images/novel/star-fill.svg" class="icon">
+		    		</c:when>
+		    		<c:otherwise>
+				    <img alt="..." src="/resources/images/novel/star.svg" class="icon">
+		    		</c:otherwise>
+		    	</c:choose>
+	        	</c:forEach>
+		    	</span>
 		    	<span style="float: right;">${episode.addDate }</span>
 		    	<hr>
 		    	<div>${episode.content }</div>

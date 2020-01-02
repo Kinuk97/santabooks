@@ -108,5 +108,11 @@
     </form>
     <div class="hint-text small">Don't have an account? <a href="/member/join" class="text-success">Register Now!</a></div>
 </div>
+
+
+
+
+
+
 </body>
 </html>

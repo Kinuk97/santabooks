@@ -8,5 +8,7 @@ public interface MemberDao {
 
 	public int selectByMemberId(Member member);
 
+	public Object selectAll();
+
 
 }

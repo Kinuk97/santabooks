@@ -17,7 +17,7 @@
 
 
 	<select id="getInfo" parameterType="String" resultType="com.santabooks.member.dto.Member">
-		SELECT memberName, memberTel FROM member
+		SELECT memberName, memberTel, postcode, roadaddress, jibunaddress, detailaddress, extraaddress FROM member
 		WHERE memberId = #{id}
 	</select>
 	
@@ -27,6 +27,12 @@
 		SELECT memberNo FROM member
 		WHERE memberID = #{memberId}
 	
+	</select>
+	
+	<select id="getsubNo" parameterType="String" resultType="com.santabooks.subscribe.dto.Subscription">
+	select subscription.subNo from member,subscription 
+	WHERE member.memberNo = subscription.memberNo
+	AND member.memberId = #{memberId}
 	</select>
 
 </mapper>

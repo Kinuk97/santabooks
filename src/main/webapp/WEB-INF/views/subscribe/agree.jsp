@@ -41,7 +41,7 @@ function nochk() {
 <br>
 <div class="page-header"><h2>정기구독</h2></div><span class="text-secondary">이용약관</span><hr><br>
 
-
+${subscription.subNo }
 
 <div style="text-align: center; width:630px;">
 <button type="button" class="btn btn-secondary" style="width: 200px;" >1. 이용약관 동의</button>
