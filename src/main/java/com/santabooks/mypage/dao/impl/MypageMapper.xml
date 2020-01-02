@@ -6,16 +6,15 @@
   
 <mapper namespace="com.santabooks.mypage.dao.face.MypageDao">
 
-<select id="selectById" parameterType="String" resultType="com.santabooks.member.dto.Member">
-		SELECT memberName, memberId, memberNick FROM member
+<select id="selectByNo" parameterType="int" resultType="com.santabooks.member.dto.Member">
+		SELECT memberNo, memberName, memberId, memberNick FROM member
 		WHERE 1=1
-			AND memberId = #{value }
-			AND memberId = #{memberId }
+			AND memberNo = #{no }
 </select>
 	
 <select id="infoUpdateView" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.member.dto.Member">
 		SELECT * FROM member
-		WHERE memberId = #{memberId}
+		WHERE memberId = #{memberId }
 </select>
 	
 <update id="infoUpdate" parameterType="com.santabooks.member.dto.Member">
@@ -28,6 +27,7 @@
 		SELECT
 			qnaNo
 			, memberNo
+			, memberNick
 			, qnaTitle
 			, qnaContent
 			, writeDate
@@ -60,6 +60,11 @@
 		) CNT
 	</select>
 	
+	<insert id="write" parameterType="com.santabooks.mypage.dto.QnA">
+		INSERT INTO QnA( qnaNo, memberNo, qnaTitle, qnaContent, writeDate, hit)
+		VALUES( qna_seq.nextval, #{memberNo }, #{qnaTitle }, #{qnaContent }, #{writeDate }, #{hit }, ( SELECT memberId FROM member WHERE memberId=#{memberId } ), #{qnaContent } )
+	</insert>
+	
 	<select id="selectCnt" parameterType="com.santabooks.member.dto.Member" resultType="int">
 		SELECT count(*) FROM member
 		WHERE memberId = #{memberId }
@@ -76,5 +81,22 @@
 		DELETE member
 		WHERE memberId = #{memberId}
 	</delete>
+	
+	<select id="selectCntPw" parameterType="com.santabooks.member.dto.Member" resultType="int">
+		SELECT count(*) FROM member 
+		WHERE memberPw = #{memberPw }
+		AND memberId = #{memberId }
+	</select>
+	
+	<update id="updateHit" parameterType="com.santabooks.mypage.dto.QnA">
+		UPDATE QnA
+		SET hit = hit + 1
+		WHERE qnaNo = #{qnaNo }
+	</update>
+	
+	<select id="selectQnaByQnaNo" parameterType="com.santabooks.mypage.dto.QnA">
+		<include refid="selectBoard"/>
+		WHERE qnaNo = #{qnaNo }
+	</select>
 	
 </mapper>

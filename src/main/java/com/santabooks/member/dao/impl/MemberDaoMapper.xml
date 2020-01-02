@@ -6,8 +6,8 @@
 
 	<select id="join"
 		parameterType="com.santabooks.member.dto.Member">
-		INSERT INTO member (memberNo, memberId, memberName, memberNick, memberPw, memberBirth, memberTel, memberAdd, memberGender, genre, subcheck  )
-		VALUES (member_seq.nextval, #{memberId }, #{memberName }, #{memberNick }, #{memberPw }, #{memberBirth }, #{memberTel }, #{memberAdd }, #{memberGender }, #{genre }, #{subcheck } )
+		INSERT INTO member (memberNo, memberId, memberName, memberNick, memberPw, memberBirth, memberTel, memberGender, genre, subcheck, postCode, roadAddress, jibunAddress, detailAddress, extraAddress  )
+		VALUES (member_seq.nextval, #{memberId }, #{memberName }, #{memberNick }, #{memberPw }, #{memberBirth }, #{memberTel }, #{memberGender }, #{genre }, #{subcheck }, #{postCode }, #{roadAddress }, #{jibunAddress }, #{detailAddress }, #{extraAddress } )
 		
 	</select>
 

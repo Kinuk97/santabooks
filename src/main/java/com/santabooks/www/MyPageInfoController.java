@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.mypage.dto.QnA;
@@ -26,16 +27,16 @@ public class MyPageInfoController {
 	
 	@RequestMapping(value = "/mypage/main", method = RequestMethod.GET)
 	public void main(HttpSession session, Model model) {
+		
+		int no = (int)session.getAttribute("MemberNo");
+		
+		Member info = mypageService.info(no);
 		   
-		   String id = (String)session.getAttribute("MemberId");
+		model.addAttribute("info", info);
 		   
-		   Member info = mypageService.info(id);
+		logger.info("개인정보조회 요청");
 		   
-		   model.addAttribute("info", info);
-		   
-		   logger.info("개인정보조회 요청");
-		   
-	   }
+	}
 	
 	@RequestMapping(value = "/mypage/infoUpdate", method = RequestMethod.GET)
 	public void infoUpdate(Member member, HttpSession session, Model model) {
@@ -45,6 +46,7 @@ public class MyPageInfoController {
 		
 		logger.info(member.toString());
 		logger.info("개인정보수정 요청");
+		
 	}
 	
 	@RequestMapping(value="/mypage/infoUpdate", method=RequestMethod.POST)
@@ -52,6 +54,22 @@ public class MyPageInfoController {
 		mypageService.infoUpdate(member);
 		
 		return "redirect:/mypage/main?memberId="+member.getMemberId();
+	}
+	
+	@RequestMapping(value = "/mypage/infoPwChk", method = RequestMethod.POST)
+	public ModelAndView infoPwChk(Member member, HttpSession session, String memberPw, ModelAndView mav) {
+		
+		
+		member.setMemberId((String)session.getAttribute("MemberId"));
+		System.out.println(session.getAttribute("MemberId"));
+		member.setMemberPw(memberPw);
+		
+		int result = mypageService.infoPwChk(member);
+		
+		mav.addObject("password", result);
+		mav.setViewName("jsonView");
+		
+		return mav;
 	}
 	
 	@RequestMapping(value="/mypage/deletePwChk", method=RequestMethod.GET)
@@ -97,6 +115,11 @@ public class MyPageInfoController {
 		return "/main";
 	}
 	
+	@RequestMapping(value = "/mypage/qna", method = RequestMethod.GET)
+	public void qna() {
+		logger.info("고객센터 요청");
+	}
+	
 	@RequestMapping(value = "/mypage/qnaList", method = RequestMethod.GET)
 	public void list(Paging inData, Model model) {
 		
@@ -106,8 +129,42 @@ public class MyPageInfoController {
 		
 		List<QnA> list = mypageService.list(paging);
 		model.addAttribute("list", list);
-		
+
 		logger.info("문의 요청");
+	}
+	
+	@RequestMapping(value = "/mypage/qnaWrite", method = RequestMethod.GET)
+	public void qnaWrite() {
+		logger.info("문의글쓰기 요청");
+	}
+	
+	@RequestMapping(value = "/mypage/qnaWrite", method = RequestMethod.POST)
+	public String qnaWriteProc(Member member, HttpSession session) {
+		
+		// 작성자 아이디 추가
+		member.setMemberId((String) session.getAttribute("MemberId"));
+
+		mypageService.write(member);
+
+		logger.info("문의글쓰기 요청");
+
+		return "redirect:/qna/list";
+				
+	}
+	
+	@RequestMapping(value="/mypage/qnaView", method=RequestMethod.GET)
+	public String view( QnA viewQna, Model model, HttpSession session) {
+		
+		// 게시글 번호가 1보다 작으면 목록으로 보내기
+		if(viewQna.getQnaNo() < 1) {
+			return "redirect:/mypage/qnaList";
+		}
+		
+		// 게시글 상세 정보 전달
+		viewQna = mypageService.qnaView(viewQna);
+		model.addAttribute("viewQna", viewQna);
+
+		return "/mypage/qnaView";
 	}
 	
 	@RequestMapping(value = "/mypage/subInfo", method = RequestMethod.GET)

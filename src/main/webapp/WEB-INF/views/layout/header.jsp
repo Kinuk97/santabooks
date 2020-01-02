@@ -8,7 +8,7 @@
 <title>SantaBooks</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <link href="/resources/css/common.css" rel="stylesheet">
@@ -57,6 +57,7 @@
 					</c:if>
 					<c:if test="${login}">	
 						<span>
+							<a href="/mypage/main">마이페이지 |</a>
 							<a href="/member/logout">로그아웃</a>
 						</span>
 					</c:if>

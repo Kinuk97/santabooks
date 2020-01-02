@@ -22,20 +22,72 @@ jQuery(document).ready(function($) {
 });
 </script>
 
+
 <script type="text/javascript">
 $(document).ready(function() {
 	
+	$('#memberPw').blur(function() {
+		var memberPw = $('#memberPw').val();
+			console.log(memberPw)
+			$.ajax({
+				
+				type:"post",
+				url:"/mypage/infoPwChk",
+				data: {"memberPw" : memberPw},
+				datatype:"json",
+				success : function(res){
+					
+					if(res.password == 1) {
+						console.log("결과값 1")
+						$('#blurPw').css('color','green')
+						$('#blurPw').text('현재 비밀번호가 일치합니다.')
+					} else {
+						console.log("결과값2")
+						$('#blurPw').css('color','red')
+						$('#blurPw').text('현재 비밀번호가 일치하지않습니다.')
+					}
+					
+				}, error : function(e) {
+					console.log(e)
+				}
+			})
+		})
+		
+});
+</script>
+
+<script type="text/javascript">
 	//작성버튼 동작
 	$("#btnUpdate").click(function() {
 		alert("수정 되었습니다.");
 	});
-	
 	//취소버튼 동작
 	$("#btnCancel").click(function() {
 		alert("취소 하시겠습니까?");
 		history.go(-1);
 	});
-});
+</script>
+
+<script type="text/javascript">
+	$(function() {
+		$("#alert-success").hide();
+		$("#alert-danger").hide();
+		$("input").keyup(function() {
+			var memberPwUp = $("#memberPwUp").val();
+			var memberPwChk = $("#memberPwChk").val();
+			if (memberPwUp != "" || memberPwChk != "") {
+				if (memberPwUp == memberPwChk) {
+					$("#alert-success").show();
+					$("#alert-danger").hide();
+					$("#submit").removeAttr("disabled");
+				} else {
+					$("#alert-success").hide();
+					$("#alert-danger").show();
+					$("#submit").attr("disabled", "disabled");
+				}
+			}
+		});
+	});
 </script>
 
 <style type="text/css">
@@ -70,16 +122,35 @@ $(document).ready(function() {
   </div>
   <div class="col-md-4"> 
   <a href="/member/check" target="_blank">
-  <button id = "nickcheck" class="btn btn-success">중복검사</button> </a>
+  <button id = "nickcheckChk" class="btn btn-success">중복검사</button> </a>
   </div>
   <div class="col-md-1"></div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
 <div class="row">
   <div class="col-md-1"></div>
+  <div class="col-md-2" style="font-size: 20px;">현재 비밀번호</div>
+  <div class="col-md-4">
+  <input type="password" class="form-control" id="memberPw" name="memberPw" placeholder="현재 비밀번호를 입력하세요." required/>
+  <div class="pw_font" id="blurPw"></div>
+</div>
+</div>
+<div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
+<div class="row">
+  <div class="col-md-1"></div>
   <div class="col-md-2" style="font-size: 20px;">수정 비밀번호</div>
   <div class="col-md-4">
-  <input type="password" class="form-control" id="memberPw" name="memberPw" placeholder="변경할 비밀번호를 입력하세요." value="${view.memberPw }" />
+  <input type="password" class="form-control" id="memberPwUp" name="memberPwUp" placeholder="변경할 비밀번호를 입력하세요." required/>
+</div>
+</div>
+<div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-2" style="font-size: 20px;">수정 비밀번호 확인</div>
+  <div class="col-md-4">
+  <input type="password" class="form-control" id="memberPwChk" name="memberPwChk" placeholder="변경할 비밀번호를 입력하세요." required/>
+  <div class="alert alert-success" id="alert-success">수정 비밀번호가 일치</div>
+  <div class="alert alert-danger" id="alert-danger">수정 비밀번호가 일치하지 않음</div>
 </div>
 </div>
 <div class="row"><br><div class="col-lg-1"></div><div class = "col-md-8"><hr></div><br><div class="col-lg-2"></div></div>
@@ -152,7 +223,7 @@ $(document).ready(function() {
        <button type="submit" id="btnUpdate" class="btn btn-info">정보 수정</button>
          <button type="button" id="btnCancel" class="btn btn-danger">취소</button>
 </div>
-
+fxgfgdfhgdfdh
 </form>
 </div>
 

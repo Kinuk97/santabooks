@@ -10,7 +10,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#btnWrite").click(function() {
-		$(location).attr("href", "/board/write");
+		$(location).attr("href", "/mypage/qnaWrite");
 	});
 })
 </script>
@@ -43,7 +43,7 @@ td:nth-child(2) {
 <thead>
 	<tr>
 		<th style="width: 10%">글번호</th>
-		<th style="width: 10%">회원번호</th>
+		<th style="width: 10%">회원닉네임</th>
 		<th style="width: 30%">제목</th>
 		<th style="width: 25%">내용</th>
 		<th style="width: 15%">작성일</th>
@@ -54,8 +54,8 @@ td:nth-child(2) {
 <c:forEach items="${list }" var="q">
 	<tr>
 		<td>${q.qnaNo }</td>
-		<td>${q.memberNo }</td>
-		<td><a href="/mypage/qnaList?qnaNo=${q.qnaNo }">${q.qnaTitle }</a></td>
+		<td>${q.memberNick }</td>
+		<td><a href="/mypage/qnaView?qnaNo=${q.qnaNo }">${q.qnaTitle }</a></td>
 		<td>${q.qnaContent }</td>
 		<td>${q.writeDate }</td>
 		<td>${q.hit }</td>
