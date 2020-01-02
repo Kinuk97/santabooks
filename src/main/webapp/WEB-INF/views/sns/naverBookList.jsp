@@ -4,6 +4,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#bookTable").click(function(){
+		$(location).attr("href", "https://book.naver.com/search/search.nhn?sm=sta_hty.book&sug=&where=nexearch&query=${keyword}");
+	})
+});
+</script>
+
 <style type="text/css">
 
 #searchBtn {
@@ -31,7 +39,7 @@
 			</center>
 		</div>
 		<br><br>
-    <table>
+   <table id="bookTable">
         <tr>
             <td colspan="7" width="100%" bgcolor="pink"></td>
         </tr>

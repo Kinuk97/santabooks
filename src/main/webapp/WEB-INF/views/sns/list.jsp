@@ -77,16 +77,24 @@ body {
 	position: absolute; 
 	z-index: 1; 
 	right: 4px; 
-	top: 80px; 
-	width: 300px; 
+	width: 300px;
+	top: 80px;  
 	border: 2px solid rgba(20, 121, 87, .25);
+	
 }
 
 #searchBtn{
-	width:100px;
+	width:70px;
 	background-color:rgba(20, 121, 87,.25); 
 	border:none; 
 	color: black;
+}
+#naverSearch{
+	position: absolute; 
+	z-index: 1; 
+	right: 20px; 
+	width: 300px; 
+	
 }
 
 </style>
@@ -95,8 +103,26 @@ body {
 </head>
 
 	<div class="container" style="width:950px" >
-	<br>
-		<div id="search">
+		<br>
+		<div>
+			<center>
+				<form action="/sns/list" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+					<div class="input-group">
+					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하세요" 
+					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
+					 <div class="input-group-append">
+					<button class="btn btn-primary" id ="searchBtn" type="submit">검색</button>
+					</div>
+					</div>
+				</form>
+			</center>
+		</div>
+		<br><br>
+		<div style="position: relative;">
+
+			<div style="position: absolute; z-index: 1; right: 4px; top: 4px;">
+			<div id="naverSearch">
+			&nbsp;&nbsp;&nbsp;&nbsp;<img src="/resources/images/naver.ico" style="height:20px;">&nbsp;<small style="font-weight: bold;">네이버 검색</small>
 			<center>
 				<form action="/book/list" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
@@ -107,18 +133,14 @@ body {
 					</div>
 					</div>
 				</form>
-
 			</center>
-		</div>
+			</div>
+			<br>
 			
-		<br><br>
-		<div style="position: relative;">
-
-			<div id="bookRecommand" style="position: absolute; z-index: 1; right: 4px; top: 4px;">
-				
-				<div class="card sidenav" style="height: 710px;">
+				<div class="card sidenav" id="bookRecommand" style="height: 630px;">
 					<div class="card-text">책추천 들어갈 예정</div>
 				</div>
+				
 			</div>
 
 				<c:forEach items="${reviewList }" var="review">

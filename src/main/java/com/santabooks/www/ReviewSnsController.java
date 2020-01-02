@@ -82,6 +82,7 @@ public class ReviewSnsController {
 			mav.addObject("bookList", reviewSnsService.searchBook(keyword, 10, 1));
 		}
 		mav.setViewName("/sns/naverBookList");
+		mav.addObject("keyword", keyword);
 		return mav;
 	}
 
