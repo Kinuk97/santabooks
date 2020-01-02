@@ -18,7 +18,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 
 		try {
-			if ((boolean) session.getAttribute("login")) {
+			if (Boolean.parseBoolean(session.getAttribute("login").toString())) {
 				return true;
 			}
 		} catch (NullPointerException e) {
