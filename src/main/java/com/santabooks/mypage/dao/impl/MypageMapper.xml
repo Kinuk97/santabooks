@@ -27,6 +27,7 @@
 		SELECT
 			qnaNo
 			, memberNo
+			, memberNick
 			, qnaTitle
 			, qnaContent
 			, writeDate
@@ -85,6 +86,17 @@
 		SELECT count(*) FROM member 
 		WHERE memberPw = #{memberPw }
 		AND memberId = #{memberId }
+	</select>
+	
+	<update id="updateHit" parameterType="com.santabooks.mypage.dto.QnA">
+		UPDATE QnA
+		SET hit = hit + 1
+		WHERE qnaNo = #{qnaNo }
+	</update>
+	
+	<select id="selectQnaByQnaNo" parameterType="com.santabooks.mypage.dto.QnA">
+		<include refid="selectBoard"/>
+		WHERE qnaNo = #{qnaNo }
 	</select>
 	
 </mapper>

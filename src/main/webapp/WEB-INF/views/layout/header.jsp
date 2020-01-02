@@ -57,6 +57,7 @@
 					</c:if>
 					<c:if test="${login}">	
 						<span>
+							<a href="/mypage/main">마이페이지 |</a>
 							<a href="/member/logout">로그아웃</a>
 						</span>
 					</c:if>

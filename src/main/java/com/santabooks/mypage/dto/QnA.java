@@ -4,6 +4,7 @@ public class QnA {
 	
 	private int qnaNo;
 	private int memberNo;
+	private String memberNick;
 	private String qnaTitle;
 	private String qnaContent;
 	private String writeDate;
@@ -11,8 +12,8 @@ public class QnA {
 	
 	@Override
 	public String toString() {
-		return "QnA [qnaNo=" + qnaNo + ", memberNo=" + memberNo + ", qnaTitle=" + qnaTitle + ", qnaContent="
-				+ qnaContent + ", writeDate=" + writeDate + ", hit=" + hit + "]";
+		return "QnA [qnaNo=" + qnaNo + ", memberNo=" + memberNo + ", memberNick=" + memberNick + ", qnaTitle="
+				+ qnaTitle + ", qnaContent=" + qnaContent + ", writeDate=" + writeDate + ", hit=" + hit + "]";
 	}
 
 	public int getQnaNo() {
@@ -29,6 +30,14 @@ public class QnA {
 
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+	}
+
+	public String getMemberNick() {
+		return memberNick;
+	}
+
+	public void setMemberNick(String memberNick) {
+		this.memberNick = memberNick;
 	}
 
 	public String getQnaTitle() {

@@ -51,7 +51,6 @@ $(document).ready(function() {
 					console.log(e)
 				}
 			})
-
 		})
 		
 });
@@ -62,7 +61,6 @@ $(document).ready(function() {
 	$("#btnUpdate").click(function() {
 		alert("수정 되었습니다.");
 	});
-
 	//취소버튼 동작
 	$("#btnCancel").click(function() {
 		alert("취소 하시겠습니까?");
@@ -225,7 +223,7 @@ $(document).ready(function() {
        <button type="submit" id="btnUpdate" class="btn btn-info">정보 수정</button>
          <button type="button" id="btnCancel" class="btn btn-danger">취소</button>
 </div>
-
+fxgfgdfhgdfdh
 </form>
 </div>
 

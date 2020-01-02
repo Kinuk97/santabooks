@@ -129,7 +129,7 @@ public class MyPageInfoController {
 		
 		List<QnA> list = mypageService.list(paging);
 		model.addAttribute("list", list);
-		
+
 		logger.info("문의 요청");
 	}
 	
@@ -150,6 +150,21 @@ public class MyPageInfoController {
 
 		return "redirect:/qna/list";
 				
+	}
+	
+	@RequestMapping(value="/mypage/qnaView", method=RequestMethod.GET)
+	public String view( QnA viewQna, Model model, HttpSession session) {
+		
+		// 게시글 번호가 1보다 작으면 목록으로 보내기
+		if(viewQna.getQnaNo() < 1) {
+			return "redirect:/mypage/qnaList";
+		}
+		
+		// 게시글 상세 정보 전달
+		viewQna = mypageService.qnaView(viewQna);
+		model.addAttribute("viewQna", viewQna);
+
+		return "/mypage/qnaView";
 	}
 	
 	@RequestMapping(value = "/mypage/subInfo", method = RequestMethod.GET)

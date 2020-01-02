@@ -34,4 +34,8 @@ public interface MypageDao {
 
 	public int selectCntPw(Member member);
 
+	public QnA selectQnaByQnaNo(QnA viewQna);
+
+	public void updateHit(QnA viewQna);
+
 }

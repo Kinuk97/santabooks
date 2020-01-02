@@ -76,6 +76,12 @@ public class MypageServiceImpl implements MypageService {
 	public int infoPwChk(Member member) {
 		return mypageDao.selectCntPw(member);
 	}
-	
+
+	@Override
+	public QnA qnaView(QnA viewQna) {
+		mypageDao.updateHit(viewQna);
+		
+		return mypageDao.selectQnaByQnaNo(viewQna);
+	}
 	
 }

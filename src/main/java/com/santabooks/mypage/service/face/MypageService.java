@@ -40,4 +40,6 @@ public interface MypageService {
 
 	public int infoPwChk(Member member);
 
+	public QnA qnaView(QnA viewQna);
+
 }
