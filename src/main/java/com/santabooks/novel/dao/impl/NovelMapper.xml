@@ -23,9 +23,14 @@
 	<select id="selectNovelList" resultType="com.santabooks.novel.dto.Novel" parameterType="com.santabooks.util.Paging">
 		select * from (
 			select rownum rnum, B.* FROM (
-				select novel.*, (
+				select novel.*,
+				(
 					SELECT membername FROM member WHERE novel.memberNo = memberno
-				) AS memberName from novel
+				) AS memberName,
+				(
+					SELECT avg(score) FROM episode WHERE novelNo = novel.novelNO
+				) AS score
+				from novel
 		
 			<trim prefix="WHERE" prefixOverrides="AND">
 				<if test="search != null and search != ''">
@@ -35,25 +40,33 @@
 					AND category = #{category}
 				</if>
 			</trim>
-				
+			
 				order by novelNo desc
-		
 				) B ORDER BY rnum
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
 	
 	<select id="selectNovelByNovelNo" parameterType="com.santabooks.util.Paging" resultType="com.santabooks.novel.dto.Novel">
-		SELECT novel.*, (
+		SELECT novel.*, 
+		(
 			SELECT membername FROM member WHERE novel.memberNo = memberno
-		) AS memberName
+		) AS memberName,
+		(
+			SELECT avg(score) FROM episode WHERE novelNo = novel.novelNO
+		) AS score
 		FROM novel WHERE novelNo = #{novelNo}
 	</select>
 	
 	<select id="selectBestNovel" resultType="com.santabooks.novel.dto.Novel">
 		 SELECT * FROM (
-	     	SELECT novel.*, (
+	     	SELECT novel.*, 
+	     	(
 				SELECT membername FROM member WHERE novel.memberNo = memberno
-			) AS memberName FROM novel
+			) AS memberName,
+			(
+				SELECT avg(score) FROM episode WHERE novelNo = novel.novelNO
+			) AS score
+			 FROM novel
 			<if test="category gt 0 and category lt 5">
 		     	WHERE category = #{category}
 	     	</if>
@@ -78,7 +91,6 @@
 		<selectKey order="BEFORE" keyColumn="novelNo" keyProperty="novelNo" resultType="int">
 		SELECT novel_seq.nextval AS novelNo FROM dual
 		</selectKey>
-		
 		INSERT INTO novel (novelNo, memberNo, title, discription, category)
 					VALUES (#{novelNo}, #{memberNo}, #{title}, #{discription}, #{category})
 	</insert>
@@ -95,8 +107,10 @@
 			SELECT episode_seq.nextval AS episodeNo FROM dual
 		</selectKey>
 		
-		INSERT INTO episode (episodeNo, novelNo, title, content)
-					VALUES (#{episodeNo}, #{novelNo}, #{title}, #{content})
+		INSERT INTO episode (episodeNo, novelNo, title, content, score)
+					VALUES (#{episodeNo}, #{novelNo}, #{title}, #{content}, 
+						(SELECT avg(score) FROM score WHERE episodeNo = #{episodeNo} )
+					)
 	</insert>
 	
 </mapper>

@@ -35,7 +35,7 @@ public class MemberController {
 		if (joinResult) {
 			logger.info("회원가입 성공");
 			model.addAttribute("msg", "회원가입 성공");
-			model.addAttribute("url", "/member/welcome_join");
+			model.addAttribute("url", "/member/genre");
 		} else {
 			logger.info("회원가입 실패");
 			model.addAttribute("msg", "회원가입 실패");
@@ -47,6 +47,14 @@ public class MemberController {
 	
 	@RequestMapping(value="/member/welcome_join", method=RequestMethod.GET)
 	public void joinSuccess() {
+		
+	
+		
+		
+	}
+	@RequestMapping(value="/member/genre", method=RequestMethod.GET)
+	public void joinsuccess() {
+		
 	}
 
 }

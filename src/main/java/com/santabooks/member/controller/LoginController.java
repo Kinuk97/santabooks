@@ -51,6 +51,7 @@ public class LoginController {
 			
 			logger.info("세션상태 : " + session.getAttribute("login"));
 			logger.info("세션 아이디 : " + session.getAttribute("MemberId"));
+			logger.info("닉네임 : "  + session.getAttribute("MemberNick"));
 			
 		} else {
 			logger.info("로그인실패");
