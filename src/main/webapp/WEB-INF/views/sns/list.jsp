@@ -9,6 +9,7 @@
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 
 * {
@@ -109,6 +110,20 @@ body {
 
 </style>
 
+<script type="text/javascript">
+$(document).ready(function() {
+	$(window).scroll(function() {
+		   if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+			   $("#stickyBox").css("position", "static");
+			   console.log(1)
+		   }
+		   else {
+			   $("#stickyBox").css("position", "sticky");
+			   console.log(2)
+		   }
+	});
+})
+</script>
 
 </head>
 
@@ -116,6 +131,7 @@ body {
 		<br>
 		<div>
 			<center>
+				<h3 style="font-weight: bold;">🔍리뷰 검색</h3>
 				<form action="/sns/list" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
 					<select name="searchType" class="bg-light border-0">
@@ -125,25 +141,25 @@ body {
 					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하세요" 
 					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
 					 <div class="input-group-append">
-					<button class="btn btn-primary" id ="searchBtn" type="submit">검색</button>
+					<button class="btn btn-primary" id ="searchBtn" type="submit"><i class="fas fa-search"></i></button>
 					</div>
 					</div>
 				</form>
 			</center>
 		</div>
-		<br><br>
+		<br>
 		<div style="position: relative;">
 
-			<div style="position: sticky; z-index: 1; right: 4px; top: 4px;">
+			<div id="stickyBox" style="position: sticky; z-index: 1; right: 4px; top: 4px;">
 			<div id="santaSearch">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small style="font-weight: bold;">🎅&nbsp;산타북스 책 검색</small>
 			<center>
 				<form action="/sns/santabookslist" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
-					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하세요" 
+					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목, 작가를 입력하세요" 
 					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
 					 <div class="input-group-append">
-					<button class="btn btn-primary" id ="searchBtn" type="submit">검색</button>
+					<button class="btn btn-primary" id ="searchBtn" type="submit"><i class="fas fa-search"></i></button>
 					</div>
 					</div>
 				</form>
@@ -155,10 +171,10 @@ body {
 			<center>
 				<form action="/book/list" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
-					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하세요" 
+					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목, 작가를 입력하세요" 
 					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
 					 <div class="input-group-append">
-					<button class="btn btn-primary" id ="searchBtn" type="submit">검색</button>
+					<button class="btn btn-primary" id ="searchBtn" type="submit"><i class="fas fa-search"></i></button>
 					</div>
 					</div>
 				</form>

@@ -75,7 +75,7 @@ public class ReviewSnsController {
 	@RequestMapping("/book/list")
 	public ModelAndView bookList(@RequestParam(required = false) String keyword) {
 		ModelAndView mav = new ModelAndView();
-
+		
 		if (keyword != null) {
 			mav.addObject("bookList", reviewSnsService.searchBook(keyword, 10, 1));
 		}

@@ -71,16 +71,25 @@
 </script>
 
 
+<!-- 날짜 추가하는 메소드 -->
+
 <script type="text/javascript">
-// 날짜 추가하는 메소드
-$(function() {
-	$("#testDatepicker").datepicker({
-		dateFormat : "yymmdd"
-	});
+$(document).ready(function(){       
+       $( "#testDatepicker" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showMonthAfterYear: true,
+            dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+            dateFormat:'yymmdd',
+       
+       });
+
 });
 </script>
 
 <!-- 비밀번호 -->
+
+
 <script type="text/javascript">
 	$(function() {
 		$("#alert-success").hide();
@@ -434,10 +443,10 @@ $(document).ready(function() {
 						</div>
 					</div>
 
-
+					<!-- 구독여부 필수 값으로, 처음 가입시에 N으로 값을 지정한다. -->
 					<input type = "hidden" name = "subcheck" value="n" />
 					
-					
+					<!-- 기존 사용했던 구독 여부  -->
 <!-- 					<div class="form-group"> -->
 <!-- 						<div class="col-xs-3 control-label"> -->
 <!-- 							<label id="subcheck">구독여부</label> -->
@@ -450,9 +459,7 @@ $(document).ready(function() {
 <!-- 							<label><input type="radio" name="subcheck" value="n" -->
 <!-- 								checked="checked" /> 구독 안함</label> -->
 <!-- 						</div> -->
-						<!-- 							<div class="col-xs-6"> -->
-						<!-- 								<input type="radio" name="subcheck" value="female" />추후삭제 -->
-						<!-- 							</div> -->
+
 					</div>
 					<div class="form-group">
 						<div class="text-center">
