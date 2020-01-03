@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.member.service.face.LoginService;
@@ -87,29 +89,9 @@ public class LoginController {
 		return "/member/find_pw";
 	}
 	
-	
-//	//닉네임확인
-//	@RequestMapping(value="/member/join_nickcheck", method = RequestMethod.POST)
-//	public String nickcheck(HttpServletRequest req) throws IOException {
-//		
-//		 logger.info("닉네임 확인");
-//		 
-//		 String memberId = req.getParameter("memberId");
-//		 Member nickCheck = service.nickCheck(memberId);
-//		 
-//		 int result = 0;
-//		 
-//		 if(nickCheck != null) {
-//		  result = 1;
-//		 } 
-//		 
-//		 return result;
-//		}
-//		
-//		
-//	}
-	
-	
-//	}
 
+	
 }
+	
+
+

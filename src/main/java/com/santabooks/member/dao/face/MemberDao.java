@@ -10,7 +10,7 @@ public interface MemberDao {
 
 	public Object selectAll();
 
-	public Member nickCheck(String memberId);
+	public int nickCheck(String memberId);
 
 
 }

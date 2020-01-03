@@ -34,5 +34,12 @@
 	WHERE member.memberNo = subscription.memberNo
 	AND member.memberId = #{memberId}
 	</select>
+	
+	<update id="updatecheck" parameterType="String">
+	UPDATE member SET subcheck = 'Y'
+	WHERE memberID = #{memberId}
+	
+	</update>
+	
 
 </mapper>

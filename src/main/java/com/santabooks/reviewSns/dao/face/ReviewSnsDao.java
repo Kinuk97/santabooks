@@ -93,6 +93,29 @@ public interface ReviewSnsDao {
 	 */
 	public int selectCntAll2(Paging paging);
 	
+	/**
+	 * 리뷰 삭제
+	 * 
+	 * @param reviewSns
+	 */
+	public void deleteReview(ReviewSns reviewSns);
+	
+	/**
+	 * 책 총 개수 조회
+	 * 
+	 * @param paging
+	 * @return
+	 */
+	public int selectCntAll3(Paging paging);
+	
+	/**
+	 * 책 리스트 조회
+	 * 
+	 * @param bookPaging
+	 * @return
+	 */
+	public List<Book> selectBook(Paging bookPaging);
+	
 	
 
 }

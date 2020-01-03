@@ -7,6 +7,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+<!-- jQuery 2.2.4 라이브러리 추가 -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+
 
 <title>::산타북스 회원가입::</title>
 
@@ -67,12 +72,12 @@
 
 
 <script type="text/javascript">
-	// 날짜 추가하는 메소드
-	$(function() {
-		$("#testDatepicker").datepicker({
-			dateFormat : "yymmdd"
-		});
+// 날짜 추가하는 메소드
+$(function() {
+	$("#testDatepicker").datepicker({
+		dateFormat : "yymmdd"
 	});
+});
 </script>
 
 <!-- 비밀번호 -->
@@ -81,10 +86,10 @@
 		$("#alert-success").hide();
 		$("#alert-danger").hide();
 		$("input").keyup(function() {
-			var pwd1 = $("#memberPW").val();
-			var pwd2 = $("#memberPwChk").val();
-			if (memberPW != "" || memberPwChk != "") {
-				if (memberPW == memberPwChk) {
+			var memberPw = $("input[id='memberPw']").val();
+			var memberPwChk = $("input[id='memberPwChk']").val();
+			if (memberPw != "" || memberPwChk != "") {
+				if (memberPw == memberPwChk) {
 					$("#alert-success").show();
 					$("#alert-danger").hide();
 					$("#submit").removeAttr("disabled");
@@ -96,42 +101,6 @@
 			}
 		});
 	});
-<%--   var idCheck = 0;
-   var nickCheck = 0;
-   var pwdCheck = 0;
-   //닉네임 체크하여 가입버튼 비활성화, 중복확인.
-   function checkNick() {
-        var nickname = $("#UserNick").val();
-        console.log(nickname);
-        $.ajax({
-            data : {
-                nickName : nickname
-            },
-            url : "/member/check",
-            success : function(data) {
-                if(nickname=="" && data=='0') {
-                    $(".signupbtn").prop("disabled", true);
-                    $(".signupbtn").css("background-color", "#aaaaaa");
-                    $("#UserNick").css("background-color", "#FFCECE");
-                    nickCheck = 0;
-                } else if (data == '0') {
-                    $("#UserNick").css("background-color", "#B0F6AC");
-                    nickCheck = 1;
-                    if(nickCheck ==1 && pwdCheck == 1) {
-                        $(".signupbtn").prop("disabled", false);
-                        $(".signupbtn").css("background-color", "#4CAF50");
-                    } 
-                } else if (data == '1') {
-                    $(".signupbtn").prop("disabled", true);
-                    $(".signupbtn").css("background-color", "#aaaaaa");
-                    $("#nickname").css("background-color", "#FFCECE");
-                    nickCheck = 0;
-                } 
-            }
-        });
-
-   } --%>
-	
 </script>
 
 
@@ -204,6 +173,58 @@
 	}
 </script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+	 $("#btn-membernick").on("click", function() {
+			var memberNick = $('#memberNick').val();
+
+			$.ajax({
+				url : "/member/join_nickcheck",
+				type : 'post',
+				data : {
+					"memberNick" : memberNick
+				},
+				datatype : "json",
+				success : function(res) {
+					console.log(res)
+					console.log(res.nickCheck);
+
+// 					if (res.nickCheck == 1) {
+// 						$('#nick_check').text('중복된 닉네임입니다')
+// 						$('#nick_check').css('color', 'red')
+// 						nick_Check = false;
+
+// 					} else {
+// 						if (nickCheck.test(membernick)) {
+// 							$('#nick_check').text('사용가능한 닉네임입니다')
+// 							$('#nick_check').css('color', 'green')
+// 							nick_Check = true;
+
+// 						} else if ($('#memberNick').val() == '') {
+// 							$('#nick_check').text('닉네임을 입력해주세요')
+// 							$('#nick_check').css('color', 'red')
+// 							nick_Check = false;
+
+// 						} else {
+// 							$('#nick_check').text('올바른 닉네임 형식이 아닙니다')
+// 							$('#nick_check').css('color', 'red')
+// 							nick_Check = false;
+
+// 						}
+// 					}
+					
+					if (res.nickCheck == 1) {
+						console.log("중복")
+					} else {
+						console.log("안중복")
+					}
+				}
+
+			})
+	 })
+})
+</script>
+
 
 
 
@@ -253,15 +274,16 @@
 
 					<div class="form-group">
 						<div class="col-xs-3 control-label">
-							<label id="memberNick">닉네임</label>
+							<label for="memberNick">닉네임</label>
 						</div>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" name="memberNick"
 								id="memberNick" placeholder="닉네임을 입력해주세요">
 						</div>
 						<div class="col-xs-3">
-							<input type="button" onclick="CheckNick" value="중복확인"
-								class="btn btn-primary nickCheck">
+							<input type="button" id="btn-membernick"
+								value="중복확인" class="btn btn-primary">
+							<div class="check_font" id="nick_check"></div>
 						</div>
 					</div>
 
@@ -412,18 +434,22 @@
 						</div>
 					</div>
 
-					<div class="form-group">
-						<div class="col-xs-3 control-label">
-							<label id="subcheck">구독여부</label>
-						</div>
-						<div class="col-xs-2">
-							<label><input type="radio" name="subcheck" value="y" />
-								구독</label>
-						</div>
-						<div class="col-xs-3">
-							<label><input type="radio" name="subcheck" value="n"
-								checked="checked" /> 구독 안함</label>
-						</div>
+
+					<input type = "hidden" name = "subcheck" value="n" />
+					
+					
+<!-- 					<div class="form-group"> -->
+<!-- 						<div class="col-xs-3 control-label"> -->
+<!-- 							<label id="subcheck">구독여부</label> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-xs-2"> -->
+<!-- 							<label><input type="radio" name="subcheck" value="y" /> -->
+<!-- 								구독</label> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-xs-3"> -->
+<!-- 							<label><input type="radio" name="subcheck" value="n" -->
+<!-- 								checked="checked" /> 구독 안함</label> -->
+<!-- 						</div> -->
 						<!-- 							<div class="col-xs-6"> -->
 						<!-- 								<input type="radio" name="subcheck" value="female" />추후삭제 -->
 						<!-- 							</div> -->
@@ -445,5 +471,5 @@
 
 				</form>
 			</div>
-
 		</div>
+	</div>

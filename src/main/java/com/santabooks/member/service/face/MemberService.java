@@ -8,10 +8,8 @@ import com.santabooks.member.dto.Member;
 public interface MemberService  {
 
 	public boolean join(Member writer);
-
-	public Object memberNickCheck(String usernick);
-
-	public Member nickCheck(String memberId) ;
+	
+	public int nickCheck(String memberNick) ;
 	
 
 }

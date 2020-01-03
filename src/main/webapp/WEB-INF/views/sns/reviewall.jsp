@@ -41,12 +41,32 @@ $(document).ready(function() {
 		history.go(-1);
 	});
 	
+	//알림 모달 호출 메서드
+	 function warningModal(content) {
+	    $(".modal-contents").text(content);
+	    $("#defaultModal").modal('show');
+	 }
+	
+	//삭제버튼 동작
+		$("#btnDelete").click(function() {
+	    	var feedNo = "";
+			feedNo = $(this).attr("data-feedNo");
+			
+			warningModal("리뷰를 삭제하시겠습니까?");
+	    	
+	    	$('#ok').click(function(){    		
+			$(this).attr("onclick", "location.href='/sns/remove?feedNo=" + feedNo + "';");
+
+	    	});
+		});
+	
 });
 </script>
 
 <hr>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-left" id='back'></i>
  <br><br>
+ <input type="hidden" value="${review.feedNo }" name="feedNo" />
  <input type="hidden" value="${bookName.bookName }" name="bookName">
 <h1 style="font-weight: bold;">&nbsp;&nbsp;리뷰(${bookName.bookName })</h1>
 <hr>
@@ -56,6 +76,9 @@ $(document).ready(function() {
 		<div class="column">
 			<div class="card" id="review">
 				<div class="card-text">
+				<c:if test="${MemberNo eq review.memberNo }">
+					<button id="btnDelete" style="float: right; border: none; font-size: 30px;" data-feedNo="${review.feedNo }">×</button>
+				</c:if>
 					<h5 style="font-weight: bold;">${review.memberNick }</h5>(작성자가 준 별점 들어갈 예정)
 					<hr>
 					<p>${review.review }</p>
@@ -74,6 +97,28 @@ $(document).ready(function() {
 	<br>
 </c:forEach>
 </div>
+
+<!--모달창 -->
+<div class="modal fade" id="defaultModal">
+	<div class="modal-dialog">
+		<div class="modal-content ">
+			<div class="modal-header panel-heading">
+				<h4 class="modal-title">알림</h4>
+			</div>
+			<div class="modal-body">
+				<p class="modal-contents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="ok">확인</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- 모달창 -->
 
 <jsp:include page="/WEB-INF/views/layout/paging2.jsp" />
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

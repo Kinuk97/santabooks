@@ -25,15 +25,11 @@ public class MemeberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public Object memberNickCheck(String usernick) {
-
-		return memberDao.selectAll();
-	}
-
-	@Override
-	public Member nickCheck(String memberId) {
+	public int nickCheck(String memberId) {
 		return memberDao.nickCheck(memberId);
 	}
+	
+	
 	
 	
 	
