@@ -13,5 +13,7 @@ public interface SubscribeService {
 
 	public Subscription getsubNo(String memberId);
 
+	public void updatecheck(String attribute);
+
 	
 }
