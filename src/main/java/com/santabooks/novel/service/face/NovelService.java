@@ -17,7 +17,7 @@ public interface NovelService {
 	 * @param member - memberNo
 	 * @return List<Novel>
 	 */
-	public List<Novel> getMyNovel(Member member);
+	public List<Novel> getMyNovel(Paging paging);
 	
 	/**
 	 * 내가 즐겨찾기한 소설 가져오기 (memberNo 필요)
@@ -25,7 +25,7 @@ public interface NovelService {
 	 * @param member - memberNo
 	 * @return List<Novel>
 	 */
-	public List<Novel> getMyNovelByFavorite(Member member);
+	public List<Novel> getMyNovelByFavorite(Paging paging);
 
 	/**
 	 * 소설 등록하기

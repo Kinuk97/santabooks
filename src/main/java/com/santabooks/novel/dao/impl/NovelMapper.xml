@@ -7,27 +7,36 @@
 
 	<!-- novel -->
 	<select id="selectMyNovel" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.novel.dto.Novel">
-		SELECT novel.*,
-		(
-			SELECT membername FROM member WHERE novel.memberNo = memberno
-		) AS memberName,
-		(
-			SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
-		) AS score
-		FROM novel WHERE memberNo = #{memberNo}
+		select * from (
+			select rownum rnum, B.* FROM (
+				SELECT novel.*,
+				(
+					SELECT memberName FROM member WHERE novel.memberNo = memberNo
+				) AS memberName,
+				(
+					SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
+				) AS score
+				FROM novel WHERE memberNo = #{memberNo}
+			) B ORDER BY rnum
+		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
 	
-	<select id="selectMyNovelByFavorite" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.novel.dto.Novel">
-		SELECT n.*,
-		(
-			SELECT membername FROM member WHERE novel.memberNo = memberno
-		) AS memberName,
-		(
-			SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
-		) AS score
-		FROM novel n INNER JOIN favorite f
-		ON n.novelNo = f.novelNo
-		WHERE memberNo = #{memberNo}
+	<select id="selectMyNovelByFavorite" parameterType="com.santabooks.util.Paging" resultType="com.santabooks.novel.dto.Novel">
+		select * from (
+			select rownum rnum, B.* FROM (
+					SELECT n.*,
+					(
+						SELECT memberName FROM member WHERE novel.memberNo = memberNo
+					) AS memberName,
+					(
+						SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
+					) AS score
+					FROM novel n INNER JOIN favorite f
+					ON n.novelNo = f.novelNo
+					WHERE memberNo = #{memberNo}
+				) B ORDER BY rnum
+		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
+				
 	</select>
 
 	<select id="selectCntList" resultType="int" parameterType="com.santabooks.util.Paging">

@@ -33,13 +33,13 @@ public class NovelServiceImpl implements NovelService {
 	private ServletContext context;
 
 	@Override
-	public List<Novel> getMyNovel(Member member) {
-		return novelDao.selectMyNovel(member);
+	public List<Novel> getMyNovel(Paging paging) {
+		return novelDao.selectMyNovel(paging);
 	}
 
 	@Override
-	public List<Novel> getMyNovelByFavorite(Member member) {
-		return novelDao.selectMyNovelByFavorite(member);
+	public List<Novel> getMyNovelByFavorite(Paging paging) {
+		return novelDao.selectMyNovelByFavorite(paging);
 	}
 
 	@Override

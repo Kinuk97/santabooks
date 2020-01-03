@@ -17,7 +17,7 @@ public interface NovelDao {
 	 * @param novel - memberNo 필요
 	 * @return List<Novel> - 결과값
 	 */
-	public List<Novel> selectMyNovel(Member member);
+	public List<Novel> selectMyNovel(Paging paging);
 
 	/**
 	 * memberNo로 즐겨찾기한 소설 조회
@@ -25,7 +25,7 @@ public interface NovelDao {
 	 * @param member - memberNo 필요
 	 * @return List<Novel> - 결과값
 	 */
-	public List<Novel> selectMyNovelByFavorite(Member member);
+	public List<Novel> selectMyNovelByFavorite(Paging paging);
 
 	/**
 	 * 게시글 총 개수를 구하는 메소드
