@@ -2,12 +2,30 @@ package com.santabooks.novel.dao.face;
 
 import java.util.List;
 
+import com.santabooks.member.dto.Member;
 import com.santabooks.novel.dto.Episode;
 import com.santabooks.novel.dto.Novel;
 import com.santabooks.novel.dto.Score;
 import com.santabooks.util.Paging;
 
 public interface NovelDao {
+	
+	/**
+	 * memberNo로 작성한 소설 조회
+	 * 
+	 * @param novel - memberNo 필요
+	 * @return List<Novel> - 결과값
+	 */
+	public List<Novel> selectMyNovel(Member member);
+	
+	/**
+	 * memberNo로 즐겨찾기한 소설 조회
+	 * 
+	 * @param member - memberNo 필요
+	 * @return List<Novel> - 결과값
+	 */
+	public List<Novel> selectMyNovelByFavorite(Member member);
+	
 	/**
 	 * 게시글 총 개수를 구하는 메소드
 	 * 
