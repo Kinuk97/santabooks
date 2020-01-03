@@ -110,11 +110,10 @@
 	</update>
 	
 	<select id="selectBySub" parameterType="int" resultType="com.santabooks.member.dto.Member">
-		SELECT M.memberNo,M.memberName,M.memberId, M.memberNick, M.subCheck, S.postCode, S.roadAddress, S.jibunAddress, S.detailAddress, S.extraAddress, S.subDate
+		SELECT M.memberNo,M.memberName,M.memberId, M.memberNick, M.subCheck, S.postCode, S.roadAddress, S.jibunAddress, S.detailAddress, S.extraAddress, S.subDate, S.subPay
 	 	FROM member M, subscription S
  		WHERE M.memberNo = S.memberNo
  		AND M.memberNo = #{M.memberNo}
-
-</select>
+	</select>
 	
 </mapper>

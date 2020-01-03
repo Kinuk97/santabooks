@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.mypage.dto.QnA;
+import com.santabooks.novel.dto.Novel;
 import com.santabooks.util.Paging;
 
 public interface MypageService {

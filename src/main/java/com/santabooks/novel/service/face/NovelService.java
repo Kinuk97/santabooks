@@ -2,12 +2,29 @@ package com.santabooks.novel.service.face;
 
 import java.util.List;
 
+import com.santabooks.member.dto.Member;
 import com.santabooks.novel.dto.Episode;
 import com.santabooks.novel.dto.Novel;
 import com.santabooks.novel.dto.Score;
 import com.santabooks.util.Paging;
 
 public interface NovelService {
+	
+	/**
+	 * 내가 작성한 소설 가져오기 (memberNo 필요)
+	 * 
+	 * @param member - memberNo
+	 * @return List<Novel>
+	 */
+	public List<Novel> getMyNovel(Member member);
+	
+	/**
+	 * 내가 즐겨찾기한 소설 가져오기 (memberNo 필요)
+	 * 
+	 * @param member - memberNo
+	 * @return List<Novel>
+	 */
+	public List<Novel> getMyNovelByFavorite(Member member);
 
 	/**
 	 * 소설 등록하기

@@ -7,7 +7,6 @@
 <script type="text/javascript" src="/resources/js/novel.js"></script>
 
 <div class="container">
-
 	<table class="table" style="border: 1px solid #CCC; border-collapse: separate;">
 	  <tbody>
 	    <tr>
@@ -38,7 +37,7 @@
 		    		</c:otherwise>
 		    	</c:choose>
 		    	</c:forEach>
-		        	<button class="btn btn-warning" style="float: right"><img alt="..." src="/resources/images/novel/heart.svg" class="icon"></button>
+		        	<button class="btn btn-warning" style="float: right" id="favoriteBtn"><img alt="..." src="/resources/images/novel/heart.svg" class="icon"></button>
 				<c:if test="${MemberNo == novel.memberNo }">
 				<a style="float: right;" class="btn btn-info" href="/novel/modify?novelNo=${novel.novelNo }">수정</a>
 				<a style="float: right;" class="btn btn-danger" href="/novel/remove?novelNo=${novel.novelNo }">삭제</a>
@@ -71,7 +70,7 @@
 	</div>
 	
 	<div class="text-right">
-		<a class="btn btn-success" href="/novel/list">목록</a>
+		<a class="btn btn-success" href="/novel/list">${episode.score }목록</a>
 	</div>
 	<c:if test="${episodeList.size() != 0 }">
 		<jsp:include page="/WEB-INF/views/layout/paging.jsp"/>

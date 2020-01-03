@@ -3,7 +3,7 @@ package com.santabooks.novel.dto;
 public class Score {
 	private int episodeNo;
 	private int memberNo;
-	private int score;
+	private String score;
 
 	@Override
 	public String toString() {
@@ -26,11 +26,11 @@ public class Score {
 		this.memberNo = memberNo;
 	}
 
-	public int getScore() {
+	public String getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(String score) {
 		this.score = score;
 	}
 
