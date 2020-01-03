@@ -182,7 +182,7 @@ $(document).ready(function() {
 			</div>
 			<br>
 			
-				<div class="card sidenav" id="bookRecommand" style="height: 575px;">
+				<div class="card sidenav" id="bookRecommand" style="height: 500px;">
 					<div class="card-text">책추천 들어갈 예정</div>
 				</div>
 				

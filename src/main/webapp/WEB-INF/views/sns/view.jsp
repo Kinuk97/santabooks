@@ -104,11 +104,16 @@ body{
 
 <input type="hidden" value="${review.feedNo }" name="feedNo" />
 <div class="container">
+	<img style="height: 200px; width: 200px;" src="/resources/images/${review.bookName}.jpg">
+	
+	<br>
 	<h1 style="font-weight: bold;">${review.bookName }</h1>
 	<h5 style="color: #696969; font-weight: bold;">${review.bookWriter }</h5>
 	<hr>
+	
 	<p style="font-weight: bold;">평점 ★( 평점 평균들어갈예정 ex)3.0 )</p>
 	<hr>
+	
 	<div style="position: relative;">
 	<button class="btn btn-secondary" id="subBtn"
 		onclick="location.href='/subscribe/agree'">구독 하기</button>
