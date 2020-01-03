@@ -36,6 +36,20 @@ public class NovelController {
 		model.addAttribute("list", novelService.getNovelList(paging));
 		model.addAttribute("best", novelService.getBestNovel(paging.getCategory()));
 		model.addAttribute("url", req.getRequestURI());
+		
+		String param = "";
+		
+		if (paging.getCategory() != 0) {
+			param += "&category=" + paging.getCategory();
+		}
+		if (paging.getSearch() != null && !"".equals(paging.getSearch())) {
+			param += "&search=" + paging.getSearch();
+		}
+		if (paging.getNovelNo() != 0) {
+			param += "&novelNo=" + paging.getNovelNo();
+		}
+		
+		model.addAttribute("query", param);
 	}
 
 	@RequestMapping(value = "/novel/view", method = RequestMethod.GET)
@@ -49,6 +63,20 @@ public class NovelController {
 		model.addAttribute("novel", novelService.getNovelByNovelNo(paging.getNovelNo()));
 		model.addAttribute("paging", paging);
 		model.addAttribute("url", req.getRequestURI());
+		
+		String param = "";
+		
+		if (paging.getCategory() != 0) {
+			param += "&category=" + paging.getCategory();
+		}
+		if (paging.getSearch() != null && !"".equals(paging.getSearch())) {
+			param += "&search=" + paging.getSearch();
+		}
+		if (paging.getNovelNo() != 0) {
+			param += "&novelNo=" + paging.getNovelNo();
+		}
+		
+		model.addAttribute("query", param);
 	}
 
 	@RequestMapping(value = "/novel/add", method = RequestMethod.GET)
@@ -120,18 +148,7 @@ public class NovelController {
 
 	@RequestMapping(value = "/episode/view", method = RequestMethod.GET)
 	public void viewEpisode(Model model, Episode episode, HttpSession session) {
-		// 평점 옵션
-//		Map<Integer, String> ratingOptions = new HashMap<Integer, String>();
-//		ratingOptions.put(0, "☆☆☆☆☆");
-//		ratingOptions.put(1, "★☆☆☆☆");
-//		ratingOptions.put(2, "★★☆☆☆");
-//		ratingOptions.put(3, "★★★☆☆");
-//		ratingOptions.put(4, "★★★★☆");
-//		ratingOptions.put(5, "★★★★★");
-//		model.addAttribute("ratingOptions", ratingOptions);
-
 		episode = novelService.getEpisode(episode);
-		
 		
 		Object memberNo = session.getAttribute("MemberNo");
 
@@ -173,5 +190,6 @@ public class NovelController {
 		
 		return mav;
 	}
+	
 
 }
