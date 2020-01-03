@@ -29,6 +29,11 @@ public class MemeberServiceImpl implements MemberService{
 
 		return memberDao.selectAll();
 	}
+
+	@Override
+	public Member nickCheck(String memberId) {
+		return memberDao.nickCheck(memberId);
+	}
 	
 	
 	

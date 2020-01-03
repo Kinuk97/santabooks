@@ -73,5 +73,11 @@ public class LoginController {
 		return "redirect:/main";
 
 	}
+	 
+	//비밀번호 찾기
+	@RequestMapping(value = "/member/find_pw")
+	public String find_pw_form() throws Exception{
+		return "/member/find_pw";
+	}
 
 }
