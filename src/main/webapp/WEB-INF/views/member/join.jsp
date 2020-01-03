@@ -76,7 +76,7 @@
 </script>
 
 <!-- 비밀번호 -->
-<script>
+<script type="text/javascript">
 	$(function() {
 		$("#alert-success").hide();
 		$("#alert-danger").hide();

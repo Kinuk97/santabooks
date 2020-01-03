@@ -2,6 +2,7 @@ package com.santabooks.member.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -79,5 +80,30 @@ public class LoginController {
 	public String find_pw_form() throws Exception{
 		return "/member/find_pw";
 	}
+	
+	
+//	//닉네임확인
+//	@RequestMapping(value="/member/join_nickcheck", method = RequestMethod.POST)
+//	public String nickcheck(HttpServletRequest req) throws IOException {
+//		
+//		 logger.info("닉네임 확인");
+//		 
+//		 String memberId = req.getParameter("memberId");
+//		 Member nickCheck = service.nickCheck(memberId);
+//		 
+//		 int result = 0;
+//		 
+//		 if(nickCheck != null) {
+//		  result = 1;
+//		 } 
+//		 
+//		 return result;
+//		}
+//		
+//		
+//	}
+	
+	
+//	}
 
 }
