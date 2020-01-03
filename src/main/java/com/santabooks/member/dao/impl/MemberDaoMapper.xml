@@ -18,10 +18,9 @@
 	
 	</select>
 	
-	<!-- 아이디 확인 -->
-	<select id="nickCheck" resultType="com.santabooks.member.dto.Member">
-	 select memberId from Member
-    	 where memberId = #{memberId }
+	<!-- 닉네임 확인 -->
+	<select id="nickCheck" parameterType="String" resultType="int">
+	  	SELECT count(*) from member WHERE memberNick = #{memberNick }
 	</select>
 	
 
