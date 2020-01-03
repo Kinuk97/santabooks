@@ -25,23 +25,25 @@ public class SubscribeController {
 
 	@RequestMapping(value="/subscribe/first", method=RequestMethod.GET)
 	public void pay() {}	
-
 	
 	@RequestMapping(value="/subscribe/first",  method=RequestMethod.POST)
 	public String payment(Subscription subscription, HttpSession session) {
 		
-		String memberId = (String) session.getAttribute("MemberId");
-		
-		int memberNo = (int) subscribeservice.getmemNo(memberId);
-		
+		String memberId = (String) session.getAttribute("MemberId");		
+		int memberNo = (int) subscribeservice.getmemNo(memberId);		
 		session.setAttribute("memberNo", memberNo);
 		
 		subscription.setMemberNo(memberNo);
+		// 로그인한 유저의 memberNo를 DTO에 저장
 		
-//		subscription = subscribeservice.getsubNo(memberId);
-//		System.out.println("섭넘버가져와: " +subscription);
+		subscribeservice.subscribe(subscription);
+		// 나머지 정보를 저장
 		
-		subscribeservice.subscribe(subscription);	
+		Subscription newSub = subscribeservice.getsubNo((String)session.getAttribute("MemberId"));
+		System.out.println("id로 받오오기"+newSub);
+		
+		session.setAttribute("subNo", newSub.getSubNo());
+		System.out.println("세션에 받기 : "+session.getAttribute("subNo"));
 		
 		return "redirect:/subscribe/final";
 	}	
