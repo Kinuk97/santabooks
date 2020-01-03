@@ -37,11 +37,14 @@
 				<if test="search != null and search != ''">
 					AND title LIKE '%' || #{search} || '%'
 				</if>
-				<if test="category gt 0 and category lt 5">
+				<if test="category gt 0 and category lt 6">
 					AND category = #{category}
 				</if>
 				<if test="tableName == 'episode'">
 					AND novelNo = #{novelNo}
+				</if>
+				<if test="category == 6">
+					AND memberNo = #{memberNo}
 				</if>
 			</trim>
 	</select>
@@ -62,7 +65,7 @@
 				<if test="search != null and search != ''">
 					AND title LIKE '%' || #{search} || '%'
 				</if>
-				<if test="category gt 0 and category lt 5">
+				<if test="category gt 0 and category lt 6">
 					AND category = #{category}
 				</if>
 			</trim>
@@ -93,7 +96,7 @@
 				SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
 			) AS score
 			 FROM novel
-			<if test="category gt 0 and category lt 5">
+			<if test="category gt 0 and category lt 6">
 		     	WHERE category = #{category}
 	     	</if>
 		     	ORDER BY score ASC
@@ -177,20 +180,18 @@
 	
 	
 	<!-- 즐겨찾기 -->
-	<select id="selectCntFavorite" parameterType="com.santabooks.novel.dto.Favorite">
-		SELECT COUNT(*) FROM recommend WHERE novelNo = #{novelNo}
+	<select id="selectCntFavorite" parameterType="com.santabooks.novel.dto.Favorite" resultType="int">
+		SELECT COUNT(*) FROM favorite WHERE novelNo = #{novelNo}
 	</select>
-	<select id="selectCntFavoriteByMemberNo">
+	<select id="selectCntFavoriteByMemberNo" parameterType="com.santabooks.novel.dto.Favorite" resultType="int">
 		SELECT COUNT(*) FROM favorite WHERE memberNo = #{memberNo} AND novelNo = #{novelNo}
 	</select>
-	<insert id="insertFavorite">
+	<insert id="insertFavorite" parameterType="com.santabooks.novel.dto.Favorite">
 		INSERT INTO favorite VALUES (#{memberNo}, #{novelNo})
 	</insert>
-	<delete id="deleteFavorite">
+	<delete id="deleteFavorite" parameterType="com.santabooks.novel.dto.Favorite">
 		DELETE FROM favorite WHERE memberNo = #{memberNo} AND novelNo = #{novelNo}
 	</delete>
-	
-	
 
 
 </mapper>
