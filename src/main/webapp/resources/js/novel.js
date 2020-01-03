@@ -3,6 +3,8 @@
  */
 
 $(document).ready(function() {
+	var novelNo = $("#novelNo").val();
+	var episodeNo = $("#episodeNo").val();
 	drawStars($("#score").val());
 	
 	if ($("#score").val() != "") {
@@ -72,7 +74,7 @@ $(document).ready(function() {
 	 		type: "POST"
 	 		, url: "/episode/score/add"
 			, data: {
-				"episodeNo" : $("#episodeNo").val(),
+				"episodeNo" : episodeNo,
 				"score" : $("#rating-system").val()
 			}
 			, dataType: "json"
@@ -92,7 +94,7 @@ $(document).ready(function() {
 	 		type: "POST"
 	 		, url: "/episode/score/remove"
 			, data: {
-				"episodeNo" : $("#episodeNo").val(),
+				"episodeNo" : episodeNo,
 			}
 			, dataType: "json"
 			, success: function( res ) {
@@ -114,18 +116,22 @@ $(document).ready(function() {
 	$("#favoriteBtn").on("click", function() {
 		$.ajax({
 	 		type: "POST"
-	 		, url: "/episode/score/remove"
+	 		, url: "/novel/favorite"
 			, data: {
-				"episodeNo" : $("#episodeNo").val(),
+				"novelNo" : novelNo,
 			}
 			, dataType: "json"
 			, success: function( res ) {
-				if (res.score != null) {
-					drawStars(res.score.score);
+				if(res.result) {
+					// 추천 성공
+					$("#favoriteImg").attr("src", "/resources/images/novel/heart-fill.svg");
 				} else {
-					drawStars(0);
+					// 추천 취소 성공
+					$("#favoriteImg").attr("src", "/resources/images/novel/heart.svg");
 				}
-				$("#removeScore").removeClass("active");
+				
+				//추천수 적용
+        		$("#favoriteCnt").html(res.favoriteCnt);
 			}
 			, error: function(e) {
 				$("#loginModal").modal();

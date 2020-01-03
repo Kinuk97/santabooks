@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.novel.dto.Episode;
+import com.santabooks.novel.dto.Favorite;
 import com.santabooks.novel.dto.Novel;
 import com.santabooks.novel.dto.Score;
 import com.santabooks.novel.service.face.NovelService;
@@ -27,6 +28,7 @@ public class NovelController {
 
 	private static final Logger logger = LoggerFactory.getLogger(NovelController.class);
 
+	// ========================= novel =======================================
 	@RequestMapping(value = "/novel/list", method = RequestMethod.GET)
 	public void showList(Paging paging, Model model, HttpServletRequest req) {
 		paging.setTableName("novel");
@@ -36,9 +38,9 @@ public class NovelController {
 		model.addAttribute("list", novelService.getNovelList(paging));
 		model.addAttribute("best", novelService.getBestNovel(paging.getCategory()));
 		model.addAttribute("url", req.getRequestURI());
-		
+
 		String param = "";
-		
+
 		if (paging.getCategory() != 0) {
 			param += "&category=" + paging.getCategory();
 		}
@@ -48,7 +50,7 @@ public class NovelController {
 		if (paging.getNovelNo() != 0) {
 			param += "&novelNo=" + paging.getNovelNo();
 		}
-		
+
 		model.addAttribute("query", param);
 	}
 
@@ -61,11 +63,22 @@ public class NovelController {
 
 		model.addAttribute("episodeList", novelService.getEpisodeList(paging));
 		model.addAttribute("novel", novelService.getNovelByNovelNo(paging.getNovelNo()));
+
+		// 즐겨찾기 처리
+		Favorite favorite = new Favorite();
+		favorite.setNovelNo(paging.getNovelNo());
+		model.addAttribute("favoriteCnt", novelService.getTotalCntFavorite(favorite));
+		Object obj = req.getSession().getAttribute("MemberNo");
+		if (obj != null) {
+			favorite.setMemberNo(Integer.parseInt(obj.toString()));
+			model.addAttribute("checkFavorite", novelService.isFavorite(favorite));
+		}
+
 		model.addAttribute("paging", paging);
 		model.addAttribute("url", req.getRequestURI());
-		
+
 		String param = "";
-		
+
 		if (paging.getCategory() != 0) {
 			param += "&category=" + paging.getCategory();
 		}
@@ -75,7 +88,7 @@ public class NovelController {
 		if (paging.getNovelNo() != 0) {
 			param += "&novelNo=" + paging.getNovelNo();
 		}
-		
+
 		model.addAttribute("query", param);
 	}
 
@@ -113,6 +126,10 @@ public class NovelController {
 		return "redirect:/novel/list";
 	}
 
+	// ==========================================================================================
+	// ================================= episode
+	// ================================================
+
 	@RequestMapping(value = "/episode/add", method = RequestMethod.GET)
 	public void addEpisode(@RequestParam(defaultValue = "0") int novelNo, Model model) {
 		model.addAttribute("novelNo", novelNo);
@@ -149,21 +166,26 @@ public class NovelController {
 	@RequestMapping(value = "/episode/view", method = RequestMethod.GET)
 	public void viewEpisode(Model model, Episode episode, HttpSession session) {
 		episode = novelService.getEpisode(episode);
-		
+
 		Object memberNo = session.getAttribute("MemberNo");
 
+		Score score = new Score();
 		if (memberNo != null) {
-			Score score = new Score();
 			score.setEpisodeNo(episode.getEpisodeNo());
 			try {
 				score.setMemberNo(Integer.parseInt(memberNo.toString()));
-				
+
 				model.addAttribute("myScore", novelService.getMyScore(score));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
+		Favorite favorite = new Favorite();
+		favorite.setNovelNo(episode.getNovelNo());
+		model.addAttribute("favoriteCnt", novelService.getTotalCntFavorite(favorite));
+		favorite.setMemberNo(score.getMemberNo());
+		model.addAttribute("checkFavorite", novelService.isFavorite(favorite));
 
 		model.addAttribute("episode", episode);
 		model.addAttribute("novel", novelService.getNovelByNovelNo(episode.getNovelNo()));
@@ -171,7 +193,7 @@ public class NovelController {
 
 	@RequestMapping(value = "/episode/score/add", method = RequestMethod.POST)
 	public ModelAndView addScore(Score score, HttpSession session, ModelAndView mav) {
-		score.setMemberNo((Integer) session.getAttribute("MemberNo"));
+		score.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
 
 		mav.addObject("score", novelService.addScore(score));
 
@@ -182,14 +204,34 @@ public class NovelController {
 
 	@RequestMapping(value = "/episode/score/remove", method = RequestMethod.POST)
 	public ModelAndView removeScore(Score score, HttpSession session, ModelAndView mav) {
-		score.setMemberNo((Integer) session.getAttribute("MemberNo"));
+		score.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
 
 		mav.addObject("score", novelService.removeScore(score));
 
 		mav.setViewName("jsonView");
-		
+
 		return mav;
 	}
-	
+	// ==========================================================================================
+
+	// 즐겨찾기
+	@RequestMapping(value = "/novel/favorite", method = RequestMethod.POST)
+	public ModelAndView favorite(ModelAndView mav, Favorite favorite, HttpSession session) {
+		favorite.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
+
+		// 추천 정보 토글
+		boolean result = novelService.favorite(favorite);
+
+		// 추천 수 조회
+		int cnt = novelService.getTotalCntFavorite(favorite);
+
+		mav.addObject("result", result);
+		mav.addObject("favoriteCnt", cnt);
+
+		// 결과 JSON응답
+		mav.setViewName("jsonView");
+
+		return mav;
+	}
 
 }

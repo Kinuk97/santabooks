@@ -7,27 +7,36 @@
 
 	<!-- novel -->
 	<select id="selectMyNovel" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.novel.dto.Novel">
-		SELECT novel.*,
-		(
-			SELECT membername FROM member WHERE novel.memberNo = memberno
-		) AS memberName,
-		(
-			SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
-		) AS score
-		FROM novel WHERE memberNo = #{memberNo}
+		select * from (
+			select rownum rnum, B.* FROM (
+				SELECT novel.*,
+				(
+					SELECT memberName FROM member WHERE novel.memberNo = memberNo
+				) AS memberName,
+				(
+					SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
+				) AS score
+				FROM novel WHERE memberNo = #{memberNo}
+			) B ORDER BY rnum
+		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
 	
-	<select id="selectMyNovelByFavorite" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.novel.dto.Novel">
-		SELECT n.*,
-		(
-			SELECT membername FROM member WHERE novel.memberNo = memberno
-		) AS memberName,
-		(
-			SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
-		) AS score
-		FROM novel n INNER JOIN favorite f
-		ON n.novelNo = f.novelNo
-		WHERE memberNo = #{memberNo}
+	<select id="selectMyNovelByFavorite" parameterType="com.santabooks.util.Paging" resultType="com.santabooks.novel.dto.Novel">
+		select * from (
+			select rownum rnum, B.* FROM (
+					SELECT n.*,
+					(
+						SELECT memberName FROM member WHERE novel.memberNo = memberNo
+					) AS memberName,
+					(
+						SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
+					) AS score
+					FROM novel n INNER JOIN favorite f
+					ON n.novelNo = f.novelNo
+					WHERE memberNo = #{memberNo}
+				) B ORDER BY rnum
+		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
+				
 	</select>
 
 	<select id="selectCntList" resultType="int" parameterType="com.santabooks.util.Paging">
@@ -37,11 +46,14 @@
 				<if test="search != null and search != ''">
 					AND title LIKE '%' || #{search} || '%'
 				</if>
-				<if test="category gt 0 and category lt 5">
+				<if test="category gt 0 and category lt 6">
 					AND category = #{category}
 				</if>
 				<if test="tableName == 'episode'">
 					AND novelNo = #{novelNo}
+				</if>
+				<if test="category == 6">
+					AND memberNo = #{memberNo}
 				</if>
 			</trim>
 	</select>
@@ -62,7 +74,7 @@
 				<if test="search != null and search != ''">
 					AND title LIKE '%' || #{search} || '%'
 				</if>
-				<if test="category gt 0 and category lt 5">
+				<if test="category gt 0 and category lt 6">
 					AND category = #{category}
 				</if>
 			</trim>
@@ -93,7 +105,7 @@
 				SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
 			) AS score
 			 FROM novel
-			<if test="category gt 0 and category lt 5">
+			<if test="category gt 0 and category lt 6">
 		     	WHERE category = #{category}
 	     	</if>
 		     	ORDER BY score ASC
@@ -177,20 +189,18 @@
 	
 	
 	<!-- 즐겨찾기 -->
-	<select id="selectCntFavorite" parameterType="com.santabooks.novel.dto.Favorite">
-		SELECT COUNT(*) FROM recommend WHERE novelNo = #{novelNo}
+	<select id="selectCntFavorite" parameterType="com.santabooks.novel.dto.Favorite" resultType="int">
+		SELECT COUNT(*) FROM favorite WHERE novelNo = #{novelNo}
 	</select>
-	<select id="selectCntFavoriteByMemberNo">
+	<select id="selectCntFavoriteByMemberNo" parameterType="com.santabooks.novel.dto.Favorite" resultType="int">
 		SELECT COUNT(*) FROM favorite WHERE memberNo = #{memberNo} AND novelNo = #{novelNo}
 	</select>
-	<insert id="insertFavorite">
+	<insert id="insertFavorite" parameterType="com.santabooks.novel.dto.Favorite">
 		INSERT INTO favorite VALUES (#{memberNo}, #{novelNo})
 	</insert>
-	<delete id="deleteFavorite">
+	<delete id="deleteFavorite" parameterType="com.santabooks.novel.dto.Favorite">
 		DELETE FROM favorite WHERE memberNo = #{memberNo} AND novelNo = #{novelNo}
 	</delete>
-	
-	
 
 
 </mapper>

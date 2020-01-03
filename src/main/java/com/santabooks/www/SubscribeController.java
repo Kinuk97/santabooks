@@ -45,6 +45,9 @@ public class SubscribeController {
 		session.setAttribute("subNo", newSub.getSubNo());
 		System.out.println("세션에 받기 : "+session.getAttribute("subNo"));
 		
+		subscribeservice.updatecheck((String)session.getAttribute("MemberId"));
+		
+		
 		return "redirect:/subscribe/final";
 	}	
 

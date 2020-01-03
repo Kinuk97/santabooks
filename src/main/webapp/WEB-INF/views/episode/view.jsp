@@ -31,7 +31,17 @@
 	      <td colspan="2" style="padding-top: 10px;">
 	        <div style="height: 65px;">${novel.discription }</div>
    	        <div>
-   	        <button class="btn btn-warning" style="float: right"><img alt="..." src="/resources/images/novel/heart.svg" class="icon"></button>
+   	        <button class="btn btn-warning" style="float: right" id="favoriteBtn">
+   	        <c:choose>
+        		<c:when test="${!empty checkFavorite && checkFavorite}">
+	        		<img alt="..." src="/resources/images/novel/heart-fill.svg" class="icon" id="favoriteImg">
+        		</c:when>
+        		<c:otherwise>
+	        		<img alt="..." src="/resources/images/novel/heart.svg" class="icon" id="favoriteImg">
+        		</c:otherwise>
+        	</c:choose>
+       		<span id="favoriteCnt">${favoriteCnt }</span>
+   	        </button>
    	        </div>
    	        <div style="clear: both;"></div>
 	      </td>
@@ -96,6 +106,7 @@
 </div>
 
 <input type="text" id="episodeNo" hidden="hidden" value="${episode.episodeNo }">
+<input hidden="hidden" type="text" value="${episode.novelNo }" id="novelNo">
 <input type="text" id="score" hidden="hidden" value="${episode.score }">
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />
