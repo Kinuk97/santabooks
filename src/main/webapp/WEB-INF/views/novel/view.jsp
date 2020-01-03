@@ -37,7 +37,17 @@
 		    		</c:otherwise>
 		    	</c:choose>
 		    	</c:forEach>
-		        	<button class="btn btn-warning" style="float: right" id="favoriteBtn"><img alt="..." src="/resources/images/novel/heart.svg" class="icon"></button>
+		        	<button class="btn btn-warning" style="float: right" id="favoriteBtn">
+		        	<c:choose>
+		        		<c:when test="${!empty checkFavorite && checkFavorite}">
+			        		<img alt="..." src="/resources/images/novel/heart-fill.svg" class="icon" id="favoriteImg">
+		        		</c:when>
+		        		<c:otherwise>
+			        		<img alt="..." src="/resources/images/novel/heart.svg" class="icon" id="favoriteImg">
+		        		</c:otherwise>
+		        	</c:choose>
+	        		<span id="favoriteCnt">${favoriteCnt }</span>
+		        	</button>
 				<c:if test="${MemberNo == novel.memberNo }">
 				<a style="float: right;" class="btn btn-info" href="/novel/modify?novelNo=${novel.novelNo }">수정</a>
 				<a style="float: right;" class="btn btn-danger" href="/novel/remove?novelNo=${novel.novelNo }">삭제</a>
@@ -75,6 +85,27 @@
 	<c:if test="${episodeList.size() != 0 }">
 		<jsp:include page="/WEB-INF/views/layout/paging.jsp"/>
 	</c:if>
+	<input hidden="hidden" type="text" value="${novel.novelNo }" id="novelNo">
+	
+	<!-- Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        로그인이 필요한 기능입니다!
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 </div>
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

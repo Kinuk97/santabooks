@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.novel.dto.Episode;
+import com.santabooks.novel.dto.Favorite;
 import com.santabooks.novel.dto.Novel;
 import com.santabooks.novel.dto.Score;
 import com.santabooks.util.Paging;
@@ -16,7 +17,7 @@ public interface NovelService {
 	 * @param member - memberNo
 	 * @return List<Novel>
 	 */
-	public List<Novel> getMyNovel(Member member);
+	public List<Novel> getMyNovel(Paging paging);
 	
 	/**
 	 * 내가 즐겨찾기한 소설 가져오기 (memberNo 필요)
@@ -24,7 +25,7 @@ public interface NovelService {
 	 * @param member - memberNo
 	 * @return List<Novel>
 	 */
-	public List<Novel> getMyNovelByFavorite(Member member);
+	public List<Novel> getMyNovelByFavorite(Paging paging);
 
 	/**
 	 * 소설 등록하기
@@ -173,4 +174,27 @@ public interface NovelService {
 	 */
 	public Score getMyScore(Score score);
 
+	/**
+	 * 내가 즐겨찾기했는지 확인
+	 * 
+	 * @param favorite - memberNo, novelNo
+	 * @return 결과
+	 */
+	public boolean isFavorite(Favorite favorite);
+
+	/**
+	 * 즐겨찾기하기
+	 * 
+	 * @param favorite - memberNo, novelNo
+	 * @return 결과
+	 */
+	public boolean favorite(Favorite favorite);
+	
+	/**
+	 * 즐겨찾기 수 카운트하기
+	 * 
+	 * @param favorite - novelNo
+	 * @return 결과
+	 */
+	public int getTotalCntFavorite(Favorite favorite);
 }
