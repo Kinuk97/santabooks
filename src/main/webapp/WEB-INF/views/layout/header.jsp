@@ -30,9 +30,16 @@
 
 				<div class="collapse navbar-collapse" id="navBar">
 					<ul class="navbar-nav mr-auto">
-					
-						<li class="nav-item"><a class="nav-link" href="/subscribe/agree">구독하기
-								<span class="sr-only">(current)</span></a></li>
+					<c:choose>
+					<c:when test="${not empty subNo }">
+						<li class="nav-item"><a class="nav-link" href="/mypage/subInfo">구독
+						<span class="sr-only">(current)</span></a></li>
+					</c:when>
+					<c:when test="${empty subNo }">
+						<li class="nav-item"><a class="nav-link" href="/subscribe/agree">구독
+						<span class="sr-only">(current)</span></a></li>
+					</c:when>
+					</c:choose>
 					
 					
 						<li class="nav-item"><a class="nav-link" href="/novel/list">소설</a></li>

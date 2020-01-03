@@ -22,10 +22,10 @@
 	</h3>
 	
 	<c:choose>
-	<c:when test="${0 eq subscription.subNo }">
+	<c:when test="${0 eq subNo }">
 		<a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="subscribe/agree"  >이용하러가기</a>
 	</c:when>
-	<c:when test="${null eq subscription.subNo }">
+	<c:when test="${null eq subNo }">
 		<a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="subscribe/agree"  >이용하러가기</a>
 	</c:when>
 	<c:otherwise>

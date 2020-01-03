@@ -62,16 +62,7 @@ public class SubscribeController {
 	
 	
 	@RequestMapping(value="/subscribe/final")
-	public void paymentfianl(Subscription subscription, HttpSession session, Model model) {
-	
-		String memberId = (String) session.getAttribute("MemberId");
-		subscription = subscribeservice.getsubNo(memberId);		
-		model.addAttribute("subscription", subscription);
-		
-//		System.out.println("섭넘버가져와: " +subscription);
-		
-		
-		
+	public void paymentfianl() {
 	}
 	
 

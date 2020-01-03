@@ -13,18 +13,9 @@ import com.santabooks.subscribe.service.face.SubscribeService;
 @Controller
 public class mainController {
 	
-	@Autowired private SubscribeService subscribeservice;
 	
 	@RequestMapping(value="/main")
-	public String main(Model model, Subscription subscription, HttpSession session) {
+	public void main(Model model, Subscription subscription, HttpSession session) {
 
-		if(session.getAttribute("MemberId") != null) {
-			String memberId = (String) session.getAttribute("MemberId");
-			subscription = subscribeservice.getsubNo(memberId);		
-			model.addAttribute("subscription", subscription);
-			} else {
-				return "redirect:/";
-			}
-			return "/main";
 		}
 }

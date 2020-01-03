@@ -21,7 +21,6 @@ import com.santabooks.subscribe.service.face.SubscribeService;
 @Controller
 public class HomeController {
 	
-	@Autowired private SubscribeService subscribeservice;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -40,13 +39,7 @@ public class HomeController {
 //		model.addAttribute("subscription", subscription);
 //		
 		
-		if(session.getAttribute("MemberId") != null) {
-			String memberId = (String) session.getAttribute("MemberId");
-			subscription = subscribeservice.getsubNo(memberId);		
-			model.addAttribute("subscription", subscription);
-			} else {
-				return "main";
-			}
+		
 		
 		return "main";
 	}
