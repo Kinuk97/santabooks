@@ -36,7 +36,7 @@
 	</select>
 	
 	<update id="updatecheck" parameterType="String">
-	UPDATE member SET subcheck = 'Y'
+	UPDATE member SET subcheck = '구독중'
 	WHERE memberID = #{memberId}
 	
 	</update>
