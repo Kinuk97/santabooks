@@ -31,6 +31,7 @@ public class Paging {
 	private String keyword;
 
 	// member 정보
+	private int memberNo;
 	private String memberId;
 	private String memberNick;
 
@@ -112,8 +113,8 @@ public class Paging {
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
 				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchno=" + searchno
 				+ ", category=" + category + ", novelNo=" + novelNo + ", tableName=" + tableName + ", bookNo=" + bookNo
-				+ ", searchType=" + searchType + ", keyword=" + keyword + ", memberId=" + memberId + ", memberNick="
-				+ memberNick + "]";
+				+ ", searchType=" + searchType + ", keyword=" + keyword + ", memberNo=" + memberNo + ", memberId="
+				+ memberId + ", memberNick=" + memberNick + "]";
 	}
 
 	public int getCurPage() {
@@ -250,6 +251,14 @@ public class Paging {
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
 	public String getMemberId() {

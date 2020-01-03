@@ -42,10 +42,11 @@ public class MypageWritingController {
 		
 		paging.setTableName("novel");
 		paging.setCategory(6);
+		paging.setMemberNo(myNovelList.getMemberNo());
 		paging = novelService.getPaging(paging);
 		
 		model.addAttribute("paging", paging);
-		model.addAttribute("mypageList", novelService.getMyNovel(myNovelList));
+		model.addAttribute("mypageList", novelService.getMyNovel(paging));
 		model.addAttribute("url", req.getRequestURI());
 		
 		String param = "";
