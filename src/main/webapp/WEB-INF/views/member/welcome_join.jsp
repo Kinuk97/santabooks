@@ -5,12 +5,18 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 
-<h1>회원가입이 완료 되었습니다.</h1>
+
+
+<div class ="text-center">
+<h5>회원가입이 완료 되었습니다.</h5>
 
 <!-- 구독하기 -->
-<button>산타북스 구독하러가기</button>
+ <a href="/subscribe/first"><button>"산타북스 구독하러가기</button></a>
 
-<!-- 메인으로 -->]
-<button>확인</button>
+<!-- 메인으로 -->
+ <a href="/main"><button>메인 </button></a>
+
+</div>
+
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

@@ -5,7 +5,7 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 
-<h5>{$member.memberId }이미 회원가입된 아이디입니다.</h5>
+<h5>{$member.memberId }이미 회원가입 되었습니다.</h5>
 
 
 

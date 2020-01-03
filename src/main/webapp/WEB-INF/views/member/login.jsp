@@ -11,6 +11,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script>
+	$function(){
+		$("#find_pw_btn").click(function(){
+			location.href="/member/find_pw"
+		});
+	}
+
+
+</script>
+
+
+
 <style type="text/css">
 	.login-form {
 		width: 340px;
@@ -65,6 +77,10 @@
 		font-size: 18px;
 	}
 </style>
+
+
+
+
 </head>
 <body>
 
@@ -102,11 +118,11 @@
         </div>
         <div class="clearfix">
             <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
-            <a href="#" class="pull-right text-success">Forgot Password?</a>
+            <a href="find_pw" class="pull-right text-success">비밀번호를 잊으셨나요?</a>
         </div>  
         
     </form>
-    <div class="hint-text small">Don't have an account? <a href="/member/join" class="text-success">Register Now!</a></div>
+    <div class="hint-text small" >Don't have an account? <a href="/member/join" class="text-success">Register Now!</a></div>
 </div>
 
 

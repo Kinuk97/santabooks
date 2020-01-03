@@ -11,5 +11,7 @@ public interface MemberService  {
 
 	public Object memberNickCheck(String usernick);
 
+	public Member nickCheck(String memberId) ;
+	
 
 }
