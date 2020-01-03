@@ -4,6 +4,10 @@
 
 $(document).ready(function() {
 	drawStars($("#score").val());
+	
+	if ($("#score").val() != "") {
+		$("#removeScore").addClass("active");
+	}
 
 	// 리스트 필터 버튼 active 보여주기
 	var url = location.href;
@@ -74,8 +78,10 @@ $(document).ready(function() {
 			, dataType: "json"
 			, success: function( res ) {
 				drawStars(res.score.score);
+				$("#removeScore").addClass("active");
 			}
 			, error: function(e) {
+				$("#loginModal").modal();
 				console.log(e);
 			}
 		});
@@ -95,8 +101,34 @@ $(document).ready(function() {
 				} else {
 					drawStars(0);
 				}
+				$("#removeScore").removeClass("active");
 			}
 			, error: function(e) {
+				$("#loginModal").modal();
+				console.log(e);
+			}
+		});
+	});
+	
+	// 즐겨찾기 버튼
+	$("#favoriteBtn").on("click", function() {
+		$.ajax({
+	 		type: "POST"
+	 		, url: "/episode/score/remove"
+			, data: {
+				"episodeNo" : $("#episodeNo").val(),
+			}
+			, dataType: "json"
+			, success: function( res ) {
+				if (res.score != null) {
+					drawStars(res.score.score);
+				} else {
+					drawStars(0);
+				}
+				$("#removeScore").removeClass("active");
+			}
+			, error: function(e) {
+				$("#loginModal").modal();
 				console.log(e);
 			}
 		});
@@ -107,9 +139,28 @@ $(document).ready(function() {
 function drawStars(score) {
 	$("#starSpan").html("");
 	for (var i = 1; i <= 5; i++) {
+	
 		if (i <= score) {
 			$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star-fill.svg' class='icon'>");
 		} else {
+			if (score - (i - 1) < 1) {
+				switch (parseInt(score * 10) - ((i- 1) * 10)) {
+				case 4:
+				case 5:
+				case 6:
+				case 7:
+					$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star-half.svg' class='icon'>");
+					continue;
+					break;
+				case 8:
+				case 9:
+					$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star-fill.svg' class='icon'>");
+					continue;
+					break;
+				default:
+					break;
+				}
+			}
 			$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star.svg' class='icon'>");
 		}
 	}

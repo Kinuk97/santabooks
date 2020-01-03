@@ -11,15 +11,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.member.service.face.LoginService;
+import com.santabooks.subscribe.dto.Subscription;
+import com.santabooks.subscribe.service.face.SubscribeService;
 
 
 
 @Controller
 public class LoginController {
-
+	@Autowired private SubscribeService subscribeservice;
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@Autowired
@@ -48,10 +52,15 @@ public class LoginController {
 			session.setAttribute("MemberId", member.getMemberId());
 			session.setAttribute("MemberNick", user.getMemberNick());
 			session.setAttribute("MemberNo", user.getMemberNo());
+			Subscription subscription = subscribeservice.getsubNo(member.getMemberId());
+			if (subscription != null) {
+				session.setAttribute("subNo", subscription.getSubNo());
+			}
 			
 			logger.info("세션상태 : " + session.getAttribute("login"));
 			logger.info("세션 아이디 : " + session.getAttribute("MemberId"));
 			logger.info("닉네임 : "  + session.getAttribute("MemberNick"));
+			logger.info("구독정보 : "  + session.getAttribute("subNo"));
 			
 		} else {
 			logger.info("로그인실패");
@@ -73,5 +82,16 @@ public class LoginController {
 		return "redirect:/main";
 
 	}
+	 
+	//비밀번호 찾기
+	@RequestMapping(value = "/member/find_pw")
+	public String find_pw_form() throws Exception{
+		return "/member/find_pw";
+	}
+	
 
+	
 }
+	
+
+

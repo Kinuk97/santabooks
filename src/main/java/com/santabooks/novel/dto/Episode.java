@@ -10,7 +10,7 @@ public class Episode {
 
 	private String content;
 
-	private int score;
+	private String score;
 
 	private String addDate;
 
@@ -46,11 +46,11 @@ public class Episode {
 		this.content = content;
 	}
 
-	public int getScore() {
+	public String getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(String score) {
 		this.score = score;
 	}
 

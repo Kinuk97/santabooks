@@ -53,23 +53,17 @@ public class MemberController {
 	@RequestMapping(value="/member/welcome_join", method=RequestMethod.GET)
 	public void joinSuccess() {}
 	
-	
-	//회원가입 후 장르로 이동
-	/*
-	 * @RequestMapping(value="/member/genre", method=RequestMethod.GET) public void
-	 * joinsuccess() {}
-	 */
-	
+
 	@RequestMapping(value="/member/find_pw", method=RequestMethod.GET)
 	public void findPw() {
 		
 	}
 	
 	//닉네임 중복체크
-	@RequestMapping(value="/member/nickCheck", method=RequestMethod.GET)
-	public ModelAndView nickCheck(@RequestParam("usernick") String usernick, ModelAndView mav) {
+	@RequestMapping(value="/member/join_nickcheck", method=RequestMethod.POST)
+	public ModelAndView nickCheck(@RequestParam("memberNick") String memberNick, ModelAndView mav) {
 		
-		mav.addObject("nickCheck", memberService.memberNickCheck(usernick));
+		mav.addObject("nickCheck", 	memberService.nickCheck(memberNick));
 		mav.setViewName("jsonView");
 		logger.info("nickCheck(0-사용가능, 1-중복nick) : " + mav.toString());
 		return mav;

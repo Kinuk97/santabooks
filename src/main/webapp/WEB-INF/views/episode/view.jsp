@@ -17,7 +17,7 @@
 	      <td rowspan="3" colspan="2" class="img_wrap" style="width: 17%;">
 	      <c:choose>
 	      	<c:when test="${novel.imgOriginName != null }">
-		    	<img src="/upload/${novel.imgStoredName }"alt="...">
+		    	<img src="/upload/${novel.imgStoredName }" alt="...">
 	      	</c:when>
 	      	<c:otherwise>
 			    <img src="/resources/images/logo.png" alt="...">
@@ -72,7 +72,27 @@
 			<a class="btn btn-danger" href="/episode/remove?episodeNo=${episode.episodeNo }&novelNo=${episode.novelNo}">삭제</a>
 		</c:if>
 	</div>
-	<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top;" value="${myScore }">
+	<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top;" value="${myScore.score }">
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        로그인이 필요한 기능입니다!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <input type="text" id="episodeNo" hidden="hidden" value="${episode.episodeNo }">

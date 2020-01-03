@@ -15,8 +15,13 @@
 		resultType="int">
 		SELECT count(*) FROM member
 		WHERE memberId = #{memberId }
+	
 	</select>
 	
+	<!-- 닉네임 확인 -->
+	<select id="nickCheck" parameterType="String" resultType="int">
+	  	SELECT count(*) from member WHERE memberNick = #{memberNick }
+	</select>
 	
 
 
