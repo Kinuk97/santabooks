@@ -72,35 +72,21 @@ body{
 
 		//리뷰 작성
 		$("#reviewWrite").click(function() {
+			
+			var memberNo = "";
+			memberNo = $(this).attr("data-memberNo");
+			
 			$("#writeForm").submit();
 		});
 		
-		// 별점
-		$('.starRev span').click(function() {
+// 		// 별점
+// 		$('.starRev span').click(function() {
 			
-			$ajax({
-				type: "POST",
-				url: "/sns/view?feedNo=${review.feedNo }",
-				data: { },
-				dataType: "json",
-				sucess: function(res){
-					
-				},
-				error: function(e){
-					
-				}
-			})
-			
-			$(this).parent().children('span').removeClass('on'); /* 별점의 on 클래스 전부 제거 */ 
-			$(this).addClass('on').prevAll('span').addClass('on'); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
-			$("#starForm").submit();
-			return false;
-			
-// 			if ($("input:checkbox[id='star2']").is(":checked")){
-// 				$("#star2").attr("value", 2);
-// 			}
-		});
-			c
+// 			$(this).parent().children('span').removeClass('on'); /* 별점의 on 클래스 전부 제거 */ 
+// 			$(this).addClass('on').prevAll('span').addClass('on'); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+// 			$("#starForm").submit();
+// 			return false;
+	c
 	});
 
 		function check() {
@@ -232,7 +218,7 @@ body{
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" id="reviewWrite">작성</button>
+					<button type="submit" class="btn btn-primary" id="reviewWrite" data-memberNo="${review.memberNo }">작성</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal"
 						id="cancel">취소</button>
 				</div>
