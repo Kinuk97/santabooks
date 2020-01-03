@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
-
+<link href="/resources/rating/css/star-rating.css" rel="stylesheet">
+<script type="text/javascript" src="/resources/rating/js/star-rating.js"></script>
 <style type="text/css">
 body{
 	background-color:#F7F7F4;
@@ -102,19 +103,17 @@ body{
 			c
 	});
 
-	// 	function check() {
+		function check() {
 
-	// 		if ($("input:checkbox[id='privacy']").is(":checked")) {
-	// 			$("input:checkbox[id='privacy']").prop("checked", true);
+			if ($("input:checkbox[id='privacy']").is(":checked")) {
 
-	// 			$("#privacy").attr("value", 1);
+				$("#privacy").attr("value", 1);
 
-	// 		} else {
-	// 			$("input:checkbox[id='privacy']").prop("checked", false);
-	// 			$("#privacy").attr("value", 0);
+			} else {
+				$("#privacy").attr("value", 0);
 
-	// 		}
-	// 	}
+			}
+		}
 </script>
 
 <input type="hidden" value="${review.feedNo }" name="feedNo" />
@@ -122,26 +121,11 @@ body{
 	<h1 style="font-weight: bold;">${review.bookName }</h1>
 	<h5 style="color: #696969; font-weight: bold;">${review.bookWriter }</h5>
 	<hr>
-
 	<p style="font-weight: bold;">평점 ★( 평점 평균들어갈예정 ex)3.0 )</p>
 	<hr>
 	<div style="position: relative;">
 	<button class="btn btn-secondary" id="subBtn"
 		onclick="location.href='/subscribe/agree'">구독 하기</button>
-	<div class="starRev" style="position: absolute; z-index:1; left: 230px; top:-18px;">
-		<div>
-			<small>평가하기</small>
-		</div>
-		<form action="/sns/view?feedNo=${review.feedNo }" method="post" id="starForm">
-		<input type="hidden" value="${review.memberNo }" id="memberNo" name="memberNo" />
-		<input type="hidden" value="${review.feedNo }" id="feedNo" name="feedNo" />
-		<span class="starR on"><input type="checkbox" value=1  name="grade" id="star1">별1</span> 
-		<span class="starR"><input type="checkbox" value=2 name="grade" id="star2">별2</span> 
-		<span class="starR"><input type="checkbox" value=3 name="grade" id="star3">별3</span> 
-		<span class="starR"><input type="checkbox" value=4 name="grade" id="star4">별4</span> 
-		<span class="starR"><input type="checkbox" value=5 name="grade" id="star5">별5</span>
-		</form>
-	</div>
 	</div>
 	<hr>
 	
@@ -202,7 +186,8 @@ body{
 				<br><hr>
 				
 				<div style="padding: 0px 20px 0px 20px;">
-					<h4 style="font-weight: bold;">별점 그래프</h4>
+					<h4 style="font-weight: bold;">별점</h4>
+					<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top;" value="${myScore }">
 				</div>
 				
 			</div>
@@ -243,7 +228,7 @@ body{
 					<p><strong>공개 / 비공개</strong></p>
 					<div class="custom-control custom-checkbox">
 						<input type="checkbox" id="privacy" name ="privacy" class="custom-control-input" >
-						<label class="custom-control-label" for="privacyCheck">공개</label>
+						<label class="custom-control-label" for="privacy">공개</label>
 					</div>
 				</div>
 				<div class="modal-footer">

@@ -26,15 +26,15 @@
 	</select>
 	
 	<select id="selectReviewByFeedNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
-		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
-		FROM review_sns r, book b
-		WHERE r.bookNo = b.bookNo AND feedNo = #{feedNo}
+		SELECT b.bookName, b.bookWriter, b.bookNo, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
+		FROM book b
+		WHERE b.bookNo = #{bookNo}
 	</select>
 	
 	<select id="selectReviewByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
-		SELECT feedNo, bookNo, memberNo, review, privacy, reviewDate
-		FROM (SELECT * FROM review_sns ORDER BY feedNo DESC)review_sns
-		WHERE bookNo = #{bookNo} AND ROWNUM BETWEEN 1 AND 3
+		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
+		FROM (SELECT * FROM review_sns ORDER BY feedNo DESC)r, book b
+		WHERE b.bookNo = #{bookNo} AND r.bookNo = b.bookNo AND ROWNUM BETWEEN 1 AND 3
 	</select>
 	
 	<select id="selectAllByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.util.Paging">
@@ -44,7 +44,8 @@
 	</select>
 	
 	<select id="selectDetailReviewByFeedNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
-		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
+		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo,
+		(SELECT memberNick FROM member WHERE r.memberNo = memberNo) AS memberNick
 		FROM review_sns r, book b
 		WHERE r.bookNo = b.bookNo AND feedNo = #{feedNo}
 	</select>
@@ -74,6 +75,33 @@
 	<select id="selectCntAll2" resultType="int" parameterType="com.santabooks.util.Paging">
 		SELECT COUNT(*) FROM review_sns r, book b
 		WHERE 1=1 AND r.bookNo = b.bookNo AND b.bookNo = #{bookNo}
+	</select>
+	
+	<delete id="deleteReview" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
+		DELETE FROM review_sns WHERE feedNo = #{feedNo}
+	</delete>
+	
+	<select id="selectCntAll3" resultType="int" parameterType="com.santabooks.util.Paging">
+		SELECT COUNT(*) FROM book
+		WHERE 1=1
+		<if test="keyword != null and !keyword.equals('')">
+		AND 
+		bookName like '%'||#{keyword}||'%' OR
+		bookWriter like '%'||#{keyword}||'%'
+		</if>
+	</select>
+	
+	<select id="selectBook" resultType="com.santabooks.reviewSns.dto.Book" parameterType="com.santabooks.util.Paging">
+		SELECT b.bookNo, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
+		FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM book 
+		ORDER BY bookNo DESC)B ORDER BY rnum)b
+		WHERE 1=1 AND
+		<if test="keyword != null and !keyword.equals('')">
+		b.bookName like '%'||#{keyword}||'%' OR
+		b.bookWriter like '%'||#{keyword}||'%'
+		AND
+		</if>
+		rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
 	
 </mapper>

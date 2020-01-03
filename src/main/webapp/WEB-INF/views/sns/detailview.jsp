@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -38,6 +39,23 @@ $(document).ready(function() {
 		history.go(-1);
 	});
 	
+	//알림 모달 호출 메서드
+	 function warningModal(content) {
+	    $(".modal-contents").text(content);
+	    $("#defaultModal").modal('show');
+	 }
+	
+	//삭제버튼 동작
+		$("#btnDelete").click(function() {
+			
+			warningModal("리뷰를 삭제하시겠습니까?");
+	    	
+	    	$('#ok').click(function(){    		
+			$(location).attr("href", "/sns/remove?feedNo=${review.feedNo}");
+
+	    	});
+		});
+	
 });
 </script>
 
@@ -52,7 +70,10 @@ $(document).ready(function() {
 		<div class="column">
 			<div class="card" id="review">
 				<div class="card-text">
-					<h5 style="font-weight: bold;">${MemberNick }</h5>(작성자가 준 별점 들어갈 예정)
+				<c:if test="${MemberNo eq review.memberNo }">
+					<button id="btnDelete" style="float: right; border: none; font-size: 30px;">×</button>
+				</c:if>
+					<h5 style="font-weight: bold;">${review.memberNick }</h5>(작성자가 준 별점 들어갈 예정)
 					<hr>
 					<p>${review.review }</p>
 					<br><br><br>
@@ -67,4 +88,26 @@ $(document).ready(function() {
 		</div>
 	</div>
 </div>
+
+<!--모달창 -->
+<div class="modal fade" id="defaultModal">
+	<div class="modal-dialog">
+		<div class="modal-content ">
+			<div class="modal-header panel-heading">
+				<h4 class="modal-title">알림</h4>
+			</div>
+			<div class="modal-body">
+				<p class="modal-contents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="ok">확인</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- 모달창 -->
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

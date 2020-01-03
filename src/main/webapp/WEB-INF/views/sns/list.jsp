@@ -79,7 +79,7 @@ body {
 	z-index: 1; 
 	right: 4px; 
 	width: 300px;
-	top: 100px;  
+	top: 190px;  
 	
 }
 
@@ -95,6 +95,15 @@ body {
 	right: 20px; 
 	width: 300px;
 	top: 24px; 
+	
+}
+
+#santaSearch{
+	position: absolute; 
+	z-index: 1; 
+	right: 20px; 
+	width: 300px;
+	top: 100px; 
 	
 }
 
@@ -126,8 +135,23 @@ body {
 		<div style="position: relative;">
 
 			<div style="position: sticky; z-index: 1; right: 4px; top: 4px;">
+			<div id="santaSearch">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small style="font-weight: bold;">🎅&nbsp;산타북스 책 검색</small>
+			<center>
+				<form action="/sns/santabookslist" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+					<div class="input-group">
+					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하세요" 
+					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
+					 <div class="input-group-append">
+					<button class="btn btn-primary" id ="searchBtn" type="submit">검색</button>
+					</div>
+					</div>
+				</form>
+			</center>
+			</div>
+			
 			<div id="naverSearch">
-			&nbsp;&nbsp;&nbsp;&nbsp;<img src="/resources/images/naver.ico" style="height:20px;">&nbsp;<small style="font-weight: bold;">네이버 검색</small>
+			&nbsp;&nbsp;&nbsp;&nbsp;<img src="/resources/images/naver.ico" style="height:20px;">&nbsp;<small style="font-weight: bold;">네이버 책 검색</small>
 			<center>
 				<form action="/book/list" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
@@ -150,7 +174,7 @@ body {
 
 				<c:forEach items="${reviewList }" var="review">
 					<div class="row">
-						<div class="column" onclick="location.href='/sns/view?feedNo=${review.feedNo}'">
+						<div class="column" onclick="location.href='/sns/view?bookNo=${review.bookNo}'">
 							<div class="card" id="review">
 								<div class="card-text">
 									<div style="position: relative;">
