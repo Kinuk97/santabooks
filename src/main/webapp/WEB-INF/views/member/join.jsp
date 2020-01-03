@@ -434,6 +434,10 @@ $(document).ready(function() {
 						</div>
 					</div>
 
+
+					<input type = "hidden" name = "subcheck" value="n" />
+					
+					
 <!-- 					<div class="form-group"> -->
 <!-- 						<div class="col-xs-3 control-label"> -->
 <!-- 							<label id="subcheck">구독여부</label> -->
