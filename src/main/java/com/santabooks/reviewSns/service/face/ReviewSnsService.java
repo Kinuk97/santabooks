@@ -106,11 +106,27 @@ public interface ReviewSnsService {
 	public int selectCntAll2(Paging paging);
 	
 	/**
+	 * 리뷰 삭제
 	 * 
+	 * @param reviewSns
+	 */
+	public void remove(ReviewSns reviewSns);
+	
+	/**
+	 * 페이징을 위한 책 총 개수
 	 * 
-	 * @param numOfRows
+	 * @param paging
 	 * @return
 	 */
-//	public String geturl(String numOfRows);	
+	public int selectCntAll3(Paging paging);
+	
+	/**
+	 * 책 리스트
+	 * 
+	 * @param bookPaging
+	 * @return
+	 */
+	public List<Book> bookList(Paging bookPaging);
+	
 
 }

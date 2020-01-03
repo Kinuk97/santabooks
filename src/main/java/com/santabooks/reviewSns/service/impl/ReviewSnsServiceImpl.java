@@ -221,118 +221,23 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 		
 		return reviewSnsDao.selectCntAll2(paging);
 	}
-	
-//	@Override
-//	   public String geturl(String numOfRows) {
-//	      
-//	      
-//	      String url= "http://data.ulsan.go.kr/rest/ulsanbooulsanbooksks/getUlsanbooksList?";
-//	      url += "authApiKey=xt2lcxKJD81UXkvlTIQlPE7fH5kFYdg21OkxYW6bbJxXEz1AMe212NBZbm6xHbqu45NjmHnmg4OwIQdF26I%2F8w%3D%3D&";
-//	      url += "numOfRows="+numOfRows;
-//	      
-//	      System.out.println(url);
-//	      URL link = null;
-//	         try {
-//	            link = new URL(url);
-//	         } catch (MalformedURLException e) {
-//	            // TODO Auto-generated catch block
-//	            e.printStackTrace();
-//	         }
-//	         try {
-//	            HttpURLConnection con = (HttpURLConnection)link.openConnection();
-//	            con.setRequestMethod("GET");
-//	            con.setRequestProperty("accept-language", "ko-KR");
-//	            
-//	            StringBuilder sb = new StringBuilder();
-//	            if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
-//	               BufferedReader br = new BufferedReader(
-//	                     new InputStreamReader(con.getInputStream(), "utf-8"));
-//	               String line;
-//	               while ((line = br.readLine()) != null) {
-//	                  sb.append(line).append("\n");
-//	               }
-//	               br.close();
-//	            } else {
-//	               System.out.println(con.getResponseMessage());
-//	            }
-//	            return sb.toString();
-//	            
-//	         } catch (IOException e) {
-//	            // TODO Auto-generated catch block
-//	            e.printStackTrace();
-//	         }
-//	         
-//
-//	      return "";
-//	      
-//	   }
-	
-//	public void insertholiday(String url) {
-//	      // TODO Auto-generated method stub
-//	      
-//	      List<Book> bookList = new ArrayList<Book>();
-//	      
-//	      //DocumentBuilderFactory 생성
-//	        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-//	        factory.setNamespaceAware(true);
-//	        DocumentBuilder builder;
-//	        Document doc = null;
-//	        try {
-//	            // xml 파싱하기
-//	            String result =url; 
-//	            InputSource is = new InputSource(new StringReader(result));
-//	            builder = factory.newDocumentBuilder();
-//	            doc = builder.parse(is);
-//	            XPathFactory xpathFactory = XPathFactory.newInstance();
-//	            XPath xpath = xpathFactory.newXPath();
-//	            // XPathExpression expr = xpath.compile("/response/body/items/item");
-//	            XPathExpression expr = xpath.compile("/data/list");
-//	            NodeList nodeList = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
-//	            for (int i = 0; i < nodeList.getLength(); i++) {
-//	                NodeList child = nodeList.item(i).getChildNodes();
-//	                for (int j = 0; j < child.getLength(); j++) {
-//	                    Node node = child.item(j);
-//	                    System.out.println("현재 노드 이름 : " + node.getNodeName());
-//	                    String name = node.getNodeName();
-//	                    System.out.println(name); 
-//	                    System.out.println("현재 노드 값 : " + node.getTextContent());
-//	                    node.
-//	                    
-//	                   
-//	                    if(name =="dateName") {
-//	                       nameList.add(node.getTextContent());
-//	                       
-//	                       
-//	                    }
-//	                    
-//	                    if(name=="locdate") {
-//	                       LocalDate holiday_date=LocalDate.parse(node.getTextContent(),DateTimeFormatter.BASIC_ISO_DATE);
-//	                       
-//	                       dateList.add(holiday_date);
-//	                    }
-//	                    
-//	                  
-//	                    
-//	                   
-//	                    
-//	                }
-//	            }
-//	        } catch (Exception e) {
-//	            System.out.println(e.getMessage());
-//	        }
-//	        
-//
-//	        for (int i = 0; i < nameList.size(); i++) {
-//	         Holiday holiday = new Holiday();
-//	         
-//	         holiday.setHoliday_name(nameList.get(i));
-//	         holiday.setHoliday_date(dateList.get(i));
-//	         
-//	         
-//	           calendarDao.deleteholiday(holiday);
-//	         calendarDao.insertholiday(holiday);
-//	      }
-//	           
-//	   }
+
+	@Override
+	public void remove(ReviewSns reviewSns) {
+		
+		reviewSnsDao.deleteReview(reviewSns);
+	}
+
+	@Override
+	public int selectCntAll3(Paging paging) {
+		
+		return reviewSnsDao.selectCntAll3(paging);
+	}
+
+	@Override
+	public List<Book> bookList(Paging bookPaging) {
+		
+		return reviewSnsDao.selectBook(bookPaging);
+	}
 
 }
