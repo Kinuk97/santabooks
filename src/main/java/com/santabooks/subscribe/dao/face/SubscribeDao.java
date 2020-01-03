@@ -13,5 +13,7 @@ public interface SubscribeDao {
 
 	public Subscription getsubNo(String memberId);
 
+	public void updatecheck(String memberId);
+
 
 }

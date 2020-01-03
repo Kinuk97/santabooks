@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.santabooks.member.dto.Member;
 import com.santabooks.novel.dao.face.NovelDao;
 import com.santabooks.novel.dto.Episode;
+import com.santabooks.novel.dto.Favorite;
 import com.santabooks.novel.dto.Novel;
 import com.santabooks.novel.dto.Score;
 import com.santabooks.novel.service.face.NovelService;
@@ -30,15 +31,15 @@ public class NovelServiceImpl implements NovelService {
 	private NovelDao novelDao;
 	@Autowired
 	private ServletContext context;
-	
+
 	@Override
-	public List<Novel> getMyNovel(Member member) {
-		return novelDao.selectMyNovel(member);
+	public List<Novel> getMyNovel(Paging paging) {
+		return novelDao.selectMyNovel(paging);
 	}
-	
+
 	@Override
-	public List<Novel> getMyNovelByFavorite(Member member) {
-		return novelDao.selectMyNovelByFavorite(member);
+	public List<Novel> getMyNovelByFavorite(Paging paging) {
+		return novelDao.selectMyNovelByFavorite(paging);
 	}
 
 	@Override
@@ -52,6 +53,12 @@ public class NovelServiceImpl implements NovelService {
 	public void modifyNovel(Novel novel) {
 		novelDao.updateNovel(novel);
 
+		if (novel.getUpload() != null && !novel.getUpload().isEmpty()) {
+			Novel result = novelDao.selectNovelByNovelNo(novel.getNovelNo());
+
+			fileDelete(result);
+		}
+
 		fileSave(novel);
 	}
 
@@ -61,11 +68,7 @@ public class NovelServiceImpl implements NovelService {
 		// 참조조건으로 삭제설정했음
 		Novel result = novelDao.selectNovelByNovelNo(novel.getNovelNo());
 
-		logger.info("소설 조회 : " + result);
-
 		novelDao.deleteNovel(novel);
-
-		logger.info("소설 삭제");
 
 		fileDelete(result);
 	}
@@ -200,21 +203,51 @@ public class NovelServiceImpl implements NovelService {
 		}
 
 		novelDao.updateEpisodeScore(score);
-		
+
 		return novelDao.selectScore(score);
 	}
 
 	@Override
 	public Score removeScore(Score score) {
 		novelDao.deleteScore(score);
-		
+
 		novelDao.updateEpisodeScore(score);
-		
+
 		return novelDao.selectScore(score);
 	}
-	
+
 	@Override
 	public Score getMyScore(Score score) {
 		return novelDao.selectScoreByMemberNo(score);
+	}
+
+	@Override
+	public boolean isFavorite(Favorite favorite) {
+		int cnt = novelDao.selectCntFavoriteByMemberNo(favorite);
+
+		if (cnt > 0) {
+			// 즐겨찾기한 상태
+			return true;
+		} else {
+			// 즐겨찾기 안한 상태
+			return false;
+		}
+	}
+
+	@Override
+	public boolean favorite(Favorite favorite) {
+		if( isFavorite(favorite) ) {
+			// 이미 즐겨찾기를 한 상태
+			novelDao.deleteFavorite(favorite);
+			return false;
+		} else { // 즐겨찾기를 하지 않은 상태
+			novelDao.insertFavorite(favorite);
+			return true;
+		}
+	}
+
+	@Override
+	public int getTotalCntFavorite(Favorite favorite) {
+		return novelDao.selectCntFavorite(favorite);
 	}
 }

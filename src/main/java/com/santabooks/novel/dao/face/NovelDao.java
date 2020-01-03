@@ -4,28 +4,29 @@ import java.util.List;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.novel.dto.Episode;
+import com.santabooks.novel.dto.Favorite;
 import com.santabooks.novel.dto.Novel;
 import com.santabooks.novel.dto.Score;
 import com.santabooks.util.Paging;
 
 public interface NovelDao {
-	
+
 	/**
 	 * memberNo로 작성한 소설 조회
 	 * 
 	 * @param novel - memberNo 필요
 	 * @return List<Novel> - 결과값
 	 */
-	public List<Novel> selectMyNovel(Member member);
-	
+	public List<Novel> selectMyNovel(Paging paging);
+
 	/**
 	 * memberNo로 즐겨찾기한 소설 조회
 	 * 
 	 * @param member - memberNo 필요
 	 * @return List<Novel> - 결과값
 	 */
-	public List<Novel> selectMyNovelByFavorite(Member member);
-	
+	public List<Novel> selectMyNovelByFavorite(Paging paging);
+
 	/**
 	 * 게시글 총 개수를 구하는 메소드
 	 * 
@@ -50,7 +51,7 @@ public interface NovelDao {
 	 * @return List<Novel> - 결과 목록
 	 */
 	public List<Novel> selectBestNovel(int category);
-	
+
 	/**
 	 * 소설 정보 가져오기
 	 * 
@@ -88,17 +89,14 @@ public interface NovelDao {
 	 * @param novel - 소설 수정 내용
 	 */
 	public void updateNovel(Novel novel);
-	
+
 	/**
-	 * comment 삭제
-	 * 즐겨찾기 삭제
-	 * 별점 삭제
-	 * 에피소드 삭제
-	 * 소설 삭제
+	 * comment 삭제 즐겨찾기 삭제 별점 삭제 에피소드 삭제 소설 삭제
+	 * 
 	 * @param novel - novelNo로 전부 삭제하기
 	 */
 	public void deleteNovel(Novel novel);
-	
+
 	/**
 	 * 소설 표지 설정하기
 	 * 
@@ -134,7 +132,7 @@ public interface NovelDao {
 	 * @return - cnt(score)
 	 */
 	public int selectCntScoreByMemberNo(Score score);
-	
+
 	/**
 	 * 내가 별점을 몇점줬는지 확인하기
 	 * 
@@ -142,21 +140,21 @@ public interface NovelDao {
 	 * @return - 결과
 	 */
 	public Score selectScoreByMemberNo(Score score);
-	
+
 	/**
 	 * 별점 수정하는 쿼리
 	 * 
 	 * @param score - 수정 내용 DTO
 	 */
 	public void updateScore(Score score);
-	
+
 	/**
 	 * 별점 수정하기 (회차)
 	 * 
 	 * @param score - 수정 정보
 	 */
 	public void updateEpisodeScore(Score score);
-	
+
 	/**
 	 * 별점 등록하기 (회차)
 	 * 
@@ -170,7 +168,7 @@ public interface NovelDao {
 	 * @param score - episodeNo, memberNo
 	 */
 	public void deleteScore(Score score);
-	
+
 	/**
 	 * 회차의 점수 조회하는 쿼리
 	 * 
@@ -179,6 +177,34 @@ public interface NovelDao {
 	 */
 	public Score selectScore(Score score);
 
+	/**
+	 * 즐겨찾기 count하는 쿼리
+	 * 
+	 * @param favorite - novelNo
+	 * @return 결과값
+	 */
+	public int selectCntFavorite(Favorite favorite);
 
+	/**
+	 * 내가 즐겨찾기했는지 count하는 쿼리
+	 * 
+	 * @param favorite - novelNo, memberNo
+	 * @return 결과값
+	 */
+	public int selectCntFavoriteByMemberNo(Favorite favorite);
+
+	/**
+	 * 즐겨찾기 추가하기
+	 * 
+	 * @param favorite - memberNo, novelNo
+	 */
+	public void insertFavorite(Favorite favorite);
+
+	/**
+	 * 즐겨찾기 삭제하기
+	 * 
+	 * @param favorite - memberNo, novelNo
+	 */
+	public void deleteFavorite(Favorite favorite);
 
 }

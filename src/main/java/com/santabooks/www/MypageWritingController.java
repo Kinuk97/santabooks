@@ -30,20 +30,37 @@ public class MypageWritingController {
 	}
 	
 	@RequestMapping(value = "/mypage/novelList", method = RequestMethod.GET)
-	public void novelList(Paging paging, Model model,HttpSession session, HttpServletRequest req) {
+	public void novelList(Paging paging, Model model, HttpSession session, HttpServletRequest req) {
 		
 		int novelMemberNo = (Integer)session.getAttribute("MemberNo");
-		logger.info("novelMemberNo : " + novelMemberNo);
+		logger.info("세션정보 가져오기 : " + session.getAttribute("MemberNo"));
 		
 		Member myNovelList = mypageService.subInfo(novelMemberNo);
 		model.addAttribute("myNovelList", myNovelList);
 		
-		paging.setTableName("mypageNovel");
+		logger.info("myNovelList : " + myNovelList);
+		
+		paging.setTableName("novel");
+		paging.setCategory(6);
 		paging = novelService.getPaging(paging);
 		
 		model.addAttribute("paging", paging);
-		model.addAttribute("mypageList", novelService.getNovelList(paging));
+		model.addAttribute("mypageList", novelService.getMyNovel(myNovelList));
 		model.addAttribute("url", req.getRequestURI());
+		
+		String param = "";
+		
+		if (paging.getCategory() != 0) {
+			param += "&category=" + paging.getCategory();
+		}
+		if (paging.getSearch() != null && !"".equals(paging.getSearch())) {
+			param += "&search=" + paging.getSearch();
+		}
+		if (paging.getNovelNo() != 0) {
+			param += "&novelNo=" + paging.getNovelNo();
+		}
+		
+		model.addAttribute("query", param);
 		
 		logger.info("마이페이지  웹소설 리스트");
 	}

@@ -40,6 +40,12 @@ public class SubscribeServiceImpl implements SubscribeService {
 		return subscribeDao.getsubNo(memberId);
 	}
 
+	@Override
+	public void updatecheck(String memberId) {
+		subscribeDao.updatecheck(memberId);
+		
+	}
+
 
 
 
