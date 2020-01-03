@@ -18,9 +18,10 @@ public class Member {
 	private String detailAddress;
 	private String extraAddress;
 	
-	// 구독정보 추가
+	// 마이페이지 구독정보 추가
 	private String subDate;
-
+	private String subPay;
+	
 	@Override
 	public String toString() {
 		return "Member [memberNo=" + memberNo + ", memberId=" + memberId + ", memberName=" + memberName
@@ -28,7 +29,7 @@ public class Member {
 				+ ", memberTel=" + memberTel + ", memberGender=" + memberGender + ", genre=" + genre + ", subcheck="
 				+ subcheck + ", postCode=" + postCode + ", roadAddress=" + roadAddress + ", jibunAddress="
 				+ jibunAddress + ", detailAddress=" + detailAddress + ", extraAddress=" + extraAddress + ", subDate="
-				+ subDate + "]";
+				+ subDate + ", subPay=" + subPay + "]";
 	}
 
 	public int getMemberNo() {
@@ -156,10 +157,16 @@ public class Member {
 	}
 
 	public void setSubDate(String subDate) {
-		this.subDate = subDate;
+		
+		this.subDate = subDate.split("T")[0];
 	}
-	
 
-	
-	
+	public String getSubPay() {
+		return subPay;
+	}
+
+	public void setSubPay(String subPay) {
+		this.subPay = subPay;
+	}
+
 }

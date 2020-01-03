@@ -26,9 +26,8 @@
           <div class="card">
             <div class="card-header">날짜</div>
             <div class="card-body">
-              <h5 class="card-title">겨울왕국</h5>
-              <p class="card-text"><a href="#">리뷰작성</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/mypage/shipmentChk">배송조회</a></p><br>
-              <a href="#" class="btn btn-primary btn-sm">More</a>
+              <h5 class="card-title">겨울왕국</h5><br>
+              <p class="card-text"><a href="/sns/list">리뷰작성</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/mypage/shipmentChk">배송조회</a></p><br>
             </div>
           </div>
         </div>
