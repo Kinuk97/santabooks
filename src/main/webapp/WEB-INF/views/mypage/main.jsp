@@ -5,14 +5,6 @@
 <jsp:include page="/WEB-INF/views/mypage/mypageMenu.jsp" />
 
 <style>
-#mypage_info{
-	height: 40px;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: stretch;
-	margin-right: 730px;
-}
 
 .container {
 	width : 1400px;
@@ -59,14 +51,13 @@
 .container {
 	text-align: center;
 }
-
 </style>
 
 <br>
-<div id = "mypage_info" >
+<div id = "mypage_info" style="text-align: center;" >
 	<h2>📂 ${info.memberNick }님의 마이페이지</h2>
 </div>
-<hr>
+<hr><br>
 
 <div class = "container" style="height: 350px; width: 30%; border:1px solid black; border-radius: 25px;">
 

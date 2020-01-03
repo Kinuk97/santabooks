@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.santabooks.member.dto.Member;
 import com.santabooks.novel.dao.face.NovelDao;
 import com.santabooks.novel.dto.Episode;
 import com.santabooks.novel.dto.Novel;
@@ -29,6 +30,16 @@ public class NovelServiceImpl implements NovelService {
 	private NovelDao novelDao;
 	@Autowired
 	private ServletContext context;
+	
+	@Override
+	public List<Novel> getMyNovel(Member member) {
+		return novelDao.selectMyNovel(member);
+	}
+	
+	@Override
+	public List<Novel> getMyNovelByFavorite(Member member) {
+		return novelDao.selectMyNovelByFavorite(member);
+	}
 
 	@Override
 	public void addNovel(Novel novel) {

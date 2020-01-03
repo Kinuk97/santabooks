@@ -16,7 +16,7 @@ $(document).ready(function() {
     	if (identifier == "novel" || identifier == "episode") {
     		$("#navBar").find("li").eq(1).addClass("active");
     		
-    	} else if (identifier == "") {
+    	} else if (identifier == "sns") {
     		$("#navBar").find("li").eq(2).addClass("active");
     	}
     	

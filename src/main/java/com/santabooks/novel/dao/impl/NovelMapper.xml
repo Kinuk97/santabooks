@@ -4,6 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.santabooks.novel.dao.face.NovelDao">
+
+	<!-- novel -->
+	<select id="selectMyNovel" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.novel.dto.Novel">
+		SELECT novel.*,
+		(
+			SELECT membername FROM member WHERE novel.memberNo = memberno
+		) AS memberName,
+		(
+			SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
+		) AS score
+		FROM novel WHERE memberNo = #{memberNo}
+	</select>
+	
+	<select id="selectMyNovelByFavorite" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.novel.dto.Novel">
+		SELECT n.*,
+		(
+			SELECT membername FROM member WHERE novel.memberNo = memberno
+		) AS memberName,
+		(
+			SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
+		) AS score
+		FROM novel n INNER JOIN favorite f
+		ON n.novelNo = f.novelNo
+		WHERE memberNo = #{memberNo}
+	</select>
+
 	<select id="selectCntList" resultType="int" parameterType="com.santabooks.util.Paging">
 		SELECT count(*) FROM ${tableName}
 		
@@ -28,7 +54,7 @@
 					SELECT membername FROM member WHERE novel.memberNo = memberno
 				) AS memberName,
 				(
-					SELECT avg(score) FROM episode WHERE novelNo = novel.novelNO
+					SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
 				) AS score
 				from novel
 		
@@ -52,7 +78,7 @@
 			SELECT membername FROM member WHERE novel.memberNo = memberno
 		) AS memberName,
 		(
-			SELECT avg(score) FROM episode WHERE novelNo = novel.novelNO
+			SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
 		) AS score
 		FROM novel WHERE novelNo = #{novelNo}
 	</select>
@@ -64,27 +90,14 @@
 				SELECT membername FROM member WHERE novel.memberNo = memberno
 			) AS memberName,
 			(
-				SELECT avg(score) FROM episode WHERE novelNo = novel.novelNo
+				SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
 			) AS score
 			 FROM novel
 			<if test="category gt 0 and category lt 5">
 		     	WHERE category = #{category}
 	     	</if>
 		     	ORDER BY score ASC
-	     ) novel WHERE ROWNUM BETWEEN 1 AND 3 ORDER BY novel.score DESC
-	</select>
-	
-	<select id="selectEpisodeByNovelNo" resultType="com.santabooks.novel.dto.Episode" parameterType="com.santabooks.util.Paging">
-     	SELECT * FROM (
-			SELECT rownum rnum, B.* FROM (
-				SELECT * FROM episode WHERE novelNo = #{novelNo} ORDER BY episodeNo DESC
-			) B ORDER BY rnum
-		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
-		
-	</select>
-	
-	<select id="selectEpisodeByEpisodeNo" resultType="com.santabooks.novel.dto.Episode" parameterType="com.santabooks.novel.dto.Episode">
-		SELECT * FROM episode WHERE episodeNo = #{episodeNo}
+	     ) novel WHERE ROWNUM BETWEEN 1 AND 3 ORDER BY novel.score ASC
 	</select>
 	
 	<insert id="insertNovel" parameterType="com.santabooks.novel.dto.Novel">
@@ -106,6 +119,20 @@
 		DELETE FROM novel WHERE novelNo = #{novelNo}
 	</delete>
 	
+	<!-- episode -->
+	<select id="selectEpisodeByNovelNo" resultType="com.santabooks.novel.dto.Episode" parameterType="com.santabooks.util.Paging">
+     	SELECT * FROM (
+			SELECT rownum rnum, B.* FROM (
+				SELECT * FROM episode WHERE novelNo = #{novelNo} ORDER BY episodeNo DESC
+			) B ORDER BY rnum
+		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
+		
+	</select>
+	
+	<select id="selectEpisodeByEpisodeNo" resultType="com.santabooks.novel.dto.Episode" parameterType="com.santabooks.novel.dto.Episode">
+		SELECT * FROM episode WHERE episodeNo = #{episodeNo}
+	</select>
+	
 	<insert id="insertEpisode" parameterType="com.santabooks.novel.dto.Episode">
 		<selectKey order="BEFORE" keyColumn="episodeNo" keyProperty="episodeNo" resultType="int">
 			SELECT episode_seq.nextval AS episodeNo FROM dual
@@ -113,7 +140,7 @@
 		
 		INSERT INTO episode (episodeNo, novelNo, title, content, score)
 					VALUES (#{episodeNo}, #{novelNo}, #{title}, #{content}, 
-						(SELECT avg(score) FROM score WHERE episodeNo = #{episodeNo} )
+						(SELECT round(avg(score), 1) FROM score WHERE episodeNo = #{episodeNo} )
 					)
 	</insert>
 	
@@ -123,7 +150,11 @@
 	<delete id="deleteEpisode" parameterType="com.santabooks.novel.dto.Episode">
 		DELETE FROM episode WHERE episodeNo = #{episodeNo}
 	</delete>
+	<update id="updateEpisodeScore" parameterType="com.santabooks.novel.dto.Score">
+		UPDATE episode SET score = (SELECT round(avg(score), 1) FROM score WHERE episodeNo = episode.episodeNo) WHERE episodeNo = #{episodeNo}
+	</update>
 
+	<!-- score -->
 	<select id="selectCntScoreByMemberNo" parameterType="com.santabooks.novel.dto.Score" resultType="int">
 		SELECT count(*) FROM score WHERE episodeNo = #{episodeNo} AND memberNo = #{memberNo}
 	</select>
@@ -140,12 +171,26 @@
 	<update id="updateScore" parameterType="com.santabooks.novel.dto.Score">
 		UPDATE score SET score = #{score} WHERE episodeNo = #{episodeNo} AND memberNo = #{memberNo}
 	</update>
-	<update id="updateEpisodeScore" parameterType="com.santabooks.novel.dto.Score">
-		UPDATE episode SET score = (SELECT AVG(score) FROM score WHERE episodeNo = episode.episodeNo) WHERE episodeNo = #{episodeNo}
-	</update>
 	<delete id="deleteScore" parameterType="com.santabooks.novel.dto.Score">
 		DELETE FROM score WHERE episodeNo = #{episodeNo} AND memberNo = #{memberNo}
 	</delete>
 	
 	
+	<!-- 즐겨찾기 -->
+	<select id="selectCntFavorite" parameterType="com.santabooks.novel.dto.Favorite">
+		SELECT COUNT(*) FROM recommend WHERE novelNo = #{novelNo}
+	</select>
+	<select id="selectCntFavoriteByMemberNo">
+		SELECT COUNT(*) FROM favorite WHERE memberNo = #{memberNo} AND novelNo = #{novelNo}
+	</select>
+	<insert id="insertFavorite">
+		INSERT INTO favorite VALUES (#{memberNo}, #{novelNo})
+	</insert>
+	<delete id="deleteFavorite">
+		DELETE FROM favorite WHERE memberNo = #{memberNo} AND novelNo = #{novelNo}
+	</delete>
+	
+	
+
+
 </mapper>

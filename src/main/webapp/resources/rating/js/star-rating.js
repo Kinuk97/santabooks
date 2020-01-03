@@ -37,8 +37,8 @@
         NAMESPACE: '.rating',
         DEFAULT_MIN: 0,
         DEFAULT_MAX: 5,
-//        DEFAULT_STEP: 0.5,
-        DEFAULT_STEP: 1,
+        DEFAULT_STEP: 0.5,
+//        DEFAULT_STEP: 1,
         isEmpty: function (value, trim) {
             return value === null || value === undefined || value.length === 0 || (trim && $.trim(value) === '');
         },
@@ -562,15 +562,15 @@
         showClear: true,
         showCaption: true,
         starCaptionClasses: {
-//            0.5: 'label label-danger badge-danger',
+            0.5: 'label label-danger badge-danger',
             1: 'label label-danger badge-danger',
-//            1.5: 'label label-warning badge-warning',
+            1.5: 'label label-warning badge-warning',
             2: 'label label-warning badge-warning',
-//            2.5: 'label label-info badge-info',
+            2.5: 'label label-info badge-info',
             3: 'label label-info badge-info',
-//            3.5: 'label label-primary badge-primary',
+            3.5: 'label label-primary badge-primary',
             4: 'label label-primary badge-primary',
-//            4.5: 'label label-success badge-success',
+            4.5: 'label label-success badge-success',
             5: 'label label-success badge-success'
         },
         clearButton: '<i><button class="btn btn-outline-warning" id="removeScore">취소하기</button></i>',
@@ -591,15 +591,15 @@
     $.fn.ratingLocales.en = {
         defaultCaption: '{rating} Stars',
         starCaptions: {
-//            0.5: 'Half Star',
+            0.5: 'Half Star',
             1: 'One Star',
-//            1.5: 'One & Half Star',
+            1.5: 'One & Half Star',
             2: 'Two Stars',
-//            2.5: 'Two & Half Stars',
+            2.5: 'Two & Half Stars',
             3: 'Three Stars',
-//            3.5: 'Three & Half Stars',
+            3.5: 'Three & Half Stars',
             4: 'Four Stars',
-//            4.5: 'Four & Half Stars',
+            4.5: 'Four & Half Stars',
             5: 'Five Stars'
         },
         clearButtonTitle: 'Clear',
