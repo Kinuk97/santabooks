@@ -6,6 +6,7 @@
 <link href="/resources/rating/css/star-rating.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/rating/js/star-rating.js"></script>
 <link href="/resources/css/common.css" rel="stylesheet">
+
 <style type="text/css">
 body{
 	background-color:#F7F7F4;
@@ -80,17 +81,13 @@ body{
 
 			$("#writeForm").submit();
 		});
-
-		// 		// 별점
-		// 		$('.starRev span').click(function() {
-
-		// 			$(this).parent().children('span').removeClass('on'); /* 별점의 on 클래스 전부 제거 */ 
-		// 			$(this).addClass('on').prevAll('span').addClass('on'); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
-		// 			$("#starForm").submit();
-		// 			return false;
 		
 		var bookNo = $("#bookNo").val();
 		drawStars($("#grade").val());
+		
+		if($("#grade").val() != ""){
+			$("#removeScore").addClass("active");
+		}
 
 		// 별점주는 기능
 		$(".rating-stars").on("click", function() {
@@ -146,7 +143,7 @@ body{
 				$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star-fill.svg' class='icon'>");
 			} else {
 				if (grade - (i - 1) < 1) {
-					switch (parseInt(score * 10) - ((i- 1) * 10)) {
+					switch (parseInt(grade * 10) - ((i- 1) * 10)) {
 					case 4:
 					case 5:
 					case 6:
@@ -258,7 +255,7 @@ body{
 				
 				<div style="padding: 0px 20px 0px 20px;">
 					<h4 style="font-weight: bold;">별점</h4>
-					<input type="hidden" id="feedNo" value="${review.bookNo }">
+					<input type="hidden" id="bookNo" value="${review.bookNo }">
 					<input type="hidden" id="grade" value="${review.grade }">
 					<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top;" value="${grade.grade }">
 				</div>

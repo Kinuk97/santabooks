@@ -59,7 +59,7 @@ public class ReviewSnsController {
 	}
 
 	@RequestMapping(value = "/sns/view", method = RequestMethod.GET)
-	public void reviewDetail(ReviewSns reviewSns, Model model, Grade grade, HttpSession session) {
+	public void reviewDetail(ReviewSns reviewSns, Model model, HttpSession session) {
 
 		ReviewSns review = reviewSnsService.view(reviewSns);
 		
@@ -69,9 +69,17 @@ public class ReviewSnsController {
 		logger.info("리뷰 : " + review.toString());
 		logger.info("리스트 : " + list.toString());
 		
-		grade.setMemberNo((int) session.getAttribute("MemberNo"));
+		Object memberNo = session.getAttribute("MemberNo");
 		
-		model.addAttribute("grade", reviewSnsService.getMyGrade(grade));
+		Grade grade = new Grade();
+		if(memberNo != null) {
+			try {
+				grade.setMemberNo(Integer.parseInt(memberNo.toString()));
+				model.addAttribute("grade", reviewSnsService.getMyGrade(grade));							
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
 		model.addAttribute("review", review);
 		model.addAttribute("list", list);
 	}
@@ -169,6 +177,7 @@ public class ReviewSnsController {
 		grade.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
 
 		mav.addObject("grade", reviewSnsService.addGrade(grade));
+		logger.info("별점 : " + grade);
 
 		mav.setViewName("jsonView");
 
@@ -180,7 +189,8 @@ public class ReviewSnsController {
 		grade.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
 
 		mav.addObject("grade", reviewSnsService.removeGrade(grade));
-
+		
+		logger.info("별점 : " + grade);
 		mav.setViewName("jsonView");
 
 		return mav;

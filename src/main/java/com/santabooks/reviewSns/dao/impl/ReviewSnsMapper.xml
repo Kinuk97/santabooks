@@ -126,7 +126,7 @@
 	</delete>
 	
 	<update id="updateBookGrade" parameterType="com.santabooks.reviewSns.dto.Grade">
-		UPDATE book SET grade = (SELECT round(avg(grade), 1) FROM grade WHERE feedNo = review_sns.feedNo) WHERE bookNo = #{bookNo}
+		UPDATE book SET grade = (SELECT round(avg(grade), 1) FROM grade WHERE bookNo = book.bookNo) WHERE bookNo = #{bookNo}
 	</update>
 	
 </mapper>
