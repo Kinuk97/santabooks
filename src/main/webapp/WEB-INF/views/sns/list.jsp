@@ -138,7 +138,7 @@ $(document).ready(function() {
 						<option value="bookName">제목</option>
 						<option value="bookWriter">작가</option>
 					</select>
-					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하세요" 
+					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하여 리뷰를 검색하세요" 
 					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
 					 <div class="input-group-append">
 					<button class="btn btn-primary" id ="searchBtn" type="submit"><i class="fas fa-search"></i></button>

@@ -3,11 +3,11 @@ package com.santabooks.reviewSns.dto;
 public class Grade {
 	private int grade;
 	private int memberNo;
-	private int feedNo;
+	private int bookNo;
 
 	@Override
 	public String toString() {
-		return "Grade [grade=" + grade + ", memberNo=" + memberNo + ", feedNo=" + feedNo + "]";
+		return "Grade [grade=" + grade + ", memberNo=" + memberNo + ", bookNo=" + bookNo + "]";
 	}
 
 	public int getGrade() {
@@ -26,12 +26,12 @@ public class Grade {
 		this.memberNo = memberNo;
 	}
 
-	public int getFeedNo() {
-		return feedNo;
+	public int getBookNo() {
+		return bookNo;
 	}
 
-	public void setFeedNo(int feedNo) {
-		this.feedNo = feedNo;
+	public void setBookNo(int bookNo) {
+		this.bookNo = bookNo;
 	}
 
 }

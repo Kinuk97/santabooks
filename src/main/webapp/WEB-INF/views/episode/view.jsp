@@ -17,7 +17,7 @@
 	      <td rowspan="3" colspan="2" class="img_wrap" style="width: 17%;">
 	      <c:choose>
 	      	<c:when test="${novel.imgOriginName != null }">
-		    	<img src="/upload/${novel.imgStoredName }" alt="...">
+		    	<img src="/upload/${novel.imgStoredName }"alt="...">
 	      	</c:when>
 	      	<c:otherwise>
 			    <img src="/resources/images/logo.png" alt="...">
@@ -31,17 +31,7 @@
 	      <td colspan="2" style="padding-top: 10px;">
 	        <div style="height: 65px;">${novel.discription }</div>
    	        <div>
-   	        <button class="btn btn-warning" style="float: right" id="favoriteBtn">
-   	        <c:choose>
-        		<c:when test="${!empty checkFavorite && checkFavorite}">
-	        		<img alt="..." src="/resources/images/novel/heart-fill.svg" class="icon" id="favoriteImg">
-        		</c:when>
-        		<c:otherwise>
-	        		<img alt="..." src="/resources/images/novel/heart.svg" class="icon" id="favoriteImg">
-        		</c:otherwise>
-        	</c:choose>
-       		<span id="favoriteCnt">${favoriteCnt }</span>
-   	        </button>
+   	        <button class="btn btn-warning" style="float: right"><img alt="..." src="/resources/images/novel/heart.svg" class="icon"></button>
    	        </div>
    	        <div style="clear: both;"></div>
 	      </td>
@@ -54,16 +44,16 @@
 		    <li class="list-group-item">
 		    	<b>${episode.title }</b>
 		    	<span id="starSpan">
-<%-- 		    	<c:forEach begin="1" end="5" step="1" varStatus="i"> --%>
-<%-- 		    	<c:choose> --%>
-<%-- 		    	<c:when test="${i.count <= episode.score }"> --%>
-<!-- 		    		<img alt="..." src="/resources/images/novel/star-fill.svg" class="icon"> -->
-<%-- 		    	</c:when> --%>
-<%-- 		    	<c:otherwise> --%>
-<!-- 		    		<img alt="..." src="/resources/images/novel/star.svg" class="icon"> -->
-<%-- 		    	</c:otherwise> --%>
-<%-- 		    	</c:choose> --%>
-<%-- 	        	</c:forEach> --%>
+		    	<c:forEach begin="1" end="5" step="1" varStatus="i">
+		    	<c:choose>
+		    		<c:when test="${i.count <= episode.score }">
+				    <img alt="..." src="/resources/images/novel/star-fill.svg" class="icon">
+		    		</c:when>
+		    		<c:otherwise>
+				    <img alt="..." src="/resources/images/novel/star.svg" class="icon">
+		    		</c:otherwise>
+		    	</c:choose>
+	        	</c:forEach>
 		    	</span>
 		    	<span style="float: right;">${episode.addDate }</span>
 		    	<hr>
@@ -82,7 +72,8 @@
 			<a class="btn btn-danger" href="/episode/remove?episodeNo=${episode.episodeNo }&novelNo=${episode.novelNo}">삭제</a>
 		</c:if>
 	</div>
-	<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top;" value="${myScore.score }">
+	
+	<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top; "value="${myScore.score }">
 </div>
 
 <!-- Modal -->

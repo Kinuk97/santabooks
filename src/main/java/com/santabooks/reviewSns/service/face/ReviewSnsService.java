@@ -3,6 +3,7 @@ package com.santabooks.reviewSns.service.face;
 import java.util.List;
 
 import com.santabooks.member.dto.Member;
+import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.NaverBook;
@@ -76,13 +77,6 @@ public interface ReviewSnsService {
 	public void write(ReviewSns reviewSns);
 	
 	/**
-	 * 별점 입력
-	 * 
-	 * @param grade
-	 */
-	public void addGrade(Grade grade);
-	
-	/**
 	 * 책 번호에 해당하는 책 정보 가져오기
 	 * 
 	 * @param bookNo
@@ -127,6 +121,29 @@ public interface ReviewSnsService {
 	 * @return
 	 */
 	public List<Book> bookList(Paging bookPaging);
+	
+	/**
+	 * 별점 입력
+	 * 
+	 * @param grade
+	 */
+	public Grade addGrade(Grade grade);
+	
+	/**
+	 * 별점 취소
+	 * 
+	 * @param grade
+	 * @return
+	 */
+	public Grade removeGrade(Grade grade);
+	
+	/**
+	 * 내 별점 확인
+	 * 
+	 * @param grade
+	 * @return
+	 */
+	public Score getMyGrade(Grade grade);
 	
 
 }

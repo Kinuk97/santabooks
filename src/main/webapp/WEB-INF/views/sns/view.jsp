@@ -5,6 +5,7 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <link href="/resources/rating/css/star-rating.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/rating/js/star-rating.js"></script>
+<link href="/resources/css/common.css" rel="stylesheet">
 <style type="text/css">
 body{
 	background-color:#F7F7F4;
@@ -68,38 +69,116 @@ body{
 <script type="text/javascript">
 
 	
+	
 	$(document).ready(function() {
 
 		//리뷰 작성
 		$("#reviewWrite").click(function() {
-			
+
 			var memberNo = "";
 			memberNo = $(this).attr("data-memberNo");
-			
+
 			$("#writeForm").submit();
 		});
+
+		// 		// 별점
+		// 		$('.starRev span').click(function() {
+
+		// 			$(this).parent().children('span').removeClass('on'); /* 별점의 on 클래스 전부 제거 */ 
+		// 			$(this).addClass('on').prevAll('span').addClass('on'); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+		// 			$("#starForm").submit();
+		// 			return false;
 		
-// 		// 별점
-// 		$('.starRev span').click(function() {
-			
-// 			$(this).parent().children('span').removeClass('on'); /* 별점의 on 클래스 전부 제거 */ 
-// 			$(this).addClass('on').prevAll('span').addClass('on'); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
-// 			$("#starForm").submit();
-// 			return false;
-	c
+		var bookNo = $("#bookNo").val();
+		drawStars($("#grade").val());
+
+		// 별점주는 기능
+		$(".rating-stars").on("click", function() {
+			$.ajax({
+				type : "POST",
+				url : "/sns/grade/add",
+				data : {
+					"bookNo" : bookNo,
+					"grade" : $("#rating-system").val()
+				},
+				dataType : "json",
+				success : function(res) {
+					drawStars(res.grade.grade);
+					$("#removeScore").addClass("active");
+				},
+				error : function(e) {
+					$("#loginModal").modal();
+					console.log(e);
+				}
+			});
+		});
+		// 별점 취소하는 기능
+		$("#removeScore").on("click", function() {
+			$.ajax({
+				type : "POST",
+				url : "/sns/grade/remove",
+				data : {
+					"bookNo" : bookNo,
+				},
+				dataType : "json",
+				success : function(res) {
+					if (res.grade != null) {
+						drawStars(res.grade.grade);
+					} else {
+						drawStars(0);
+					}
+					$("#removeScore").removeClass("active");
+				},
+				error : function(e) {
+					$("#loginModal").modal();
+					console.log(e);
+				}
+			});
+		});
+
 	});
-
-		function check() {
-
-			if ($("input:checkbox[id='privacy']").is(":checked")) {
-
-				$("#privacy").attr("value", 1);
-
+		
+	function drawStars(grade) {
+		$("#starSpan").html("");
+		for (var i = 1; i <= 5; i++) {
+		
+			if (i <= grade) {
+				$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star-fill.svg' class='icon'>");
 			} else {
-				$("#privacy").attr("value", 0);
-
+				if (grade - (i - 1) < 1) {
+					switch (parseInt(score * 10) - ((i- 1) * 10)) {
+					case 4:
+					case 5:
+					case 6:
+					case 7:
+						$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star-half.svg' class='icon'>");
+						continue;
+						break;
+					case 8:
+					case 9:
+						$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star-fill.svg' class='icon'>");
+						continue;
+						break;
+					default:
+						break;
+					}
+				}
+				$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star.svg' class='icon'>");
 			}
 		}
+	}
+
+	function check() {
+
+		if ($("input:checkbox[id='privacy']").is(":checked")) {
+
+			$("#privacy").attr("value", 1);
+
+		} else {
+			$("#privacy").attr("value", 0);
+
+		}
+	}
 </script>
 
 <input type="hidden" value="${review.feedNo }" name="feedNo" />
@@ -112,6 +191,7 @@ body{
 	<hr>
 	
 	<p style="font-weight: bold;">평점 ★( 평점 평균들어갈예정 ex)3.0 )</p>
+	<span id="starSpan"></span>
 	<hr>
 	
 	<div style="position: relative;">
@@ -178,7 +258,9 @@ body{
 				
 				<div style="padding: 0px 20px 0px 20px;">
 					<h4 style="font-weight: bold;">별점</h4>
-					<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top;" value="${myScore }">
+					<input type="hidden" id="feedNo" value="${review.bookNo }">
+					<input type="hidden" id="grade" value="${review.grade }">
+					<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top;" value="${grade.grade }">
 				</div>
 				
 			</div>

@@ -8,12 +8,13 @@ public class Book {
 	private String publishingYear;
 	private String bookContent;
 	private int genreNo;
+	private int grade;
 
 	@Override
 	public String toString() {
 		return "Book [bookNo=" + bookNo + ", bookName=" + bookName + ", bookWriter=" + bookWriter + ", bookPublisher="
 				+ bookPublisher + ", publishingYear=" + publishingYear + ", bookContent=" + bookContent + ", genreNo="
-				+ genreNo + "]";
+				+ genreNo + ", grade=" + grade + "]";
 	}
 
 	public int getBookNo() {
@@ -70,6 +71,14 @@ public class Book {
 
 	public void setGenreNo(int genreNo) {
 		this.genreNo = genreNo;
+	}
+
+	public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 
 }

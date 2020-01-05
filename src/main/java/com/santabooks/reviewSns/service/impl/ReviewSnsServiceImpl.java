@@ -1,11 +1,8 @@
 package com.santabooks.reviewSns.service.impl;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -13,24 +10,15 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import com.santabooks.member.dto.Member;
+import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dao.face.ReviewSnsDao;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
@@ -198,13 +186,6 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	}
 
 	@Override
-	public void addGrade(Grade grade) {
-		
-		reviewSnsDao.insertGrade(grade);
-		
-	}
-
-	@Override
 	public Book getBook(int bookNo) {
 		
 		return reviewSnsDao.selectBookByBookNo(bookNo);
@@ -238,6 +219,38 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	public List<Book> bookList(Paging bookPaging) {
 		
 		return reviewSnsDao.selectBook(bookPaging);
+	}
+
+	@Override
+	public Grade addGrade(Grade grade) {
+		int cntResult = reviewSnsDao.selectCntGradeByMemberNo(grade);
+
+		if (cntResult != 1) {
+			// 남긴 별점이 없을 경우
+			reviewSnsDao.insertGrade(grade);
+		} else {
+			// 이미 남긴 별점이 있을 경우
+			reviewSnsDao.updateGrade(grade);
+		}
+
+		reviewSnsDao.updateBookGrade(grade);
+
+		return reviewSnsDao.selectGrade(grade);
+	}
+
+	@Override
+	public Grade removeGrade(Grade grade) {
+		
+		reviewSnsDao.deleteGrade(grade);
+
+		reviewSnsDao.updateBookGrade(grade);
+
+		return reviewSnsDao.selectGrade(grade);
+	}
+	
+	@Override
+	public Score getMyGrade(Grade grade) {
+		return reviewSnsDao.selectGradeByMemberNo(grade);
 	}
 
 }

@@ -15,7 +15,7 @@
 	</select>
 	
 	<select id="selectAll" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.util.Paging">
-		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, m.memberId, m.memberNick
+		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade, m.memberId, m.memberNick
 		FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns 
 		ORDER BY feedNo DESC)B ORDER BY rnum)r, book b, member m
 		WHERE 1=1 AND
@@ -26,25 +26,25 @@
 	</select>
 	
 	<select id="selectReviewByFeedNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
-		SELECT b.bookName, b.bookWriter, b.bookNo, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
+		SELECT b.bookName, b.bookWriter, b.bookNo, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade
 		FROM book b
 		WHERE b.bookNo = #{bookNo}
 	</select>
 	
 	<select id="selectReviewByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
-		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
+		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade
 		FROM (SELECT * FROM review_sns ORDER BY feedNo DESC)r, book b
 		WHERE b.bookNo = #{bookNo} AND r.bookNo = b.bookNo AND ROWNUM BETWEEN 1 AND 3
 	</select>
 	
 	<select id="selectAllByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.util.Paging">
-		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, m.memberId, m.memberNick
+		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade, m.memberId, m.memberNick
 		FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns ORDER BY feedNo DESC)B ORDER BY rnum)r, book b, member m
 		WHERE rnum BETWEEN #{startNo} AND #{endNo} AND r.bookNo = b.bookNo AND m.memberNo = r.memberNo AND r.bookNo = #{bookNo}
 	</select>
 	
 	<select id="selectDetailReviewByFeedNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
-		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo,
+		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade,
 		(SELECT memberNick FROM member WHERE r.memberNo = memberNo) AS memberNick
 		FROM review_sns r, book b
 		WHERE r.bookNo = b.bookNo AND feedNo = #{feedNo}
@@ -54,14 +54,9 @@
 		INSERT INTO review_sns(feedNo, bookNo, memberNo, review, privacy)
 		VALUES(review_sns_seq.nextval, #{bookNo}, #{memberNo}, #{review}, #{privacy}) 
 	</insert>
-
-	<insert id="insertGrade" parameterType="com.santabooks.reviewSns.dto.Grade">
-		INSERT INTO grade(grade, memberNo, feedNo)
-		VALUES(#{grade}, #{memberNo}, #{feedNo}) 
-	</insert>
 	
 	<select id="selectBookByBookNo" parameterType="int" resultType="com.santabooks.reviewSns.dto.Book">
-		SELECT b.bookno, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
+		SELECT b.bookno, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade
 		FROM book b
 		WHERE b.bookNo=#{bookNo}
 	</select>
@@ -92,7 +87,7 @@
 	</select>
 	
 	<select id="selectBook" resultType="com.santabooks.reviewSns.dto.Book" parameterType="com.santabooks.util.Paging">
-		SELECT b.bookNo, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo
+		SELECT b.bookNo, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade
 		FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM book 
 		ORDER BY bookNo DESC)B ORDER BY rnum)b
 		WHERE 1=1 AND
@@ -103,6 +98,36 @@
 		</if>
 		rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
+	
+	<!-- 별점 -->
+	<select id="selectCntGradeByMemberNo" parameterType="com.santabooks.reviewSns.dto.Grade" resultType="int">
+		SELECT count(*) FROM grade WHERE bookNo = #{bookNo} AND memberNo = #{memberNo}
+	</select>
+	
+	<select id="selectGradeByMemberNo" parameterType="com.santabooks.reviewSns.dto.Grade" resultType="com.santabooks.reviewSns.dto.Grade">
+		SELECT * FROM grade WHERE bookNo = #{bookNo} AND memberNo = #{memberNo}
+	</select>
+	
+	<select id="selectGrade" parameterType="com.santabooks.reviewSns.dto.Grade" resultType="com.santabooks.reviewSns.dto.Grade">
+		SELECT grade FROM grade WHERE bookNo = #{bookNo}
+	</select>
+	
+	<insert id="insertGrade" parameterType="com.santabooks.reviewSns.dto.Grade">
+		INSERT INTO grade(grade, memberNo, bookNo)
+		VALUES(#{grade}, #{memberNo}, #{bookNo}) 
+	</insert>
+	
+	<update id="updateGrade" parameterType="com.santabooks.reviewSns.dto.Grade">
+		UPDATE grade SET grade = #{grade} WHERE bookNo = #{bookNo} AND memberNo = #{memberNo}
+	</update>
+	
+	<delete id="deleteGrade" parameterType="com.santabooks.reviewSns.dto.Grade">
+		DELETE FROM grade WHERE bookNo = #{bookNo} AND memberNo = #{memberNo}
+	</delete>
+	
+	<update id="updateBookGrade" parameterType="com.santabooks.reviewSns.dto.Grade">
+		UPDATE book SET grade = (SELECT round(avg(grade), 1) FROM grade WHERE feedNo = review_sns.feedNo) WHERE bookNo = #{bookNo}
+	</update>
 	
 </mapper>
   

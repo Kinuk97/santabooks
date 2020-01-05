@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.member.service.face.LoginService;
+import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.ReviewSns;
@@ -58,7 +59,7 @@ public class ReviewSnsController {
 	}
 
 	@RequestMapping(value = "/sns/view", method = RequestMethod.GET)
-	public void reviewDetail(ReviewSns reviewSns, Model model, Grade grade) {
+	public void reviewDetail(ReviewSns reviewSns, Model model, Grade grade, HttpSession session) {
 
 		ReviewSns review = reviewSnsService.view(reviewSns);
 		
@@ -67,7 +68,10 @@ public class ReviewSnsController {
 
 		logger.info("리뷰 : " + review.toString());
 		logger.info("리스트 : " + list.toString());
-
+		
+		grade.setMemberNo((int) session.getAttribute("MemberNo"));
+		
+		model.addAttribute("grade", reviewSnsService.getMyGrade(grade));
 		model.addAttribute("review", review);
 		model.addAttribute("list", list);
 	}
@@ -119,9 +123,10 @@ public class ReviewSnsController {
 	}
 
 	@RequestMapping(value = "/sns/write", method = RequestMethod.POST)
-	public String reviewWrite(ReviewSns reviewSns, Member member, Model model) {
+	public String reviewWrite(ReviewSns reviewSns, Member member, Model model, HttpSession session) {
 		logger.info("글작성전 정보 : " + reviewSns);
-
+		
+		reviewSns.setMemberNo((int) session.getAttribute("MemberNo"));
 		reviewSnsService.write(reviewSns);
 
 		logger.info("글작성후 정보 : " + reviewSns);
@@ -156,5 +161,28 @@ public class ReviewSnsController {
 
 		model.addAttribute("santabooksList", list);
 		model.addAttribute("paging", bookPaging);
+	}
+	
+	@RequestMapping(value = "/sns/grade/add", method = RequestMethod.POST)
+	public ModelAndView addGrade(Grade grade, HttpSession session, ModelAndView mav) {
+		
+		grade.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
+
+		mav.addObject("grade", reviewSnsService.addGrade(grade));
+
+		mav.setViewName("jsonView");
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/sns/grade/remove", method = RequestMethod.POST)
+	public ModelAndView removeScore(Grade grade, HttpSession session, ModelAndView mav) {
+		grade.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
+
+		mav.addObject("grade", reviewSnsService.removeGrade(grade));
+
+		mav.setViewName("jsonView");
+
+		return mav;
 	}
 }
