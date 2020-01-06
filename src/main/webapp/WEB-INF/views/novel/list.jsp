@@ -83,16 +83,16 @@
 			    <p class="card-text">
 			    ${novel.discription }
 			    <br>
-			    <c:forEach begin="1" end="5" step="1" varStatus="i">
-			    	<c:choose>
-			    		<c:when test="${i.count <= novel.score }">
-					    <img alt="..." src="/resources/images/novel/star-fill.svg">
-			    		</c:when>
-			    		<c:otherwise>
-					    <img alt="..." src="/resources/images/novel/star.svg">
-			    		</c:otherwise>
-			    	</c:choose>
-			    </c:forEach>
+<%-- 			    <c:forEach begin="1" end="5" step="1" varStatus="i"> --%>
+<%-- 			    	<c:choose> --%>
+<%-- 			    		<c:when test="${i.count <= novel.score }"> --%>
+<!-- 					    <img alt="..." src="/resources/images/novel/star-fill.svg"> -->
+<%-- 			    		</c:when> --%>
+<%-- 			    		<c:otherwise> --%>
+<!-- 					    <img alt="..." src="/resources/images/novel/star.svg"> -->
+<%-- 			    		</c:otherwise> --%>
+<%-- 			    	</c:choose> --%>
+<%-- 			    </c:forEach> --%>
 			    </p>
 			  </div>
 			</div>
