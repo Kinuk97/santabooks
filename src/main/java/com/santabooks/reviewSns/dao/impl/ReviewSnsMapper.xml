@@ -129,5 +129,6 @@
 		UPDATE book SET grade = (SELECT round(avg(grade), 1) FROM grade WHERE bookNo = book.bookNo) WHERE bookNo = #{bookNo}
 	</update>
 	
+	
 </mapper>
   

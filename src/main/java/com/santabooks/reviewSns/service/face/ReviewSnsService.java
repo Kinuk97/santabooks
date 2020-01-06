@@ -146,4 +146,7 @@ public interface ReviewSnsService {
 	public Score getMyGrade(Grade grade);
 	
 
+	
+	
+
 }

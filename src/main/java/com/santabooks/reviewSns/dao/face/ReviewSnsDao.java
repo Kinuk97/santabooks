@@ -129,6 +129,8 @@ public interface ReviewSnsDao {
 	public void updateBookGrade(Grade grade);
 
 	public void deleteGrade(Grade grade);
+	
+
 
 
 	

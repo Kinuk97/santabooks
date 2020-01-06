@@ -46,7 +46,7 @@ public class ReviewSnsController {
 		reviewPaging.setSearchType(paging.getSearchType());
 		reviewPaging.setMemberId(paging.getMemberId());
 		reviewPaging.setMemberNick(paging.getMemberNick());
-
+		
 		List<ReviewSns> list = reviewSnsService.snsList(reviewPaging);
 
 		logger.info(list.toString());
@@ -197,4 +197,5 @@ public class ReviewSnsController {
 
 		return mav;
 	}
+	
 }

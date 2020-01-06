@@ -189,6 +189,7 @@ $(document).ready(function() {
 			</div>
 
 				<c:forEach items="${reviewList }" var="review">
+					<c:if test="${review.privacy eq 1}">
 					<div class="row">
 						<div class="column" onclick="location.href='/sns/view?bookNo=${review.bookNo}'">
 							<div class="card" id="review">
@@ -210,6 +211,7 @@ $(document).ready(function() {
 			
 						</div>
 					</div>
+					</c:if>
 					<br>
 					<br>
 				</c:forEach>

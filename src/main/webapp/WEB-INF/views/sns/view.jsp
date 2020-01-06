@@ -238,6 +238,7 @@ body{
 				<br>
 				<div class="row">
 				<c:forEach items="${list }" var="list">
+				<c:if test="${list.privacy eq 1}">
 						<div class="column"onclick="location.href='/sns/detailview?feedNo=${list.feedNo}'" 
 						style="width: 300px; height: 300px; padding: 4px;margin-right: 65px;">
 							<div class="card" id="reviewCard">
@@ -248,7 +249,7 @@ body{
 								</div>
 							</div>
 						</div>
-						
+				</c:if>		
 				</c:forEach>
 				</div>
 				<br><hr>
@@ -280,6 +281,7 @@ body{
 				</div>
 
 				<div class="modal-body">
+					<input type="hidden" value="${review.feedNo }" id="feedNo" name="feedNo" />
 					<input type="hidden" value="${review.memberNo }" id="memberNo" name="memberNo" /> 
 					<input type="hidden" value="${review.bookNo }" id="bookNo" name="bookNo" />
 					<input type="hidden" value="${review.bookName }" id="bookName" name="bookName" />
@@ -297,7 +299,7 @@ body{
 					<hr>
 					<p><strong>공개 / 비공개</strong></p>
 					<div class="custom-control custom-checkbox">
-						<input type="checkbox" id="privacy" name ="privacy" class="custom-control-input" >
+						<input type="checkbox" id="privacy" name ="privacy" class="custom-control-input"  onclick="check()">
 						<label class="custom-control-label" for="privacy">공개</label>
 					</div>
 				</div>

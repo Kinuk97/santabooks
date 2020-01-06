@@ -253,4 +253,7 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 		return reviewSnsDao.selectGradeByMemberNo(grade);
 	}
 
+
+	
+
 }
