@@ -24,11 +24,7 @@ public interface MypageDao {
 
 	public List<QnA> selectPageList(Paging paging);
 
-	public int selectCnt(String id);
-
-	public Member selectInfoByMemberNo(Member member);
-	
-	public void delete(Member member);
+	public int selectCnt(int no);
 
 	public void write(Member member);
 
@@ -43,5 +39,7 @@ public interface MypageDao {
 	public void qnaDelete(QnA qna);
 
 	public Member selectBySub(int subNo);
+
+	public void delete(Member member);
 
 }
