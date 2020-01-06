@@ -733,8 +733,19 @@ INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(
 INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(review_sns_seq.nextval,1,7,'부자가 될 수 있을것만 같아요 짱짱!',1,sysdate);
 INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(review_sns_seq.nextval,2,4,'정말정말 좋은 책이에요^^',1,sysdate);
 
-
-
+--comment_table
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment1', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment2', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment3', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment4', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment5', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment6', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment7', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment8', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment9', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment10', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment11', sysdate);
+select * from comment_table;
 
 
 
