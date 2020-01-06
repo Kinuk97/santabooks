@@ -3,6 +3,7 @@ package com.santabooks.reviewSns.dao.face;
 import java.util.List;
 
 import com.santabooks.member.dto.Member;
+import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.ReviewSns;
@@ -115,6 +116,21 @@ public interface ReviewSnsDao {
 	 * @return
 	 */
 	public List<Book> selectBook(Paging bookPaging);
+
+	
+	public int selectCntGradeByMemberNo(Grade grade);
+
+	public Score selectGradeByMemberNo(Grade grade);
+	
+	public Grade selectGrade(Grade grade);
+	
+	public void updateGrade(Grade grade);
+
+	public void updateBookGrade(Grade grade);
+
+	public void deleteGrade(Grade grade);
+
+
 	
 	
 

@@ -28,7 +28,7 @@
 }
 
 .card {
-	height: 200px;
+	height: 380px;
 }
 
 .card {
@@ -68,12 +68,14 @@
 		</div>
 		<br><br>
 		<center>     
+		<a href="/sns/santabookslist"
+		style="color: #ff2f6e; text-decoration: none; font-weight: bold; position: absolute; right: 500px; top: 200px;">책 모두 보기</a>
         <c:forEach items="${santabooksList}" var ="s">
 <!--         <div class="row"> -->
-						<div class="column" 
-						onclick="location.href='/sns/view?bookNo=${s.bookNo}'"
-						>
+						<div class="column" onclick="location.href='/sns/view?bookNo=${s.bookNo}'">
 							<div class="card" id="review">
+									<img style="height: 200px; width: 200px;" src="/resources/images/${s.bookName}.jpg">
+									<br>
 								<div class="card-text">
 									<div style="position: relative;">
 									<h4>${s.bookName }</h4>

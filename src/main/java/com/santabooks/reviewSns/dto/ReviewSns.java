@@ -15,6 +15,7 @@ public class ReviewSns {
 	private String publishingYear;
 	private String bookContent;
 	private int genreNo;
+	private int grade;
 
 	// member
 	private String memberNick;
@@ -24,7 +25,8 @@ public class ReviewSns {
 		return "ReviewSns [feedNo=" + feedNo + ", bookNo=" + bookNo + ", memberNo=" + memberNo + ", review=" + review
 				+ ", privacy=" + privacy + ", reviewDate=" + reviewDate + ", bookName=" + bookName + ", bookWriter="
 				+ bookWriter + ", bookPublisher=" + bookPublisher + ", publishingYear=" + publishingYear
-				+ ", bookContent=" + bookContent + ", genreNo=" + genreNo + ", memberNick=" + memberNick + "]";
+				+ ", bookContent=" + bookContent + ", genreNo=" + genreNo + ", grade=" + grade + ", memberNick="
+				+ memberNick + "]";
 	}
 
 	public int getFeedNo() {
@@ -121,6 +123,14 @@ public class ReviewSns {
 
 	public void setGenreNo(int genreNo) {
 		this.genreNo = genreNo;
+	}
+
+	public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 
 	public String getMemberNick() {

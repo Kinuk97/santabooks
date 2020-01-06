@@ -1,5 +1,4 @@
 -- 사용자
-
 INSERT INTO member VALUES (member_seq.nextval,'a1@naver.com', 'TestName1', 'TestNick1', '1234',19961023,'01012341234','male','1,7,2','n','12345','서울 강남구','서울 강남구 논현동 200-7','KH','(논현동)');
 INSERT INTO member VALUES (member_seq.nextval,'a2@naver.com', 'TestName2', 'TestNick2', '1234',19970617,'01012341235','male','1,8','n','12345','서울 강남구','서울 강남구 논현동 200-8','KH','(논현동)');
 INSERT INTO member VALUES (member_seq.nextval,'a3@naver.com', 'TestName3', 'TestNick3', '1234',19971227,'01012341236','male','1,9','n','12345','서울 강남구','서울 강남구 논현동 200-9','KH','(논현동)');
@@ -44,12 +43,16 @@ INSERT INTO member VALUES (member_seq.nextval,'a41@gmail.com', 'TestName41', 'Te
 INSERT INTO member VALUES (member_seq.nextval,'a42@gmail.com', 'TestName42', 'TestNick42', '1234',19950909,'01012341275','female','1,2,3','y','12345','서울 강남구','서울 강남구 논현동 200-48','KH','(논현동)');
 INSERT INTO member VALUES (member_seq.nextval,'a43@gmail.com', 'TestName43', 'TestNick43', '1234',19950910,'01012341276','female','1,2','y','12345','서울 강남구','서울 강남구 논현동 200-49','KH','(논현동)');
 
+commit;
+
 -- 카테고리
 INSERT INTO category VALUES (1, '판타지');
 INSERT INTO category VALUES (2, '현판');
 INSERT INTO category VALUES (3, '로맨스');
 INSERT INTO category VALUES (4, '로판');
 INSERT INTO category VALUES (5, '무협');
+
+commit;
 
 -- Novel
 INSERT INTO novel (novelNo, memberNo, title, discription, category) VALUES (novel_seq.nextval,1,'Novel1','Discription1',1);
@@ -200,6 +203,8 @@ INSERT INTO novel (novelNo, memberNo, title, discription, category) VALUES (nove
 INSERT INTO novel (novelNo, memberNo, title, discription, category) VALUES (novel_seq.nextval,1,'Novel146','Discription146',4);
 INSERT INTO novel (novelNo, memberNo, title, discription, category) VALUES (novel_seq.nextval,1,'Novel147','Discription147',4);
 
+commit;
+
 -- episode
 INSERT INTO episode VALUES (episode_seq.nextval,147,'Title1','Temp',4, sysdate);
 INSERT INTO episode VALUES (episode_seq.nextval,147,'Title2','Temp',4, sysdate);
@@ -331,8 +336,10 @@ INSERT INTO genre VALUES(8,'만화');
 INSERT INTO genre VALUES(9,'여행');
 INSERT INTO genre VALUES(10,'건강');
 
--- 책
-INSERT INTO book VALUES(book_seq.nextval,1,'세미책','강세미','세미북스','1995-04-13','강세미의 어록이 담겨있다');
+commit;
+
+-- 북
+INSERT INTO book VALUES(book_seq.nextval,1,'세미책','강세미','세미북스','1995-04-13','강세미의 어록이 담겨있다', 5);
 
 INSERT INTO book VALUES(book_seq.nextval, 5, 'Do it! 자바 프로그래밍 입문','박은종','이지스퍼블리싱','2018-08-06',
 '개발 실무 10년, 강의 10년! 명강사의 기초 튼튼 코딩 밥상!
@@ -344,7 +351,7 @@ INSERT INTO book VALUES(book_seq.nextval, 5, 'Do it! 자바 프로그래밍 입�
 시리즈답게 중학생도 이해할 수 있는 친절한 설명, 직접 만들면서 배우는 실전형 실습 예제, 배운 개념을 되새기는 복습 퀴즈, 
 장을 마무리하는 연습 문제와 총정리 최종 프로젝트까지! 자고 일어나도 자바 문법이 기억날 만큼 체계적으로 구성했습니다. 
 또한 저자의 자바 학습 노하우를 담은 무료 동영상 강의를 제공하며, 저자 블로그에서 질문할 수 있으니 혼자 공부하는 사람도 안심하고 자바에 입문할 수 있습니다. 
-왕초보도 공부할 맛 나는 《Do it! 자바 프로그래밍 입문》과 함께 자바의 기본을 완성해 보세요!');
+왕초보도 공부할 맛 나는 《Do it! 자바 프로그래밍 입문》과 함께 자바의 기본을 완성해 보세요!', 5);
 
 INSERT INTO book VALUES(book_seq.nextval, 2, '가면산장 살인사건','히가시노 게이고','재인','2014-09-26',
 '강도와 인질 간의 숨 막히는 줄다리기!
@@ -356,7 +363,7 @@ INSERT INTO book VALUES(book_seq.nextval, 2, '가면산장 살인사건','히가
 도모미가 죽은 이후에도 그녀의 가족과 인연의 끈을 놓지 않았던 다카유키는 기꺼이 초대에 응해 도모미의 부모와 오빠를 비롯한 7명의 친인척과 함께 별장에서 며칠을 보내기로 한다.
 다카유키가 별장에 도착한 날 밤, 경찰에 쫓기던 2인조 은행 강도가 별장에 침입해 그곳에 모여 있던 8명을 감금하고 인질극을 벌인다. 
 인질들은 여러 가지 방법으로 탈출을 시도하지만 번번이 실패로 끝나고, 인질과 강도 사이에 피 말리는 신경전이 벌어지는 가운데 인질 중 한 사람이 등에 칼이 꽂힌 시체로 발견된다. 
-정황으로 미루어 범인은 강도가 아닌 인질 중 한 사람. 나머지 7명의 인질은 서로에 대한 의심으로 패닉에 빠지는데…….');
+정황으로 미루어 범인은 강도가 아닌 인질 중 한 사람. 나머지 7명의 인질은 서로에 대한 의심으로 패닉에 빠지는데…….', 4);
 
 INSERT INTO book VALUES(book_seq.nextval, 3, '5년 후 나에게 Q/A a Day','포터 스타일','토네이도','2019-11-01',
 '5년 후 나에게 삶에서 가장 눈부시게 빛나는 1,825개의 하루를 선물하다!
@@ -365,7 +372,7 @@ INSERT INTO book VALUES(book_seq.nextval, 3, '5년 후 나에게 Q/A a Day','포
 삶의 진정한 행복과 사랑, 삶의 가장 빛나는 순간을 우리에게 일깨워주는 책이다.
 우리 삶에 보석처럼 박혀 있는 힌트와 단서, 상상력과 창의력을 제공하는 365개의 질문에 대해 하루에 하나씩, 
 직접 답할 수 있는 이 책은 같은 질문에 대해 5년간 5개의 답을 기록할 수 있도록 구성되었다. 해가 바뀌면서 나의 답이 어떻게 달라졌는지 한눈에 확인하면서 5년 동안 어떤 삶을 살아왔는지, 
-어떤 성장과 변화를 거쳐 왔는지, 어떤 순간에 가장 빛나고 행복했는지를 간편하게 간직할 수 있게 해준다.');
+어떤 성장과 변화를 거쳐 왔는지, 어떤 순간에 가장 빛나고 행복했는지를 간편하게 간직할 수 있게 해준다.', 3);
 
 INSERT INTO book VALUES(book_seq.nextval, 4, '방구석 미술관 ','조원재','블랙피쉬','2018-08-03',
 '높게만 느껴지는 ‘미술 문지방’을 가볍게 넘게 해줄 미술 입덕 교양서. 
@@ -373,7 +380,7 @@ INSERT INTO book VALUES(book_seq.nextval, 4, '방구석 미술관 ','조원재',
 저자는 미술을 제대로 즐기기 위해선 화가들의 삶부터 제대로 파헤쳐봐야 한다고 말한다. 그러면서 왠지 이질감 들고 주눅 들게 만드는 미술관 속 미술계 거장들을 ‘방구석’으로 불러내, 그들의 사생활부터 명화의 숨은 뒷얘기까지 탈탈 털어낸다.
 절규의 화가 뭉크가 평균 수명을 높인 장수의 아이콘이 된 사연, ‘영혼의 화가’ 반 고흐가 악마에게 영혼을 빼앗긴 속사정, 
 그림은 아는데 이름은 모르는 마네가 미술계 거장들의 ‘갓파더’인 이유, 20세기가 낳은 최고의 화가 피카소가 선배 미술을 훔치며 ‘노상강도’라는 소리까지 듣게 된 까닭까지, 
-우아하고 고상한 줄만 알았던 화가와 미술에 대한 실체를 낱낱이 파헤치며 유쾌한 미술 세계로 안내한다.');
+우아하고 고상한 줄만 알았던 화가와 미술에 대한 실체를 낱낱이 파헤치며 유쾌한 미술 세계로 안내한다.', 3);
 
 INSERT INTO book VALUES(book_seq.nextval, 6, '나는 나로 살기로 했다','김수현','마음의숲','2016-11-28',
 '진짜 ‘나’로 살기 위한 뜨거운 조언들! 어른이 처음인 당신을 위한 단단한 위로들!
@@ -384,7 +391,7 @@ INSERT INTO book VALUES(book_seq.nextval, 6, '나는 나로 살기로 했다','�
 스스로에게 변명하고 모두에게 이해받으려 애쓰지 말라고 이야기한다. 불안하다고 무작정 열심히 할 필요 없고, 세상의 정답에 굴복하지 말라고 응원한다. 
 인생의 지나가는 사람들에게 더 이상 상처받지 말고, 누군가의 말에 흔들리지 말고, 자신만의 문제라고 착각하지 말라고. 우리에게 가장 필요한 말, 나답게 살라고 말한다.
 그래서 이 책은 내가 누구인지 고민할 시간조차 없는 현대인들에게, ‘나’를 돌아보게 하는 시간을 선물하고 있다. 남처럼 사는 것이 아니라 나처럼 살 수 있도록, 
-진짜 ‘나’로 살기 위해 우리가 한번쯤 생각하고 고민해야 할 것들을 수록했다. 길을 잃고 있는 당신에게 가장 필요한 책, 어른이 되어서도 ‘나’를 찾고자 하는 어른아이를 위한 책, 밥벌이와 어른살이에 지친 모든 현대인에게 이 책을 바친다.');
+진짜 ‘나’로 살기 위해 우리가 한번쯤 생각하고 고민해야 할 것들을 수록했다. 길을 잃고 있는 당신에게 가장 필요한 책, 어른이 되어서도 ‘나’를 찾고자 하는 어른아이를 위한 책, 밥벌이와 어른살이에 지친 모든 현대인에게 이 책을 바친다.', 4);
 
 INSERT INTO book VALUES(book_seq.nextval, 7, '부자 되는 법을 가르쳐 드립니다','라밋 세티','안드로메디안','2019-12-25',
 '아마존, 뉴욕 타임스, 월 스트리트 저널 베스트셀러
@@ -399,11 +406,11 @@ INSERT INTO book VALUES(book_seq.nextval, 7, '부자 되는 법을 가르쳐 드
 의식적 지출이란 자신이 어디에 얼마를 쓰고 있는지 파악해 지출을 스스로 통제하는 것이다. 어디에 얼마나 지출하는지 모른다면 새는 돈을 막지 못하고 투자에 돈을 쓰지 못해 부자가 될 수 없다. 
 보이지 않는 머니 스크립트는 부모나 사회로부터 주입되어 개인에게 오랫동안 영향을 미치는 돈에 대한 패러다임을 뜻한다. 
 가령 커피나 음식 등 좋아하는 것의 소비를 줄이라는 메시지나, 돈이나 정보가 없기 때문에 투자는 불가능하다는 말이 그런 것들이다. 
-부자의 삶을 원하는가? 금전적, 시간적으로 여유로운 삶을 누리고 싶은가? 지금 바로 시작해야 한다.');
+부자의 삶을 원하는가? 금전적, 시간적으로 여유로운 삶을 누리고 싶은가? 지금 바로 시작해야 한다.', 5);
 
 INSERT INTO book VALUES(book_seq.nextval, 8, '원피스 94','오다 에이치로','대원씨아이','2019.-11-06',
 '야스이에의 처형으로 습격 계획이 백지로 돌아가버린 그 와중, SMILE의 진실을 알고 조로 일행의 분노는 정점에 달한다!! 한편, 죄수 채굴장의 루피 측에게 새로운 위협이…?!
-최고의 보물 ‘원피스’를 둘러싼 해양 액션 로망!');
+최고의 보물 ‘원피스’를 둘러싼 해양 액션 로망!', 4);
 
 INSERT INTO book VALUES(book_seq.nextval, 9, '오! 마이괌','삼돌이, 양슬아','두사람','2019-05-01',
 '괌 여행 베스트셀러 가이드북 [오! 마이 괌]의 2019-2020년 최신판. 
@@ -413,7 +420,7 @@ INSERT INTO book VALUES(book_seq.nextval, 9, '오! 마이괌','삼돌이, 양슬
 그대로 따라만 해도 미식 투어, 알뜰 쇼핑이 완성된다..
 괌 홍보대사를 자처하는 저자가 직접 경험하고 알려주는 생생한 여행 팁, 알면 여행이 더욱 쉽고 재미있어 지는 이야기, 
 한눈에 여행을 그릴 수 있는 상세 지도, 일정별 추천코스가 수록되어 실용성과 읽는 재미까지 갖추었다. 
-또 현지 레스토랑과 상점에서 사용할 수 있는 50여 종의 알짜배기 쿠폰과 제휴 호텔 및 업체들이 제공하는 스폐셜 쿠폰이 수록되어 여행의 즐거움은 배가 된다.');
+또 현지 레스토랑과 상점에서 사용할 수 있는 50여 종의 알짜배기 쿠폰과 제휴 호텔 및 업체들이 제공하는 스폐셜 쿠폰이 수록되어 여행의 즐거움은 배가 된다.', 3);
 
 INSERT INTO book VALUES(book_seq.nextval, 10, '오래도록 젊음을 유지하고 건강하게 죽는 법 ','스티븐 R. 건드리','브론스테인','2019-11-13',
 '인간의 운명은 인간의 유전자가 아니라 미생물군유전체에 달려 있다!
@@ -424,7 +431,13 @@ INSERT INTO book VALUES(book_seq.nextval, 10, '오래도록 젊음을 유지하�
 체중, 피부 상태, 더 심각하게는 관절염이나 암, 알츠하이머병에 이르기까지 건강에 관한 모든 부분에서 핵심적인 역할을 맡고 있다. 
 우리 안에 있는 가장 오래된 존재인 우리 몸속의 미생물을 돌보고 그들이 필요로 하는 것을 제공하면 미생물과 우리는 함께 건강하고 행복하게 살아갈 수 있다고 이야기하면서 
 식이요법, 정신 건강, 피부 관리, 운동에 이르기까지 누구나 쉽게 실천할 수 있는 방법과 함께 모든 사람이 젊어 보이고, 
-실제로 젊어졌다고 느낄 수 있게 해주는 간단한 비법과 더불어 질병을 예방하고 건강한 몸을 되찾게 해줄 방법들을 자세하게 소개한다.');
+실제로 젊어졌다고 느낄 수 있게 해주는 간단한 비법과 더불어 질병을 예방하고 건강한 몸을 되찾게 해줄 방법들을 자세하게 소개한다.', 3);
+
+UPDATE book SET bookName = '5년 후 나에게 QnA a Day' WHERE bookNo = 4;
+UPDATE book SET bookName = '방구석 미술관' WHERE bookNo = 5;
+UPDATE book SET bookName = '오래도록 젊음을 유지하고 건강하게 죽는 법' WHERE bookNo = 10;
+
+commit;
 
 -- sns
 INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(review_sns_seq.nextval,1,1,'리뷰1',0,sysdate);
@@ -733,14 +746,41 @@ INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(
 INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(review_sns_seq.nextval,1,7,'부자가 될 수 있을것만 같아요 짱짱!',1,sysdate);
 INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(review_sns_seq.nextval,2,4,'정말정말 좋은 책이에요^^',1,sysdate);
 
+commit;
 
+--comment_table
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment1', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment2', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment3', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment4', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment5', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment6', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment7', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment8', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment9', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment10', sysdate);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment11', sysdate);
 
+commit;
 
-
-
-
-
-
-
+-- QNA
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
 
 commit;
