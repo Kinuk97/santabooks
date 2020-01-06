@@ -70,11 +70,13 @@ public class ReviewSnsController {
 		logger.info("리스트 : " + list.toString());
 		
 		Object memberNo = session.getAttribute("MemberNo");
-		
 		Grade grade = new Grade();
+		
 		if(memberNo != null) {
 			try {
 				grade.setMemberNo(Integer.parseInt(memberNo.toString()));
+//				grade.setBookNo(review.getBookNo());
+				
 				model.addAttribute("grade", reviewSnsService.getMyGrade(grade));							
 			} catch (NumberFormatException e) {
 				e.printStackTrace();

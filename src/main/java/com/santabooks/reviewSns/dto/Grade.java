@@ -1,7 +1,7 @@
 package com.santabooks.reviewSns.dto;
 
 public class Grade {
-	private int grade;
+	private String grade;
 	private int memberNo;
 	private int bookNo;
 
@@ -10,11 +10,11 @@ public class Grade {
 		return "Grade [grade=" + grade + ", memberNo=" + memberNo + ", bookNo=" + bookNo + "]";
 	}
 
-	public int getGrade() {
+	public String getGrade() {
 		return grade;
 	}
 
-	public void setGrade(int grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 
