@@ -17,8 +17,23 @@
 			<li class="category"><a href="/novel/list?category=4" class="btn btn-outline-success">로판</a></li>
 			<li class="category"><a href="/novel/list?category=5" class="btn btn-outline-success">무협</a></li>
 			<li class="category addNovel"><a class="btn btn-success" href="/novel/add">소설 등록하기</a></li>
+			<li class="category addNovel">
+				<div class="input-group">
+				  <select class="custom-select " id="inputGroupSelect01">
+				    <option value="1" selected="selected">제목</option>
+				    <option value="2">작가</option>
+				  </select>
+				  <div class="input-group-prepend">
+				  </div>
+				  <input type="text" class="form-control" aria-label="Text input with dropdown button">
+			      <div class="input-group-append">
+				    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+				  </div>
+				</div>
+			
+			</li>
 		</ul>
-		<div style="clear: both;" class="text-right"></div>
+		<div style="clear: both;"></div>
 	</div>
 
 	<hr>
@@ -99,6 +114,8 @@
 		</div>
 	</c:forEach>
 	</div>
+	
+	
 	
 	<jsp:include page="/WEB-INF/views/layout/paging.jsp"/>
 </div>

@@ -64,23 +64,6 @@
 		VALUES( qna_seq.nextval, #{memberNo }, #{qnaTitle }, #{qnaContent }, #{writeDate }, #{hit }, ( SELECT memberId FROM member WHERE memberId=#{memberId } ), #{qnaContent } )
 	</insert>
 	
-	<select id="selectCnt" parameterType="com.santabooks.member.dto.Member" resultType="int">
-		SELECT count(*) FROM member
-		WHERE memberId = #{memberId }
-		AND memberPw = #{memberPw }
-	</select>
-	
-	<select id="selectInfoByMemberNo" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.member.dto.Member">
-		SELECT * FROM member
-		WHERE memberId = #{memberId }
-	</select>
-	
-	
-	<delete id="delete" parameterType="com.santabooks.member.dto.Member">
-		DELETE member
-		WHERE memberId = #{memberId}
-	</delete>
-	
 	<select id="selectCntPw" parameterType="com.santabooks.member.dto.Member" resultType="int">
 		SELECT count(*) FROM member 
 		WHERE memberPw = #{memberPw }
@@ -115,5 +98,10 @@
  		WHERE M.memberNo = S.memberNo
  		AND M.memberNo = #{M.memberNo}
 	</select>
+	
+	<update id="delete" parameterType="com.santabooks.member.dto.Member">
+		DELETE member
+		WHERE memberNo = #{memberNo }
+	</update>
 	
 </mapper>

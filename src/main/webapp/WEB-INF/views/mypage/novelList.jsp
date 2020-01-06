@@ -13,12 +13,12 @@
 	
 	<div class="col-12">
 		<ul>
-			<li class="category"><a href="/novel/list" class="btn btn-outline-success">전체</a></li>
-			<li class="category"><a href="/novel/list?category=1" class="btn btn-outline-success">판타지</a></li>
-			<li class="category"><a href="/novel/list?category=2" class="btn btn-outline-success">현판</a></li>
-			<li class="category"><a href="/novel/list?category=3" class="btn btn-outline-success">로맨스</a></li>
-			<li class="category"><a href="/novel/list?category=4" class="btn btn-outline-success">로판</a></li>
-			<li class="category"><a href="/novel/list?category=5" class="btn btn-outline-success">무협</a></li>
+			<li class="category"><a href="#" class="btn btn-outline-success">전체</a></li>
+			<li class="category"><a href="#" class="btn btn-outline-success">판타지</a></li>
+			<li class="category"><a href="#" class="btn btn-outline-success">현판</a></li>
+			<li class="category"><a href="#" class="btn btn-outline-success">로맨스</a></li>
+			<li class="category"><a href="#" class="btn btn-outline-success">로판</a></li>
+			<li class="category"><a href="#" class="btn btn-outline-success">무협</a></li>
 			<li class="category addNovel"><a class="btn btn-success" href="/novel/add">소설 등록하기</a></li>
 		</ul>
 		<div style="clear: both;" class="text-right"></div>

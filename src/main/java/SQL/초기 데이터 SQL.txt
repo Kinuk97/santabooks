@@ -1,5 +1,4 @@
 -- 사용자
-
 INSERT INTO member VALUES (member_seq.nextval,'a1@naver.com', 'TestName1', 'TestNick1', '1234',19961023,'01012341234','male','1,7,2','n','12345','서울 강남구','서울 강남구 논현동 200-7','KH','(논현동)');
 INSERT INTO member VALUES (member_seq.nextval,'a2@naver.com', 'TestName2', 'TestNick2', '1234',19970617,'01012341235','male','1,8','n','12345','서울 강남구','서울 강남구 논현동 200-8','KH','(논현동)');
 INSERT INTO member VALUES (member_seq.nextval,'a3@naver.com', 'TestName3', 'TestNick3', '1234',19971227,'01012341236','male','1,9','n','12345','서울 강남구','서울 강남구 논현동 200-9','KH','(논현동)');
@@ -44,12 +43,16 @@ INSERT INTO member VALUES (member_seq.nextval,'a41@gmail.com', 'TestName41', 'Te
 INSERT INTO member VALUES (member_seq.nextval,'a42@gmail.com', 'TestName42', 'TestNick42', '1234',19950909,'01012341275','female','1,2,3','y','12345','서울 강남구','서울 강남구 논현동 200-48','KH','(논현동)');
 INSERT INTO member VALUES (member_seq.nextval,'a43@gmail.com', 'TestName43', 'TestNick43', '1234',19950910,'01012341276','female','1,2','y','12345','서울 강남구','서울 강남구 논현동 200-49','KH','(논현동)');
 
+commit;
+
 -- 카테고리
 INSERT INTO category VALUES (1, '판타지');
 INSERT INTO category VALUES (2, '현판');
 INSERT INTO category VALUES (3, '로맨스');
 INSERT INTO category VALUES (4, '로판');
 INSERT INTO category VALUES (5, '무협');
+
+commit;
 
 -- Novel
 INSERT INTO novel (novelNo, memberNo, title, discription, category) VALUES (novel_seq.nextval,1,'Novel1','Discription1',1);
@@ -200,6 +203,8 @@ INSERT INTO novel (novelNo, memberNo, title, discription, category) VALUES (nove
 INSERT INTO novel (novelNo, memberNo, title, discription, category) VALUES (novel_seq.nextval,1,'Novel146','Discription146',4);
 INSERT INTO novel (novelNo, memberNo, title, discription, category) VALUES (novel_seq.nextval,1,'Novel147','Discription147',4);
 
+commit;
+
 -- episode
 INSERT INTO episode VALUES (episode_seq.nextval,147,'Title1','Temp',4, sysdate);
 INSERT INTO episode VALUES (episode_seq.nextval,147,'Title2','Temp',4, sysdate);
@@ -331,6 +336,8 @@ INSERT INTO genre VALUES(8,'만화');
 INSERT INTO genre VALUES(9,'여행');
 INSERT INTO genre VALUES(10,'건강');
 
+commit;
+
 -- 북
 INSERT INTO book VALUES(book_seq.nextval,1,'세미책','강세미','세미북스','1995-04-13','강세미의 어록이 담겨있다', 5);
 
@@ -429,6 +436,8 @@ INSERT INTO book VALUES(book_seq.nextval, 10, '오래도록 젊음을 유지하�
 UPDATE book SET bookName = '5년 후 나에게 QnA a Day' WHERE bookNo = 4;
 UPDATE book SET bookName = '방구석 미술관' WHERE bookNo = 5;
 UPDATE book SET bookName = '오래도록 젊음을 유지하고 건강하게 죽는 법' WHERE bookNo = 10;
+
+commit;
 
 -- sns
 INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(review_sns_seq.nextval,1,1,'리뷰1',0,sysdate);
@@ -737,6 +746,8 @@ INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(
 INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(review_sns_seq.nextval,1,7,'부자가 될 수 있을것만 같아요 짱짱!',1,sysdate);
 INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(review_sns_seq.nextval,2,4,'정말정말 좋은 책이에요^^',1,sysdate);
 
+commit;
+
 --comment_table
 INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment1', sysdate);
 INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment2', sysdate);
@@ -749,13 +760,27 @@ INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment8', sy
 INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment9', sysdate);
 INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment10', sysdate);
 INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment11', sysdate);
-select * from comment_table;
 
+commit;
 
-
-
-
-
-
+-- QNA
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
+INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', sysdate, 1 );
 
 commit;

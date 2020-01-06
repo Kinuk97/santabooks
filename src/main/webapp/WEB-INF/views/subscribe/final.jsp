@@ -49,7 +49,7 @@ body{
 </div>
 </div>
 <br><br>
-
+<a href="/subscribe/shipment"><button> 배송 </button></a>
 
 
 

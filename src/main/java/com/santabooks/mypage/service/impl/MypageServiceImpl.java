@@ -49,25 +49,6 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public boolean checkPw(String id) {
-		if ( mypageDao.selectCnt(id) > 0 ) {
-			return true;
-		} 
-		
-		return false;
-	}
-
-	@Override
-	public Member info(Member member) {
-		return mypageDao.selectInfoByMemberNo(member);
-	}
-
-	@Override
-	public void InfoDelete(Member member) {
-		mypageDao.delete(member);
-	}
-
-	@Override
 	public void write(Member member) {
 		mypageDao.write(member);		
 	}
@@ -97,6 +78,11 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public Member subInfo(int subNo) {
 		return mypageDao.selectBySub(subNo);
+	}
+	
+	@Override
+	public void delete(Member member) {
+		mypageDao.delete(member);
 	}
 
 }

@@ -53,7 +53,7 @@
 				</div></li>
 			<li class="nav-item"><a class="nav-link" href="/mypage/shipmentList">받은 책 내역</a></li>
 			
-			<li class="nav-item"><a class="nav-link" href="/mypage/deletePwChk">회원탈퇴</a></li>
+			<li class="nav-item"><a class="nav-link" href="/mypage/delete">회원탈퇴</a></li>
 
 			<li class="nav-item"><a class="nav-link" href="/mypage/qna">문의</a></li>
 		</ul>

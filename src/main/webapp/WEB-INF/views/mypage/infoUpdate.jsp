@@ -123,14 +123,16 @@ $(document).ready(function() {
 </script>
 
 <script type="text/javascript">
-	//작성버튼 동작
-	$("#btnUpdate").click(function() {
-		alert("수정 되었습니다.");
-	});
-	//취소버튼 동작
-	$("#btnCancel").click(function() {
-		alert("취소 하시겠습니까?");
-		history.go(-1);
+	$(document).ready(function() {
+		//작성버튼 동작
+		$("#btnUpdate").click(function() {
+			alert("수정 되었습니다.");
+		});
+		//취소버튼 동작
+		$("#btnCancel").click(function() {
+			alert("취소 하시겠습니까?");
+			history.go(-1);
+		});
 	});
 </script>
 

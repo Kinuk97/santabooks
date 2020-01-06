@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.mypage.dto.QnA;
-import com.santabooks.novel.dto.Novel;
 import com.santabooks.util.Paging;
 
 public interface MypageService {
@@ -31,12 +30,6 @@ public interface MypageService {
 
 	public List<QnA> list(Paging paging);
 
-	public boolean checkPw(String id);
-
-	public Member info(Member member);
-	
-	public void InfoDelete(Member member);
-
 	public void write(Member member);
 
 	public int infoPwChk(Member member);
@@ -48,5 +41,7 @@ public interface MypageService {
 	public void qnaDelete(QnA qna);
 
 	public Member subInfo(int subNo);
+
+	public void delete(Member member);
 
 }

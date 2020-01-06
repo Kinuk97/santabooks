@@ -111,6 +111,8 @@ public class NovelServiceImpl implements NovelService {
 		resultPaging.setTableName(paging.getTableName());
 		resultPaging.setCategory(paging.getCategory());
 		resultPaging.setNovelNo(paging.getNovelNo());
+		resultPaging.setMemberNo(paging.getMemberNo());
+		
 
 		return resultPaging;
 	}
