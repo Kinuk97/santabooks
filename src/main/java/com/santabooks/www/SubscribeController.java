@@ -1,15 +1,16 @@
 package com.santabooks.www;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.santabooks.member.dto.Member;
+import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.subscribe.dto.Subscription;
 import com.santabooks.subscribe.service.face.SubscribeService;
 
@@ -69,6 +70,36 @@ public class SubscribeController {
 	@RequestMapping(value="/subscribe/final")
 	public void paymentfianl() {
 	}
+
+	@RequestMapping(value="/subscribe/shipment")
+	public void shipment(Book book, HttpSession session) {
+		// session에 저장되어있는 장르 번호 조회 --> membercontroller 에서 갖고오기
+		// 세션에서 장르번호 받아오기 위위에서 비슷한 로직 있음. 활용해보자.
+//		String id = (String) session.getAttribute("MemberId"); // 세션에서 id 받아오기
+		
+		
+		
+		
+		
+		// book에 저장되있는 장르 번호 조회
+//		List<Book> bookNolist = subscribeservice.getbookNo(session.getAttribute("MemberId"));
+//		
+//		System.out.println(bookNolist + "맞지");
+		
+		
+		// 장르 일치에 따른 book 가져오기(1개)
+		
+		// shipment 테이블에 book 입력
+		
+		// 운송장번호 생성 및 입력
+		
+		// 나머지 정보 입력
+		
+		
+	}
+
+	
+	
 	
 
 	

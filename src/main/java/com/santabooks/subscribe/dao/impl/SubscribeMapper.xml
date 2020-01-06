@@ -41,5 +41,9 @@
 	
 	</update>
 	
+<!-- 	<select id="getBookNo" parameterType="Object" resultType="com.santabooks.reviewSns.dto.Book"> -->
+<!-- 		SELECT bookno FROM book -->
+<!-- 		WHERE memberID = #{memberId} -->
+<!-- 	</select> -->
 
 </mapper>

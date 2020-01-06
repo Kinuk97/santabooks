@@ -263,7 +263,11 @@ function requestPayment() {
 </div>
 <br><br>
 
+
+
 <form action="/subscribe/first" method="post" id="subscribeform"  >
+	
+	
 	
 	<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req" onclick="check()"/> 회원가입 정보와 동일합니다. </label> <br><br>
 	
