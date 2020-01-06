@@ -177,7 +177,7 @@ public class MyPageInfoController {
 		model.addAttribute("msg", "회원 탈퇴 완료");
 		model.addAttribute("url", "/novel/list");
 		
-		return "util/alert";
+		return "/mypage/alert";
 	}
 	
 }
