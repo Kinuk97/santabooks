@@ -19,7 +19,9 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 
 		try {
 			if (Boolean.parseBoolean(session.getAttribute("login").toString())) {
-				return true;
+				if (Integer.parseInt(session.getAttribute("MemberNo").toString()) != 0) {
+					return true;
+				}
 			}
 		} catch (NullPointerException e) {
 			logger.info("로그인하지 않은 유저");
