@@ -45,7 +45,7 @@ public class MypageWritingController {
 		paging = novelService.getPaging(paging);
 		
 		model.addAttribute("paging", paging);
-		model.addAttribute("mypageList", novelService.getMyNovel(myNovelList));
+		model.addAttribute("mypageList", novelService.getMyNovel(paging));
 		model.addAttribute("url", req.getRequestURI());
 		
 		String param = "";
