@@ -22,6 +22,7 @@ import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dao.face.ReviewSnsDao;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
+import com.santabooks.reviewSns.dto.Like;
 import com.santabooks.reviewSns.dto.NaverBook;
 import com.santabooks.reviewSns.dto.ReviewSns;
 import com.santabooks.reviewSns.service.face.ReviewSnsService;
@@ -252,6 +253,41 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	public Score getMyGrade(Grade grade) {
 		return reviewSnsDao.selectGradeByMemberNo(grade);
 	}
+	
+	@Override
+	public boolean isLike(Like like) {
+		
+		int cnt = reviewSnsDao.selectCntLikeByMemberNo(like);
+		
+		if(cnt > 0) {
+			// 좋아요 누름
+			return true;
+		} else {	
+			// 좋아요 안 누름
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean like(Like like) {
+		
+		if(isLike(like)) {
+			// 좋아요 한 상태
+			reviewSnsDao.deleteLike(like);
+			return false;
+		} else {
+			// 좋아요 하지 않은 상태
+			reviewSnsDao.insertLike(like);
+			return true;
+		}
+	}
+
+	@Override
+	public int getTotalCntLike(Like like) {
+		
+		return reviewSnsDao.selectCntLike(like);
+	}
+
 
 
 	

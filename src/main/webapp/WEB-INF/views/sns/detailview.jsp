@@ -56,6 +56,34 @@ $(document).ready(function() {
 	    	});
 		});
 	
+		// 좋아요 버튼
+		$("#likeBtn").on("click", function() {
+			$.ajax({
+		 		type: "POST"
+		 		, url: "/sns/like"
+				, data: {
+					"feedNo" : feedNo,
+				}
+				, dataType: "json"
+				, success: function( res ) {
+					if(res.result) {
+						// 추천 성공
+						$("#likeBtn").html("<button style='color: #ff2f6e; font-weight: bold; border:none;'>싫어요</button>");
+					} else {
+						// 추천 취소 성공
+						$("#likeBtn").html("<button style='color: #ff2f6e; font-weight: bold; border:none;'>좋아요</button>");
+					}
+					
+					//추천수 적용
+	        		$("#likeCnt").html(res.favoriteCnt);
+				}
+				, error: function(e) {
+// 					$("#loginModal").modal();
+					console.log(e);
+				}
+			});
+		});
+	
 });
 </script>
 
@@ -79,9 +107,9 @@ $(document).ready(function() {
 					<br><br><br>
 					<p class="text-right">${review.reviewDate }</p>
 					<hr>
-					&nbsp;&nbsp;<i class="far fa-thumbs-up"></i>&nbsp;(좋아요 개수)
+					&nbsp;&nbsp;<i class="far fa-thumbs-up">${likeCnt }</i>
 					<hr>
-					<button style="color: #ff2f6e; font-weight: bold; border:none;">좋아요</button>
+					<button style="color: #ff2f6e; font-weight: bold; border:none;" id="likeBtn">좋아요</button>
 				</div>
 			</div>
 

@@ -129,6 +129,22 @@
 		UPDATE book SET grade = (SELECT round(avg(grade), 1) FROM grade WHERE bookNo = book.bookNo) WHERE bookNo = #{bookNo}
 	</update>
 	
+	<!-- 좋아요 -->
+	<select id="selectCntLike" parameterType="com.santabooks.reviewSns.dto.Like" resultType="int">
+		SELECT COUNT(*) FROM like_table WHERE feedNo = #{feedNo}
+	</select>
+	
+	<select id="selectCntLikeByMemberNo" parameterType="com.santabooks.reviewSns.dto.Like" resultType="int">
+		SELECT COUNT(*) FROM like_table WHERE memberNo = #{memberNo} AND feedNo = #{feedNo}
+	</select>
+	
+	<insert id="insertLike" parameterType="com.santabooks.reviewSns.dto.Like">
+		INSERT INTO like_table VALUES (#{memberNo}, #{feedNo})
+	</insert>
+	
+	<delete id="deleteLike" parameterType="com.santabooks.reviewSns.dto.Like">
+		DELETE FROM like_table WHERE memberNo = #{memberNo} AND feedNo = #{feedNo}
+	</delete>
 	
 </mapper>
   

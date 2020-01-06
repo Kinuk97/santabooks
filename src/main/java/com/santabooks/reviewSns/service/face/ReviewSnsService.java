@@ -6,6 +6,7 @@ import com.santabooks.member.dto.Member;
 import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
+import com.santabooks.reviewSns.dto.Like;
 import com.santabooks.reviewSns.dto.NaverBook;
 import com.santabooks.reviewSns.dto.ReviewSns;
 import com.santabooks.util.Paging;
@@ -144,6 +145,30 @@ public interface ReviewSnsService {
 	 * @return
 	 */
 	public Score getMyGrade(Grade grade);
+	
+	/**
+	 * 좋아요
+	 * 
+	 * @param like - memberNo, feenNo
+	 * @return 좋아요 한 결과값
+	 */
+	public boolean like(Like like);
+	
+	/**
+	 * 좋아요 수 
+	 * 
+	 * @param like - feedNo
+	 * @return int - 좋아요 개수 결과
+	 */
+	public int getTotalCntLike(Like like);
+	
+	/**
+	 * 사용자가 좋아요 눌렀는지 유무
+	 * 
+	 * @param like - memberNo, feedNo
+	 * @return boolean - true : 좋아요 O, false : 좋아요 X
+	 */
+	public boolean isLike(Like like);
 	
 
 	

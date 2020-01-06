@@ -6,6 +6,7 @@ import com.santabooks.member.dto.Member;
 import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
+import com.santabooks.reviewSns.dto.Like;
 import com.santabooks.reviewSns.dto.ReviewSns;
 import com.santabooks.util.Paging;
 
@@ -129,6 +130,32 @@ public interface ReviewSnsDao {
 	public void updateBookGrade(Grade grade);
 
 	public void deleteGrade(Grade grade);
+	
+	/**
+	 * 내가 좋아요 했는지 count
+	 * @param like
+	 * @return
+	 */
+	public int selectCntLikeByMemberNo(Like like);
+	
+	/**
+	 * 좋아요 삭제
+	 * @param like
+	 */
+	public void deleteLike(Like like);
+	
+	/**
+	 * 좋아요 추가
+	 * @param like
+	 */
+	public void insertLike(Like like);
+	
+	/**
+	 * 좋아요 count
+	 * @param like
+	 * @return
+	 */
+	public int selectCntLike(Like like);
 	
 
 

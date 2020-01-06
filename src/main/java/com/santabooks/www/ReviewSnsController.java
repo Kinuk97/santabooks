@@ -17,9 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.member.service.face.LoginService;
+import com.santabooks.novel.dto.Favorite;
 import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
+import com.santabooks.reviewSns.dto.Like;
 import com.santabooks.reviewSns.dto.ReviewSns;
 import com.santabooks.reviewSns.service.face.ReviewSnsService;
 import com.santabooks.util.Paging;
@@ -128,8 +130,17 @@ public class ReviewSnsController {
 
 		ReviewSns review = reviewSnsService.detailView(reviewSns);
 		logger.info("리뷰속리뷰 : " + review.toString());
-
+		
+		Like like = new Like();
+		like.setFeedNo(review.getFeedNo());
+		like.setMemberNo(review.getMemberNo());
+		
+		int likeCnt = reviewSnsService.getTotalCntLike(like);
+		boolean checkLike = reviewSnsService.isLike(like);
+		
 		model.addAttribute("review", review);
+		model.addAttribute("likeCnt", likeCnt);
+		model.addAttribute("checkLike", checkLike);
 	}
 
 	@RequestMapping(value = "/sns/write", method = RequestMethod.POST)
@@ -193,6 +204,26 @@ public class ReviewSnsController {
 		mav.addObject("grade", reviewSnsService.removeGrade(grade));
 		
 		logger.info("별점 : " + grade);
+		mav.setViewName("jsonView");
+
+		return mav;
+	}
+	
+	// 좋아요
+	@RequestMapping(value = "/sns/like", method = RequestMethod.POST)
+	public ModelAndView like(ModelAndView mav, Like like, HttpSession session) {
+		like.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
+
+		// 추천 정보 토글
+		boolean result = reviewSnsService.like(like);
+
+		// 추천 수 조회
+		int cnt = reviewSnsService.getTotalCntLike(like);
+
+		mav.addObject("result", result);
+		mav.addObject("likeCnt", cnt);
+
+		// 결과 JSON응답
 		mav.setViewName("jsonView");
 
 		return mav;
