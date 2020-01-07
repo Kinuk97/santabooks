@@ -27,12 +27,12 @@ public interface ReviewSnsDao {
 	public List<ReviewSns> selectAll(Paging reviewPaging);
 	
 	/**
-	 * 피드 번호에 해당하는 각각의 리뷰 조회
+	 * 책 번호에 해당하는 각각의 리뷰 조회
 	 * 
 	 * @param reviewSns - review 객체
 	 * @return ReviewSns - 상세 리뷰
 	 */
-	public ReviewSns selectReviewByFeedNo(ReviewSns reviewSns);
+	public ReviewSns selectReviewByBookNo(ReviewSns reviewSns);
 	
 	/**
 	 * 책 번호에 해당하는 각각의 리뷰 조회(최신리뷰 3개)
@@ -40,7 +40,7 @@ public interface ReviewSnsDao {
 	 * @param reviewSns - review 객체
 	 * @return ReviewSns - 리뷰 목록
 	 */
-	public List<ReviewSns> selectReviewByBookNo(ReviewSns review);
+	public List<ReviewSns> selectNewReviewByBookNo(ReviewSns review);
 	
 	/**
 	 * 책 번호에 해당하는 각각의 리뷰 모두보기

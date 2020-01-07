@@ -25,13 +25,13 @@
 		rnum BETWEEN #{startNo} AND #{endNo} AND (r.bookNo = b.bookNo) AND (r.memberNo = m.memberNo)
 	</select>
 	
-	<select id="selectReviewByFeedNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
+	<select id="selectReviewByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
 		SELECT b.bookName, b.bookWriter, b.bookNo, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade
 		FROM book b
 		WHERE b.bookNo = #{bookNo}
 	</select>
 	
-	<select id="selectReviewByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
+	<select id="selectNewReviewByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
 		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade
 		FROM (SELECT * FROM review_sns ORDER BY feedNo DESC)r, book b
 		WHERE b.bookNo = #{bookNo} AND r.bookNo = b.bookNo AND ROWNUM BETWEEN 1 AND 3

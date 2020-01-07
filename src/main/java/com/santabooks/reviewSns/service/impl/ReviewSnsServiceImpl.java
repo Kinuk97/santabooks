@@ -50,7 +50,7 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	@Override
 	public ReviewSns view(ReviewSns reviewSns) {
 		
-		return reviewSnsDao.selectReviewByFeedNo(reviewSns);
+		return reviewSnsDao.selectReviewByBookNo(reviewSns);
 	}
 	
 	@Override
@@ -163,7 +163,7 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	@Override
 	public List<ReviewSns> snsListInBook(ReviewSns review) {
 		
-		return reviewSnsDao.selectReviewByBookNo(review);
+		return reviewSnsDao.selectNewReviewByBookNo(review);
 	}
 
 	@Override
