@@ -17,7 +17,7 @@ public class Paging {
 	// 검색어
 	private String search;
 	// 제목? 내용? 제목 + 내용?
-	private int searchno;
+	private int searchNo;
 	// 소설 카테고리
 	private int category;
 	// 소설 번호
@@ -107,16 +107,6 @@ public class Paging {
 		endNo = curPage * listCount;
 	}
 
-	@Override
-	public String toString() {
-		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
-				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
-				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchno=" + searchno
-				+ ", category=" + category + ", novelNo=" + novelNo + ", tableName=" + tableName + ", bookNo=" + bookNo
-				+ ", searchType=" + searchType + ", keyword=" + keyword + ", memberNo=" + memberNo + ", memberId="
-				+ memberId + ", memberNick=" + memberNick + "]";
-	}
-
 	public int getCurPage() {
 		return curPage;
 	}
@@ -197,12 +187,12 @@ public class Paging {
 		this.search = search;
 	}
 
-	public int getSearchno() {
-		return searchno;
+	public int getSearchNo() {
+		return searchNo;
 	}
 
-	public void setSearchno(int searchno) {
-		this.searchno = searchno;
+	public void setSearchNo(int searchNo) {
+		this.searchNo = searchNo;
 	}
 
 	public int getCategory() {
@@ -275,6 +265,16 @@ public class Paging {
 
 	public void setMemberNick(String memberNick) {
 		this.memberNick = memberNick;
+	}
+
+	@Override
+	public String toString() {
+		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
+				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
+				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchNo=" + searchNo
+				+ ", category=" + category + ", novelNo=" + novelNo + ", tableName=" + tableName + ", bookNo=" + bookNo
+				+ ", searchType=" + searchType + ", keyword=" + keyword + ", memberNo=" + memberNo + ", memberId="
+				+ memberId + ", memberNick=" + memberNick + "]";
 	}
 
 }

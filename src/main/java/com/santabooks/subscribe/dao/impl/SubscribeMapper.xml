@@ -40,10 +40,27 @@
 	WHERE memberID = #{memberId}
 	
 	</update>
-	
-<!-- 	<select id="getBookNo" parameterType="Object" resultType="com.santabooks.reviewSns.dto.Book"> -->
-<!-- 		SELECT bookno FROM book -->
-<!-- 		WHERE memberID = #{memberId} -->
-<!-- 	</select> -->
 
+	<select id="getGenre" parameterType="String" resultType="com.santabooks.member.dto.Member">
+		SELECT genre FROM member
+		WHERE memberId = #{id}
+	</select>
+
+	<select id="getbookGenreNo" parameterType="String" resultType="com.santabooks.reviewSns.dto.Book">
+		SELECT * FROM (
+			SELECT bookno, genreno, bookname, bookwriter, bookpublisher, publishingyear, bookcontent, grade FROM book
+			WHERE genreno IN ( ${genreNo} )
+			ORDER BY DBMS_RANDOM.RANDOM
+		) B
+		WHERE rownum = 1
+	</select>
+	
+	<insert id="insertshipsInfo" parameterType="com.santabooks.subscribe.dto.Shipment">
+		INSERT INTO shipment (shipno, shipmentdate, memberno, bookno, subno )
+		
+		VALUES ( #{shipNo}, #{shipmentDate}, #{memberNo}, #{bookNo}, #{subNo} )	
+	</insert>
+	
+	
+	
 </mapper>

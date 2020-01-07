@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.santabooks.member.dto.Member;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.subscribe.dao.face.SubscribeDao;
+import com.santabooks.subscribe.dto.Shipment;
 import com.santabooks.subscribe.dto.Subscription;
 import com.santabooks.subscribe.service.face.SubscribeService;
 
@@ -48,10 +49,21 @@ public class SubscribeServiceImpl implements SubscribeService {
 		
 	}
 
-//	@Override
-//	public List<Book> getbookNo(Object memberId) {
-//		return subscribeDao.getBookNo(memberId);
-//	}
+	@Override
+	public Member getGenre(String id) {
+		return subscribeDao.getGenre(id);
+	}
+
+	@Override
+	public Book getbookgenreNo(String genreNo) {
+		return subscribeDao.getbookGenreNo(genreNo);
+	}
+
+	@Override
+	public void insertShipmentInfo(Shipment shipment) {
+		subscribeDao.insertshipsInfo(shipment);
+		
+	}
 
 
 
