@@ -5,6 +5,8 @@
 $(document).ready(function() {
 	var novelNo = $("#novelNo").val();
 	var episodeNo = $("#episodeNo").val();
+	
+	// score
 	drawStars($("#score").val(), $("#cntScore").val());
 	
 	if ($("#score").val() != "") {
@@ -78,7 +80,7 @@ $(document).ready(function() {
 				"score" : $("#rating-system").val()
 			}
 			, dataType: "json"
-			, success: function( res ) {
+			, success: function(res) {
 				drawStars(res.score.score, res.score.cntScore);
 				$("#removeScore").addClass("active");
 			}
@@ -97,7 +99,7 @@ $(document).ready(function() {
 				"episodeNo" : episodeNo,
 			}
 			, dataType: "json"
-			, success: function( res ) {
+			, success: function(res) {
 				if (res.score != null) {
 					drawStars(res.score.score, res.score.cntScore);
 				} else {
@@ -121,7 +123,7 @@ $(document).ready(function() {
 				"novelNo" : novelNo,
 			}
 			, dataType: "json"
-			, success: function( res ) {
+			, success: function(res) {
 				if(res.result) {
 					// 추천 성공
 					$("#favoriteImg").attr("src", "/resources/images/novel/heart-fill.svg");
@@ -139,6 +141,26 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	// 댓글 ===================================================
+	
+	$.ajax({
+ 		type: "POST"
+ 		, url: "/comment/list"
+		, data: {
+			"episodeNo" : episodeNo,
+		}
+		, dataType: "HTML"
+		, success: function(res) {
+			console.log(res);
+			$(".commentDiv").html(res);
+		}
+		, error: function(e) {
+			$("#loginModal").modal();
+			console.log(e);
+		}
+	});
+	
 	
 });
 
