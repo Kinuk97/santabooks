@@ -144,7 +144,7 @@ public interface ReviewSnsService {
 	 * @param grade
 	 * @return
 	 */
-	public Score getMyGrade(Grade grade);
+	public Grade getMyGrade(Grade grade);
 	
 	/**
 	 * 좋아요

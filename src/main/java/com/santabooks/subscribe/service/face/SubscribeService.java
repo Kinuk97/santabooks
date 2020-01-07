@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.reviewSns.dto.Book;
+import com.santabooks.subscribe.dto.Shipment;
 import com.santabooks.subscribe.dto.Subscription;
 
 public interface SubscribeService {
@@ -18,7 +19,12 @@ public interface SubscribeService {
 
 	public void updatecheck(String attribute);
 
-//	public List<Book> getbookNo(Object memberId);
+	public Member getGenre(String id);
+
+	public Book getbookgenreNo(String genreNo);
+
+	public void insertShipmentInfo(Shipment shipment);
+
 
 	
 }

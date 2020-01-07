@@ -37,6 +37,7 @@
 		    		</c:otherwise>
 		    	</c:choose>
 		    	</c:forEach>
+		    	<small>&nbsp;(${novel.cntScore })</small>
 		        	<button class="btn btn-warning" style="float: right" id="favoriteBtn">
 		        	<c:choose>
 		        		<c:when test="${!empty checkFavorite && checkFavorite}">

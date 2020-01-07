@@ -12,9 +12,9 @@
 <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 
-* {
-	box-sizing: border-box;
-}
+* { 
+ 	box-sizing: border-box; 
+ } 
 
 body {
 	font-family: Arial, Helvetica, sans-serif;
@@ -209,11 +209,11 @@ $(document).ready(function() {
 								</div>
 							</div>
 			
+					<br>
+					<br>
 						</div>
 					</div>
 					</c:if>
-					<br>
-					<br>
 				</c:forEach>
 		</div>
 	</div>
