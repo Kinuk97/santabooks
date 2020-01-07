@@ -3,7 +3,6 @@ package com.santabooks.reviewSns.dao.face;
 import java.util.List;
 
 import com.santabooks.member.dto.Member;
-import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.Like;
@@ -157,10 +156,12 @@ public interface ReviewSnsDao {
 	 */
 	public int selectCntLike(Like like);
 	
-
-
-
-	
+	/**
+	 * 책 번호로 정보(리뷰, 책) 가져오기
+	 * @param bookNo
+	 * @return
+	 */
+	public ReviewSns selectReviewByBookNo2(int bookNo);
 	
 
 }

@@ -18,7 +18,6 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import com.santabooks.member.dto.Member;
-import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dao.face.ReviewSnsDao;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
@@ -288,8 +287,10 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 		return reviewSnsDao.selectCntLike(like);
 	}
 
-
-
-	
+	@Override
+	public ReviewSns getReviewSns(int bookNo) {
+		
+		return reviewSnsDao.selectReviewByBookNo2(bookNo);
+	}
 
 }

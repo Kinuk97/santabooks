@@ -146,5 +146,11 @@
 		DELETE FROM like_table WHERE memberNo = #{memberNo} AND feedNo = #{feedNo}
 	</delete>
 	
+	<select id="selectReviewByBookNo2" parameterType="int" resultType="com.santabooks.reviewSns.dto.ReviewSns">
+		SELECT *
+		FROM review_sns
+		WHERE bookNo = #{bookNo}
+	</select>
+	
 </mapper>
   

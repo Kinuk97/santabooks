@@ -3,7 +3,6 @@ package com.santabooks.reviewSns.service.face;
 import java.util.List;
 
 import com.santabooks.member.dto.Member;
-import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.Like;
@@ -170,8 +169,12 @@ public interface ReviewSnsService {
 	 */
 	public boolean isLike(Like like);
 	
-
-	
+	/**
+	 * 책 번호로 리뷰 정보 가져오기
+	 * @param bookNo
+	 * @return
+	 */
+	public ReviewSns getReviewSns(int bookNo);
 	
 
 }
