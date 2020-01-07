@@ -4,18 +4,51 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.santabooks.novel.dao.face.NovelDao">
+	
+	<sql id="memberNameAndScore">
+		(
+			SELECT memberName FROM member WHERE novel.memberNo = memberNo
+		) AS memberName,
+		(
+			SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
+		) AS score,
+		( SELECT count(*) FROM score WHERE episodeNo IN (SELECT episodeNo FROM episode WHERE novel.novelNo = novelNo)
+		) AS cntScore
+	</sql>
+	<sql id="listCondition">
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<choose>
+				<when test="search != null and search != ''">
+					<choose>
+						<when test="searchNo == 2">
+							AND (SELECT memberName FROM member WHERE novel.memberNo = memberNo) LIKE '%' || #{search} || '%'
+						</when>
+						<otherwise>
+							AND title LIKE '%' || #{search} || '%'
+						</otherwise>
+					</choose>
+				</when>
+				<otherwise>
+				<if test="category gt 0 and category lt 6">
+					AND category = #{category}
+				</if>
+				<if test="tableName == 'episode'">
+					AND novelNo = #{novelNo}
+				</if>
+				<if test="category == 6">
+					AND memberNo = #{memberNo}
+				</if>
+				</otherwise>
+			</choose>
+		</trim>
+	</sql>
 
 	<!-- novel -->
 	<select id="selectMyNovel" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.novel.dto.Novel">
 		select * from (
 			select rownum rnum, B.* FROM (
 				SELECT novel.*,
-				(
-					SELECT memberName FROM member WHERE novel.memberNo = memberNo
-				) AS memberName,
-				(
-					SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
-				) AS score
+				<include refid="memberNameAndScore"></include>
 				FROM novel WHERE memberNo = #{memberNo}
 			) B ORDER BY rnum
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
@@ -25,12 +58,7 @@
 		select * from (
 			select rownum rnum, B.* FROM (
 					SELECT n.*,
-					(
-						SELECT memberName FROM member WHERE novel.memberNo = memberNo
-					) AS memberName,
-					(
-						SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
-					) AS score
+					<include refid="memberNameAndScore"></include>
 					FROM novel n INNER JOIN favorite f
 					ON n.novelNo = f.novelNo
 					WHERE memberNo = #{memberNo}
@@ -41,44 +69,16 @@
 
 	<select id="selectCntList" resultType="int" parameterType="com.santabooks.util.Paging">
 		SELECT count(*) FROM ${tableName}
-		
-			<trim prefix="WHERE" prefixOverrides="AND">
-				<if test="search != null and search != ''">
-					AND title LIKE '%' || #{search} || '%'
-				</if>
-				<if test="category gt 0 and category lt 6">
-					AND category = #{category}
-				</if>
-				<if test="tableName == 'episode'">
-					AND novelNo = #{novelNo}
-				</if>
-				<if test="category == 6">
-					AND memberNo = #{memberNo}
-				</if>
-			</trim>
+		<include refid="listCondition"></include>
 	</select>
 	
 	<select id="selectNovelList" resultType="com.santabooks.novel.dto.Novel" parameterType="com.santabooks.util.Paging">
 		select * from (
 			select rownum rnum, B.* FROM (
 				select novel.*,
-				(
-					SELECT membername FROM member WHERE novel.memberNo = memberno
-				) AS memberName,
-				(
-					SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
-				) AS score
+				<include refid="memberNameAndScore"></include>
 				from novel
-		
-			<trim prefix="WHERE" prefixOverrides="AND">
-				<if test="search != null and search != ''">
-					AND title LIKE '%' || #{search} || '%'
-				</if>
-				<if test="category gt 0 and category lt 6">
-					AND category = #{category}
-				</if>
-			</trim>
-			
+				<include refid="listCondition"></include>	
 				order by novelNo desc
 				) B ORDER BY rnum
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
@@ -86,30 +86,20 @@
 	
 	<select id="selectNovelByNovelNo" parameterType="int" resultType="com.santabooks.novel.dto.Novel">
 		SELECT novel.*, 
-		(
-			SELECT membername FROM member WHERE novel.memberNo = memberno
-		) AS memberName,
-		(
-			SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
-		) AS score
+		<include refid="memberNameAndScore"></include>
 		FROM novel WHERE novelNo = #{novelNo}
 	</select>
 	
 	<select id="selectBestNovel" resultType="com.santabooks.novel.dto.Novel">
-		 SELECT * FROM (
-	     	SELECT novel.*, 
-	     	(
-				SELECT membername FROM member WHERE novel.memberNo = memberno
-			) AS memberName,
-			(
-				SELECT round(avg(score), 1) FROM episode WHERE novelNo = novel.novelNo
-			) AS score
-			 FROM novel
-			<if test="category gt 0 and category lt 6">
-		     	WHERE category = #{category}
-	     	</if>
-		     	ORDER BY score ASC
-	     ) novel WHERE ROWNUM BETWEEN 1 AND 3 ORDER BY novel.score ASC
+		SELECT * FROM (
+		    SELECT novel.*, 
+		    <include refid="memberNameAndScore"></include>
+		    FROM novel
+		    <if test="category gt 0 and category lt 6">
+		        WHERE category = #{category}
+		    </if>
+		        ORDER BY score ASC
+		) novel WHERE ROWNUM BETWEEN 1 AND 3 ORDER BY novel.score ASC
 	</select>
 	
 	<insert id="insertNovel" parameterType="com.santabooks.novel.dto.Novel">
@@ -142,7 +132,9 @@
 	</select>
 	
 	<select id="selectEpisodeByEpisodeNo" resultType="com.santabooks.novel.dto.Episode" parameterType="com.santabooks.novel.dto.Episode">
-		SELECT * FROM episode WHERE episodeNo = #{episodeNo}
+		SELECT episode.*,
+		(SELECT count(*) FROM score WHERE episode.episodeNo = episodeNo) AS cntScore
+		FROM episode WHERE episodeNo = #{episodeNo}
 	</select>
 	
 	<insert id="insertEpisode" parameterType="com.santabooks.novel.dto.Episode">
@@ -175,7 +167,10 @@
 	</select>
 	
 	<select id="selectScore" parameterType="com.santabooks.novel.dto.Score" resultType="com.santabooks.novel.dto.Score">
-		SELECT score FROM score WHERE episodeNo = #{episodeNo}
+		SELECT
+		round(avg(score), 1) score,
+		count(*) cntScore
+		FROM score WHERE episodeNo = #{episodeNo}
 	</select>
 	<insert id="insertScore" parameterType="com.santabooks.novel.dto.Score">
 		INSERT INTO score VALUES (#{memberNo}, #{episodeNo}, #{score})

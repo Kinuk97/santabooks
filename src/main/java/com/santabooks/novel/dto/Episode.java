@@ -12,6 +12,8 @@ public class Episode {
 
 	private String score;
 
+	private int cntScore;
+
 	private String addDate;
 
 	public int getEpisodeNo() {
@@ -54,6 +56,14 @@ public class Episode {
 		this.score = score;
 	}
 
+	public int getCntScore() {
+		return cntScore;
+	}
+
+	public void setCntScore(int cntScore) {
+		this.cntScore = cntScore;
+	}
+
 	public String getAddDate() {
 		return addDate;
 	}
@@ -65,7 +75,7 @@ public class Episode {
 	@Override
 	public String toString() {
 		return "Episode [episodeNo=" + episodeNo + ", novelNo=" + novelNo + ", title=" + title + ", content=" + content
-				+ ", score=" + score + ", addDate=" + addDate + "]";
+				+ ", score=" + score + ", cntScore=" + cntScore + ", addDate=" + addDate + "]";
 	}
 
 }

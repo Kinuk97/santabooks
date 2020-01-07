@@ -65,6 +65,7 @@
 <%-- 		    	</c:choose> --%>
 <%-- 	        	</c:forEach> --%>
 		    	</span>
+		    	<small class="cntScore">&nbsp;(${episode.cntScore }명 참여)</small>
 		    	<span style="float: right;">${episode.addDate }</span>
 		    	<hr>
 		    	<div>${episode.content }</div>
@@ -109,5 +110,6 @@
 <input type="text" id="episodeNo" hidden="hidden" value="${episode.episodeNo }">
 <input hidden="hidden" type="text" value="${episode.novelNo }" id="novelNo">
 <input type="text" id="score" hidden="hidden" value="${episode.score }">
+<input type="text" id="cntScore" hidden="hidden" value="${episode.cntScore }">
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

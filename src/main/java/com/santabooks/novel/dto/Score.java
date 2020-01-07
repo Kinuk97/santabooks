@@ -4,10 +4,12 @@ public class Score {
 	private int episodeNo;
 	private int memberNo;
 	private String score;
+	private int cntScore;
 
 	@Override
 	public String toString() {
-		return "Score [episodeNo=" + episodeNo + ", memberNo=" + memberNo + ", score=" + score + "]";
+		return "Score [episodeNo=" + episodeNo + ", memberNo=" + memberNo + ", score=" + score + ", cntScore="
+				+ cntScore + "]";
 	}
 
 	public int getEpisodeNo() {
@@ -32,6 +34,14 @@ public class Score {
 
 	public void setScore(String score) {
 		this.score = score;
+	}
+
+	public int getCntScore() {
+		return cntScore;
+	}
+
+	public void setCntScore(int cntScore) {
+		this.cntScore = cntScore;
 	}
 
 }

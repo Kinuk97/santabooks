@@ -46,6 +46,9 @@ public class NovelController {
 		}
 		if (paging.getSearch() != null && !"".equals(paging.getSearch())) {
 			param += "&search=" + paging.getSearch();
+			if (paging.getSearchNo() != 0) {
+				param += "&searchNo=" + paging.getSearchNo();
+			}
 		}
 		if (paging.getNovelNo() != 0) {
 			param += "&novelNo=" + paging.getNovelNo();
@@ -84,6 +87,9 @@ public class NovelController {
 		}
 		if (paging.getSearch() != null && !"".equals(paging.getSearch())) {
 			param += "&search=" + paging.getSearch();
+			if (paging.getSearchNo() != 0) {
+				param += "&searchNo=" + paging.getSearchNo();
+			}
 		}
 		if (paging.getNovelNo() != 0) {
 			param += "&novelNo=" + paging.getNovelNo();
