@@ -1,5 +1,6 @@
 package com.santabooks.member.service.impl;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,10 @@ import com.santabooks.member.service.face.MemberService;
 @Service
 public class MemeberServiceImpl implements MemberService{
 	
-	@Autowired private MemberDao memberDao;
+	@Autowired
+	private MemberDao memberDao;
+	private SqlSessionTemplate memberSqlSession;
+	
 
 	@Override
 	public boolean join(Member member) {
@@ -28,9 +32,23 @@ public class MemeberServiceImpl implements MemberService{
 	public int nickCheck(String memberId) {
 		return memberDao.nickCheck(memberId);
 	}
+
+	@Override
+	public boolean getMember() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int memberIdCheck(String member_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+
 	
 	
-	
+	 
 	
 	
 	
