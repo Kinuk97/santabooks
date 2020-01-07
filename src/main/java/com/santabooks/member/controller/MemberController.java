@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
@@ -35,7 +36,6 @@ public class MemberController {
 		boolean joinResult = memberService.join(member);
 		
 		
-		
 
 		if (joinResult) {
 			logger.info("회원가입 성공");
@@ -55,24 +55,48 @@ public class MemberController {
 	
 
 	@RequestMapping(value="/member/find_pw", method=RequestMethod.GET)
-	public void findPw() {
-		
-	}
+	public void findPw() {}
 	
-	//닉네임 중복체크
-	@RequestMapping(value="/member/join_nickcheck", method=RequestMethod.POST)
-	public ModelAndView nickCheck(@RequestParam("memberNick") String memberNick, ModelAndView mav) {
-		
-		mav.addObject("nickCheck", 	memberService.nickCheck(memberNick));
-		mav.setViewName("jsonView");
-		logger.info("nickCheck(0-사용가능, 1-중복nick) : " + mav.toString());
-		return mav;
-		
+			
 	}
 	
 	
+//	@RequestMapping(value="/member/join_nickcheck", method=RequestMethod.POST)
+//	public ModelAndView nickCheck(@RequestParam("memberNick") String memberNick, ModelAndView mav) {
+//	
+//	mav.addObject("nickCheck", 	memberService.nickCheck(memberNick));
+//	mav.setViewName("jsonView");
+//	logger.info("nickCheck(0-사용가능, 1-중복nick) : " + mav.toString());
+//	return mav;
+//		
+//	}
 	
-}
+	
+//	@RequestMapping(value="/member/join_nickcheck", method=RequestMethod.POST)
+//	public String nickCheck(Member member, Model model) {
+//		boolean nickcheckResult = memberService.getMember();
+//		memberService.join(member);
+//		
+//		return "/member/alert";	
+//		
+//	}
+	
+	
+//	@RequestMapping(value="/member/join_nickcheck", method=RequestMethod.POST)
+//	public ModelAndView nickCheck(@RequestParam("memberNick") String memberNick, ModelAndView mav) {
+//		
+//		mav.addObject("nickCheck", 	memberService.nickCheck(memberNick));
+//		mav.setViewName("jsonView");
+//		logger.info("nickCheck(0-사용가능, 1-중복nick) : " + mav.toString());
+//		return mav;
+//		
+//	
+//		
+//		
+//	}
+	
+	
+	
 	
 
 

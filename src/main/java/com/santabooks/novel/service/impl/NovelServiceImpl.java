@@ -107,13 +107,12 @@ public class NovelServiceImpl implements NovelService {
 	public Paging getPaging(Paging paging) {
 		Paging resultPaging = new Paging(novelDao.selectCntList(paging), paging.getCurPage(), 12);
 		resultPaging.setSearch(paging.getSearch());
-		resultPaging.setSearchno(paging.getSearchno());
+		resultPaging.setSearchNo(paging.getSearchNo());
 		resultPaging.setTableName(paging.getTableName());
 		resultPaging.setCategory(paging.getCategory());
 		resultPaging.setNovelNo(paging.getNovelNo());
 		resultPaging.setMemberNo(paging.getMemberNo());
 		
-
 		return resultPaging;
 	}
 

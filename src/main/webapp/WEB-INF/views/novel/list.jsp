@@ -18,19 +18,20 @@
 			<li class="category"><a href="/novel/list?category=5" class="btn btn-outline-success">무협</a></li>
 			<li class="category addNovel"><a class="btn btn-success" href="/novel/add">소설 등록하기</a></li>
 			<li class="category addNovel">
+			<form action="/novel/list" method="get">
 				<div class="input-group">
-				  <select class="custom-select " id="inputGroupSelect01">
+				  <select class="custom-select col-3" name="searchNo">
 				    <option value="1" selected="selected">제목</option>
 				    <option value="2">작가</option>
 				  </select>
 				  <div class="input-group-prepend">
 				  </div>
-				  <input type="text" class="form-control" aria-label="Text input with dropdown button">
+				  <input type="text" class="form-control" aria-label="searchText" name="search">
 			      <div class="input-group-append">
-				    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+				    <button class="btn btn-outline-secondary">검색</button>
 				  </div>
 				</div>
-			
+			</form>
 			</li>
 		</ul>
 		<div style="clear: both;"></div>
@@ -47,16 +48,14 @@
 	<c:forEach items="${best }" var="novel">
 		<div class="col-4">
 			<div class="card">
-			  <div class="img_wrap_list">
 			  <c:choose>
 		      	<c:when test="${novel.imgOriginName != null }">
-			    	<img src="/upload/${novel.imgStoredName }" class="card-img-top" alt="...">
+			    	<img src="/upload/${novel.imgStoredName }" class="card-img-top bestNovelImg" alt="...">
 		      	</c:when>
 		      	<c:otherwise>
-				    <img src="/resources/images/logo.png" class="card-img-top" alt="...">
+				    <img src="/resources/images/logo.png" class="card-img-top bestNovelImg" alt="...">
 		      	</c:otherwise>
 		      </c:choose>
-			  </div>
 			  <div class="card-body">
 			    <h5 class="card-title"><a href="/novel/view?novelNo=${novel.novelNo }">${novel.title }</a></h5>
 			    <p class="card-text">
@@ -72,6 +71,7 @@
 			    		</c:otherwise>
 			    	</c:choose>
 			    </c:forEach>
+			    <small>&nbsp;(${novel.cntScore })</small>
 			    </p>
 			  </div>
 			</div>
@@ -98,16 +98,17 @@
 			    <p class="card-text">
 			    ${novel.discription }
 			    <br>
-<%-- 			    <c:forEach begin="1" end="5" step="1" varStatus="i"> --%>
-<%-- 			    	<c:choose> --%>
-<%-- 			    		<c:when test="${i.count <= novel.score }"> --%>
-<!-- 					    <img alt="..." src="/resources/images/novel/star-fill.svg"> -->
-<%-- 			    		</c:when> --%>
-<%-- 			    		<c:otherwise> --%>
-<!-- 					    <img alt="..." src="/resources/images/novel/star.svg"> -->
-<%-- 			    		</c:otherwise> --%>
-<%-- 			    	</c:choose> --%>
-<%-- 			    </c:forEach> --%>
+			    <c:forEach begin="1" end="5" step="1" varStatus="i">
+			    	<c:choose>
+			    		<c:when test="${i.count <= novel.score }">
+					    <img alt="..." src="/resources/images/novel/star-fill.svg">
+			    		</c:when>
+			    		<c:otherwise>
+					    <img alt="..." src="/resources/images/novel/star.svg">
+			    		</c:otherwise>
+			    	</c:choose>
+			    </c:forEach>
+			    <small>&nbsp;(${novel.cntScore })</small>
 			    </p>
 			  </div>
 			</div>

@@ -19,7 +19,6 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -50,75 +49,8 @@
     <![endif]-->
 
 
-<!-- 관심장르 선택 창 갯수 설정-->
-<script src="https://ajax.googleapis.com/jquery/3.3.1/jquery.min.js"></script>
-<script>
-	$(document)
-			.ready(
-					function() {
-						$("input[type='checkbox']")
-								.on(
-										"click",
-										function() {
-											var count = $("input:checked[type='checkbox']:not([name='termsofuse'])").length;
-
-											if (count > 5) {
-												$(this).prop("checked", false);
-												alert("5개까지만 선택할 수 있습니다")
-											}
-										});
-					});
-</script>
-
-
-<!-- 날짜 추가하는 메소드 -->
-
-<script type="text/javascript">
-$(document).ready(function(){       
-       $( "#testDatepicker" ).datepicker({
-            changeMonth: true,
-            changeYear: true,
-            showMonthAfterYear: true,
-            dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
-            dateFormat:'yymmdd',
-       
-       });
-
-});
-</script>
-
-<!-- 비밀번호 -->
-
-
-<script type="text/javascript">
-	$(function() {
-		$("#alert-success").hide();
-		$("#alert-danger").hide();
-		$("input").keyup(function() {
-			var memberPw = $("input[id='memberPw']").val();
-			var memberPwChk = $("input[id='memberPwChk']").val();
-			if (memberPw != "" || memberPwChk != "") {
-				if (memberPw == memberPwChk) {
-					$("#alert-success").show();
-					$("#alert-danger").hide();
-					$("#submit").removeAttr("disabled");
-				} else {
-					$("#alert-success").hide();
-					$("#alert-danger").show();
-					$("#submit").attr("disabled", "disabled");
-				}
-			}
-		});
-	});
-</script>
-
-
-
-
-
 <!-- 도로명 주소 -->
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 	function sample4_execDaumPostcode() {
@@ -182,6 +114,168 @@ $(document).ready(function(){
 	}
 </script>
 
+
+
+
+
+<!-- 회원가입 정규식 -->
+<script type="text/javascript">
+
+    //닉네임이 적합한지 검사할 정규식
+	var jNick = /^[0-9a-zA-Z가-힣]{2,12}$/;
+    //이메일이 적합한지 검사할 정규식
+    var jId = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    // 비밀번호 정규식 - 암호길이 8자 이상 16 이하, 영문숫자특수문자조합
+    var jPw = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,16}$/;
+	// 이름 정규식
+	var jName = /^[가-힣]{2,6}$/;
+	// 휴대폰 번호 정규식
+	var jPhone = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+	//모든 공백 체크 정규식
+	var jBlank = /\s/g;
+	// 생년월일 정규식
+	var birthJ = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/
+	
+	
+
+    var jId = document.getElementById("memberId");
+    var jNick = document.getElementById("memberNick");
+//     var num1 = document.getElementById("num1"); if(!check(re,id,"아이디는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+           return false;
+       }
+
+       if(!check(re,pw,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+           return false;
+
+       }
+
+       if(email.value=="") {
+           alert("이메일을 입력해 주세요");
+           email.focus();
+           return false;
+       }
+
+       if(!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
+           return false;
+       }
+
+       if(join.name.value=="") {
+           alert("이름을 입력해 주세요");
+           join.name.focus();
+           return false;
+       }
+
+//     var num2 = document.getElementById("num2");
+
+
+ if(!check(re,memberId,"이메일을 입력해주세요.")) {
+           return false;
+       }
+
+       if(!check(re,memberPw,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+           return false;
+       }
+
+       if(join.memberPw.value != join.checkpw.value) {
+           alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
+           join.checkpw.value = "";
+           join.checkpw.focus();
+           return false;
+       }
+
+       if(email.value=="") {
+           alert("이메일을 입력해 주세요");
+           email.focus();
+           return false;
+       }
+
+       if(!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
+           return false;
+       }
+
+       if(join.name.value=="") {
+           alert("이름을 입력해 주세요");
+           join.name.focus();
+           return false;
+       }
+
+       
+//    	정규식 검사 변수
+   	var memberid_Check = true;
+   	var pw_Check = true;
+   	var pw_Check2 = true;
+   	var name_Check = true;
+   	var phone_Check = true;
+   	var nick_Check = true;
+   	var birth_Check = true;
+   	
+   	$("#joinBtn").click(function(){ // 가입 버튼 눌렀을 때
+
+
+</script>
+
+
+
+
+<!-- 관심장르 선택 창 갯수 설정-->
+<script src="https://ajax.googleapis.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$(document)
+		.ready(
+			function() {
+			 $("input[type='checkbox']")
+				 .on("click",function() {var count = $("input:checked[type='checkbox']:not([name='termsofuse'])").length;
+					if (count > 5) {$(this).prop("checked", false);
+						alert("5개까지만 선택할 수 있습니다")}
+							});
+								});
+</script>
+
+
+<!-- 날짜 추가하는 메소드 -->
+
+<script type="text/javascript">
+$(document).ready(function(){       
+       $( "#testDatepicker" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showMonthAfterYear: true,
+            dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+            dateFormat:'yymmdd',
+       
+       });
+
+});
+</script>
+
+<!-- 비밀번호 -->
+
+
+<script type="text/javascript">
+	$(function() {
+		$("#alert-success").hide();
+		$("#alert-danger").hide();
+		$("input").keyup(function() {
+			var memberPw = $("input[id='memberPw']").val();
+			var memberPwChk = $("input[id='memberPwChk']").val();
+			if (memberPw != "" || memberPwChk != "") {
+				if (memberPw == memberPwChk) {
+					$("#alert-success").show();
+					$("#alert-danger").hide();
+					$("#submit").removeAttr("disabled");
+				} else {
+					$("#alert-success").hide();
+					$("#alert-danger").show();
+					$("#submit").attr("disabled", "disabled");
+				}
+			}
+		});
+	});
+</script>
+
+
+
+
 <script type="text/javascript">
 $(document).ready(function() {
 	 $("#btn-membernick").on("click", function() {
@@ -198,29 +292,29 @@ $(document).ready(function() {
 					console.log(res)
 					console.log(res.nickCheck);
 
-// 					if (res.nickCheck == 1) {
-// 						$('#nick_check').text('중복된 닉네임입니다')
-// 						$('#nick_check').css('color', 'red')
-// 						nick_Check = false;
+					if (res.nickCheck == 1) {
+						$('#nick_check').text('중복된 닉네임입니다')
+						$('#nick_check').css('color', 'red')
+						nick_Check = false;
 
-// 					} else {
-// 						if (nickCheck.test(membernick)) {
-// 							$('#nick_check').text('사용가능한 닉네임입니다')
-// 							$('#nick_check').css('color', 'green')
-// 							nick_Check = true;
+					} else {
+						if (nickCheck.test(membernick)) {
+							$('#nick_check').text('사용가능한 닉네임입니다')
+							$('#nick_check').css('color', 'green')
+							nick_Check = true;
 
-// 						} else if ($('#memberNick').val() == '') {
-// 							$('#nick_check').text('닉네임을 입력해주세요')
-// 							$('#nick_check').css('color', 'red')
-// 							nick_Check = false;
+						} else if ($('#memberNick').val() == '') {
+							$('#nick_check').text('닉네임을 입력해주세요')
+							$('#nick_check').css('color', 'red')
+							nick_Check = false;
 
-// 						} else {
-// 							$('#nick_check').text('올바른 닉네임 형식이 아닙니다')
-// 							$('#nick_check').css('color', 'red')
-// 							nick_Check = false;
+						} else {
+							$('#nick_check').text('올바른 닉네임 형식이 아닙니다')
+							$('#nick_check').css('color', 'red')
+							nick_Check = false;
 
-// 						}
-// 					}
+						}
+					}
 					
 					if (res.nickCheck == 1) {
 						console.log("중복")
@@ -288,10 +382,12 @@ $(document).ready(function() {
 						<div class="col-xs-6">
 							<input type="text" class="form-control" name="memberNick"
 								id="memberNick" placeholder="닉네임을 입력해주세요">
+								
 						</div>
 						<div class="col-xs-3">
+							<a href="/member/join_nickcheck" target="_blank">
 							<input type="button" id="btn-membernick"
-								value="중복확인" class="btn btn-primary">
+								value="중복확인" class="btn btn-primary"></a>
 							<div class="check_font" id="nick_check"></div>
 						</div>
 					</div>
@@ -409,39 +505,38 @@ $(document).ready(function() {
 						</div>
 						<div class="col-xs-9 text-left">
 							<label><input type="checkbox" name="genre" value="1" />로맨스</label>&nbsp;
-							<label><input type="checkbox" name="genre" value="2" />추리</label>&nbsp;
-							<label><input type="checkbox" name="genre" value="3" />판타지</label>&nbsp;
-							<label><input type="checkbox" name="genre" value="4" />스릴러</label>&nbsp;
-							<label><input type="checkbox" name="genre" value="5" />액션</label>&nbsp;
-							<label><input type="checkbox" name="genre" value="6" />로맨스
-								판타지</label>&nbsp;
+							<label><input type="checkbox" name="genre" value="2" />판타지</label>&nbsp;
+							<label><input type="checkbox" name="genre" value="3" />자기계발</label>&nbsp;
+							<label><input type="checkbox" name="genre" value="4" />예술</label>&nbsp;
+							<label><input type="checkbox" name="genre" value="5" />컴퓨터/IT</label>&nbsp;
+							<label><input type="checkbox" name="genre" value="6" />시/에세이</label>&nbsp;
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-xs-3 control-label"></div>
 						<div class="col-xs-9 text-left">
-							<label><input type="checkbox" name="genre" value="7" />미스터리</label>&nbsp;
-							<label><input type="checkbox" name="genre" value="8" />공포</label>&nbsp;
-							<label><input type="checkbox" name="genre" value="9" />무협</label>&nbsp;
-							<label><input type="checkbox" name="genre" value="10" />여행</label>&nbsp;
-							<label><input type="checkbox" name="genre" value="11" />과학</label>&nbsp;
-							<label><input type="checkbox" name="genre" value="12" />게임</label>&nbsp;
+							<label><input type="checkbox" name="genre" value="7" />경제/경영</label>&nbsp;
+							<label><input type="checkbox" name="genre" value="8" />만화</label>&nbsp;
+							<label><input type="checkbox" name="genre" value="9" />영화</label>&nbsp;
+							<label><input type="checkbox" name="genre" value="10" />건강</label>&nbsp;
+<!-- 							<label><input type="checkbox" name="genre" value="11" />과학</label>&nbsp; -->
+<!-- 							<label><input type="checkbox" name="genre" value="12" />게임</label>&nbsp; -->
 						</div>
 					</div>
 
-					<div class="form-group">
-						<div class="col-xs-3 control-label"></div>
-						<div class="col-xs-9 text-left">
-							<label><input type="checkbox" name="chk" value="13" />인문/사회</label>&nbsp;
-							<label><input type="checkbox" name="chk" value="14" />시/산문</label>&nbsp;
-							<label><input type="checkbox" name="chk" value="15" />역사</label>&nbsp;
-							<label><input type="checkbox" name="chk" value="16" />여행</label>
+<!-- 					<div class="form-group"> -->
+<!-- 						<div class="col-xs-3 control-label"></div> -->
+<!-- 						<div class="col-xs-9 text-left"> -->
+<!-- 							<label><input type="checkbox" name="chk" value="13" />인문/사회</label>&nbsp; -->
+<!-- 							<label><input type="checkbox" name="chk" value="14" />시/산문</label>&nbsp; -->
+<!-- 							<label><input type="checkbox" name="chk" value="15" />역사</label>&nbsp; -->
+<!-- 							<label><input type="checkbox" name="chk" value="16" />여행</label> -->
 							<!-- 							<div class="col-xs-9"> -->
 							<!-- 								<input type="radio" name="genre" value="female" />추후삭제 -->
-							<!-- 							</div> -->
-						</div>
-					</div>
+<!-- 														</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 
 					<!-- 구독여부 필수 값으로, 처음 가입시에 N으로 값을 지정한다. -->
 					<input type = "hidden" name = "subcheck" value="n" />
@@ -455,10 +550,7 @@ $(document).ready(function() {
 <!-- 							<label><input type="radio" name="subcheck" value="y" /> -->
 <!-- 								구독</label> -->
 <!-- 						</div> -->
-<!-- 						<div class="col-xs-3"> -->
-<!-- 							<label><input type="radio" name="subcheck" value="n" -->
-<!-- 								checked="checked" /> 구독 안함</label> -->
-<!-- 						</div> -->
+
 
 					</div>
 					<div class="form-group">
@@ -479,4 +571,5 @@ $(document).ready(function() {
 				</form>
 			</div>
 		</div>
-	</div>
+	</body>
+	</html>

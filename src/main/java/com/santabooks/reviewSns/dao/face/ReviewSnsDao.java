@@ -121,7 +121,7 @@ public interface ReviewSnsDao {
 	
 	public int selectCntGradeByMemberNo(Grade grade);
 
-	public Score selectGradeByMemberNo(Grade grade);
+	public Grade selectGradeByMemberNo(Grade grade);
 	
 	public Grade selectGrade(Grade grade);
 	

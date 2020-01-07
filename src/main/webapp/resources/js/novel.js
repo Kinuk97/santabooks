@@ -5,7 +5,7 @@
 $(document).ready(function() {
 	var novelNo = $("#novelNo").val();
 	var episodeNo = $("#episodeNo").val();
-	drawStars($("#score").val());
+	drawStars($("#score").val(), $("#cntScore").val());
 	
 	if ($("#score").val() != "") {
 		$("#removeScore").addClass("active");
@@ -79,7 +79,7 @@ $(document).ready(function() {
 			}
 			, dataType: "json"
 			, success: function( res ) {
-				drawStars(res.score.score);
+				drawStars(res.score.score, res.score.cntScore);
 				$("#removeScore").addClass("active");
 			}
 			, error: function(e) {
@@ -99,7 +99,7 @@ $(document).ready(function() {
 			, dataType: "json"
 			, success: function( res ) {
 				if (res.score != null) {
-					drawStars(res.score.score);
+					drawStars(res.score.score, res.score.cntScore);
 				} else {
 					drawStars(0);
 				}
@@ -142,8 +142,9 @@ $(document).ready(function() {
 	
 });
 
-function drawStars(score) {
+function drawStars(score, cntScore) {
 	$("#starSpan").html("");
+	
 	for (var i = 1; i <= 5; i++) {
 	
 		if (i <= score) {
@@ -167,9 +168,13 @@ function drawStars(score) {
 					break;
 				}
 			}
+			
 			$("#starSpan").html($("#starSpan").html() + "<img src='/resources/images/novel/star.svg' class='icon'>");
 		}
+		
 	}
+	
+	$("small[class='cntScore']").text(" (" + cntScore + ")");
 }
 
 // 선택한 파일
