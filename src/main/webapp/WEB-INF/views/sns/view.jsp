@@ -134,7 +134,8 @@ body{
 		});
 
 	});
-		
+	
+	// 별점 그리기
 	function drawStars(grade) {
 		$("#starSpan").html("");
 		for (var i = 1; i <= 5; i++) {
@@ -164,7 +165,8 @@ body{
 			}
 		}
 	}
-
+	
+	// 공개/비공개 체크 값
 	function check() {
 
 		if ($("input:checkbox[id='privacy']").is(":checked")) {
@@ -176,6 +178,7 @@ body{
 
 		}
 	}
+
 </script>
 
 <input type="hidden" value="${review.feedNo }" name="feedNo" />
@@ -187,8 +190,10 @@ body{
 	<h5 style="color: #696969; font-weight: bold;">${review.bookWriter }</h5>
 	<hr>
 	
-	<p style="font-weight: bold;">평점 ★( 평점 평균들어갈예정 ex)3.0 )</p>
-	<span id="starSpan"></span>
+	<div style="position: relative;">
+	<p style="font-weight: bold;">평점</p>
+	<span id="starSpan" style="position: absolute; top: -2px; left: 40px;"></span>
+	</div>
 	<hr>
 	
 	<div style="position: relative;">
@@ -208,7 +213,7 @@ body{
 	</c:if>
 	
 	<div class="column">
-		<div class="card" id="bookInfo" style="height: 1000px;">
+		<div class="card" id="bookInfo" style="height: 920px;">
 			<div class="card-text">
 				<div style="padding: 0px 20px 0px 20px;">
 					<h4 style="font-weight: bold;">책 정보</h4>

@@ -250,7 +250,7 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	}
 	
 	@Override
-	public Score getMyGrade(Grade grade) {
+	public Grade getMyGrade(Grade grade) {
 		return reviewSnsDao.selectGradeByMemberNo(grade);
 	}
 	
