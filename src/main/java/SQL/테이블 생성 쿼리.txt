@@ -62,7 +62,7 @@ CREATE TABLE Novel (
  memberNo NUMBER NOT NULL,
  title VARCHAR2(100) NOT NULL,
  discription VARCHAR2(150) NOT NULL,
- addDate VARCHAR2(100) DEFAULT sysdate,
+ addDate VARCHAR2(100) DEFAULT to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),
  category NUMBER NOT NULL,
  imgOriginName VARCHAR2(150),
  imgStoredName VARCHAR2(200)
@@ -126,7 +126,7 @@ CREATE TABLE REVIEW_SNS (
  bookNo NUMBER NOT NULL,
  review VARCHAR2(500) NOT NULL,
  privacy NUMBER NULL,
- reviewDate VARCHAR2(100) DEFAULT sysdate
+ reviewDate VARCHAR2(100) DEFAULT to_char(sysdate,'yyyy/mm/dd hh24:mi:ss')
 );
 
 CREATE TABLE Episode (
@@ -135,7 +135,7 @@ CREATE TABLE Episode (
  title VARCHAR2(100) NOT NULL,
  content VARCHAR2(4000) NOT NULL,
  score NUMBER NULL,
- addDate VARCHAR2(100) DEFAULT sysdate
+ addDate VARCHAR2(100) DEFAULT to_char(sysdate,'yyyy/mm/dd hh24:mi:ss')
 );
 
 CREATE TABLE comment_TABLE (
@@ -143,7 +143,9 @@ CREATE TABLE comment_TABLE (
  episodeNo NUMBER NOT NULL,
  memberNo NUMBER NOT NULL,
  content VARCHAR2(300) NOT NULL,
- addDate VARCHAR2(100) NOT NULL
+ addDate VARCHAR2(100) NOT NULL,
+ parentCmtNo int DEFAULT 0,
+ seq int DEFAULT 1
 );
 
 CREATE TABLE Favorite (
@@ -172,7 +174,7 @@ ALTER TABLE Novel ADD CONSTRAINT FK_MEMBER_TO_Novel_1 FOREIGN KEY (
 )
 REFERENCES MEMBER (
  memberNo
-);
+) ON DELETE CASCADE;
 
 ALTER TABLE Novel ADD CONSTRAINT FK_CATEGORY_TO_Novel_1 FOREIGN KEY (
  category
@@ -263,7 +265,7 @@ ALTER TABLE comment_TABLE ADD CONSTRAINT FK_MEMBER_TO_comment_TABLE_1 FOREIGN KE
 )
 REFERENCES MEMBER (
  memberNo
-);
+) ON DELETE CASCADE;
 
 ALTER TABLE comment_TABLE ADD CONSTRAINT FK_EPISODE_TO_comment_TABLE_1 FOREIGN KEY (
  episodeNo

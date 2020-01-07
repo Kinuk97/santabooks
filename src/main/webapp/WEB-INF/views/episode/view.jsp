@@ -85,6 +85,8 @@
 	</div>
 	
 	<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top; "value="${myScore.score }">
+	<div class="commentDiv">
+	</div>
 </div>
 
 <!-- Modal -->

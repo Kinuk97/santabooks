@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.novel.dao.face.NovelDao;
+import com.santabooks.novel.dto.Comment;
 import com.santabooks.novel.dto.Episode;
 import com.santabooks.novel.dto.Favorite;
 import com.santabooks.novel.dto.Novel;
@@ -114,11 +115,6 @@ public class NovelServiceImpl implements NovelService {
 		resultPaging.setMemberNo(paging.getMemberNo());
 		
 		return resultPaging;
-	}
-
-	@Override
-	public Episode viewEpidode(Episode episode) {
-		return null;
 	}
 
 	@Override
@@ -250,5 +246,10 @@ public class NovelServiceImpl implements NovelService {
 	@Override
 	public int getTotalCntFavorite(Favorite favorite) {
 		return novelDao.selectCntFavorite(favorite);
+	}
+	
+	@Override
+	public List<Comment> getCommentList(Comment comment) {
+		return novelDao.selectComment(comment);
 	}
 }
