@@ -108,7 +108,7 @@ public class ReviewSnsController {
 		int totalCount = reviewSnsService.selectCntAll2(paging);
 
 		Book bookInfo = reviewSnsService.getBook(bookNo);
-
+		
 		logger.info("bookno : " + reviewSns);
 
 		Paging reviewPaging = new Paging(totalCount, paging.getCurPage());
@@ -118,10 +118,31 @@ public class ReviewSnsController {
 		logger.info("책번호 제발 나와라 : " + reviewPaging);
 
 		List<ReviewSns> list = reviewSnsService.reviewList(reviewPaging);
+		
+		// review 정보 가져오기
+		Like like = new Like();
+		
+		int feedNo = 0;
+		int memberNo = 0;
+		
+		for (int i = 0; i < list.size(); i++) {
+			feedNo = list.get(i).getFeedNo();
+			memberNo = list.get(i).getMemberNo();
+			
+			like.setFeedNo(feedNo);
+			like.setMemberNo(memberNo);
+			logger.info("좋아요 정보 뽑아버려~~~~~" + like);
 
+			int likeCnt = reviewSnsService.getTotalCntLike(like);
+			boolean checkLike = reviewSnsService.isLike(like);
+
+			model.addAttribute("likeCnt", likeCnt);
+			model.addAttribute("checkLike", checkLike);
+		}
+		
 		logger.info(list.toString());
 		logger.info("페이징 정보 : " + reviewPaging);
-
+		
 		model.addAttribute("bookName", bookInfo);
 		model.addAttribute("reviewList", list);
 		model.addAttribute("paging", reviewPaging);

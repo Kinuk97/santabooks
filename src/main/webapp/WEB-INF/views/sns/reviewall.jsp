@@ -38,6 +38,12 @@
 	color: black;
 }
 
+#likeBtn{
+	color: #ff2f6e; 
+	font-weight: bold; 
+	border:none;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -66,6 +72,36 @@ $(document).ready(function() {
 	    	});
 		});
 	
+		// 좋아요 버튼
+		$("#likeBtn").on("click", function() {
+			$.ajax({
+		 		type: "POST"
+		 		, url: "/sns/like"
+				, data: {
+					"feedNo" : $("#feedNo").val()
+				}
+				, dataType: "json"
+				, success: function( res ) {
+					if(res.result) {
+						// 추천 성공
+						console.log("추천!!!");
+						$("#likeBtn").html("싫어요");
+						
+					} else {
+						// 추천 취소 성공
+						console.log("추천 취소!!!");
+						$("#likeBtn").html("좋아요");
+					}
+					
+					//추천수 적용
+	        		$("#likeCnt").html(res.likeCnt);
+				}
+				, error: function(e) {
+					console.log(e);
+				}
+			});
+		});
+	
 });
 </script>
 
@@ -91,9 +127,17 @@ $(document).ready(function() {
 					<br><br><br>
 					<p class="text-right">${review.reviewDate }</p>
 					<hr>
-					&nbsp;&nbsp;<i class="far fa-thumbs-up"></i>&nbsp;(좋아요 개수)
+					&nbsp;&nbsp;<i class="far fa-thumbs-up" id="likeCnt">${likeCnt }</i>
 					<hr>
-						<button style="color: #ff2f6e; font-weight: bold; border:none;">좋아요</button>
+						<input type="hidden" value="${review.feedNo }" id="feedNo">
+						<c:choose>
+							<c:when test="${not empty checkLike && checkLike}">
+								<button id="likeBtn">싫어요</button>
+							</c:when>
+							<c:otherwise>
+								<button id="likeBtn">좋아요</button>
+							</c:otherwise>
+						</c:choose>
 					</div>
 			</div>
 

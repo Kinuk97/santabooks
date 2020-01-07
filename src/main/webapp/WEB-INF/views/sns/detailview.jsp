@@ -93,7 +93,6 @@ $(document).ready(function() {
 	        		$("#likeCnt").html(res.likeCnt);
 				}
 				, error: function(e) {
-// 					$("#loginModal").modal();
 					console.log(e);
 				}
 			});
