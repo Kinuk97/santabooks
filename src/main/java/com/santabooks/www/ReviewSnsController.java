@@ -34,12 +34,9 @@ public class ReviewSnsController {
 	@Autowired
 	private ReviewSnsService reviewSnsService;
 	
+	// sns 리스트
 	@RequestMapping(value = "/sns/list", method = RequestMethod.GET)
 	public void snsList(Model model, Paging paging, HttpServletRequest req, HttpSession session) {
-
-//		member.setMemberNo((int) session.getAttribute("MemberNo"));
-//		Member user = reviewSnsService.getMember(member);
-//		logger.info("멤버 닉네임 제발 나와라! : " + user);
 
 		int totalCount = reviewSnsService.selectCntAll(paging);
 
@@ -54,13 +51,9 @@ public class ReviewSnsController {
 		logger.info(list.toString());
 		logger.info("페이징 정보 : " + reviewPaging);
 
-//		model.addAttribute("member",user);
 		model.addAttribute("reviewList", list);
 		model.addAttribute("paging", reviewPaging);
 		model.addAttribute("url", req.getRequestURI());
-		
-		
-		//이 밑으로 DJ 추가
 		
 		String id = (String) session.getAttribute("MemberId");
 		Member member = subscribeservice.getGenre(id);
@@ -223,6 +216,7 @@ public class ReviewSnsController {
 	}
 	
 	// --------------------------------------------------------
+	
 	// 별점
 	
 	@RequestMapping(value = "/sns/grade/add", method = RequestMethod.POST)

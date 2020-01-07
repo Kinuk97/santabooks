@@ -17,7 +17,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.santabooks.member.dto.Member;
 import com.santabooks.reviewSns.dao.face.ReviewSnsDao;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
@@ -189,12 +188,6 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	public Book getBook(int bookNo) {
 		
 		return reviewSnsDao.selectBookByBookNo(bookNo);
-	}
-
-	@Override
-	public Member getMember(Member member) {
-		
-		return reviewSnsDao.selectMemberByMemberNo(member);
 	}
 
 	@Override

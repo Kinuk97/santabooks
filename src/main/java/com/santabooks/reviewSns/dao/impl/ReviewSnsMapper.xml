@@ -61,12 +61,6 @@
 		WHERE b.bookNo=#{bookNo}
 	</select>
 	
-	<select id="selectMemberByMemberNo" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.member.dto.Member">
-		SELECT m.memberId, m.memberNick
-		FROM member m, review_sns r
-		WHERE m.memberNo = r.memberNo AND m.memberNo = #{memberNo}
-	</select>
-	
 	<select id="selectCntAll2" resultType="int" parameterType="com.santabooks.util.Paging">
 		SELECT COUNT(*) FROM review_sns r, book b
 		WHERE 1=1 AND r.bookNo = b.bookNo AND b.bookNo = #{bookNo}
