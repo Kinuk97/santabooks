@@ -30,6 +30,18 @@
 		margin-bottom: 20px;
 	}
 }
+
+#likeBtn{
+	color: #ff2f6e; 
+	font-weight: bold; 
+	border:none;
+}
+
+#cancel{
+	background-color: #f1f1f1;
+	border:none; 
+	color: black;
+}
 </style>
 
 <script type="text/javascript">
@@ -62,20 +74,23 @@ $(document).ready(function() {
 		 		type: "POST"
 		 		, url: "/sns/like"
 				, data: {
-					"feedNo" : feedNo,
+					"feedNo" : $("#feedNo").val()
 				}
 				, dataType: "json"
 				, success: function( res ) {
 					if(res.result) {
 						// 추천 성공
-						$("#likeBtn").html("<button style='color: #ff2f6e; font-weight: bold; border:none;'>싫어요</button>");
+						console.log("추천!!!");
+						$("#likeBtn").html("싫어요");
+						
 					} else {
 						// 추천 취소 성공
-						$("#likeBtn").html("<button style='color: #ff2f6e; font-weight: bold; border:none;'>좋아요</button>");
+						console.log("추천 취소!!!");
+						$("#likeBtn").html("좋아요");
 					}
 					
 					//추천수 적용
-	        		$("#likeCnt").html(res.favoriteCnt);
+	        		$("#likeCnt").html(res.likeCnt);
 				}
 				, error: function(e) {
 // 					$("#loginModal").modal();
@@ -107,9 +122,17 @@ $(document).ready(function() {
 					<br><br><br>
 					<p class="text-right">${review.reviewDate }</p>
 					<hr>
-					&nbsp;&nbsp;<i class="far fa-thumbs-up">${likeCnt }</i>
+					&nbsp;&nbsp;<i class="far fa-thumbs-up" id="likeCnt">${likeCnt }</i>
 					<hr>
-					<button style="color: #ff2f6e; font-weight: bold; border:none;" id="likeBtn">좋아요</button>
+					<input type="hidden" value="${review.feedNo }" id="feedNo">
+					<c:choose>
+						<c:when test="${not empty checkLike && checkLike}">
+							<button id="likeBtn">싫어요</button>
+						</c:when>
+						<c:otherwise>
+							<button id="likeBtn">좋아요</button>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 
@@ -129,6 +152,7 @@ $(document).ready(function() {
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-dismiss="modal" id="ok">확인</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" id="cancel">취소</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->

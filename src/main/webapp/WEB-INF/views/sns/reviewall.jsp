@@ -32,6 +32,12 @@
 	}
 }
 
+#cancel{
+	background-color: #f1f1f1;
+	border:none; 
+	color: black;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -110,6 +116,7 @@ $(document).ready(function() {
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-dismiss="modal" id="ok">확인</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" id="cancel">취소</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->

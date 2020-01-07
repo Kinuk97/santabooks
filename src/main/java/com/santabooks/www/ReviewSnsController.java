@@ -77,7 +77,9 @@ public class ReviewSnsController {
 		if(memberNo != null) {
 			try {
 				grade.setMemberNo(Integer.parseInt(memberNo.toString()));
-//				grade.setBookNo(review.getBookNo());
+				grade.setBookNo(review.getBookNo());
+				
+				logger.info("myGrade : " + reviewSnsService.getMyGrade(grade).toString());
 				
 				model.addAttribute("grade", reviewSnsService.getMyGrade(grade));							
 			} catch (NumberFormatException e) {
@@ -87,7 +89,8 @@ public class ReviewSnsController {
 		model.addAttribute("review", review);
 		model.addAttribute("list", list);
 	}
-
+	
+	// 네이버 API 책 검색 리스트
 	@RequestMapping("/book/list")
 	public ModelAndView bookList(@RequestParam(required = false) String keyword) {
 		ModelAndView mav = new ModelAndView();
@@ -124,7 +127,7 @@ public class ReviewSnsController {
 		model.addAttribute("paging", reviewPaging);
 		model.addAttribute("url", req.getRequestURI());
 	}
-
+	
 	@RequestMapping(value = "/sns/detailview", method = RequestMethod.GET)
 	public void reviewView(ReviewSns reviewSns, Model model) {
 
@@ -142,7 +145,8 @@ public class ReviewSnsController {
 		model.addAttribute("likeCnt", likeCnt);
 		model.addAttribute("checkLike", checkLike);
 	}
-
+	
+	// 리뷰 작성
 	@RequestMapping(value = "/sns/write", method = RequestMethod.POST)
 	public String reviewWrite(ReviewSns reviewSns, Member member, Model model, HttpSession session) {
 		logger.info("글작성전 정보 : " + reviewSns);
@@ -154,7 +158,8 @@ public class ReviewSnsController {
 
 		return "redirect:/sns/list";
 	}
-
+	
+	// 리뷰 삭제
 	@RequestMapping(value = "/sns/remove", method = RequestMethod.GET)
 	public String reivewRemove(ReviewSns reviewSns) {
 
@@ -162,7 +167,8 @@ public class ReviewSnsController {
 
 		return "redirect:/sns/list";
 	}
-
+	
+	// 산타북스 책 리스트
 	@RequestMapping(value = "/sns/santabookslist", method = RequestMethod.GET)
 	public void santaBooksList(Paging paging, Model model) {
 		
@@ -183,6 +189,9 @@ public class ReviewSnsController {
 		model.addAttribute("santabooksList", list);
 		model.addAttribute("paging", bookPaging);
 	}
+	
+	// --------------------------------------------------------
+	// 별점
 	
 	@RequestMapping(value = "/sns/grade/add", method = RequestMethod.POST)
 	public ModelAndView addGrade(Grade grade, HttpSession session, ModelAndView mav) {
@@ -208,6 +217,8 @@ public class ReviewSnsController {
 
 		return mav;
 	}
+	
+	// ------------------------------------------------------------------
 	
 	// 좋아요
 	@RequestMapping(value = "/sns/like", method = RequestMethod.POST)
