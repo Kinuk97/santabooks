@@ -183,14 +183,23 @@ $(document).ready(function() {
 			<br>
 			
 				<div class="card sidenav" id="bookRecommand" style="height: 500px;">
-					<div class="card-text">책추천</div>
+<%-- 					<center> --%>
+					<div class="card-text"><h4 style="font-weight: bold;">책추천</h4></div>
+					<br>
 					<c:forEach items="${bookInfo }" var="book">
+					<div style="position: relative;">
 					<a  href="/sns/view?bookNo=${book.bookNo}">	
-					<img style="height: 100px; width: 100px;" src="/resources/images/${book.bookName}.jpg">
+					<img style="height: 60px; width: 50px;" src="/resources/images/${book.bookName}.jpg">
 					</a>
-						${book.bookName } 
-						${book.bookWriter }<br><br>
+						<div style="position: absolute; top:3px; left:60px;">
+						<small style="font-weight: bold;">${book.bookName }</small>
+						<br> 
+						<small style="font-weight: bold;">${book.bookWriter }</small>
+						</div>
+					</div>
+					<br>
 					</c:forEach>
+<%-- 					</center> --%>
 				</div>
 				
 			</div>
