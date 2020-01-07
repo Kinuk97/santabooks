@@ -88,22 +88,7 @@
                 } else {
                     document.getElementById("extraAddress").value = '';
                 }
-
-                var guideTextBox = document.getElementById("guide");
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    guideTextBox.style.display = 'block';
-
-                } else if(data.autoJibunAddress) {
-                    var expJibunAddr = data.autoJibunAddress;
-                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                    guideTextBox.style.display = 'block';
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
+ 
             }
         }).open();
     }
@@ -234,16 +219,17 @@
 	    	
 	    	return false;
 		})
+		})
 				
 			
 			
-			</script>
+</script>
 		
 
 
 
 <!-- 관심장르 선택 창 갯수 설정-->
-<script src="https://ajax.googleapis.com/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/jquery/3.3.1/jquery.min.js"></script> -->
 <script>
 	$(document)
 		.ready(
@@ -279,15 +265,15 @@ $(document).ready(function(){
 
 	
 	//닉네임
-	if(!id_Check || $('#userid').val() == ""){
-		$(".content").text('아이디를 확인해주세요.');
-		$("#joinAuthenticationModal").modal({backdrop: 'static', keyboard: false});
-		$("#inputjoinCheckBtn").click(function(){
-			$("#userid").focus();	
+// 	if(!id_Check || $('#userid').val() == ""){
+// 		$(".content").text('아이디를 확인해주세요.');
+// 		$("#joinAuthenticationModal").modal({backdrop: 'static', keyboard: false});
+// 		$("#inputjoinCheckBtn").click(function(){
+// 			$("#userid").focus();	
 			
-		})
+// 		})
 		
-	}
+// 	}
 
 
 
