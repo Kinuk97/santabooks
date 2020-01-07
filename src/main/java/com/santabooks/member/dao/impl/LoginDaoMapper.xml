@@ -18,7 +18,7 @@
 	
 	<select id="getMember"
 		parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.member.dto.Member">
-		SELECT memberNo, memberNick, memberId FROM member
+		SELECT memberNo, memberNick, memberId, genre FROM member
 		WHERE
 		memberId = #{memberId }
 	</select>
