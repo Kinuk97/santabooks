@@ -52,13 +52,7 @@ public class MemberController {
 	//회원가입 + 장르선택
 	@RequestMapping(value="/member/welcome_join", method=RequestMethod.GET)
 	public void joinSuccess() {}
-	
 
-	@RequestMapping(value="/member/find_pw", method=RequestMethod.GET)
-	public void findPw() {}
-	
-			
-	}
 	
 	
 //	@RequestMapping(value="/member/join_nickcheck", method=RequestMethod.POST)
@@ -71,14 +65,18 @@ public class MemberController {
 //		
 //	}
 	
+	@RequestMapping(value="/member/join_nickcheck", method=RequestMethod.GET)
+	public void joinNick() {}
 	
-//	@RequestMapping(value="/member/join_nickcheck", method=RequestMethod.POST)
-//	public String nickCheck(Member member, Model model) {
-//		boolean nickcheckResult = memberService.getMember();
-//		memberService.join(member);
-//		
-//		return "/member/alert";	
-//		
+	
+	@RequestMapping(value="/member/join_nickcheck", method=RequestMethod.POST)
+	public ModelAndView nickCheck(@RequestParam("memberNick") String memberNick, ModelAndView mav) {
+		mav.addObject("nickCheck", 	memberService.nickCheck(memberNick));
+		mav.setViewName("jsonView");
+		
+		return mav;	}
+	}
+		
 //	}
 	
 	

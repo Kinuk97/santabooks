@@ -7,7 +7,7 @@
  
 
             <!-- Nested Row within Card Body -->
-            
+       <div class="col-xs-6 text-center">     
           <div class="text-center">
             <div class="row">
               <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
@@ -36,6 +36,7 @@
               </div>
             </div>
           </div>
+         </div> 
           
 
 

@@ -6,7 +6,7 @@
 
 
 <h5>회원인증이 완료 되었습니다.</h5>
-
+<a href="/member/login"><button>로그인</button></a>
 
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />
