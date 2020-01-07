@@ -2,6 +2,7 @@ package com.santabooks.member.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,10 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.member.service.face.LoginService;
@@ -31,7 +31,14 @@ public class LoginController {
 	
 	//로그인
 	@RequestMapping(value="/member/login", method=RequestMethod.GET)
-	public void login() { }
+	public void login(Model model,
+            @CookieValue(value="storeIdCookie", required = false) Cookie storeIdCookie) { 
+		
+		
+		
+	}
+	
+	
 
 	@RequestMapping(value="/member/login", method=RequestMethod.POST)
 	public String loginProcess(
@@ -87,11 +94,16 @@ public class LoginController {
 	}
 	 
 	//비밀번호 찾기
-	@RequestMapping(value = "/member/find_pw")
-	public String find_pw_form() throws Exception{
-		return "/member/find_pw";
+	@RequestMapping(value = "/member/find_pw", method=RequestMethod.GET)
+	public void find_pw_form() throws Exception{
+
 	}
 	
+	//로그인 실패
+	@RequestMapping(value="/member/login_fail")
+	public String login_fail() throws IOException {
+		return "/member/login_fail";
+	}
 
 	
 }

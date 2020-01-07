@@ -17,8 +17,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.santabooks.member.dto.Member;
-import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dao.face.ReviewSnsDao;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
@@ -51,7 +49,7 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	@Override
 	public ReviewSns view(ReviewSns reviewSns) {
 		
-		return reviewSnsDao.selectReviewByFeedNo(reviewSns);
+		return reviewSnsDao.selectReviewByBookNo(reviewSns);
 	}
 	
 	@Override
@@ -164,7 +162,7 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	@Override
 	public List<ReviewSns> snsListInBook(ReviewSns review) {
 		
-		return reviewSnsDao.selectReviewByBookNo(review);
+		return reviewSnsDao.selectNewReviewByBookNo(review);
 	}
 
 	@Override
@@ -190,12 +188,6 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	public Book getBook(int bookNo) {
 		
 		return reviewSnsDao.selectBookByBookNo(bookNo);
-	}
-
-	@Override
-	public Member getMember(Member member) {
-		
-		return reviewSnsDao.selectMemberByMemberNo(member);
 	}
 
 	@Override
@@ -288,8 +280,16 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 		return reviewSnsDao.selectCntLike(like);
 	}
 
-
-
+	@Override
+	public ReviewSns getReviewSns(int bookNo) {
+		
+		return reviewSnsDao.selectReviewByBookNo2(bookNo);
+	}
 	
+	@Override
+	public List<Book> getbookgenreNo(String genreNo) {
+		return reviewSnsDao.getbookGenreNo(genreNo);
+	}
+
 
 }

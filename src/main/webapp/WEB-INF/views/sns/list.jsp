@@ -12,9 +12,9 @@
 <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 
-* {
-	box-sizing: border-box;
-}
+* { 
+ 	box-sizing: border-box; 
+ } 
 
 body {
 	font-family: Arial, Helvetica, sans-serif;
@@ -183,7 +183,23 @@ $(document).ready(function() {
 			<br>
 			
 				<div class="card sidenav" id="bookRecommand" style="height: 500px;">
-					<div class="card-text">책추천 들어갈 예정</div>
+<%-- 					<center> --%>
+					<div class="card-text"><h4 style="font-weight: bold;">책추천</h4></div>
+					<br>
+					<c:forEach items="${bookInfo }" var="book">
+					<div style="position: relative;">
+					<a  href="/sns/view?bookNo=${book.bookNo}">	
+					<img style="height: 60px; width: 50px;" src="/resources/images/${book.bookName}.jpg">
+					</a>
+						<div style="position: absolute; top:3px; left:60px;">
+						<small style="font-weight: bold;">${book.bookName }</small>
+						<br> 
+						<small style="font-weight: bold;">${book.bookWriter }</small>
+						</div>
+					</div>
+					<br>
+					</c:forEach>
+<%-- 					</center> --%>
 				</div>
 				
 			</div>
@@ -209,11 +225,11 @@ $(document).ready(function() {
 								</div>
 							</div>
 			
+					<br>
+					<br>
 						</div>
 					</div>
 					</c:if>
-					<br>
-					<br>
 				</c:forEach>
 		</div>
 	</div>

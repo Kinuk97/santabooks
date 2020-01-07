@@ -2,8 +2,6 @@ package com.santabooks.reviewSns.dao.face;
 
 import java.util.List;
 
-import com.santabooks.member.dto.Member;
-import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.Like;
@@ -28,12 +26,12 @@ public interface ReviewSnsDao {
 	public List<ReviewSns> selectAll(Paging reviewPaging);
 	
 	/**
-	 * 피드 번호에 해당하는 각각의 리뷰 조회
+	 * 책 번호에 해당하는 각각의 리뷰 조회
 	 * 
 	 * @param reviewSns - review 객체
 	 * @return ReviewSns - 상세 리뷰
 	 */
-	public ReviewSns selectReviewByFeedNo(ReviewSns reviewSns);
+	public ReviewSns selectReviewByBookNo(ReviewSns reviewSns);
 	
 	/**
 	 * 책 번호에 해당하는 각각의 리뷰 조회(최신리뷰 3개)
@@ -41,7 +39,7 @@ public interface ReviewSnsDao {
 	 * @param reviewSns - review 객체
 	 * @return ReviewSns - 리뷰 목록
 	 */
-	public List<ReviewSns> selectReviewByBookNo(ReviewSns review);
+	public List<ReviewSns> selectNewReviewByBookNo(ReviewSns review);
 	
 	/**
 	 * 책 번호에 해당하는 각각의 리뷰 모두보기
@@ -80,13 +78,6 @@ public interface ReviewSnsDao {
 	 * @return
 	 */
 	public Book selectBookByBookNo(int bookNo);
-	
-	/**
-	 * 멤버 번호에 해당하는 멤버 정보 조회
-	 * @param memberNo
-	 * @return
-	 */
-	public Member selectMemberByMemberNo(Member member);
 	
 	/**
 	 * 리뷰 모두보기에서 리뷰 총 갯수 조회
@@ -156,11 +147,15 @@ public interface ReviewSnsDao {
 	 * @return
 	 */
 	public int selectCntLike(Like like);
+
+	public List<Book> getbookGenreNo(String genreNo);
 	
-
-
-
-	
+	/**
+	 * 책 번호로 정보(리뷰, 책) 가져오기
+	 * @param bookNo
+	 * @return
+	 */
+	public ReviewSns selectReviewByBookNo2(int bookNo);
 	
 
 }

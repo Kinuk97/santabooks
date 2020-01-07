@@ -25,13 +25,13 @@
 		rnum BETWEEN #{startNo} AND #{endNo} AND (r.bookNo = b.bookNo) AND (r.memberNo = m.memberNo)
 	</select>
 	
-	<select id="selectReviewByFeedNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
+	<select id="selectReviewByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
 		SELECT b.bookName, b.bookWriter, b.bookNo, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade
 		FROM book b
 		WHERE b.bookNo = #{bookNo}
 	</select>
 	
-	<select id="selectReviewByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
+	<select id="selectNewReviewByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
 		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade
 		FROM (SELECT * FROM review_sns ORDER BY feedNo DESC)r, book b
 		WHERE b.bookNo = #{bookNo} AND r.bookNo = b.bookNo AND ROWNUM BETWEEN 1 AND 3
@@ -59,12 +59,6 @@
 		SELECT b.bookno, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade
 		FROM book b
 		WHERE b.bookNo=#{bookNo}
-	</select>
-	
-	<select id="selectMemberByMemberNo" parameterType="com.santabooks.member.dto.Member" resultType="com.santabooks.member.dto.Member">
-		SELECT m.memberId, m.memberNick
-		FROM member m, review_sns r
-		WHERE m.memberNo = r.memberNo AND m.memberNo = #{memberNo}
 	</select>
 	
 	<select id="selectCntAll2" resultType="int" parameterType="com.santabooks.util.Paging">
@@ -145,6 +139,18 @@
 	<delete id="deleteLike" parameterType="com.santabooks.reviewSns.dto.Like">
 		DELETE FROM like_table WHERE memberNo = #{memberNo} AND feedNo = #{feedNo}
 	</delete>
+	
+	<select id="selectReviewByBookNo2" parameterType="int" resultType="com.santabooks.reviewSns.dto.ReviewSns">
+		SELECT *
+		FROM review_sns
+		WHERE bookNo = #{bookNo}
+	</select>
+	
+	<!-- 장르별 책추천 -->
+	<select id="getbookGenreNo" parameterType="String" resultType="com.santabooks.reviewSns.dto.Book">
+		SELECT bookno, genreno, bookname, bookwriter, bookpublisher, publishingyear, bookcontent, grade FROM book
+		WHERE genreno IN ( ${genreNo} )		
+	</select>
 	
 </mapper>
   

@@ -213,7 +213,7 @@ body{
 	</c:if>
 	
 	<div class="column">
-		<div class="card" id="bookInfo" style="height: 920px;">
+		<div class="card" id="bookInfo" style="height: 990px;">
 			<div class="card-text">
 				<div style="padding: 0px 20px 0px 20px;">
 					<h4 style="font-weight: bold;">책 정보</h4>
