@@ -21,9 +21,7 @@ public class SubscribeServiceImpl implements SubscribeService {
 	@Override
 	public void subscribe(Subscription subscription) {
 	
-		LocalDateTime date = LocalDateTime.now();
 		
-		subscription.setSubDate(date.toString());
 		subscribeDao.insertSub(subscription);
 		
 	}

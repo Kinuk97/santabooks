@@ -34,8 +34,17 @@ public class SubscribeController {
 		int memberNo = (int) subscribeservice.getmemNo(memberId);		
 		session.setAttribute("memberNo", memberNo);
 		
-		subscription.setMemberNo(memberNo);
 		// 로그인한 유저의 memberNo를 DTO에 저장
+		subscription.setMemberNo(memberNo);
+		
+
+		// 결제한 날짜 저장		
+		LocalDateTime date = LocalDateTime.now();
+		subscription.setSubDate(date.toString());
+		
+		// 세션에 결제한 날짜 저장 완료, 순차적으로 구독해야지 뜸 
+		session.setAttribute("paydate", date);
+		
 		
 		subscribeservice.subscribe(subscription);
 		// 나머지 정보를 저장
