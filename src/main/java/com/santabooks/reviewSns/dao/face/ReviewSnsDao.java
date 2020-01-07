@@ -2,7 +2,6 @@ package com.santabooks.reviewSns.dao.face;
 
 import java.util.List;
 
-import com.santabooks.member.dto.Member;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.Like;
@@ -79,13 +78,6 @@ public interface ReviewSnsDao {
 	 * @return
 	 */
 	public Book selectBookByBookNo(int bookNo);
-	
-	/**
-	 * 멤버 번호에 해당하는 멤버 정보 조회
-	 * @param memberNo
-	 * @return
-	 */
-	public Member selectMemberByMemberNo(Member member);
 	
 	/**
 	 * 리뷰 모두보기에서 리뷰 총 갯수 조회
