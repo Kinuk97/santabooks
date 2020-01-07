@@ -37,10 +37,10 @@
 <!-- jQuery UI 라이브러리 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
-<!-- 배송지주소과 -->
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+
+<!-- 배송지 검색 -->
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
 <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
 <!--[if lt IE 9]>
@@ -52,67 +52,48 @@
 <!-- 도로명 주소 -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-	function sample4_execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
-						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+    function sample4_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-						// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-						var roadAddr = data.roadAddress; // 도로명 주소 변수
-						var extraRoadAddr = ''; // 참고 항목 변수
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
 
-						// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-						// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-							extraRoadAddr += data.bname;
-						}
-						// 건물명이 있고, 공동주택일 경우 추가한다.
-						if (data.buildingName !== '' && data.apartment === 'Y') {
-							extraRoadAddr += (extraRoadAddr !== '' ? ', '
-									+ data.buildingName : data.buildingName);
-						}
-						// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-						if (extraRoadAddr !== '') {
-							extraRoadAddr = ' (' + extraRoadAddr + ')';
-						}
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
 
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('postCode').value = data.zonecode;
-						document.getElementById("roadAddress").value = roadAddr;
-						document.getElementById("jibunAddress").value = data.jibunAddress;
-
-						// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-						if (roadAddr !== '') {
-							document.getElementById("extraAddress").value = extraRoadAddr;
-						} else {
-							document.getElementById("extraAddress").value = '';
-						}
-
-						var guideTextBox = document.getElementById("guide");
-						// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-						if (data.autoRoadAddress) {
-							var expRoadAddr = data.autoRoadAddress
-									+ extraRoadAddr;
-							guideTextBox.innerHTML = '(예상 도로명 주소 : '
-									+ expRoadAddr + ')';
-							guideTextBox.style.display = 'block';
-
-						} else if (data.autoJibunAddress) {
-							var expJibunAddr = data.autoJibunAddress;
-							guideTextBox.innerHTML = '(예상 지번 주소 : '
-									+ expJibunAddr + ')';
-							guideTextBox.style.display = 'block';
-						} else {
-							guideTextBox.innerHTML = '';
-							guideTextBox.style.display = 'none';
-						}
-					}
-				}).open();
-	}
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postCode').value = data.zonecode;
+                document.getElementById("roadAddress").value = roadAddr;
+                document.getElementById("jibunAddress").value = data.jibunAddress;
+                
+                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                if(roadAddr !== ''){
+                    document.getElementById("extraAddress").value = extraRoadAddr;
+                } else {
+                    document.getElementById("extraAddress").value = '';
+                }
+ 
+            }
+        }).open();
+    }
 </script>
+
 
 
 
@@ -120,105 +101,135 @@
 
 <!-- 회원가입 정규식 -->
 <script type="text/javascript">
-
-    //닉네임이 적합한지 검사할 정규식
-	var jNick = /^[0-9a-zA-Z가-힣]{2,12}$/;
-    //이메일이 적합한지 검사할 정규식
-    var jId = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    // 비밀번호 정규식 - 암호길이 8자 이상 16 이하, 영문숫자특수문자조합
-    var jPw = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,16}$/;
+	
+	//이메일이 적합한지 검사할 정규식
+	var memberIdChk = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	// 이름 정규식
-	var jName = /^[가-힣]{2,6}$/;
-	// 휴대폰 번호 정규식
-	var jPhone = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
-	//모든 공백 체크 정규식
-	var jBlank = /\s/g;
+	var membernameChk = /^[가-힣]{2,6}$/;
+    //닉네임이 적합한지 검사할 정규식
+	var memberNickChk = /^[0-9a-zA-Z가-힣]{2,12}$/;
+    // 비밀번호 정규식 - 암호길이 8자 이상 16 이하, 영문숫자특수문자조합
+    var memberPwChk = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{8,16}$/;
 	// 생년월일 정규식
-	var birthJ = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/
+	var birthChk = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/
+	// 휴대폰 번호 정규식
+	var phoneChk = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+	//모든 공백 체크 정규식
+	var BlankChk = /\s/g;
 	
+	function showLoadingBar() {
+	    var maskHeight = $(document).height();
+	    var maskWidth = window.document.body.clientWidth;
+	    var mask = "<div id='mask' style='position:absolute; z-index:9000; background-color:#000000; display:none; left:0; top:0;'></div>";
+	    var loadingImg = '';
+	    loadingImg += "<div id='loadingImg' style='position:absolute; left:45%; top:55%; display:none; z-index:10000;'>";
+	    loadingImg += "    <img src='/resources/img/loadimg.gif'>";
+	    loadingImg += "</div>";
+	    $('body').append(mask).append(loadingImg);
 	
-
-    var jId = document.getElementById("memberId");
-    var jNick = document.getElementById("memberNick");
-//     var num1 = document.getElementById("num1"); if(!check(re,id,"아이디는 4~12자의 영문 대소문자와 숫자로만 입력")) {
-           return false;
-       }
-
-       if(!check(re,pw,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
-           return false;
-
-       }
-
-       if(email.value=="") {
-           alert("이메일을 입력해 주세요");
-           email.focus();
-           return false;
-       }
-
-       if(!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
-           return false;
-       }
-
-       if(join.name.value=="") {
-           alert("이름을 입력해 주세요");
-           join.name.focus();
-           return false;
-       }
-
-//     var num2 = document.getElementById("num2");
+	    $('#mask').css({
+	        'width' : maskWidth
+	        , 'height': maskHeight
+	        , 'opacity' : '0.3'
+	    });
+	    $('#mask').show();
+	    $('#loadingImg').show();
+	}
 
 
- if(!check(re,memberId,"이메일을 입력해주세요.")) {
-           return false;
-       }
-
-       if(!check(re,memberPw,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
-           return false;
-       }
-
-       if(join.memberPw.value != join.checkpw.value) {
-           alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
-           join.checkpw.value = "";
-           join.checkpw.focus();
-           return false;
-       }
-
-       if(email.value=="") {
-           alert("이메일을 입력해 주세요");
-           email.focus();
-           return false;
-       }
-
-       if(!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
-           return false;
-       }
-
-       if(join.name.value=="") {
-           alert("이름을 입력해 주세요");
-           join.name.focus();
-           return false;
-       }
-
-       
-//    	정규식 검사 변수
-   	var memberid_Check = true;
-   	var pw_Check = true;
-   	var pw_Check2 = true;
-   	var name_Check = true;
-   	var phone_Check = true;
-   	var nick_Check = true;
-   	var birth_Check = true;
-   	
-   	$("#joinBtn").click(function(){ // 가입 버튼 눌렀을 때
-
-
+	$(document).ready(function(){
+		//정규식 검사 변수
+		var memberIdChk = true;
+		var membernameChk = true;
+		var memberNickChk = true;
+		var memberPwChk = true;
+		var birthChk = true;
+		var phoneChk = true;
+		
+		
+		$("#joinBtn").click(function(){ 
+ 			
+			// 이메일(아이디 확인)
+			if(!memberIdChk || $('#memberId').val() == ""){
+				$(".content").text('이메일을 확인해주세요.');
+				$("#joinAuthenticationModal").modal({backdrop: 'static', keyboard: false});
+				$("#inputjoinCheckBtn").click(function(){
+					$("memberId").focus();	
+				})
+			}
+			
+			// 이름 확인
+			else if(!memberNickChk || $('#memberNick').val() == ""){
+				$(".content").text('이메일을 확인해주세요.');
+				$("#joinAuthenticationModal").modal({backdrop: 'static', keyboard: false});
+				$("#inputjoinCheckBtn").click(function(){
+					$("memberNickChk").focus();	
+				})
+			}
+			
+			// 닉네임 확인
+			else if(!membernameChk || $('#memberName').val() == ""){
+				$(".content").text('이메일을 확인해주세요.');
+				$("#joinAuthenticationModal").modal({backdrop: 'static', keyboard: false});
+				$("#inputjoinCheckBtn").click(function(){
+					$("memberName").focus();
+				})
+			}
+			
+			
+			//생년월일 확인
+			else if(!birthChk || $('#birth').val() == ""){
+				$(".content").text('생년월일을 확인해주세요.');
+				$("#joinAuthenticationModal").modal({backdrop: 'static', keyboard: false});
+				$("#inputjoinCheckBtn").click(function(){
+				$("#birth").focus();	
+				})
+			}	
+			
+			
+			//전화번호 확인
+			else if(!phoneChk ||  $('#phone').val() == ""){
+				$(".content").text('핸드폰 번호를 확인해주세요.');
+				$("#joinAuthenticationModal").modal({backdrop: 'static', keyboard: false});
+				$("#inputjoinCheckBtn").click(function(){
+					$("#phone").focus();	
+				})
+			}
+			
+			//이용약관
+			else if($("input:checkbox[name='termsofuse']").is(":checked") == false){			
+					$(".content").text('이용약관에 동의 해주세요');
+					$("#joinAuthenticationModal").modal({backdrop: 'static', keyboard: false});
+					$("#inputjoinCheckBtn").click(function(){
+						$("#agree").focus();	
+					})
+			}
+			else { 	
+				
+				$(this).parents("form").submit();
+				$('#submit').attr('disabled', true); // 버튼 비활성화
+				console.log("버튼비활성화")
+				
+				showLoadingBar();
+				
+				// 로딩바 숨김
+				function hideLoadingBar() { $('#mask, #loadingImg').hide(); $('#mask, #loadingImg').remove(); }
+			}
+			
+	    	
+	    	return false;
+		})
+		})
+				
+			
+			
 </script>
-
+		
 
 
 
 <!-- 관심장르 선택 창 갯수 설정-->
-<script src="https://ajax.googleapis.com/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/jquery/3.3.1/jquery.min.js"></script> -->
 <script>
 	$(document)
 		.ready(
@@ -232,7 +243,7 @@
 </script>
 
 
-<!-- 날짜 추가하는 메소드 -->
+<!-- 생년월일날짜 추가하는 메소드 -->
 
 <script type="text/javascript">
 $(document).ready(function(){       
@@ -248,10 +259,24 @@ $(document).ready(function(){
 });
 </script>
 
-<!-- 비밀번호 -->
-
+<!-- 정규식 만족  -->
 
 <script type="text/javascript">
+
+	
+	//닉네임
+// 	if(!id_Check || $('#userid').val() == ""){
+// 		$(".content").text('아이디를 확인해주세요.');
+// 		$("#joinAuthenticationModal").modal({backdrop: 'static', keyboard: false});
+// 		$("#inputjoinCheckBtn").click(function(){
+// 			$("#userid").focus();	
+			
+// 		})
+		
+// 	}
+
+
+
 	$(function() {
 		$("#alert-success").hide();
 		$("#alert-danger").hide();

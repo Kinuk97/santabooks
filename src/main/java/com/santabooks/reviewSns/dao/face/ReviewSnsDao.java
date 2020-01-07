@@ -155,6 +155,8 @@ public interface ReviewSnsDao {
 	 * @return
 	 */
 	public int selectCntLike(Like like);
+
+	public List<Book> getbookGenreNo(String genreNo);
 	
 	/**
 	 * 책 번호로 정보(리뷰, 책) 가져오기

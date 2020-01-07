@@ -152,5 +152,11 @@
 		WHERE bookNo = #{bookNo}
 	</select>
 	
+	<!-- 장르별 책추천 -->
+	<select id="getbookGenreNo" parameterType="String" resultType="com.santabooks.reviewSns.dto.Book">
+		SELECT bookno, genreno, bookname, bookwriter, bookpublisher, publishingyear, bookcontent, grade FROM book
+		WHERE genreno IN ( ${genreNo} )		
+	</select>
+	
 </mapper>
   
