@@ -28,6 +28,19 @@ public class MemeberServiceImpl implements MemberService{
 	public int nickCheck(String memberId) {
 		return memberDao.nickCheck(memberId);
 	}
+
+	@Override
+	public boolean getMember() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	//이메일 중복체크
+
+	@Override
+	public int memberIdCheck(String member_id) {
+		return 0;
+	}
 	
 	
 	

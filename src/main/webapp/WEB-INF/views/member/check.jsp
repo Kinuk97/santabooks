@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="ko-KR">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<head>
-<meta charset="utf-8">
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,700"
 	rel="stylesheet">
-<title>산타북스 회원가입</title>
+<title>BangCops</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -164,22 +162,16 @@ $(document).ready(function(){
 		<form action="/member/check" method="post">
 
 			<div class="form-group">
-				<input type="text" class="form-control" id="memberNick"
-					name="memberNick" placeholder="닉네임을 입력해주세요" data-clipboard-action="cut" value="${memberNick }"
+				<input type="text" class="form-control" id="nick"
+					name="UserNick" placeholder="닉네임을 입력해주세요" data-clipboard-action="cut" value=""
 					required="required">
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-lg btn-block">닉네임
 					중복 확인</button>
 			</div>
-			<c:if test="${nickcheck eq 1 }">
-				<h3>이미 존재하는 닉네임입니다</h3>
-				<br>
-			</c:if>
-			<c:if test="${nickcheck eq 2 }">
-				<h3>사용 가능한 닉네임입니다</h3>
-				<button class="btn" data-clipboard-target="#memberNick">클립보드에 ${memberNick }을 복사합니다</button>
-			</c:if>
+			
+			
 		</form>
 		<input class="btn btn-primary btn-lg btn-block" type='BUTTON'
 			value=" 창닫기" onClick='self.close()'>
@@ -188,3 +180,6 @@ $(document).ready(function(){
 </body>
 </html>
 
+
+
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />

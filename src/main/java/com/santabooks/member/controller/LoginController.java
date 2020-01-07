@@ -52,6 +52,7 @@ public class LoginController {
 			session.setAttribute("MemberId", member.getMemberId());
 			session.setAttribute("MemberNick", user.getMemberNick());
 			session.setAttribute("MemberNo", user.getMemberNo());
+			session.setAttribute("Genre", user.getGenre());
 			Subscription subscription = subscribeservice.getsubNo(member.getMemberId());
 			if (subscription != null) {
 				session.setAttribute("subNo", subscription.getSubNo());
@@ -61,6 +62,8 @@ public class LoginController {
 			logger.info("세션 아이디 : " + session.getAttribute("MemberId"));
 			logger.info("닉네임 : "  + session.getAttribute("MemberNick"));
 			logger.info("구독정보 : "  + session.getAttribute("subNo"));
+			logger.info("장르 확인 : " + session.getAttribute("Genre"));
+	
 			
 		} else {
 			logger.info("로그인실패");
