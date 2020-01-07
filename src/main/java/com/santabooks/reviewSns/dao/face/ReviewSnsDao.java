@@ -156,6 +156,8 @@ public interface ReviewSnsDao {
 	 * @return
 	 */
 	public int selectCntLike(Like like);
+
+	public List<Book> getbookGenreNo(String genreNo);
 	
 
 

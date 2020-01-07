@@ -169,6 +169,8 @@ public interface ReviewSnsService {
 	 * @return boolean - true : 좋아요 O, false : 좋아요 X
 	 */
 	public boolean isLike(Like like);
+
+	public List<Book> getbookgenreNo(String genreNo);
 	
 
 	

@@ -146,5 +146,13 @@
 		DELETE FROM like_table WHERE memberNo = #{memberNo} AND feedNo = #{feedNo}
 	</delete>
 	
+		<select id="getbookGenreNo" parameterType="String" resultType="com.santabooks.reviewSns.dto.Book">
+		
+			SELECT bookno, genreno, bookname, bookwriter, bookpublisher, publishingyear, bookcontent, grade FROM book
+			WHERE genreno IN ( ${genreNo} )
+			
+		
+	</select>
+	
 </mapper>
   

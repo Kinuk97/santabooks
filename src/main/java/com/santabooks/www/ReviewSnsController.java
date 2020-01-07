@@ -1,5 +1,6 @@
 package com.santabooks.www;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,18 +25,21 @@ import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.Like;
 import com.santabooks.reviewSns.dto.ReviewSns;
 import com.santabooks.reviewSns.service.face.ReviewSnsService;
+import com.santabooks.subscribe.service.face.SubscribeService;
 import com.santabooks.util.Paging;
 
 @Controller
 public class ReviewSnsController {
 
+	@Autowired private SubscribeService subscribeservice;
+	
 	private static final Logger logger = LoggerFactory.getLogger(ReviewSnsController.class);
 
 	@Autowired
 	private ReviewSnsService reviewSnsService;
 
 	@RequestMapping(value = "/sns/list", method = RequestMethod.GET)
-	public void snsList(Model model, Paging paging, HttpServletRequest req) {
+	public void snsList(Model model, Paging paging, HttpServletRequest req, HttpSession session) {
 
 //		member.setMemberNo((int) session.getAttribute("MemberNo"));
 //		Member user = reviewSnsService.getMember(member);
@@ -58,6 +62,20 @@ public class ReviewSnsController {
 		model.addAttribute("reviewList", list);
 		model.addAttribute("paging", reviewPaging);
 		model.addAttribute("url", req.getRequestURI());
+		
+		
+		//이 밑으로 DJ 추가
+		
+		String id = (String) session.getAttribute("MemberId");
+		Member member = subscribeservice.getGenre(id);
+		String genreNo = member.getGenre();	// 세션 ID에 따른 Genre번호 가져오기
+//		System.out.println(genreNo); 
+		
+		// Genre에 따른 Book Data 가져오기
+		List<Book> bookInfo = reviewSnsService.getbookgenreNo(genreNo);
+		model.addAttribute("bookInfo", bookInfo);
+		
+		
 	}
 
 	@RequestMapping(value = "/sns/view", method = RequestMethod.GET)
@@ -79,7 +97,9 @@ public class ReviewSnsController {
 				grade.setMemberNo(Integer.parseInt(memberNo.toString()));
 				grade.setBookNo(review.getBookNo());
 				
-				logger.info("myGrade : " + reviewSnsService.getMyGrade(grade).toString());
+//				logger.info("grade : " + grade);
+//				logger.info("myGrade : " + reviewSnsService.getMyGrade(grade));
+//				logger.info("myGrade : " + reviewSnsService.getMyGrade(grade).toString());
 				
 				model.addAttribute("grade", reviewSnsService.getMyGrade(grade));							
 			} catch (NumberFormatException e) {

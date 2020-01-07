@@ -183,7 +183,14 @@ $(document).ready(function() {
 			<br>
 			
 				<div class="card sidenav" id="bookRecommand" style="height: 500px;">
-					<div class="card-text">책추천 들어갈 예정</div>
+					<div class="card-text">책추천</div>
+					<c:forEach items="${bookInfo }" var="book">
+					<a  href="/sns/view?bookNo=${book.bookNo}">	
+					<img style="height: 100px; width: 100px;" src="/resources/images/${book.bookName}.jpg">
+					</a>
+						${book.bookName } 
+						${book.bookWriter }<br><br>
+					</c:forEach>
 				</div>
 				
 			</div>
