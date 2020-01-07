@@ -63,7 +63,7 @@
 	<div class="episodeDiv">
 	<c:choose>
 		<c:when test="${episodeList.size() == 0 }">
-		아직 연재가 되지 않았습니다.
+		<span>아직 연재가 되지 않았습니다.</span>
 		</c:when>
 		<c:otherwise>
 		<div class="card" style="width: 50rem; margin: 0 auto;">
@@ -99,7 +99,7 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        로그인이 필요한 기능입니다!
+	        <span>로그인이 필요한 기능입니다!</span>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

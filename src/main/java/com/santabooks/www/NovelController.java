@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.santabooks.novel.dto.Comment;
 import com.santabooks.novel.dto.Episode;
 import com.santabooks.novel.dto.Favorite;
 import com.santabooks.novel.dto.Novel;
@@ -132,9 +133,7 @@ public class NovelController {
 		return "redirect:/novel/list";
 	}
 
-	// ==========================================================================================
 	// ================================= episode
-	// ================================================
 
 	@RequestMapping(value = "/episode/add", method = RequestMethod.GET)
 	public void addEpisode(@RequestParam(defaultValue = "0") int novelNo, Model model) {
@@ -239,5 +238,14 @@ public class NovelController {
 
 		return mav;
 	}
+	
+	// ====================================== 댓글 ==============================================
 
+	@RequestMapping(value = "/comment/list", method = RequestMethod.POST)
+	public void commentList(Comment comment, Model model) {
+		
+		model.addAttribute("commentList", novelService.getCommentList(comment));
+	}
+	
+	// =========================================================================================
 }
