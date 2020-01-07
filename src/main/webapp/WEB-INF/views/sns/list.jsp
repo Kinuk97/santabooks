@@ -182,10 +182,9 @@ $(document).ready(function() {
 			</div>
 			<br>
 			
-				<div class="card sidenav" id="bookRecommand" style="height: 500px;">
+				<div class="card sidenav" id="bookRecommand" style="height: 470px;">
 <%-- 					<center> --%>
 					<div class="card-text"><h4 style="font-weight: bold;">책추천</h4></div>
-					<br>
 					<c:forEach items="${bookInfo }" var="book">
 					<div style="position: relative;">
 					<a  href="/sns/view?bookNo=${book.bookNo}">	
@@ -200,6 +199,14 @@ $(document).ready(function() {
 					<br>
 					</c:forEach>
 <%-- 					</center> --%>
+					<div style="float: right;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<i class="fas fa-arrow-up" id="top" onclick="location.href='#'"></i>
+					</div>
 				</div>
 				
 			</div>
@@ -233,6 +240,5 @@ $(document).ready(function() {
 				</c:forEach>
 		</div>
 	</div>
-
 <jsp:include page="/WEB-INF/views/layout/paging.jsp" />
 	<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
