@@ -29,7 +29,7 @@ public class MyPageInfoController {
 	@RequestMapping(value = "/mypage/main", method = RequestMethod.GET)
 	public void main(HttpSession session, Model model) {
 		
-		int no = (int)session.getAttribute("MemberNo");
+		int no = (Integer)session.getAttribute("MemberNo");
 		
 		Member info = mypageService.info(no);
 		   

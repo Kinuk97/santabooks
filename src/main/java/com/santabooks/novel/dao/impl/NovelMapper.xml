@@ -63,18 +63,28 @@
 		select * from (
 			select rownum rnum, B.* FROM (
 					SELECT n.*,
-					<include refid="memberNameAndScore"></include>
+                    (SELECT memberName FROM member WHERE memberNo = n.novelNo) AS memberName,
+                    (SELECT round(avg(score), 1) FROM episode WHERE novelNo = n.novelNo) AS score
 					FROM novel n INNER JOIN favorite f
 					ON n.novelNo = f.novelNo
-					WHERE memberNo = #{memberNo}
+					WHERE n.memberNo = #{memberNo}
 				) B ORDER BY rnum
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 				
 	</select>
 
 	<select id="selectCntList" resultType="int" parameterType="com.santabooks.util.Paging">
-		SELECT count(*) FROM ${tableName}
-		<include refid="listCondition"></include>
+	<choose>
+		<when test="tableName == 'favorite'">
+			SELECT count(*) FROM novel n INNER JOIN favorite f
+			ON n.novelNo = f.novelNo
+			WHERE n.memberNo = #{memberNo}
+		</when>
+		<otherwise>
+			SELECT count(*) FROM ${tableName}
+			<include refid="listCondition"></include>
+		</otherwise>
+	</choose>
 	</select>
 	
 	<select id="selectNovelList" resultType="com.santabooks.novel.dto.Novel" parameterType="com.santabooks.util.Paging">
