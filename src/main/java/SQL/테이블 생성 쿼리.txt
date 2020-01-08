@@ -322,7 +322,7 @@ DROP SEQUENCE qna_seq;
 CREATE SEQUENCE qna_seq;
 CREATE SEQUENCE book_seq;
 CREATE SEQUENCE review_sns_seq;
-CREATE SEQUENCE member_seq;
+CREATE SEQUENCE member_seq increment by 1 start with 0 minvalue 0;
 CREATE SEQUENCE subscription_seq;
 CREATE SEQUENCE shipment_seq;
 CREATE SEQUENCE comment_table_seq;
