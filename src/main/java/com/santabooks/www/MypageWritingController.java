@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.santabooks.member.dto.Member;
 import com.santabooks.mypage.service.face.MypageService;
 import com.santabooks.novel.service.face.NovelService;
+import com.santabooks.reviewSns.service.face.ReviewSnsService;
 import com.santabooks.util.Paging;
 
 @Controller
@@ -21,6 +22,7 @@ public class MypageWritingController {
    
    @Autowired NovelService novelService;
    @Autowired MypageService mypageService;
+   @Autowired ReviewSnsService reviewSnsService;
    
    private static final Logger logger = LoggerFactory.getLogger(MypageWritingController.class);
    
@@ -32,7 +34,7 @@ public class MypageWritingController {
    @RequestMapping(value = "/mypage/novelList", method = RequestMethod.GET)
    public void novelList(Paging paging, Model model, HttpSession session, HttpServletRequest req) {
       
-      int novelMemberNo = (Integer)session.getAttribute("MemberNo");
+      int novelMemberNo = (int)session.getAttribute("MemberNo");
       logger.info("세션정보 가져오기 : " + session.getAttribute("MemberNo"));
       
       paging.setTableName("novel");
@@ -59,6 +61,12 @@ public class MypageWritingController {
       model.addAttribute("query", param);
       
       logger.info("마이페이지  웹소설 리스트");
+   }
+   
+   @RequestMapping(value = "/mypage/snsList", method = RequestMethod.GET)
+   public void snsList(Member member, Model model, Paging paging, HttpSession session, HttpServletRequest req) {
+	   
+		logger.info("내가 쓴 sns 리스트");
    }
 
 }

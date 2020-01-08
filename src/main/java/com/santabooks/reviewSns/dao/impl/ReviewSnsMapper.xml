@@ -8,21 +8,22 @@
 	
 	<select id="selectCntAll" resultType="int" parameterType="com.santabooks.util.Paging">
 		SELECT COUNT(*) FROM review_sns r, book b
-		WHERE 1=1 AND r.bookNo = b.bookNo
+		WHERE 1=1 AND r.bookNo = b.bookNo AND r.privacy = 1
 		<if test="keyword != null and !keyword.equals('')">
 		AND ${searchType} like '%'||#{keyword}||'%'
 		</if>
 	</select>
 	
 	<select id="selectAll" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.util.Paging">
-		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade, m.memberId, m.memberNick
-		FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns 
-		ORDER BY feedNo DESC)B ORDER BY rnum)r, book b, member m
-		WHERE 1=1 AND
-		<if test="keyword != null and !keyword.equals('')">
-		${searchType} like '%'||#{keyword}||'%' AND
-		</if>
-		rnum BETWEEN #{startNo} AND #{endNo} AND (r.bookNo = b.bookNo) AND (r.memberNo = m.memberNo)
+		SELECT * FROM (
+      	SELECT rownum rnum, B.* FROM(
+      	SELECT  r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher,
+      	b.publishingYear, b.bookContent, b.genreNo, b.grade, m.memberId, m.memberNick FROM review_sns r, book b, member m 
+      	WHERE 1=1 AND  
+      	<if test="keyword != null and !keyword.equals('')">
+      	${searchType} like '%'||#{keyword}||'%' AND
+      	</if> 
+      	(r.bookNo = b.bookNo) AND (r.memberNo = m.memberNo) ORDER BY r.feedNo DESC)B )C WHERE rnum BETWEEN #{startNo} AND #{endNo} ORDER BY rnum
 	</select>
 	
 	<select id="selectReviewByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
