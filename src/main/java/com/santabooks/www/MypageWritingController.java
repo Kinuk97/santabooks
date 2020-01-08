@@ -1,5 +1,7 @@
 package com.santabooks.www;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,9 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.mypage.service.face.MypageService;
+import com.santabooks.novel.dto.Favorite;
+import com.santabooks.novel.dto.Novel;
 import com.santabooks.novel.service.face.NovelService;
 import com.santabooks.reviewSns.service.face.ReviewSnsService;
 import com.santabooks.util.Paging;
@@ -27,8 +32,22 @@ public class MypageWritingController {
    private static final Logger logger = LoggerFactory.getLogger(MypageWritingController.class);
    
    @RequestMapping(value = "/mypage/favorite", method = RequestMethod.GET)
-   public void favorite() {
-      logger.info("즐겨찾기");
+   public String favorite(Model model, Paging paging, HttpSession session) {
+      
+	   paging.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
+	   
+	   paging.setTableName("favorite");
+	   Paging result = novelService.getPaging(paging);
+	   List<Novel> list = novelService.getMyNovelByFavorite(result);
+
+		model.addAttribute("mypageList", list);
+		
+		logger.info(list.toString());
+
+		logger.info("즐겨찾기");
+		
+		return "/mypage/novelList";
+		
    }
    
    @RequestMapping(value = "/mypage/novelList", method = RequestMethod.GET)

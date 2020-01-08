@@ -7,7 +7,7 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <jsp:include page="/WEB-INF/views/mypage/mypageMenu.jsp" />
 
-<script type="text/javascript" src="/resources/js/novel.js"></script>
+<!-- <script type="text/javascript" src="/resources/js/novel.js"></script> -->
 
 <div class="container">
 	
