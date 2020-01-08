@@ -46,7 +46,7 @@
 
 				<div class="dropdown-menu" aria-labelledby="dropdown03">
 
-					<a class="dropdown-item" href="#">작성한 리뷰</a> <a
+					<a class="dropdown-item" href="/mypage/snsList">작성한 리뷰</a> <a
 						class="dropdown-item" href="/mypage/novelList">작성한 웹소설</a> <a
 						class="dropdown-item" href="#">작성한 댓글</a>
 
