@@ -259,7 +259,7 @@ $(document).ready(function(){
 });
 </script>
 
-<!-- 정규식 만족  -->
+
 
 <script type="text/javascript">
 
@@ -276,6 +276,7 @@ $(document).ready(function(){
 // 	}
 
 
+	//비밀번호
 
 	$(function() {
 		$("#alert-success").hide();
@@ -298,60 +299,6 @@ $(document).ready(function(){
 	});
 </script>
 
-
-
-
-<script type="text/javascript">
-$(document).ready(function() {
-	 $("#btn-membernick").on("click", function() {
-			var memberNick = $('#memberNick').val();
-
-			$.ajax({
-				url : "/member/join_nickcheck",
-				type : 'post',
-				data : {
-					"memberNick" : memberNick
-				},
-				datatype : "json",
-				success : function(res) {
-					console.log(res)
-					console.log(res.nickCheck);
-
-					if (res.nickCheck == 1) {
-						$('#nick_check').text('중복된 닉네임입니다')
-						$('#nick_check').css('color', 'red')
-						nick_Check = false;
-
-					} else {
-						if (nickCheck.test(membernick)) {
-							$('#nick_check').text('사용가능한 닉네임입니다')
-							$('#nick_check').css('color', 'green')
-							nick_Check = true;
-
-						} else if ($('#memberNick').val() == '') {
-							$('#nick_check').text('닉네임을 입력해주세요')
-							$('#nick_check').css('color', 'red')
-							nick_Check = false;
-
-						} else {
-							$('#nick_check').text('올바른 닉네임 형식이 아닙니다')
-							$('#nick_check').css('color', 'red')
-							nick_Check = false;
-
-						}
-					}
-					
-					if (res.nickCheck == 1) {
-						console.log("중복")
-					} else {
-						console.log("안중복")
-					}
-				}
-
-			})
-	 })
-})
-</script>
 
 
 
@@ -381,12 +328,12 @@ $(document).ready(function() {
 							<label for="memberID">이메일</label>
 						</div>
 						<div class="col-xs-6">
-							<input type="text" class="form-control" name="memberId"
+							<input type="email" class="form-control" name="memberId"
 								id="memberId" placeholder="e-mail을 입력하세요">
 						</div>
 						<div class="col-xs-3">
 							<input type="button" onclick="CheckId" value="인증하기"
-								class="btn btn-primary">
+								name="submit" class="btn btn-primary">
 						</div>
 					</div>
 

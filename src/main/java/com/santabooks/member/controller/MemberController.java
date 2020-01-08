@@ -1,5 +1,7 @@
 package com.santabooks.member.controller;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,8 @@ public class MemberController {
 	@RequestMapping(value = "/member/join", method = RequestMethod.GET)
 	public void join() {
 	}
-
+	
+	
 	@RequestMapping(value = "/member/join", method = RequestMethod.POST)
 	public String joinProcess(Member member, Model model) {
 		boolean joinResult = memberService.join(member);
@@ -49,7 +52,7 @@ public class MemberController {
 		return "/member/alert";
 	}
 	
-	//회원가입 + 장르선택
+	//회원가입 완료
 	@RequestMapping(value="/member/welcome_join", method=RequestMethod.GET)
 	public void joinSuccess() {}
 

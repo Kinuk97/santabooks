@@ -184,7 +184,7 @@
         <div class="clearfix">
 			<label class="pull-left checkbox-inline">
 			<input type="checkbox" id="idSaveCheck"/> 이메일 저장</label>
-            <a href="find_pw" class="pull-right text-success">비밀번호를 잊으셨나요?</a>
+            <a href="/member/find_pass" class="pull-right text-success">비밀번호를 잊으셨나요?</a>
         </div>  
         
     </form>
