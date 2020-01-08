@@ -63,7 +63,7 @@
 		select * from (
 			select rownum rnum, B.* FROM (
 					SELECT n.*,
-                    (SELECT memberName FROM member WHERE memberNo = n.novelNo) AS memberName,
+                    (SELECT memberName FROM member WHERE memberNo = n.memberNo) AS memberName,
                     (SELECT round(avg(score), 1) FROM episode WHERE novelNo = n.novelNo) AS score
 					FROM novel n INNER JOIN favorite f
 					ON n.novelNo = f.novelNo
