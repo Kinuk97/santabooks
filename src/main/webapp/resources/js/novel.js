@@ -144,22 +144,24 @@ $(document).ready(function() {
 	
 	// 댓글 ===================================================
 	
-	$.ajax({
- 		type: "POST"
- 		, url: "/comment/list"
-		, data: {
-			"episodeNo" : episodeNo,
-		}
-		, dataType: "HTML"
-		, success: function(res) {
-			console.log(res);
-			$(".commentDiv").html(res);
-		}
-		, error: function(e) {
-			$("#loginModal").modal();
-			console.log(e);
-		}
-	});
+	
+	if (episodeNo != 0 && episodeNo != undefined) {
+		$.ajax({
+			type: "POST"
+				, url: "/comment/list"
+					, data: {
+						"episodeNo" : episodeNo,
+					}
+			, dataType: "HTML"
+				, success: function(res) {
+					console.log(res);
+					$(".commentDiv").html(res);
+				}
+			, error: function(e) {
+				console.log(e);
+			}
+		});
+	}
 	
 	
 });
