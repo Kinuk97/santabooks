@@ -183,7 +183,6 @@ $(document).ready(function() {
 			<br>
 			
 				<div class="card sidenav" id="bookRecommand" style="height: 470px;">
-<%-- 					<center> --%>
 					<div class="card-text"><h4 style="font-weight: bold;">책추천</h4></div>
 					<c:forEach items="${bookInfo }" var="book">
 					<div style="position: relative;">
@@ -198,16 +197,10 @@ $(document).ready(function() {
 					</div>
 					<br>
 					</c:forEach>
-<%-- 					</center> --%>
-					<div style="float: right;">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<i class="fas fa-arrow-up" id="top" onclick="location.href='#'"></i>
-					</div>
 				</div>
+					<div style="float: right; position: relative; top: 645px; z-index:1; right:10px;">
+					<i class="fas fa-arrow-up" id="top" onclick="location.href='#'">TOP</i>
+					</div>
 				
 			</div>
 
@@ -227,8 +220,8 @@ $(document).ready(function() {
 									</div>
 									<hr>
 									<p>${review.review }</p>
-									<br><br><br>
-									<div class="text-right">${review.reviewDate }</div>
+									
+									<div style="text-align: right; position: absolute; bottom: 10px; right: 20px;">${review.reviewDate }</div>
 								</div>
 							</div>
 			

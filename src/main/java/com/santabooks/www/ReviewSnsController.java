@@ -130,13 +130,13 @@ public class ReviewSnsController {
 		
 		List<ReviewSns> list = reviewSnsService.reviewList(reviewPaging);
 		
-		ReviewSns reviewInfo = reviewSnsService.getReviewSns(bookNo);
+//		ReviewSns reviewInfo = reviewSnsService.getReviewSns(bookNo);
 		Like like = new Like();
 		
-		logger.info("리뷰정보 이건 진짜 나와야해 제발!!!!!!!!!!"+reviewInfo.toString());
+//		logger.info("리뷰정보 이건 진짜 나와야해 제발!!!!!!!!!!"+reviewInfo.toString());
 		
-		like.setFeedNo(reviewInfo.getFeedNo());
-		like.setMemberNo(reviewInfo.getMemberNo());
+//		like.setFeedNo(reviewInfo.getFeedNo());
+//		like.setMemberNo(reviewInfo.getMemberNo());
 		
 		int likeCnt = reviewSnsService.getTotalCntLike(like);
 		boolean checkLike = reviewSnsService.isLike(like);

@@ -39,9 +39,12 @@
 	</select>
 	
 	<select id="selectAllByBookNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.util.Paging">
-		SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher, b.publishingYear, b.bookContent, b.genreNo, b.grade, m.memberId, m.memberNick
-		FROM (SELECT rownum rnum, B.* FROM(SELECT * FROM review_sns ORDER BY feedNo DESC)B ORDER BY rnum)r, book b, member m
-		WHERE rnum BETWEEN #{startNo} AND #{endNo} AND r.bookNo = b.bookNo AND m.memberNo = r.memberNo AND r.bookNo = #{bookNo}
+		SELECT * FROM (
+      	SELECT rownum rnum, B.* FROM(
+      	SELECT  r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher,
+      	b.publishingYear, b.bookContent, b.genreNo, b.grade, m.memberId, m.memberNick FROM review_sns r, book b, member m 
+      	WHERE 1=1 AND
+      	(r.bookNo = b.bookNo) AND (r.memberNo = m.memberNo) AND (r.bookNo = #{bookNo}) ORDER BY r.feedNo DESC)B )C WHERE rnum BETWEEN #{startNo} AND #{endNo} ORDER BY rnum
 	</select>
 	
 	<select id="selectDetailReviewByFeedNo" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
@@ -64,7 +67,7 @@
 	
 	<select id="selectCntAll2" resultType="int" parameterType="com.santabooks.util.Paging">
 		SELECT COUNT(*) FROM review_sns r, book b
-		WHERE 1=1 AND r.bookNo = b.bookNo AND b.bookNo = #{bookNo}
+		WHERE 1=1 AND r.bookNo = b.bookNo AND b.bookNo = #{bookNo} AND r.privacy = 1
 	</select>
 	
 	<delete id="deleteReview" parameterType="com.santabooks.reviewSns.dto.ReviewSns">
@@ -149,8 +152,12 @@
 	
 	<!-- 장르별 책추천 -->
 	<select id="getbookGenreNo" parameterType="String" resultType="com.santabooks.reviewSns.dto.Book">
-		SELECT bookno, genreno, bookname, bookwriter, bookpublisher, publishingyear, bookcontent, grade FROM book
-		WHERE genreno IN ( ${genreNo} )		
+		SELECT * FROM(
+			SELECT RANK() OVER(PARTITION BY genreno ORDER BY dbms_random.random) rank, B.*
+			FROM book B
+			WHERE genreno IN ( ${genreNo} )
+		) R	
+		WHERE rank = 1	
 	</select>
 	
 </mapper>
