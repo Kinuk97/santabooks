@@ -182,9 +182,25 @@ $(document).ready(function() {
 			</div>
 			<br>
 			
-				<div class="card sidenav" id="bookRecommand" style="height: 500px;">
-					<div class="card-text">책추천 들어갈 예정</div>
+				<div class="card sidenav" id="bookRecommand" style="height: 470px;">
+					<div class="card-text"><h4 style="font-weight: bold;">책추천</h4></div>
+					<c:forEach items="${bookInfo }" var="book">
+					<div style="position: relative;">
+					<a  href="/sns/view?bookNo=${book.bookNo}">	
+					<img style="height: 60px; width: 50px;" src="/resources/images/${book.bookName}.jpg">
+					</a>
+						<div style="position: absolute; top:3px; left:60px;">
+						<small style="font-weight: bold;">${book.bookName }</small>
+						<br> 
+						<small style="font-weight: bold;">${book.bookWriter }</small>
+						</div>
+					</div>
+					<br>
+					</c:forEach>
 				</div>
+					<div style="float: right; position: relative; top: 645px; z-index:1; right:10px;">
+					<i class="fas fa-arrow-up" id="top" onclick="location.href='#'">TOP</i>
+					</div>
 				
 			</div>
 
@@ -204,8 +220,8 @@ $(document).ready(function() {
 									</div>
 									<hr>
 									<p>${review.review }</p>
-									<br><br><br>
-									<div class="text-right">${review.reviewDate }</div>
+									
+									<div style="text-align: right; position: absolute; bottom: 10px; right: 20px;">${review.reviewDate }</div>
 								</div>
 							</div>
 			
@@ -217,6 +233,5 @@ $(document).ready(function() {
 				</c:forEach>
 		</div>
 	</div>
-
 <jsp:include page="/WEB-INF/views/layout/paging.jsp" />
 	<jsp:include page="/WEB-INF/views/layout/footer.jsp" />

@@ -2,7 +2,7 @@ package com.santabooks.novel.service.face;
 
 import java.util.List;
 
-import com.santabooks.member.dto.Member;
+import com.santabooks.novel.dto.Comment;
 import com.santabooks.novel.dto.Episode;
 import com.santabooks.novel.dto.Favorite;
 import com.santabooks.novel.dto.Novel;
@@ -103,19 +103,6 @@ public interface NovelService {
 	public List<Episode> getEpisodeList(Paging paging);
 
 	/**
-	 * 회차 내용 보기
-	 * 
-	 * @param episode - episodeNo
-	 * @return episode - 회차 정보
-	 */
-	public Episode viewEpidode(Episode episode);
-
-//	public void writeComment(Comment comment);
-//	public void modifyComment(Comment episode);
-//	public void removeComment(Comment comment);
-//	public List<Comment> getCommentList(Comment comment);
-
-	/**
 	 * Paging 객체 만들어주는 메소드
 	 * 
 	 * @param paging - curPage, search가 담겨있는 Paging
@@ -197,4 +184,12 @@ public interface NovelService {
 	 * @return 결과
 	 */
 	public int getTotalCntFavorite(Favorite favorite);
+
+	/**
+	 * 댓글 리스트 가져오기
+	 * 
+	 * @param episode - episodeNo
+	 * @return List<Comment> - 댓글 리스트 (reply 제외)
+	 */
+	public List<Comment> getCommentList(Comment comment);
 }

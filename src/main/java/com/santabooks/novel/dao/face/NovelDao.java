@@ -3,6 +3,7 @@ package com.santabooks.novel.dao.face;
 import java.util.List;
 
 import com.santabooks.member.dto.Member;
+import com.santabooks.novel.dto.Comment;
 import com.santabooks.novel.dto.Episode;
 import com.santabooks.novel.dto.Favorite;
 import com.santabooks.novel.dto.Novel;
@@ -206,5 +207,13 @@ public interface NovelDao {
 	 * @param favorite - memberNo, novelNo
 	 */
 	public void deleteFavorite(Favorite favorite);
+
+	/**
+	 *  댓글 리스트 가져오기 (reply 제외)
+	 * 
+	 * @param comment - episodeNo
+	 * @return 조회 결과
+	 */
+	public List<Comment> selectComment(Comment comment);
 
 }

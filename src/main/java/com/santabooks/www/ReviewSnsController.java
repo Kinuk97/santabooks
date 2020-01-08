@@ -16,30 +16,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
-import com.santabooks.member.service.face.LoginService;
-import com.santabooks.novel.dto.Favorite;
-import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.Like;
 import com.santabooks.reviewSns.dto.ReviewSns;
 import com.santabooks.reviewSns.service.face.ReviewSnsService;
+import com.santabooks.subscribe.service.face.SubscribeService;
 import com.santabooks.util.Paging;
 
 @Controller
 public class ReviewSnsController {
 
+	@Autowired private SubscribeService subscribeservice;
+	
 	private static final Logger logger = LoggerFactory.getLogger(ReviewSnsController.class);
 
 	@Autowired
 	private ReviewSnsService reviewSnsService;
-
+	
+	// sns 리스트
 	@RequestMapping(value = "/sns/list", method = RequestMethod.GET)
-	public void snsList(Model model, Paging paging, HttpServletRequest req) {
-
-//		member.setMemberNo((int) session.getAttribute("MemberNo"));
-//		Member user = reviewSnsService.getMember(member);
-//		logger.info("멤버 닉네임 제발 나와라! : " + user);
+	public void snsList(Model model, Paging paging, HttpServletRequest req, HttpSession session) {
 
 		int totalCount = reviewSnsService.selectCntAll(paging);
 
@@ -54,12 +51,23 @@ public class ReviewSnsController {
 		logger.info(list.toString());
 		logger.info("페이징 정보 : " + reviewPaging);
 
-//		model.addAttribute("member",user);
 		model.addAttribute("reviewList", list);
 		model.addAttribute("paging", reviewPaging);
 		model.addAttribute("url", req.getRequestURI());
+		
+		String id = (String) session.getAttribute("MemberId");
+		Member member = subscribeservice.getGenre(id);
+		String genreNo = member.getGenre();	// 세션 ID에 따른 Genre번호 가져오기
+//		System.out.println(genreNo); 
+		
+		// Genre에 따른 Book Data 가져오기
+		List<Book> bookInfo = reviewSnsService.getbookgenreNo(genreNo);
+		model.addAttribute("bookInfo", bookInfo);
+		
+		
 	}
-
+	
+	// 리뷰 상세보기(책)
 	@RequestMapping(value = "/sns/view", method = RequestMethod.GET)
 	public void reviewDetail(ReviewSns reviewSns, Model model, HttpSession session) {
 
@@ -79,7 +87,9 @@ public class ReviewSnsController {
 				grade.setMemberNo(Integer.parseInt(memberNo.toString()));
 				grade.setBookNo(review.getBookNo());
 				
-				logger.info("myGrade : " + reviewSnsService.getMyGrade(grade).toString());
+//				logger.info("grade : " + grade);
+//				logger.info("myGrade : " + reviewSnsService.getMyGrade(grade));
+//				logger.info("myGrade : " + reviewSnsService.getMyGrade(grade).toString());
 				
 				model.addAttribute("grade", reviewSnsService.getMyGrade(grade));							
 			} catch (NumberFormatException e) {
@@ -102,7 +112,8 @@ public class ReviewSnsController {
 		mav.addObject("keyword", keyword);
 		return mav;
 	}
-
+	
+	// 상세보기 안에서 리뷰 모두보기
 	@RequestMapping(value = "/sns/reviewall", method = RequestMethod.GET)
 	public void reviewList(Model model, Paging paging, HttpServletRequest req, ReviewSns reviewSns, int bookNo) {
 		int totalCount = reviewSnsService.selectCntAll2(paging);
@@ -116,39 +127,32 @@ public class ReviewSnsController {
 		reviewPaging.setMemberId(paging.getMemberId());
 		reviewPaging.setMemberNick(paging.getMemberNick());
 		logger.info("책번호 제발 나와라 : " + reviewPaging);
-
+		
 		List<ReviewSns> list = reviewSnsService.reviewList(reviewPaging);
 		
-		// review 정보 가져오기
+//		ReviewSns reviewInfo = reviewSnsService.getReviewSns(bookNo);
 		Like like = new Like();
 		
-		int feedNo = 0;
-		int memberNo = 0;
+//		logger.info("리뷰정보 이건 진짜 나와야해 제발!!!!!!!!!!"+reviewInfo.toString());
 		
-		for (int i = 0; i < list.size(); i++) {
-			feedNo = list.get(i).getFeedNo();
-			memberNo = list.get(i).getMemberNo();
-			
-			like.setFeedNo(feedNo);
-			like.setMemberNo(memberNo);
-			logger.info("좋아요 정보 뽑아버려~~~~~" + like);
-
-			int likeCnt = reviewSnsService.getTotalCntLike(like);
-			boolean checkLike = reviewSnsService.isLike(like);
-
-			model.addAttribute("likeCnt", likeCnt);
-			model.addAttribute("checkLike", checkLike);
-		}
+//		like.setFeedNo(reviewInfo.getFeedNo());
+//		like.setMemberNo(reviewInfo.getMemberNo());
 		
+		int likeCnt = reviewSnsService.getTotalCntLike(like);
+		boolean checkLike = reviewSnsService.isLike(like);
+
 		logger.info(list.toString());
 		logger.info("페이징 정보 : " + reviewPaging);
 		
+		model.addAttribute("likeCnt", likeCnt);
+		model.addAttribute("checkLike", checkLike);		
 		model.addAttribute("bookName", bookInfo);
 		model.addAttribute("reviewList", list);
 		model.addAttribute("paging", reviewPaging);
 		model.addAttribute("url", req.getRequestURI());
 	}
 	
+	// 상세보기 안에서 리뷰 상세보기
 	@RequestMapping(value = "/sns/detailview", method = RequestMethod.GET)
 	public void reviewView(ReviewSns reviewSns, Model model) {
 
@@ -212,6 +216,7 @@ public class ReviewSnsController {
 	}
 	
 	// --------------------------------------------------------
+	
 	// 별점
 	
 	@RequestMapping(value = "/sns/grade/add", method = RequestMethod.POST)

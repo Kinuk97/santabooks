@@ -2,8 +2,6 @@ package com.santabooks.reviewSns.service.face;
 
 import java.util.List;
 
-import com.santabooks.member.dto.Member;
-import com.santabooks.novel.dto.Score;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.reviewSns.dto.Grade;
 import com.santabooks.reviewSns.dto.Like;
@@ -86,13 +84,6 @@ public interface ReviewSnsService {
 	public Book getBook(int bookNo);
 	
 	/**
-	 * 멤버 번호에 해당하는 멤버 정보 가져오기
-	 * @param memberNo
-	 * @return
-	 */
-	public Member getMember(Member member);
-	
-	/**
 	 * 리뷰 모두보기에서 페이징 위한 리뷰 갯수
 	 * 
 	 * @param paging
@@ -169,9 +160,15 @@ public interface ReviewSnsService {
 	 * @return boolean - true : 좋아요 O, false : 좋아요 X
 	 */
 	public boolean isLike(Like like);
-	
 
+	public List<Book> getbookgenreNo(String genreNo);
 	
+	/**
+	 * 책 번호로 리뷰 정보 가져오기
+	 * @param bookNo
+	 * @return
+	 */
+	public ReviewSns getReviewSns(int bookNo);
 	
 
 }

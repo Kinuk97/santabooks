@@ -15,6 +15,11 @@
 		( SELECT count(*) FROM score WHERE episodeNo IN (SELECT episodeNo FROM episode WHERE novel.novelNo = novelNo)
 		) AS cntScore
 	</sql>
+	<sql id="memberName">
+		(
+			SELECT memberName FROM member WHERE novel.memberNo = memberNo
+		) AS memberName
+	</sql>
 	<sql id="listCondition">
 		<trim prefix="WHERE" prefixOverrides="AND">
 			<choose>
@@ -58,18 +63,28 @@
 		select * from (
 			select rownum rnum, B.* FROM (
 					SELECT n.*,
-					<include refid="memberNameAndScore"></include>
+                    (SELECT memberName FROM member WHERE memberNo = n.memberNo) AS memberName,
+                    (SELECT round(avg(score), 1) FROM episode WHERE novelNo = n.novelNo) AS score
 					FROM novel n INNER JOIN favorite f
 					ON n.novelNo = f.novelNo
-					WHERE memberNo = #{memberNo}
+					WHERE n.memberNo = #{memberNo}
 				) B ORDER BY rnum
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 				
 	</select>
 
 	<select id="selectCntList" resultType="int" parameterType="com.santabooks.util.Paging">
-		SELECT count(*) FROM ${tableName}
-		<include refid="listCondition"></include>
+	<choose>
+		<when test="tableName == 'favorite'">
+			SELECT count(*) FROM novel n INNER JOIN favorite f
+			ON n.novelNo = f.novelNo
+			WHERE n.memberNo = #{memberNo}
+		</when>
+		<otherwise>
+			SELECT count(*) FROM ${tableName}
+			<include refid="listCondition"></include>
+		</otherwise>
+	</choose>
 	</select>
 	
 	<select id="selectNovelList" resultType="com.santabooks.novel.dto.Novel" parameterType="com.santabooks.util.Paging">
@@ -197,5 +212,28 @@
 		DELETE FROM favorite WHERE memberNo = #{memberNo} AND novelNo = #{novelNo}
 	</delete>
 
+	<!-- 댓글 -->
+	<select id="selectComment" parameterType="com.santabooks.novel.dto.Comment" resultType="com.santabooks.novel.dto.Comment">
+		SELECT comment_table.*,
+		(SELECT memberName FROM member WHERE memberNo = comment_table.memberNo) AS memberName
+		FROM comment_table WHERE episodeNo = #{episodeNo}
+		AND parentCmtNo = 0
+		ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq
+	</select>
+	<select id="selectReply" parameterType="com.santabooks.novel.dto.Comment" resultType="com.santabooks.novel.dto.Comment">
+		SELECT comment_table.*,
+		(SELECT memberName FROM member WHERE memberNo = comment_table.memberNo) AS memberName
+ 		FROM comment_table
+		WHERE episodeNo = #{episodeNo}
+		AND parentCmtNo != 0
+		AND commentNo = #{commentNo}
+		ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq
+	</select>
+	
+	<insert id="">
+		INSERT INTO comment_table
+		(commentNo, episodeNo, memberNo, content, parentCmtNo, seq)
+		VALUES (#{commentNo}, #{episodeNo}, #{memberNo}, #{content}, #{parentCmtNo}, #{seq})
+	</insert>
 
 </mapper>

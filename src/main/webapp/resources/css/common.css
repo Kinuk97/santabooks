@@ -92,3 +92,13 @@ ul .addNovel {
 .empty-stars {
 	vertical-align: super;
 }
+
+.commentDiv {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.rating-container {
+	width: 90%;
+	margin: 0 auto;
+}
