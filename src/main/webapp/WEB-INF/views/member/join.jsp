@@ -329,7 +329,7 @@ $(document).ready(function(){
 						</div>
 						<div class="col-xs-6">
 							<input type="email" class="form-control" name="memberId"
-								id="memberId" placeholder="e-mail을 입력하세요">
+								id="memberId" placeholder="e-mail을 입력하세요" required="required">
 						</div>
 						<div class="col-xs-3">
 							<input type="button" onclick="CheckId" value="인증하기"
@@ -343,7 +343,7 @@ $(document).ready(function(){
 						</div>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" name="memberName"
-								id="memberName" placeholder="성함을 입력해주세요">
+								id="memberName" placeholder="성함을 입력해주세요" required="required">
 						</div>
 					</div>
 
@@ -353,7 +353,7 @@ $(document).ready(function(){
 						</div>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" name="memberNick"
-								id="memberNick" placeholder="닉네임을 입력해주세요">
+								id="memberNick" placeholder="닉네임을 입력해주세요" required="required">
 								
 						</div>
 						<div class="col-xs-3">
@@ -380,7 +380,7 @@ $(document).ready(function(){
 						</div>
 						<div class="col-xs-6">
 							<input type="password" class="form-control" name="memberPwChk"
-								id="memberPwChk">
+								id="memberPwChk" >
 						</div>
 					</div>
 
@@ -397,7 +397,7 @@ $(document).ready(function(){
 						</div>
 						<div class="col-xs-6">
 							<input type="text" style="cursor: pointer;" class="form-control"
-								id="testDatepicker" name="memberBirth" readonly="readonly">
+								id="testDatepicker" name="memberBirth" readonly="readonly" required="required">
 						</div>
 					</div>
 
@@ -407,7 +407,7 @@ $(document).ready(function(){
 						</div>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" name="memberTel"
-								id="memberTel" placeholder="(-)없이 입력해주세요">
+								id="memberTel" placeholder="(-)없이 입력해주세요" required="required">
 						</div>
 					</div>
 
@@ -417,7 +417,7 @@ $(document).ready(function(){
 						</div>
 						<div class="col-xs-3">
 							<input type="text" id="postCode" placeholder="우편번호"
-								name="postCode" class="form-control">
+								name="postCode" class="form-control" required="required">
 						</div>
 						<div class="col-xs-3">
 							<input type="button" onclick="sample4_execDaumPostcode()"
@@ -431,7 +431,7 @@ $(document).ready(function(){
 						</div>
 						<div class="col-xs-8">
 							<input type="text" class="form-control" id="roadAddress"
-								name="roadAddress" placeholder="도로명주소">
+								name="roadAddress" placeholder="도로명주소" required="required">
 						</div>
 					</div>
 
@@ -439,7 +439,7 @@ $(document).ready(function(){
 						<div class="col-xs-3 control-label"></div>
 						<div class="col-xs-8">
 							<input type="text" class="form-control" id="jibunAddress"
-								name="jibunAddress" placeholder="지번주소">
+								name="jibunAddress" placeholder="지번주소" required="required">
 						</div>
 					</div>
 
@@ -447,7 +447,7 @@ $(document).ready(function(){
 						<div class="col-xs-3 control-label"></div>
 						<div class="col-xs-4">
 							<input type="text" class="form-control" id="detailAddress"
-								name="detailAddress" placeholder="상세주소">
+								name="detailAddress" placeholder="상세주소" required="required">
 						</div>
 						<div class="col-xs-4">
 							<input type="text" class="form-control" id="extraAddress"
