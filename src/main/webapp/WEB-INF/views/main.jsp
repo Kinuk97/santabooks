@@ -12,7 +12,7 @@
      <img src="/resources/images/books.jpg" alt="">
    </div>
   
-   <div class="box">
+   <div class="box" style="padding-top: 247px;margin-top: -225px;">
    <h1>SantaBooks</h1>
    <h3>매월 10일, 관심사에 알맞는 추천 책을<br>
     랜덤으로 보내드립니다.
@@ -35,7 +35,7 @@
    </div>
    
    
-	<div class="box"> <br><br><br><h1>SantaBooks</h1>
+	<div class="box"> <br><br><br><br><br><h1>SantaBooks</h1>
    	<h3>재미난 소설을 즐겨보세요.<br>
    	 이용자님의 의견을 기다리고 있습니다.
    	 <br>다양한 장르의 소설을 즐겨보세요. 
@@ -48,7 +48,7 @@
    	</div>
    	
 
-	<div class="box"> <br><br><br><h1>SantaBooks</h1>
+	<div class="box"> <br><br><br><br><br><h1>SantaBooks</h1>
    	<h3>읽고자 하는 책을 검색하세요.<br>
    	 리뷰를 달고 회원들과 정보를 공유해 보세요
    	<br>산타북스는 사랑입니다 ^.^ </h3>
