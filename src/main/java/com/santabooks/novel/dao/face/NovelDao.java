@@ -216,4 +216,12 @@ public interface NovelDao {
 	 */
 	public List<Comment> selectComment(Comment comment);
 
+	/**
+	 * 답글 리스트 가져오기
+	 * 
+	 * @param comment - commentNo 필요
+	 * @return 결과 리스트
+	 */
+	public List<Comment> selectReply(Comment comment);
+
 }

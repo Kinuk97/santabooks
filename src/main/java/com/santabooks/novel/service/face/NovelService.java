@@ -188,8 +188,16 @@ public interface NovelService {
 	/**
 	 * 댓글 리스트 가져오기
 	 * 
-	 * @param episode - episodeNo
+	 * @param comment - episodeNo 필요
 	 * @return List<Comment> - 댓글 리스트 (reply 제외)
 	 */
 	public List<Comment> getCommentList(Comment comment);
+
+	/**
+	 * 답글 리스트 가져오기
+	 * 
+	 * @param comment - episodeNo 필요
+	 * @return 결과 리스트
+	 */
+	public List<Comment> getReplyList(Comment comment);
 }

@@ -15,13 +15,15 @@ public class Comment {
 
 	private int parentCmtNo;
 
+	private int replyCnt;
+
 	private int seq;
 
 	@Override
 	public String toString() {
 		return "Comment [commentNo=" + commentNo + ", episodeNo=" + episodeNo + ", memberNo=" + memberNo
 				+ ", memberName=" + memberName + ", content=" + content + ", addDate=" + addDate + ", parentCmtNo="
-				+ parentCmtNo + ", seq=" + seq + "]";
+				+ parentCmtNo + ", replyCnt=" + replyCnt + ", seq=" + seq + "]";
 	}
 
 	public int getCommentNo() {
@@ -78,6 +80,14 @@ public class Comment {
 
 	public void setParentCmtNo(int parentCmtNo) {
 		this.parentCmtNo = parentCmtNo;
+	}
+
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
 	}
 
 	public int getSeq() {

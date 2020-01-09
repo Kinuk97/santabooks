@@ -102,3 +102,8 @@ ul .addNovel {
 	width: 90%;
 	margin: 0 auto;
 }
+
+.reply {
+    background: #E9ECEF;
+    padding-left: 5%;
+}

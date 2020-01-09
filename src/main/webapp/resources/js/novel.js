@@ -145,26 +145,34 @@ $(document).ready(function() {
 	// 댓글 ===================================================
 	
 	
-	if (episodeNo != 0 && episodeNo != undefined) {
-		$.ajax({
-			type: "POST"
-				, url: "/comment/list"
-					, data: {
-						"episodeNo" : episodeNo,
-					}
-			, dataType: "HTML"
-				, success: function(res) {
-					console.log(res);
-					$(".commentDiv").html(res);
-				}
-			, error: function(e) {
-				console.log(e);
-			}
+	if (episodeNo != undefined && episodeNo != 0) {
+		getList(episodeNo);
+		
+		$(".commentDiv").on("click", ".viewReply", function() {
+			$("li[data-parentno='" + $(this).data("commentno") + "']").show(500);
+			console.log($(this).data("commentno"));
 		});
 	}
 	
 	
 });
+
+function getList(episodeNo) {
+	$.ajax({
+		type: "POST"
+			, url: "/comment/list"
+				, data: {
+					"episodeNo" : episodeNo,
+				}
+		, dataType: "HTML"
+			, success: function(res) {
+				$(".commentDiv").html(res);
+			}
+		, error: function(e) {
+			console.log(e);
+		}
+	});
+}
 
 function drawStars(score, cntScore) {
 	$("#starSpan").html("");
