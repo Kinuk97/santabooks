@@ -9,6 +9,7 @@
 
 .header {
 	min-height: 70px;	
+	
 }
 
 .navbar {
@@ -38,7 +39,19 @@ body {
 	 color: white;
 	 width: 230px;
      display: scroll;
-     position:fixed;
+/*      position:fixed; */
+}
+#btnmain_1 {
+	 color: white;
+	 width: 230px;
+     display: scroll;
+/*      position:fixed; */
+}
+#btnmain_2 {
+	 color: white;
+	 width: 230px;
+     display: scroll;
+/*      position:fixed; */
 }
 
 .container {
@@ -69,7 +82,7 @@ img {
   height: 100%;
 }
 
-.section {
+.box {
 	 display: scroll;
      position:fixed;
 }

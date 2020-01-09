@@ -94,6 +94,7 @@ $(document).ready(function() {
 				}
 				, error: function(e) {
 					console.log(e);
+					$("#loginModal").modal();
 				}
 			});
 		});
@@ -160,5 +161,26 @@ $(document).ready(function() {
 </div>
 <!-- /.modal -->
 
+<!-- loginModal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <span>로그인이 필요한 기능입니다!</span>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<!-- /.loginModal -->
 <!-- 모달창 -->
+
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />
