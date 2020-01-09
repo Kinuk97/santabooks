@@ -47,9 +47,8 @@ public class MypageWritingController {
 		logger.info("즐겨찾기");
 		
 		return "/mypage/novelList";
-		
    }
-   
+
    @RequestMapping(value = "/mypage/novelList", method = RequestMethod.GET)
    public void novelList(Paging paging, Model model, HttpSession session, HttpServletRequest req) {
       
