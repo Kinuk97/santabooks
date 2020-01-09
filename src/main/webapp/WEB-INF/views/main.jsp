@@ -7,7 +7,7 @@
 
    
 
-  <div class="container"  style="width:1500px; height:1000px;">
+  <div class="container"  style="width:1700px; height:1000px;">
    <div id="bg">
      <img src="/resources/images/books.jpg" alt="">
    </div>

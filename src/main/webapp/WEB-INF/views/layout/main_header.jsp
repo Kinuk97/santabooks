@@ -122,7 +122,7 @@ img {
 
 	<div class="header">
 
-<nav class="navbar navbar-expand-sm navbar-dark">
+<nav class="navbar navbar-expand-sm navbar-dark" style="position: fixed;">
 	
 	  <!-- Links -->
 	  <ul class="navbar-nav">
