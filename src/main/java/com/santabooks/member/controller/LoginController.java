@@ -126,7 +126,7 @@ public class LoginController {
 	@RequestMapping(value = "/member/find_pass", method = RequestMethod.GET)
 	public void password(){}	
 
-	//비밀번호 찾기 처리 (1) 이메일 발송
+	//비밀번호 찾기 메일로 찾기
 	@RequestMapping(value = "/member/find_pass", method = RequestMethod.POST)
 	public ModelAndView find_pass(HttpServletRequest request, String member_id, String memberId,
 	        HttpServletResponse response_email) throws IOException{
@@ -265,13 +265,13 @@ public class LoginController {
 	
 	
 	//변경할 비밀번호를 입력한 후에 확인 버튼을 누르면 넘어오는 컨트롤러
-	@RequestMapping(value = "/member/chang_pass{memberId}", method = RequestMethod.POST)
-	public ModelAndView pass_change(@PathVariable String memberId, HttpServletRequest request, Member dto, HttpServletResponse pass) throws Exception{
+	@RequestMapping(value = "/member/change_pass", method = RequestMethod.POST)
+	public ModelAndView pass_change(String memberId, HttpServletRequest request, Member dto, HttpServletResponse pass) throws Exception{
   
-	String member_pass = request.getParameter("member_pass");
+	String member_pass = request.getParameter("memberPw");
 	           logger.info(member_pass);
 	String e_mail1 = memberId;
-	            
+	
 	dto.setMemberId(e_mail1);
 	dto.setMemberPw(member_pass);
 	
@@ -285,7 +285,7 @@ public class LoginController {
 	
 	ModelAndView mv = new ModelAndView();
 	
-	mv.setViewName("member/login");
+	mv.setViewName("/member/login");
 	
 	return mv;
 	            

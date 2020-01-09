@@ -24,14 +24,18 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public Member getMember(Member member) {
+	
 		return loginDao.getMember(member);
 		
-	}
 
+	}
+	
 	@Override
 	public void change_pass(Map<String, Object> map) {
-		loginDao.change_pass(map);
 		
+		System.out.println("출력확인 : " + map );
+		
+		loginDao.change_pass(map);
 	}
 
 
