@@ -217,7 +217,7 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	@Override
 	public Grade addGrade(Grade grade) {
 		int cntResult = reviewSnsDao.selectCntGradeByMemberNo(grade);
-
+//		System.out.println("count : s" + cntResult);
 		if (cntResult != 1) {
 			// 남긴 별점이 없을 경우
 			reviewSnsDao.insertGrade(grade);

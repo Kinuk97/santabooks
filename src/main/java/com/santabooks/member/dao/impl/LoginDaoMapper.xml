@@ -22,4 +22,12 @@
 		WHERE
 		memberId = #{memberId }
 	</select>
+	
+	
+	<update id="change_pass"
+		parameterType="hashmap">
+		UPDATE member set memberPw = #{memberPw }
+		WHERE memberId = #{memberId }
+		
+	</update> 
 </mapper>
