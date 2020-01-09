@@ -181,28 +181,41 @@ $(document).ready(function() {
 			</center>
 			</div>
 			<br>
-			
+
+			<c:if test="${not empty memberId }">
 				<div class="card sidenav" id="bookRecommand" style="height: 470px;">
-					<div class="card-text"><h4 style="font-weight: bold;">책추천</h4></div>
-					<c:forEach items="${bookInfo }" var="book">
-					<div style="position: relative;">
-					<a  href="/sns/view?bookNo=${book.bookNo}">	
-					<img style="height: 60px; width: 50px;" src="/resources/images/${book.bookName}.jpg">
-					</a>
-						<div style="position: absolute; top:3px; left:60px;">
-						<small style="font-weight: bold;">${book.bookName }</small>
-						<br> 
-						<small style="font-weight: bold;">${book.bookWriter }</small>
-						</div>
+					<div class="card-text">
+						<h4 style="font-weight: bold;">책추천</h4>
 					</div>
-					<br>
+					<c:forEach items="${bookInfo }" var="book">
+						<div style="position: relative;">
+							<a href="/sns/view?bookNo=${book.bookNo}"> 
+							<img style="height: 60px; width: 50px;" src="/resources/images/${book.bookName}.jpg">
+							</a>
+							<div style="position: absolute; top: 3px; left: 60px;">
+								<small style="font-weight: bold;">${book.bookName }</small> <br>
+								<small style="font-weight: bold;">${book.bookWriter }</small>
+							</div>
+						</div>
+						<br>
 					</c:forEach>
 				</div>
-					<div style="float: right; position: relative; top: 645px; z-index:1; right:10px;">
-					<i class="fas fa-arrow-up" id="top" onclick="location.href='#'">TOP</i>
+			</c:if>
+			
+			<c:choose>
+				<c:when test="${not empty memberId }">
+					<div style="float: right; position: relative; top: 645px; z-index: 1; right: 10px;">
+						<i class="fas fa-arrow-up" id="top" onclick="location.href='#'">TOP</i>
 					</div>
-				
-			</div>
+				</c:when>
+				<c:otherwise>
+					<div style="float: right; position: relative; top: 780px; z-index: 1; right: 10px;">
+						<i class="fas fa-arrow-up" id="top" onclick="location.href='#'">TOP</i>
+					</div>
+				</c:otherwise>
+			</c:choose>
+
+		</div>
 
 				<c:forEach items="${reviewList }" var="review">
 					<c:if test="${review.privacy eq 1}">
