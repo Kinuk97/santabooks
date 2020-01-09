@@ -1,5 +1,7 @@
 package com.santabooks.member.service.impl;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,18 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public Member getMember(Member member) {
+	
 		return loginDao.getMember(member);
+		
+
+	}
+	
+	@Override
+	public void change_pass(Map<String, Object> map) {
+		
+		System.out.println("출력확인 : " + map );
+		
+		loginDao.change_pass(map);
 	}
 
 

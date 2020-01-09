@@ -1,6 +1,5 @@
 package com.santabooks.subscribe.service.face;
 
-import java.util.List;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.reviewSns.dto.Book;
