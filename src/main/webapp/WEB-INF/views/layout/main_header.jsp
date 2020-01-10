@@ -126,8 +126,31 @@ img {
 	
 	  <!-- Links -->
 	  <ul class="navbar-nav">
+   		
+		<li class="nav-brand" id="navtitle">
+			<a class="nav-link" href="/main">Santabooks</a>
+		</li>
+
+	  	<c:choose>
+   		<c:when test="${0 eq subNo }">
+		    <li class="nav-brand" id="navtitle" style="margin-left: 25px;">
+		      <a class="nav-link" href="/subscribe/agree">구독</a>
+	   		</li>
+	    </c:when>
+	    <c:when test="${null eq subNo }">
+		    <li class="nav-brand" id="navtitle" style="margin-left: 25px;">
+		      <a class="nav-link" href="/subscribe/agree">구독</a></li>
+		</c:when>
+		<c:otherwise>
+		    <li class="nav-brand" id="navtitle" style="margin-left: 25px;">
+		      <a class="nav-link" href="/mypage/subInfo">구독</a></li>
+	     </c:otherwise>
+	  	</c:choose>
 	    <li class="nav-brand" id="navtitle">
-	      <a class="nav-link" href="/main">Santabooks</a>
+	      <a class="nav-link" href="/novel/list">소설</a>
+	    </li>
+	    <li class="nav-brand" id="navtitle">
+	      <a class="nav-link" href="/sns/list">리뷰SNS</a>
 	    </li>
 	    <c:if test="${not login}">	
 	   		 <li class="nav-item" id="nav1">
