@@ -90,45 +90,48 @@ public class MypageWritingController {
 	@RequestMapping(value = "/mypage/snsList", method = RequestMethod.GET)
 	public void snsList(Model model, Paging paging, HttpServletRequest req, HttpSession session) {
 
-//		String id = (String) session.getAttribute("MemberId");
-//		model.addAttribute("memberId", id);
-//		
-//		int userno = (int) session.getAttribute("MemberNo");
-//		model.addAttribute("MemberNo", userno);
-//
-//		logger.info("리뷰 세션 정보 : " + id);
-//		
-//		paging.setMemberId(id);
-//		paging.setMemberNo(userno);
-//		
-//		int totalCount = reviewSnsService.selectCntAll(paging);
-//
-//		paging = new Paging(totalCount, paging.getCurPage());
-//
-//		paging.setKeyword(paging.getKeyword());
-//		paging.setSearchType(paging.getSearchType());
-//		paging.setMemberNo(userno);
-//		paging.setMemberNick(paging.getMemberNick());
-//		
-//		logger.info(paging.toString());
-//		
-//		List<ReviewSns> list = reviewSnsService.getMySns(paging);
-//
-//		logger.info(list.toString());
-//		logger.info("페이징 정보 : " + paging);
-//
-//		model.addAttribute("myReview", list);
-//		model.addAttribute("paging", paging);
-//		model.addAttribute("url", req.getRequestURI());
-//
-//		if (id != null) {
-//			Member member = subscribeservice.getGenre(id);
-//			String genreNo = member.getGenre(); // 세션 ID에 따른 Genre번호 가져오기
-//
-//			// Genre에 따른 Book Data 가져오기
-//			List<Book> bookInfo = reviewSnsService.getbookgenreNo(genreNo);
-//			model.addAttribute("bookInfo", bookInfo);
-//		}
+		String id = (String) session.getAttribute("MemberId");
+		model.addAttribute("memberId", id);
+		
+		int userno = (int) session.getAttribute("MemberNo");
+		model.addAttribute("MemberNo", userno);
+
+		logger.info("리뷰 세션 정보 : " + id);
+		
+		paging.setMemberId(id);
+		paging.setMemberNo(userno);
+		
+		int totalCount = reviewSnsService.selectCntAll(paging);
+
+		paging = new Paging(totalCount, paging.getCurPage());
+
+		paging.setKeyword(paging.getKeyword());
+		paging.setSearchType(paging.getSearchType());
+		paging.setMemberNo(userno);
+		paging.setMemberNick(paging.getMemberNick());
+		
+		logger.info(paging.toString());
+		
+		List<ReviewSns> list = reviewSnsService.getMySns(paging);
+		
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setMemberNick(paging.getMemberNick());
+		}
+		
+		logger.info(list.toString());
+
+		model.addAttribute("myReview", list);
+		model.addAttribute("paging", paging);
+		model.addAttribute("url", req.getRequestURI());
+
+		if (id != null) {
+			Member member = subscribeservice.getGenre(id);
+			String genreNo = member.getGenre(); // 세션 ID에 따른 Genre번호 가져오기
+
+			// Genre에 따른 Book Data 가져오기
+			List<Book> bookInfo = reviewSnsService.getbookgenreNo(genreNo);
+			model.addAttribute("bookInfo", bookInfo);
+		}
 
 		logger.info("내가 쓴 sns 리스트");
 	}

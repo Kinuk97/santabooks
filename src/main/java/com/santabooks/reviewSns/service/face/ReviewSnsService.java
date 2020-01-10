@@ -171,5 +171,12 @@ public interface ReviewSnsService {
 	 */
 	public ReviewSns getReviewSns(int bookNo);
 	
-
+	/**
+	 * 내가 작성한 sns 가져오기
+	 * 
+	 * @param paging
+	 * 
+	 * @return List<ReviewSns>
+	 */
+	public List<ReviewSns> getMySns(Paging paging);
 }
