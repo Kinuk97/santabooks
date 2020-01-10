@@ -103,5 +103,5 @@
 		DELETE member
 		WHERE memberNo = #{memberNo }
 	</update>
-	
+
 </mapper>
