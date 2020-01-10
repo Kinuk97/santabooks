@@ -20,14 +20,16 @@
 			<mapping path="/subscribe/**" />
 			<mapping path="/sns/**" />
 			<mapping path="/comment/**" />
+			<mapping path="/mypage/**" />
 			<exclude-mapping path="/comment/list"/>
 			<exclude-mapping path="/novel/list"/>
 			<exclude-mapping path="/novel/view"/>
 			<exclude-mapping path="/episode/list"/>
 			<exclude-mapping path="/episode/view"/>
+			<exclude-mapping path="/episode/view"/>
 			<exclude-mapping path="/sns/list"/>
 			<exclude-mapping path="/sns/view"/>
-			<exclude-mapping path="/sns/reivewall"/>
+			<exclude-mapping path="/sns/reviewall"/>
 			<exclude-mapping path="/sns/detailview"/>
 			<beans:bean class="com.santabooks.www.interceptor.LoginCheckInterceptor" />
 		</interceptor>

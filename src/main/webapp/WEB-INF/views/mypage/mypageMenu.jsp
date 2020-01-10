@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-	
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <link href="/resources/css/mypagecommon.css" rel="stylesheet">
 
 <style type="text/css">
@@ -36,7 +37,14 @@
 			<a class="nav-link" href="/mypage/main">나의 정보<span class="sr-only">(current)</span>
 			</a></li>
 			
-			<li class="nav-item"><a class="nav-link" href="/mypage/subInfo">구독 정보</a></li>
+			<c:choose>
+			<c:when test="${not empty subNo }">
+					<li class="nav-item"><a class="nav-link" href="/mypage/subInfo">구독 정보</a></li>
+					</c:when>
+					<c:when test="${empty subNo }">
+					<li class="nav-item"><a class="nav-link" href="/subscribe/agree">구독 정보</a></li>
+					</c:when>
+			</c:choose>
 
 			<li class="nav-item"><a class="nav-link" href="/mypage/favorite">즐겨찾기</a></li>
 			

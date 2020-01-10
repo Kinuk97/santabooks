@@ -21,8 +21,9 @@
 	color: white;
 }
 
-#navtitle {
+/* #navtitle { */
 	font-size: 22px;
+	
 }
 body {
 	background: rgba(20, 121, 87, 0.5);
@@ -31,7 +32,7 @@ body {
 }
 
 #nav1, #nav2 {
-	font-size: 20px;
+	font-size: 16px;
 	position: relative;
     left: 1100px;
 }
