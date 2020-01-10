@@ -290,12 +290,12 @@ function requestPayment() {
 		<input class="input" type="text" id="subTel" name="subTel" placeholder="휴대폰 번호를 입력하세요"style = "width: 357px" />  <br><br>
 
 		<label for="subTerm" class="col-5">배송 메모</label>
-		<select  class="input" id="subTerm" name="subTerm"  style = "color: #6c757d; width: 357px; text-align-last: center; " >	
+		<select  class="input" id="subTerm" name="subTerm"  style = "width: 357px; height: 28px; text-align-last: center; " >	
 			<option disabled selected >선택하세요</option>
-			<option value="배송 전 연락 바랍니다.">배송 전 연락 바랍니다.</option>
-			<option value="부재시 전화나 문자 바랍니다.">부재시 전화나 문자 바랍니다.</option>
-			<option value="부재시 경비실에 맡겨주시기 바랍니다.">부재시 경비실에 맡겨주시기 바랍니다.</option>
-			<option value="부재시 집 앞에 집 앞에 놔주세요.">부재시 집 앞에 집 앞에 놔주세요.</option>
+			<option value="배송 전 연락 바랍니다." style = "color: #6c757d;">배송 전 연락 바랍니다.</option>
+			<option value="부재시 전화나 문자 바랍니다." style = "color: #6c757d;">부재시 전화나 문자 바랍니다.</option>
+			<option value="부재시 경비실에 맡겨주시기 바랍니다." style = "color: #6c757d;">부재시 경비실에 맡겨주시기 바랍니다.</option>
+			<option value="부재시 집 앞에 집 앞에 놔주세요." style = "color: #6c757d;">부재시 집 앞에 집 앞에 놔주세요.</option>
 		</select>
 		<br><br>
 
@@ -327,10 +327,10 @@ function requestPayment() {
 		<div style="position: relative;">
 		<label for="subPay" class="col-5">결제 정보</label>
 		
-		<select  class="input" id="subPay" name="subPay"  style = "color: #6c757d; width: 357px; text-align-last: center;" >	
-			<option disabled selected>선택하세요</option>
-			<option value="card" >카드 / 간편결제</option>
-			<option value="deposit">무통장 입금  110-41071946 (신한은행) </option>
+		<select  class="input" id="subPay" name="subPay"  style = "width: 357px; height: 28px; text-align-last: center;" >	
+			<option disabled selected  style = "color: #6c757d;">선택하세요</option>
+			<option value="card" style = "color: #6c757d;" >카드 / 간편결제</option>
+			<option value="deposit" style = "color: #6c757d;">무통장 입금  110-41071946 (신한은행) </option>
 		</select>
 		<br>
 		<div style="position: absolute; right: 87px;">
