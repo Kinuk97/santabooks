@@ -157,5 +157,13 @@ public interface ReviewSnsDao {
 	 */
 	public ReviewSns selectReviewByBookNo2(int bookNo);
 	
-
+	/**
+	 * 작성한 sns리뷰 조회
+	 * 
+	 * @param paging
+	 * 
+	 * @return List<ReviewSns>
+	 */
+	public List<ReviewSns> selectMySns(Paging paging);
+	
 }
