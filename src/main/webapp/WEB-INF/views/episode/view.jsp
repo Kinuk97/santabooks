@@ -100,7 +100,7 @@
         </button>
       </div>
       <div class="modal-body">
-        로그인이 필요한 기능입니다!
+        <span>로그인이 필요한 기능입니다!</span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
