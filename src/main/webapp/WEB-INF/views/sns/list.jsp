@@ -46,6 +46,11 @@ body {
 	background-color: #f1f1f1;
 }
 
+.clearBox {
+	height: 0;
+	clear: both;
+}
+
 @media screen and (max-width: 600px) {
 	.column {
 		width: 100%;
@@ -209,14 +214,14 @@ $(document).ready(function() {
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div style="float: right; position: relative; top: 780px; z-index: 1; right: 10px;">
+					<div style="float: right; position: relative; top: 160px; z-index: 1; right: 10px;">
 						<i class="fas fa-arrow-up" id="top" onclick="location.href='#'">TOP</i>
 					</div>
 				</c:otherwise>
 			</c:choose>
 
 		</div>
-
+				<div class="clearBox"></div>
 				<c:forEach items="${reviewList }" var="review">
 					<c:if test="${review.privacy eq 1}">
 					<div class="row">

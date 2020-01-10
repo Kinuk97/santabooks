@@ -42,7 +42,12 @@
 		SELECT * FROM (
       	SELECT rownum rnum, B.* FROM(
       	SELECT  r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher,
-      	b.publishingYear, b.bookContent, b.genreNo, b.grade, m.memberId, m.memberNick FROM review_sns r, book b, member m 
+      	b.publishingYear, b.bookContent, b.genreNo, b.grade, m.memberId, m.memberNick
+      	, ( SELECT count(*) FROM like_table L WHERE L.feedNo = r.feedNo ) likeCnt
+      	<if test="memberNo != null and memberNo != '' and memberNo != 0">
+      	, ( SELECT count(*) FROM like_table L WHERE L.feedNo = r.feedNo AND L.memberNo = #{memberNo } ) likeCheck
+      	</if>
+      	FROM review_sns r, book b, member m 
       	WHERE 1=1 AND
       	(r.bookNo = b.bookNo) AND (r.memberNo = m.memberNo) AND (r.bookNo = #{bookNo}) ORDER BY r.feedNo DESC)B )C WHERE rnum BETWEEN #{startNo} AND #{endNo} ORDER BY rnum
 	</select>

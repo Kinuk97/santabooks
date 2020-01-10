@@ -37,9 +37,10 @@ public interface ReviewSnsService {
 	/**
 	 * 네이버 API 책 검색 리스트
 	 * 
-	 * @param keyword
-	 * @param display
-	 * @param start
+	 * @param keyword - 검색 키워드
+	 * @param display - 화면에 보여질 개수
+	 * @param start - 화면에 보여질 시작 부분
+	 * 
 	 * @return NaverBook - 책 리스트
 	 */
 	public List<NaverBook> searchBook(String keyword, int display, int start);
