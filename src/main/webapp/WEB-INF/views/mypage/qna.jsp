@@ -31,7 +31,7 @@
 
 <a href="">▶ 산타북스 FAQ</a><br>
 
-<a href="/mypage/qnaList">▶ 산타북스 1:1문의</a>
+<a href="">▶ 산타북스 1:1문의</a>
 
 </div>
 
