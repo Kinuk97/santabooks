@@ -14,6 +14,12 @@
 body{
 	background-color: #F7F7F4;
 }
+.input {
+	text-align: center;
+	border: 1.2px solid #ccc;
+	border-radius: 5px; 
+}
+
 </style>
 
 <script type="text/javascript">
@@ -269,7 +275,7 @@ function requestPayment() {
 	
 	
 	
-	<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req" onclick="check()"/> 회원가입 정보와 동일합니다. </label> <br><br>
+	<label for="hint" style="cursor:pointer; margin-left: 15px;"><input type="checkbox"  id="hint" name="req" onclick="check()"/> 회원가입 정보와 동일합니다. </label> <br><br>
 	
 		
 
@@ -278,49 +284,58 @@ function requestPayment() {
 	
 
 		<label for="subName"  class="col-5">수령인</label>
-		<input type="text" id="subName" name="subName" placeholder="받으실 분의 이름을 입력하세요"  class="col-6" /> <br><br>
+		<input class="input" type="text" id="subName" name="subName" placeholder="받으실 분의 이름을 입력하세요" style = "width: 357px" /> <br><br>
 
 		<label for="subTel" class="col-5">휴대전화</label>
-		<input type="text" id="subTel" name="subTel" placeholder="휴대폰 번호를 입력하세요" class="col-6"/>  <br><br>
+		<input class="input" type="text" id="subTel" name="subTel" placeholder="휴대폰 번호를 입력하세요"style = "width: 357px" />  <br><br>
 
 		<label for="subTerm" class="col-5">배송 메모</label>
-		<input type="text" id="subTerm" name="subTerm" placeholder="배송 메세지를 입력하세요" class="col-6"/>  <br><br>
+		<select  class="input" id="subTerm" name="subTerm"  style = "color: #6c757d; width: 357px; text-align-last: center; " >	
+			<option disabled selected >선택하세요</option>
+			<option value="배송 전 연락 바랍니다.">배송 전 연락 바랍니다.</option>
+			<option value="부재시 전화나 문자 바랍니다.">부재시 전화나 문자 바랍니다.</option>
+			<option value="부재시 경비실에 맡겨주시기 바랍니다.">부재시 경비실에 맡겨주시기 바랍니다.</option>
+			<option value="부재시 집 앞에 집 앞에 놔주세요.">부재시 집 앞에 집 앞에 놔주세요.</option>
+		</select>
+		<br><br>
 
+
+	
 
 		<label for="subAdd_1" class="col-5">배송지 주소
 			<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호" class="btn btn-secondary btn-sm" 
 			style="height: 25px;font-size: 10px; position: relative; bottom: 3px;"><br></label>
-			<input type="text" id="postCode" name="postCode" placeholder="우편번호" class="col-6">
+			<input class="input" type="text" id="postCode" name="postCode" placeholder="우편번호" style = "width: 357px">
 			
-		<div style="margin-left: -75px">
-		<label for="" class="col-5"></label>
+		<div style="margin-left: -75px; margin-bottom: 4px;">
+		<label for="" style="width:333px"></label>
 		
-			<input type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" style="width: 175px;" >
-			<input type="text" id="jibunAddress" name="jibunAddress" placeholder="지번주소" style="width: 175px;">
+			<input class="input" type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" style="width: 170x;" >
+			<input class="input" type="text" id="jibunAddress" name="jibunAddress" placeholder="지번주소" style="width: 170px;">
 		</div>	
 			<span id="guide" style="color:#999;display:none"></span>
 			
 		<div  style="margin-left: -75px">
-			<label for="" class="col-5"></label>
-			<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" style="width: 175px;">
-			<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" style="width: 175px;">
+			<label for="" style="width:333px"></label>
+			<input class="input" type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" style="width: 181px;">
+			<input class="input" type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" style="width: 170px;">
 		</div>
 
 
-		<br><br><br>
+		<br><br>
 		
 		<div style="position: relative;">
 		<label for="subPay" class="col-5">결제 정보</label>
 		
-		<select id="subPay" name="subPay"  class="col-6">	
-			<option value="">선택하세요</option>
+		<select  class="input" id="subPay" name="subPay"  style = "color: #6c757d; width: 357px; text-align-last: center;" >	
+			<option disabled selected>선택하세요</option>
 			<option value="card" >카드 / 간편결제</option>
 			<option value="deposit">무통장 입금  110-41071946 (신한은행) </option>
 		</select>
 		<br>
-		<div style="position: absolute; right: 50px;">
+		<div style="position: absolute; right: 87px;">
 		<span id="subPayText">결제 방법을 선택하세요</span>
-		<span id="message" style="display: none;"> 110-414-071946 신한은행 <br> 0000년 00월 00일 00시 00분까지 9,900 입금해주세요</span>
+		<span id="message" style="display: none;"><br> 110-414-071946 신한은행 <br> 0000년 00월 00일 00시 00분까지 9,900 입금해주세요 <br></span>
 		</div>
 		</div>
 	
