@@ -212,7 +212,7 @@ $(document).ready(function() {
 				</div>
 			</c:if>
 			
-			<input type="hidden" id="memberId" value="${memberId }">
+<%-- 			<input type="hidden" id="memberId" value="${memberId }"> --%>
 			<c:choose>
 				<c:when test="${not empty memberId }">
 					<div style="float: right; position: relative; top: 645px; z-index: 1; right: 10px;">
