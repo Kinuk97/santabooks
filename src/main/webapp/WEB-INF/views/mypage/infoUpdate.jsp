@@ -409,6 +409,13 @@
 
 
 			</div>
+
+			<div class="text-center">
+				<button type="submit" id="btnUpdate" class="btn btn-info">정보
+					수정</button>
+				<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
+			</div>
+
 		</form>
 	</div>
 
