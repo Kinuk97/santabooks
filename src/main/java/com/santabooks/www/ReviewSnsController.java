@@ -56,13 +56,18 @@ public class ReviewSnsController {
 		model.addAttribute("url", req.getRequestURI());
 		
 		String id = (String) session.getAttribute("MemberId");
-		Member member = subscribeservice.getGenre(id);
-		String genreNo = member.getGenre();	// 세션 ID에 따른 Genre번호 가져오기
-//		System.out.println(genreNo); 
+		model.addAttribute("memberId",id);
 		
-		// Genre에 따른 Book Data 가져오기
-		List<Book> bookInfo = reviewSnsService.getbookgenreNo(genreNo);
-		model.addAttribute("bookInfo", bookInfo);
+		if(id != null) {
+			Member member = subscribeservice.getGenre(id);
+			String genreNo = member.getGenre();	// 세션 ID에 따른 Genre번호 가져오기
+//		System.out.println(genreNo); 
+			
+			// Genre에 따른 Book Data 가져오기
+			List<Book> bookInfo = reviewSnsService.getbookgenreNo(genreNo);
+			model.addAttribute("bookInfo", bookInfo);			
+		}
+		
 		
 		
 	}

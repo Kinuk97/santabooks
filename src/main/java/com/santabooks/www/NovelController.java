@@ -243,7 +243,6 @@ public class NovelController {
 
 	@RequestMapping(value = "/comment/list", method = RequestMethod.POST)
 	public void commentList(Comment comment, Model model) {
-		
 		model.addAttribute("commentList", novelService.getCommentList(comment));
 	}
 	

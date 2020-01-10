@@ -18,7 +18,7 @@
 			<mapping path="/novel/**" />
 			<mapping path="/episode/**" />
 			<mapping path="/subscribe/**" />
-			<mapping path="/reviewSns/**" />
+			<mapping path="/sns/**" />
 			<exclude-mapping path="/novel/list"/>
 			<exclude-mapping path="/novel/view"/>
 			<exclude-mapping path="/episode/list"/>

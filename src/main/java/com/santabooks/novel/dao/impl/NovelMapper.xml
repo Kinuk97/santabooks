@@ -214,22 +214,12 @@
 
 	<!-- 댓글 -->
 	<select id="selectComment" parameterType="com.santabooks.novel.dto.Comment" resultType="com.santabooks.novel.dto.Comment">
-		SELECT comment_table.*,
-		(SELECT memberName FROM member WHERE memberNo = comment_table.memberNo) AS memberName
-		FROM comment_table WHERE episodeNo = #{episodeNo}
-		AND parentCmtNo = 0
+		SELECT ct.*,
+		(SELECT memberName FROM member WHERE memberNo = ct.memberNo) AS memberName,
+		(SELECT count(*) FROM comment_table c WHERE parentCmtNo = ct.commentNo) AS replyCnt
+		FROM comment_table ct WHERE episodeNo = #{episodeNo}
 		ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq
 	</select>
-	<select id="selectReply" parameterType="com.santabooks.novel.dto.Comment" resultType="com.santabooks.novel.dto.Comment">
-		SELECT comment_table.*,
-		(SELECT memberName FROM member WHERE memberNo = comment_table.memberNo) AS memberName
- 		FROM comment_table
-		WHERE episodeNo = #{episodeNo}
-		AND parentCmtNo != 0
-		AND commentNo = #{commentNo}
-		ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq
-	</select>
-	
 	<insert id="">
 		INSERT INTO comment_table
 		(commentNo, episodeNo, memberNo, content, parentCmtNo, seq)

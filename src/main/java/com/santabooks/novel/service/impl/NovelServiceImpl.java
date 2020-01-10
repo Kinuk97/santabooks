@@ -252,4 +252,9 @@ public class NovelServiceImpl implements NovelService {
 	public List<Comment> getCommentList(Comment comment) {
 		return novelDao.selectComment(comment);
 	}
+	
+	@Override
+	public List<Comment> getReplyList(Comment comment) {
+		return novelDao.selectReply(comment);
+	}
 }
