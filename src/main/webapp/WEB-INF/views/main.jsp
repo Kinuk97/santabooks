@@ -22,13 +22,13 @@
 	
    <c:choose>
    <c:when test="${0 eq subNo }">
-      <a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="subscribe/agree"  >이용하러가기</a>
+      <a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="/subscribe/agree"  >이용하러가기</a>
    </c:when>
    <c:when test="${null eq subNo }">
-      <a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="subscribe/agree"  >이용하러가기</a>
+      <a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="/subscribe/agree"  >이용하러가기</a>
    </c:when>
    <c:otherwise>
-      <a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" onclick="location.href='/novel/list'" >이용하러가기</a>
+      <a class="btn btn-lg btn-secondary btn-block b-btn" id = "btnmain" href="/mypage/subInfo" >이용하러가기</a>
    </c:otherwise>   
    </c:choose>
    
