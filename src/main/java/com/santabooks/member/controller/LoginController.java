@@ -122,16 +122,16 @@ public class LoginController {
 	}
 
 	
-	//비밀번호 찾기
-	@RequestMapping(value = "/member/find_pass", method = RequestMethod.GET)
+	//이메일 전송
+	@RequestMapping(value = "/member/email_send", method = RequestMethod.GET)
 	public void password(){}	
 
-	//비밀번호 찾기 메일로 찾기
-	@RequestMapping(value = "/member/find_pass", method = RequestMethod.POST)
+	//이메일 인증번호 전송
+	@RequestMapping(value = "/member/email_send", method = RequestMethod.POST)
 	public ModelAndView find_pass(HttpServletRequest request, String member_id, String memberId,
 	        HttpServletResponse response_email) throws IOException{
 	    
-	    //랜덤한 난수 (인증번호)를 생성해서 이메일로 보내고 그 인증번호를 입력하면 비밀번호를 변경할 수 있는 페이지로 이동시킴
+	    //랜덤한 난수 (인증번호)를 생성해서 이메일로 보내고 그 인증번호를 입력하면 이메일을 인증 할 수 있는 페이지로 이동시킴
 	    
 	    Random r = new Random();
 	    int dice = r.nextInt(157211)+48271;
@@ -151,13 +151,13 @@ public class LoginController {
 	            
 	            System.getProperty("line.separator")+
 	    
-	            "비밀번호 찾기 인증번호는 " +dice+ " 입니다. "
+	            "회원가입 인증번호는 " +dice+ " 입니다. "
 	            
 	            +System.getProperty("line.separator")+
 	            
 	            System.getProperty("line.separator")+
 	            
-	            "받으신 인증번호를 홈페이지에 입력해 주시면 다음으로 넘어갑니다."; // 내용
+	            "받으신 인증번호를 홈페이지에 입력해 주시면 인증이 완료 됩니다."; // 내용
 	    
 	    try {
 	
@@ -177,7 +177,7 @@ public class LoginController {
 	    
 	    
 	    ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
-	    mv.setViewName("/member/pass_email");     //뷰의이름
+	    mv.setViewName("/member/mail_send");     //뷰의이름
 	    mv.addObject("dice", dice);
 	    mv.addObject("memberId", memberId);
 	    
@@ -187,7 +187,7 @@ public class LoginController {
 //	    PrintWriter out_email = response_email.getWriter();
 //	    out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
 //	    out_email.flush();
-//	    
+    
 	    
 	    return mv;
 	    

@@ -12,8 +12,7 @@ public interface MemberDao {
 
 	public int nickCheck(String memberId);
 
-	//아이디 중복체크
-	public int checkOverId(String member_id);
+	public int memberIdCheck(String member_id);
 
 
 }

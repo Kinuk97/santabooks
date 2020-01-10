@@ -370,7 +370,7 @@ $(document).ready(function(){
 						</div>
 						<div class="col-xs-6">
 							<input type="password" class="form-control" name="memberPw"
-								id="memberPw" placeholder="영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8-16자">
+								id="memberPw" placeholder="영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8-16자" required="required">
 						</div>
 					</div>
 
@@ -380,7 +380,7 @@ $(document).ready(function(){
 						</div>
 						<div class="col-xs-6">
 							<input type="password" class="form-control" name="memberPwChk"
-								id="memberPwChk" >
+								id="memberPwChk" required="required">
 						</div>
 					</div>
 
