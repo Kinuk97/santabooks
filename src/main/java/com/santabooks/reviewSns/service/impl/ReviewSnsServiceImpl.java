@@ -291,5 +291,5 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 		return reviewSnsDao.getbookGenreNo(genreNo);
 	}
 
-
+																													
 }

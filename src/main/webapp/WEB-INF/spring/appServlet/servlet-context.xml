@@ -19,11 +19,12 @@
 			<mapping path="/episode/**" />
 			<mapping path="/subscribe/**" />
 			<mapping path="/sns/**" />
+			<mapping path="/mypage/**" />
 			<exclude-mapping path="/novel/list"/>
 			<exclude-mapping path="/novel/view"/>
 			<exclude-mapping path="/episode/list"/>
 			<exclude-mapping path="/episode/view"/>
-			<exclude-mapping path="/sns/list"/>
+			<exclude-mapping path="/episode/view"/>
 			<exclude-mapping path="/sns/view"/>
 			<exclude-mapping path="/sns/reivewall"/>
 			<exclude-mapping path="/sns/detailview"/>
