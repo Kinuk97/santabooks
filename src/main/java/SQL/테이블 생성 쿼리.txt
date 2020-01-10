@@ -143,7 +143,7 @@ CREATE TABLE comment_TABLE (
  episodeNo NUMBER NOT NULL,
  memberNo NUMBER NOT NULL,
  content VARCHAR2(300) NOT NULL,
- addDate VARCHAR2(100) NOT NULL,
+ addDate VARCHAR2(100) DEFAULT to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),
  parentCmtNo int DEFAULT 0,
  seq int DEFAULT 1
 );

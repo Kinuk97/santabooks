@@ -242,8 +242,35 @@ public class NovelController {
 	// ====================================== 댓글 ==============================================
 
 	@RequestMapping(value = "/comment/list", method = RequestMethod.POST)
-	public void commentList(Comment comment, Model model) {
-		model.addAttribute("commentList", novelService.getCommentList(comment));
+	public void commentList(Paging paging, Model model, HttpServletRequest req) {
+		paging.setTableName("comment_table");
+		paging = novelService.getPaging(paging);
+		model.addAttribute("commentList", novelService.getCommentList(paging));
+		model.addAttribute("url", req.getRequestURI());
+		model.addAttribute("paging", paging);
+		
+		String param = "";
+
+		if (paging.getEpisodeNo() != 0) {
+			param += "&novelNo=" + paging.getEpisodeNo();
+		}
+
+		model.addAttribute("query", param);
+	}
+	
+	@RequestMapping(value = "/comment/write", method = RequestMethod.POST)
+	public ModelAndView commentWrite(ModelAndView mav, Comment comment, HttpSession session) {
+		System.out.println(comment);
+		
+		comment.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
+		
+		novelService.addComment(comment);
+		
+//		mav.addObject()
+		
+		mav.setViewName("jsonView");
+		
+		return mav;
 	}
 	
 	// =========================================================================================

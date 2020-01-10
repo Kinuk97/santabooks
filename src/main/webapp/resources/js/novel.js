@@ -1,6 +1,7 @@
 /**
  * 소설에 적용할 JS
  */
+var curPage = null;
 
 $(document).ready(function() {
 	var novelNo = $("#novelNo").val();
@@ -146,28 +147,66 @@ $(document).ready(function() {
 	
 	
 	if (episodeNo != undefined && episodeNo != 0) {
-		getList(episodeNo);
+		console.log($(".commentDiv input[id='curPage']"));
 		
-		$(".commentDiv").on("click", ".viewReply", function() {
+		getCommentList(episodeNo);
+		
+		$("div.commentDiv").on("click", ".viewReply", function() {
+			$("li[data-parentno='" + $(this).data("commentno") + "']").parent().prepend($("#replyWriteForm").clone());
 			$("li[data-parentno='" + $(this).data("commentno") + "']").show(500);
-			console.log($(this).data("commentno"));
+		});
+		
+		$("div.commentDiv").on("click", "#addCommentBtn", function() {
+			$.ajax({
+				type: "POST"
+				, url: "/comment/write"
+				, data: {
+					"episodeNo" : episodeNo,
+					"content" : $("#commentContent").val(),
+				}
+				, dataType: "json"
+				, success: function(res) {
+					getCommentList(episodeNo);
+				}
+				, error: function(e) {
+					console.log(e);
+				}
+			});
+		});
+		
+		// 무한 스크롤로 구현하고 싶은데 현재 페이지가 문제네.....
+		
+		$(window).scroll(function() {
+//			if (loading) {
+//				return;
+//			}
+//			if (curPage >= totalPage) {
+//				return;
+//			}
+	        
+	        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+		    	curPage += 1;
+//		    	loading = true;
+		    	
+		    	getCommentList(episodeNo);
+	        }
 		});
 	}
 	
-	
 });
 
-function getList(episodeNo) {
+function getCommentList(episodeNo) {
 	$.ajax({
 		type: "POST"
-			, url: "/comment/list"
-				, data: {
-					"episodeNo" : episodeNo,
-				}
+		, url: "/comment/list"
+		, data: {
+			"episodeNo" : episodeNo
+//			"curPage" : curPage
+		}
 		, dataType: "HTML"
-			, success: function(res) {
-				$(".commentDiv").html(res);
-			}
+		, success: function(res) {
+			$(".commentDiv").html($(".commentDiv").html() + res);
+		}
 		, error: function(e) {
 			console.log(e);
 		}

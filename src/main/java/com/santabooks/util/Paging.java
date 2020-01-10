@@ -22,6 +22,8 @@ public class Paging {
 	private int category;
 	// 소설 번호
 	private int novelNo;
+	// 회차 번호
+	private int episodeNo;
 
 	// count(*) 할 테이블명
 	private String tableName;
@@ -211,6 +213,14 @@ public class Paging {
 		this.novelNo = novelNo;
 	}
 
+	public int getEpisodeNo() {
+		return episodeNo;
+	}
+
+	public void setEpisodeNo(int episodeNo) {
+		this.episodeNo = episodeNo;
+	}
+
 	public String getTableName() {
 		return tableName;
 	}
@@ -272,9 +282,9 @@ public class Paging {
 		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
 				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchNo=" + searchNo
-				+ ", category=" + category + ", novelNo=" + novelNo + ", tableName=" + tableName + ", bookNo=" + bookNo
-				+ ", searchType=" + searchType + ", keyword=" + keyword + ", memberNo=" + memberNo + ", memberId="
-				+ memberId + ", memberNick=" + memberNick + "]";
+				+ ", category=" + category + ", novelNo=" + novelNo + ", episodeNo=" + episodeNo + ", tableName="
+				+ tableName + ", bookNo=" + bookNo + ", searchType=" + searchType + ", keyword=" + keyword
+				+ ", memberNo=" + memberNo + ", memberId=" + memberId + ", memberNick=" + memberNick + "]";
 	}
 
 }
