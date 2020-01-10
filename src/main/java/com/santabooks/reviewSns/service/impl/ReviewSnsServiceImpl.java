@@ -143,16 +143,16 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	            } 
 	            
 	        } catch (MalformedURLException e) {
-	            // TODO Auto-generated catch block
+	            
 	            e.printStackTrace();
 	        } catch (UnsupportedEncodingException e) {
-	            // TODO Auto-generated catch block
+	            
 	            e.printStackTrace();
 	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
+	            
 	            e.printStackTrace();
 	        } catch (XmlPullParserException e) {
-	            // TODO Auto-generated catch block
+	            
 	            e.printStackTrace();
 	        }
 	        return list;
