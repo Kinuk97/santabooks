@@ -1,7 +1,7 @@
 /**
  * 소설에 적용할 JS
  */
-var curPage = null;
+var curPage = 1;
 
 $(document).ready(function() {
 	var novelNo = $("#novelNo").val();
@@ -147,7 +147,7 @@ $(document).ready(function() {
 	
 	
 	if (episodeNo != undefined && episodeNo != 0) {
-		console.log($(".commentDiv input[id='curPage']"));
+		var totalPage = $("#cmtTotalCount").val();
 		
 		getCommentList(episodeNo);
 		
@@ -166,23 +166,22 @@ $(document).ready(function() {
 				}
 				, dataType: "json"
 				, success: function(res) {
-					getCommentList(episodeNo);
+					location.href = location.href;
 				}
 				, error: function(e) {
+					$("#loginModal").modal();
 					console.log(e);
 				}
 			});
 		});
 		
-		// 무한 스크롤로 구현하고 싶은데 현재 페이지가 문제네.....
-		
 		$(window).scroll(function() {
 //			if (loading) {
 //				return;
 //			}
-//			if (curPage >= totalPage) {
-//				return;
-//			}
+			if (curPage >= totalPage) {
+				return;
+			}
 	        
 	        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 		    	curPage += 1;
@@ -200,14 +199,15 @@ function getCommentList(episodeNo) {
 		type: "POST"
 		, url: "/comment/list"
 		, data: {
-			"episodeNo" : episodeNo
-//			"curPage" : curPage
+			"episodeNo" : episodeNo,
+			"curPage" : curPage
 		}
 		, dataType: "HTML"
 		, success: function(res) {
 			$(".commentDiv").html($(".commentDiv").html() + res);
 		}
 		, error: function(e) {
+			$("#loginModal").modal();
 			console.log(e);
 		}
 	});

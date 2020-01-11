@@ -194,6 +194,12 @@ public class NovelController {
 
 		model.addAttribute("episode", episode);
 		model.addAttribute("novel", novelService.getNovelByNovelNo(episode.getNovelNo()));
+		
+		// 댓글
+		Paging paging = new Paging();
+		paging.setEpisodeNo(episode.getEpisodeNo());
+		paging.setTableName("comment_table");
+		model.addAttribute("cmtPaging", novelService.getPaging(paging));
 	}
 
 	@RequestMapping(value = "/episode/score/add", method = RequestMethod.POST)
@@ -246,16 +252,7 @@ public class NovelController {
 		paging.setTableName("comment_table");
 		paging = novelService.getPaging(paging);
 		model.addAttribute("commentList", novelService.getCommentList(paging));
-		model.addAttribute("url", req.getRequestURI());
 		model.addAttribute("paging", paging);
-		
-		String param = "";
-
-		if (paging.getEpisodeNo() != 0) {
-			param += "&novelNo=" + paging.getEpisodeNo();
-		}
-
-		model.addAttribute("query", param);
 	}
 	
 	@RequestMapping(value = "/comment/write", method = RequestMethod.POST)
