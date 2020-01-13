@@ -1,7 +1,5 @@
 package com.santabooks.www;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
-import com.santabooks.mypage.dto.QnA;
 import com.santabooks.mypage.service.face.MypageService;
 import com.santabooks.subscribe.dto.Subscription;
-import com.santabooks.util.Paging;
 
 @Controller
 public class MyPageInfoController {

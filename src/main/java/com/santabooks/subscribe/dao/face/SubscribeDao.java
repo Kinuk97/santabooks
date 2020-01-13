@@ -1,6 +1,9 @@
 package com.santabooks.subscribe.dao.face;
 
 
+import java.util.List;
+import java.util.Map;
+
 import com.santabooks.member.dto.Member;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.subscribe.dto.Shipment;
@@ -23,6 +26,8 @@ public interface SubscribeDao {
 	public Book getbookGenreNo(String genreNo);
 
 	public void insertshipsInfo(Shipment shipment);
+
+	public List<Map<String, Object>> selectShippedBooks(int memberNo);
 
 
 

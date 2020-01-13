@@ -22,6 +22,7 @@ public class Member {
 	private String subDate;
 	private String subPay;
 	private int subNo;
+	
 	@Override
 	public String toString() {
 		return "Member [memberNo=" + memberNo + ", memberId=" + memberId + ", memberName=" + memberName
@@ -125,7 +126,7 @@ public class Member {
 		return subDate;
 	}
 	public void setSubDate(String subDate) {
-		this.subDate = subDate;
+		this.subDate = subDate.split("T")[0];
 	}
 	public String getSubPay() {
 		return subPay;
