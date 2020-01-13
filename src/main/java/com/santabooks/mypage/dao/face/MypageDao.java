@@ -22,24 +22,22 @@ public interface MypageDao {
 
 	public int selectCntAll();
 
-	public List<QnA> selectPageList(Paging paging);
-
-	public int selectCnt(int no);
-
-	public void write(Member member);
-
 	public int selectCntPw(Member member);
-
-	public QnA selectQnaByQnaNo(QnA viewQna);
-
-	public void updateHit(QnA viewQna);
-
-	public void qnaUpdate(QnA qna);
-
-	public void qnaDelete(QnA qna);
 
 	public Member selectBySub(int subNo);
 
 	public void delete(Member member);
+
+	public int selectUnLoginByMemberNo(Member member);
+
+	public int selectCnt(Member member);
+
+	public Member selectInformationByMemberNo(Member member);
+
+	public Member selectSubNoBySubNo(int subNo);
+
+	public void deleteSub(int subNo);
+	
+	public void subUpdate(Member member);
 
 }

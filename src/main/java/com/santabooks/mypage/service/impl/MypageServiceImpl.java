@@ -43,36 +43,8 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public List<QnA> list(Paging paging) {
-		
-		return mypageDao.selectPageList(paging);
-	}
-
-	@Override
-	public void write(Member member) {
-		mypageDao.write(member);		
-	}
-
-	@Override
 	public int infoPwChk(Member member) {
 		return mypageDao.selectCntPw(member);
-	}
-
-	@Override
-	public QnA qnaView(QnA viewQna) {
-		mypageDao.updateHit(viewQna);
-		
-		return mypageDao.selectQnaByQnaNo(viewQna);
-	}
-
-	@Override
-	public void qnaUpdate(QnA qna) {
-		mypageDao.qnaUpdate(qna);
-	}
-
-	@Override
-	public void qnaDelete(QnA qna) {
-		mypageDao.qnaDelete(qna);
 	}
 
 	@Override
@@ -81,8 +53,41 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
-	public void delete(Member member) {
+	public int getUnLogin(Member member) {
+		return mypageDao.selectUnLoginByMemberNo(member);
+	}
+
+	@Override
+	public boolean checkPw(Member member) {
+		if ( mypageDao.selectCnt(member) > 0 ) {
+			return true;
+		} 
+		
+		return false;
+	}
+
+	@Override
+	public Member getInformation(Member member) {
+		return mypageDao.selectInformationByMemberNo(member);
+	}
+
+	@Override
+	public void userInformationDelete(Member member) {
 		mypageDao.delete(member);
 	}
+
+	@Override
+	public Member subCancel(int subNo) {
+		return mypageDao.selectSubNoBySubNo(subNo);
+	}
+	
+	@Override
+	public void subUpdate(Member member) {
+		System.out.println("---subDelete");
+		mypageDao.deleteSub(member.getSubNo());
+		System.out.println("---subUpdate");
+		mypageDao.subUpdate(member);
+	}
+
 
 }
