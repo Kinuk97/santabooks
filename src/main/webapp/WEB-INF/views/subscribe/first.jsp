@@ -291,7 +291,7 @@ function requestPayment() {
 
 		<label for="subTerm" class="col-5">배송 메모</label>
 		<select  class="input" id="subTerm" name="subTerm"  style = "width: 357px; height: 28px; text-align-last: center; " >	
-			<option disabled selected >선택하세요</option>
+			<option value="선택 안함" style = "color: #6c757d;" >선택하세요</option>
 			<option value="배송 전 연락 바랍니다." style = "color: #6c757d;">배송 전 연락 바랍니다.</option>
 			<option value="부재시 전화나 문자 바랍니다." style = "color: #6c757d;">부재시 전화나 문자 바랍니다.</option>
 			<option value="부재시 경비실에 맡겨주시기 바랍니다." style = "color: #6c757d;">부재시 경비실에 맡겨주시기 바랍니다.</option>
