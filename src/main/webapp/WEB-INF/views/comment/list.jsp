@@ -16,8 +16,12 @@
     		${comment.content }
     	</div>
     	<div class="text-right btnDiv">
+    	<c:if test="${comment.memberNo == MemberNo}">
+    		<button class="modifyBtn btn btn-warning" data-commentno=${comment.commentNo }>수정</button>
+    		<button class="removeBtn btn btn-danger" data-commentno=${comment.commentNo }>삭제</button>
+    	</c:if>
     	<c:if test="${comment.replyCnt != 0 }">
-    		<button class="viewReply" data-commentno=${comment.commentNo }>더보기 (${comment.replyCnt })</button>
+    		<button class="viewReply btn btn-info" data-commentno=${comment.commentNo }>답글 (${comment.replyCnt })</button>
     	</c:if>
     	</div>
     </li>
@@ -30,6 +34,12 @@
     	<hr>
     	<div>
     		${comment.content }
+    	</div>
+    	<div class="text-right btnDiv">
+    	<c:if test="${comment.memberNo == MemberNo}">
+    		<button class="modifyBtn btn btn-warning" data-commentno=${comment.commentNo }>수정</button>
+    		<button class="removeBtn btn btn-danger" data-commentno=${comment.commentNo }>삭제</button>
+    	</c:if>
     	</div>
     </li>
   	</c:otherwise>

@@ -257,7 +257,6 @@ public class NovelController {
 	
 	@RequestMapping(value = "/comment/write", method = RequestMethod.POST)
 	public ModelAndView commentWrite(ModelAndView mav, Comment comment, HttpSession session) {
-		System.out.println(comment);
 		
 		comment.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
 		
@@ -268,6 +267,29 @@ public class NovelController {
 		mav.setViewName("jsonView");
 		
 		return mav;
+	}
+	
+	@RequestMapping(value = "/comment/remove", method = RequestMethod.POST)
+	public ModelAndView commentRemove(ModelAndView mav, Comment comment, HttpSession session) {
+		Object memberNo = session.getAttribute("MemberNo");
+
+		if (memberNo != null) {
+			novelService.removeComment(comment);
+		}
+		
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/comment/reply", method = RequestMethod.POST)
+	public String replyWrite(Comment comment, HttpSession session) {
+		// episodeNo, parentCmtNo, content
+		comment.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
+		
+		novelService.addReply(comment);
+		
+		return "redirect:/episode/view?episodeNo=" + comment.getEpisodeNo();
 	}
 	
 	// =========================================================================================

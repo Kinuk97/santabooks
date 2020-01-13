@@ -185,9 +185,7 @@
 	</select>
 	
 	<select id="selectScore" parameterType="com.santabooks.novel.dto.Score" resultType="com.santabooks.novel.dto.Score">
-		SELECT
-		round(avg(score), 1) score,
-		count(*) cntScore
+		SELECT round(avg(score), 1) score,count(*) cntScore
 		FROM score WHERE episodeNo = #{episodeNo}
 	</select>
 	<insert id="insertScore" parameterType="com.santabooks.novel.dto.Score">
@@ -223,17 +221,30 @@
 				(SELECT memberName FROM member WHERE memberNo = ct.memberNo) AS memberName,
 				(SELECT count(*) FROM comment_table c WHERE parentCmtNo = ct.commentNo AND parentCmtNo != 0) AS replyCnt
 				FROM comment_table ct WHERE episodeNo = #{episodeNo}
-				ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq
-			) B ORDER BY rnum
+				ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq DESC
+			) B ORDER BY rnum DESC
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
 	<insert id="insertComment" parameterType="com.santabooks.novel.dto.Comment">
 	<selectKey order="BEFORE" keyColumn="commentNo" keyProperty="commentNo" resultType="int">
 		SELECT comment_table_seq.nextval AS commentNo FROM dual
 	</selectKey>
-		INSERT INTO comment_table
-		(commentNo, episodeNo, memberNo, content, parentCmtNo, seq)
+		INSERT INTO comment_table (commentNo, episodeNo, memberNo, content, parentCmtNo, seq)
 		VALUES (#{commentNo}, #{episodeNo}, #{memberNo}, #{content}, #{parentCmtNo}, #{seq})
 	</insert>
+	<update id="updateCommentSeq" parameterType="com.santabooks.novel.dto.Comment">
+		UPDATE comment_table SET seq = seq + 1 WHERE parentCmtNo = #{parentCmtNo}
+	</update>
+	<delete id="deleteComment" parameterType="com.santabooks.novel.dto.Comment">
+		DELETE FROM comment_table WHERE commentNo = #{commentNo} OR parentCmtNo = #{commentNo}
+	</delete>
+<!-- 	<insert id="insertReply" parameterType="com.santabooks.novel.dto.Comment"> -->
+<!-- 	<selectKey order="BEFORE" keyColumn="commentNo" keyProperty="commentNo" resultType="int"> -->
+<!-- 		SELECT comment_table_seq.nextval AS commentNo FROM dual -->
+<!-- 	</selectKey> -->
+<!-- 		INSERT INTO comment_table (commentNo, episodeNo, memberNo, content, parentCmtNo, seq) -->
+<!-- 		VALUES (#{commentNo}, #{episodeNo}, #{memberNo}, #{content}, #{parentCmtNo}, #{seq}) -->
+<!-- 	</insert> -->
+
 
 </mapper>

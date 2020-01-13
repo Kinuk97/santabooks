@@ -258,4 +258,18 @@ public class NovelServiceImpl implements NovelService {
 	public void addComment(Comment comment) {
 		novelDao.insertComment(comment);
 	}
+
+	@Override
+	public void removeComment(Comment comment) {
+		novelDao.deleteComment(comment);
+	}
+	
+	@Override
+	public void addReply(Comment comment) {
+		novelDao.updateCommentSeq(comment);
+		
+		comment.setSeq(1);
+		
+		novelDao.insertComment(comment);
+	}
 }

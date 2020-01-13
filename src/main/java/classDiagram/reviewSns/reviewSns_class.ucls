@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.santabooks.www.ReviewSnsController" project="santabooks" 
     file="/santabooks/src/main/java/com/santabooks/www/ReviewSnsController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1497" y="179"/>    
+    <position height="-1" width="-1" x="305" y="509"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.santabooks.reviewSns.dto.Book" project="santabooks" 
     file="/santabooks/src/main/java/com/santabooks/reviewSns/dto/Book.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1819" y="770"/>    
+    <position height="-1" width="-1" x="798" y="1135"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.santabooks.reviewSns.dto.Grade" project="santabooks" 
     file="/santabooks/src/main/java/com/santabooks/reviewSns/dto/Grade.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="268" width="196" x="2390" y="500"/>    
+    <position height="268" width="196" x="1419" y="866"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="com.santabooks.reviewSns.dto.NaverBook" project="santabooks" 
     file="/santabooks/src/main/java/com/santabooks/reviewSns/dto/NaverBook.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="646" width="192" x="2165" y="500"/>    
+    <position height="646" width="192" x="1182" y="865"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -40,7 +40,7 @@
   <class id="5" language="java" name="com.santabooks.reviewSns.service.impl.ReviewSnsServiceImpl" project="santabooks" 
     file="/santabooks/src/main/java/com/santabooks/reviewSns/service/impl/ReviewSnsServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="520" width="307" x="2297" y="-69"/>    
+    <position height="520" width="307" x="1243" y="-49"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -50,7 +50,7 @@
   <interface id="6" language="java" name="com.santabooks.reviewSns.dao.face.ReviewSnsDao" project="santabooks" 
     file="/santabooks/src/main/java/com/santabooks/reviewSns/dao/face/ReviewSnsDao.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2930" y="187"/>    
+    <position height="-1" width="-1" x="1941" y="211"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -60,7 +60,7 @@
   <interface id="7" language="java" name="com.santabooks.reviewSns.service.face.ReviewSnsService" project="santabooks" 
     file="/santabooks/src/main/java/com/santabooks/reviewSns/service/face/ReviewSnsService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="466" width="310" x="1896" y="-42"/>    
+    <position height="466" width="310" x="756" y="-25"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -69,7 +69,7 @@
   </interface>  
   <class id="8" language="java" name="com.santabooks.reviewSns.dto.Like" project="santabooks" 
     file="/santabooks/src/main/java/com/santabooks/reviewSns/dto/Like.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="214" width="196" x="2618" y="501"/>    
+    <position height="214" width="196" x="1664" y="868"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -78,29 +78,87 @@
   </class>  
   <class id="9" language="java" name="com.santabooks.reviewSns.dto.ReviewSns" project="santabooks" 
     file="/santabooks/src/main/java/com/santabooks/reviewSns/dto/ReviewSns.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2041" y="985"/>    
+    <position height="-1" width="-1" x="1039" y="1350"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="10">    
+  <interface id="10" language="java" name="com.santabooks.subscribe.service.face.SubscribeService" project="santabooks" 
+    file="/santabooks/src/main/java/com/santabooks/subscribe/service/face/SubscribeService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="903" y="661"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="11" language="java" name="com.santabooks.subscribe.service.impl.SubscribeServiceImpl" project="santabooks" 
+    file="/santabooks/src/main/java/com/santabooks/subscribe/service/impl/SubscribeServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1413" y="663"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="12" language="java" name="com.santabooks.subscribe.dao.face.SubscribeDao" project="santabooks" 
+    file="/santabooks/src/main/java/com/santabooks/subscribe/dao/face/SubscribeDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1951" y="664"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <association id="13">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="14" name="subscribeDao"/>      
+      <multiplicity id="15" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="16">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="17">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="18" name="subscribeservice"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="20">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <association id="21">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="11" name="reviewSnsDao"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
+      <attribute id="22" name="reviewSnsDao">        
+        <position height="0" width="0" x="-989" y="24"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-989" y="24"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="13">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <association id="14">    
+  <association id="24">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="15" name="reviewSnsService"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
+      <attribute id="25" name="reviewSnsService">        
+        <position height="0" width="0" x="-1140" y="17"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1140" y="17"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  

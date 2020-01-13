@@ -60,6 +60,7 @@
 		
 		VALUES ( #{shipNo}, #{shipmentDate}, #{memberNo}, #{bookNo}, #{subNo} )	
 	</insert>
+	
 	<select id="selectShippedBooks" parameterType="int" resultType="hashmap">
 		select 
 	    g.genrename, b.bookno, b.bookname, b.bookpublisher, b.bookwriter,
@@ -70,6 +71,5 @@
 		and b.genreno = g.genreno
 		and s.memberno = ${memberNo}
 	</select>
-	
 	
 </mapper>
