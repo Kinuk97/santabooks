@@ -221,8 +221,8 @@
 				(SELECT memberName FROM member WHERE memberNo = ct.memberNo) AS memberName,
 				(SELECT count(*) FROM comment_table c WHERE parentCmtNo = ct.commentNo AND parentCmtNo != 0) AS replyCnt
 				FROM comment_table ct WHERE episodeNo = #{episodeNo}
-				ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq DESC
-			) B ORDER BY rnum DESC
+				ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq
+			) B ORDER BY rnum
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
 	<insert id="insertComment" parameterType="com.santabooks.novel.dto.Comment">
