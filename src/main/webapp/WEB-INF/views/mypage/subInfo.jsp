@@ -91,6 +91,7 @@
 h2 {
 text-align: center;
 }
+
 </style>
 
 <h2>📂 ${subInfo.memberNick }님의 구독정보</h2><hr><br>
@@ -137,17 +138,17 @@ text-align: center;
 		<label style="font-size: 20px;color: black"><strong>${subInfo.jibunAddress }</strong> </label>
 	</div>
 	<br>
-	<div id = "info_add5">
+	<div id = "info_add4">
 		<label style="font-size: 20px;color: black"> 상세주소 </label>&nbsp;&nbsp;&nbsp;
 		<label style="font-size: 20px;color: black"><strong>${subInfo.extraAddress }</strong> </label>
 	</div>
 	<br>
-	<div id = "info_add4">
+	<div id = "info_add5">
 		<label style="font-size: 20px;color: black"> 상세주소 </label>&nbsp;&nbsp;&nbsp;
 		<label style="font-size: 20px;color: black"><strong>${subInfo.detailAddress }</strong> </label>
 	</div>
 	<br>
-
+	
 </div>
 
 <br><br><br><br><br><br><br><br><br><br><br>

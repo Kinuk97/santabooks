@@ -26,14 +26,10 @@ import com.santabooks.util.Paging;
 @Controller
 public class MypageWritingController {
 
-	@Autowired
-	NovelService novelService;
-	@Autowired
-	MypageService mypageService;
-	@Autowired
-	ReviewSnsService reviewSnsService;
-	@Autowired
-	private SubscribeService subscribeservice;
+	@Autowired NovelService novelService;
+	@Autowired MypageService mypageService;
+	@Autowired ReviewSnsService reviewSnsService;
+	@Autowired SubscribeService subscribeservice;
 
 	private static final Logger logger = LoggerFactory.getLogger(MypageWritingController.class);
 

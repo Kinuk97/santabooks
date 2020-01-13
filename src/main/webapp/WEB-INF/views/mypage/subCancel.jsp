@@ -10,6 +10,14 @@ $(document).ready(function() {
 	
 	$("#btnCancel").click(function() {
 		alert("산타북스 구독 서비스가 해지되었습니다.이용해주셔서 감사합니다.");
+		var url = '/mypage/subCancel';
+		var form = $('<form action="' + url + '" method="post">'
+			+ '<input type="text" name="memberNo" value="${subCancel.memberNo}" />'
+			+ '<input type="text" name="memberId" value="${subCancel.memberId}" />'
+			+ '<input type="text" name="subNo" value="${subCancel.subNo}" />'
+			+ '</form>');
+		$('body').append(form);
+		form.submit();
 	});
 	
 });

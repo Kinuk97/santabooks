@@ -50,7 +50,8 @@ body{
 </div>
 </div>
 <br><br>
-<a href="/subscribe/shipment"><button> 배송 </button></a>
+<!-- <a href="/subscribe/shipment"><button> 배송 </button></a> -->
+<!-- <a href="/subscribe/final1"><button> 구독 취소 </button></a> -->
 
 
 

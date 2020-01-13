@@ -310,15 +310,15 @@ function requestPayment() {
 		<div style="margin-left: -75px; margin-bottom: 4px;">
 		<label for="" style="width:333px"></label>
 		
-			<input class="input" type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" style="width: 170x;" >
-			<input class="input" type="text" id="jibunAddress" name="jibunAddress" placeholder="지번주소" style="width: 170px;">
+			<input class="input" type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" style="width: 181px;" >
+			<input class="input" type="text" id="jibunAddress" name="jibunAddress" placeholder="지번주소" style="width: 172px;">
 		</div>	
 			<span id="guide" style="color:#999;display:none"></span>
 			
 		<div  style="margin-left: -75px">
 			<label for="" style="width:333px"></label>
 			<input class="input" type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" style="width: 181px;">
-			<input class="input" type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" style="width: 170px;">
+			<input class="input" type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" style="width: 172px;">
 		</div>
 
 
@@ -353,6 +353,29 @@ function requestPayment() {
 
 
 </div>
-
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: center" >확인 메시지</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+         	모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다.
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success btn-block" data-dismiss="modal" style="background: #5BB88B;">확인</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
