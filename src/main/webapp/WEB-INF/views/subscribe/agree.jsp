@@ -42,6 +42,12 @@ $(document).ready(function(){
       $('#myModal').modal('show');  
       }
    })
+   $("#Nagree").click(function(){
+   
+      $('#No').modal('show');  
+  		location.href = "/subscribe/first";
+   
+   })
 });
 
 </script>
@@ -179,7 +185,7 @@ function cAll() {
 
 </textarea>
 <!-- <label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req"> 개인정보 수집 및 이용에 모두 동의합니다.</label> -->
-<label for="hint2" style="cursor:pointer"><input type="checkbox" id="hint2" name="check_2"/> 개인정보 수집 및 이용에 모두 동의합니다.</label><br />
+<label for="hint2" style="cursor:pointer"><input type="checkbox" id="hint2" name="check_2"/> 개인정보 수집 및 이용에 동의합니다.</label><br />
 <label for="hint3" style="cursor:pointer"><input type="checkbox" id="hint3" name="checkAll" onclick="cAll();"> 전체 동의하기</label>
 <br><br><br>
 <div style="text-align: center;">
@@ -188,7 +194,7 @@ function cAll() {
 			<input type="button" class="btn btn-success btn-block" 
 	 		style="background: #5BB88B;width: 174px;margin-left: 50;margin-left: 112px;" id = "nextBtn" value="동의합니다" data-toggle="modal" data-target="#myModal" />
 			<input style="width: 174px; margin-top: -66px;  margin-top: 50; margin-left: 196px;  width: 174; background-color: #dee2e6;" 
-			type="button" class="btn" value="동의하지 않습니다" id = "Nagree" />
+			type="button" class="btn" value="동의하지 않습니다" id = "Nagree" data-toggle="modal" data-target="#No" />
 		
 		
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Open modal</button> -->
@@ -212,7 +218,7 @@ function cAll() {
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">확인 메시지</h4>
+          <h4 class="modal-title" style="text-align: center" >확인 메시지</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
@@ -223,13 +229,36 @@ function cAll() {
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">확인</button>
+          <button type="button" class="btn btn-success btn-block" data-dismiss="modal" style="background: #5BB88B;">확인</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- The Modal -->
+  <div class="modal fade" id="No">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: center" >확인 메시지</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+         	약관에 동의하지 않으면 이용하실 수 없습니다.
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success btn-block" data-dismiss="modal" style="background: #5BB88B;">확인</button>
         </div>
         
       </div>
     </div>
   </div>
   
-<!-- </div> -->
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
