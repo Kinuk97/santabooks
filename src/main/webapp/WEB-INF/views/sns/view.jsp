@@ -197,8 +197,20 @@ body{
 	<hr>
 	
 	<div style="position: relative;">
-	<button class="btn btn-secondary" id="subBtn"
-		onclick="location.href='/subscribe/agree'">구독 하기</button>
+		<c:choose>
+			<c:when test="${0 eq subNo }">
+				<button class="btn btn-secondary" id="subBtn"
+					onclick="location.href='/subscribe/agree'">구독 하기</button>
+			</c:when>
+			<c:when test="${null eq subNo }">
+				<button class="btn btn-secondary" id="subBtn"
+					onclick="location.href='/subscribe/agree'">구독 하기</button>
+			</c:when>
+			<c:otherwise>
+				<button class="btn btn-secondary" id="subBtn"
+					onclick="location.href='/mypage/subInfo'">구독 하기</button>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<hr>
 	

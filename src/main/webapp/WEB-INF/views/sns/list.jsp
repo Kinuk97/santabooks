@@ -89,7 +89,7 @@ body {
 	
 }
 
-#searchBtn{
+.searchBtn{
 	width:70px;
 	background-color:rgba(20, 121, 87,.25); 
 	border:none; 
@@ -117,21 +117,41 @@ body {
 
 <script type="text/javascript">
 $(document).ready(function() {
+		
 	
-// 	var memberId = $("#memberId").val();
+	// sticky 스크롤 처리
+	$(window).scroll(
+			function() {
+				if ($(window).scrollTop() + $(window).height() > $(
+						document).height() - 100) {
+					$("#stickyBox").css("position", "static");
+					console.log(1)
+				} else {
+					$("#stickyBox").css("position", "sticky");
+					console.log(2)
+				}
+			});
+
+				
+	//알림 모달 호출 메서드
+	function warningModal(content) {
+		$(".modal-contents").text(content);
+		$("#defaultModal").modal('show');
+	}
+
 	
-// 	if(memerId != null || memberId != ""){
-		$(window).scroll(function() {
-			   if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-				   $("#stickyBox").css("position", "static");
-				   console.log(1)
-			   }
-			   else {
-				   $("#stickyBox").css("position", "sticky");
-				   console.log(2)
-			   }
-		});
-// 	}
+	$(".searchBtn").on("click", function() {
+// 		var keyword = $("#keyword").val();
+		var keyword = $(this).parents("form").find("[name='keyword']").val();
+
+		if (keyword == null || keyword == "") {
+			warningModal("검색어가 없습니다.");
+		} else {
+// 			$("#reviewSearch").submit();
+			$(this).parents("form").submit();
+		}
+	});
+
 })
 </script>
 
@@ -142,16 +162,16 @@ $(document).ready(function() {
 		<div>
 			<center>
 				<h3 style="font-weight: bold;">🔍리뷰 검색</h3>
-				<form action="/sns/list" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+				<form action="/sns/list" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="reviewSearch">
 					<div class="input-group">
 					<select name="searchType" class="bg-light border-0">
 						<option value="bookName">제목</option>
 						<option value="bookWriter">작가</option>
 					</select>
 					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하여 리뷰를 검색하세요" 
-					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
+					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;" id="keyword"> 
 					 <div class="input-group-append">
-					<button class="btn btn-primary" id ="searchBtn" type="submit"><i class="fas fa-search"></i></button>
+					<button class="btn btn-primary searchBtn" type="button"><i class="fas fa-search"></i></button>
 					</div>
 					</div>
 				</form>
@@ -169,7 +189,7 @@ $(document).ready(function() {
 					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목, 작가를 입력하세요" 
 					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
 					 <div class="input-group-append">
-					<button class="btn btn-primary" id ="searchBtn" type="submit"><i class="fas fa-search"></i></button>
+					<button class="btn btn-primary searchBtn" type="button"><i class="fas fa-search"></i></button>
 					</div>
 					</div>
 				</form>
@@ -184,7 +204,7 @@ $(document).ready(function() {
 					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목, 작가를 입력하세요" 
 					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
 					 <div class="input-group-append">
-					<button class="btn btn-primary" id ="searchBtn" type="submit"><i class="fas fa-search"></i></button>
+					<button class="btn btn-primary searchBtn" type="button"><i class="fas fa-search"></i></button>
 					</div>
 					</div>
 				</form>
@@ -257,5 +277,27 @@ $(document).ready(function() {
 				</c:forEach>
 		</div>
 	</div>
+
+<!--모달창 -->
+<div class="modal fade" id="defaultModal">
+	<div class="modal-dialog">
+		<div class="modal-content ">
+			<div class="modal-header panel-heading">
+				<h4 class="modal-title">알림</h4>
+			</div>
+			<div class="modal-body">
+				<p class="modal-contents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal"
+					id="ok" style="background-color:rgba(20, 121, 87,.25); border: none;">확인</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <jsp:include page="/WEB-INF/views/layout/paging.jsp" />
-	<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />

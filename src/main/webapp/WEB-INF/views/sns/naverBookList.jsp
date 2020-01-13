@@ -23,6 +23,31 @@ $(document).ready(function() {
 
 </style>
 
+<script type="text/javascript">
+$(document).ready(function() {
+					
+	//알림 모달 호출 메서드
+	function warningModal(content) {
+		$(".modal-contents").text(content);
+		$("#defaultModal").modal('show');
+	}
+
+	
+	$("#searchBtn").on("click", function() {
+// 		var keyword = $("#keyword").val();
+		var keyword = $(this).parents("form").find("[name='keyword']").val();
+
+		if (keyword == null || keyword == "") {
+			warningModal("검색어가 없습니다.");
+		} else {
+// 			$("#reviewSearch").submit();
+			$(this).parents("form").submit();
+		}
+	});
+
+})
+</script>
+
 <div id="search">
 			<br>
 			<center>
@@ -32,7 +57,7 @@ $(document).ready(function() {
 					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하세요" 
 					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
 					 <div class="input-group-append">
-					<button class="btn btn-primary" id ="searchBtn" type="submit">검색</button>
+					<button class="btn btn-primary" id ="searchBtn" type="button">검색</button>
 					</div>
 					</div>
 				</form>
@@ -40,6 +65,7 @@ $(document).ready(function() {
 			</center>
 		</div>
 		<br><br>
+   
    <table id="bookTable">
         <tr>
             <td colspan="7" width="100%" bgcolor="pink"></td>
@@ -67,6 +93,26 @@ $(document).ready(function() {
     </table>
     <br>
 
-	
-	<jsp:include page="/WEB-INF/views/layout/paging.jsp" />
-	<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
+<!--모달창 -->
+<div class="modal fade" id="defaultModal">
+	<div class="modal-dialog">
+		<div class="modal-content ">
+			<div class="modal-header panel-heading">
+				<h4 class="modal-title">알림</h4>
+			</div>
+			<div class="modal-body">
+				<p class="modal-contents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal"
+					id="ok" style="background-color:rgba(20, 121, 87,.25); border: none;">확인</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<jsp:include page="/WEB-INF/views/layout/paging.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
