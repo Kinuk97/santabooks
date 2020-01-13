@@ -223,4 +223,20 @@ public interface NovelDao {
 	 */
 	public void insertComment(Comment comment);
 
+	/**
+	 * 댓글 삭제하기
+	 * 
+	 * @param comment - commentNo
+	 */
+	public void deleteComment(Comment comment);
+
+//	/**
+//	 * 답글 insert
+//	 * 
+//	 * @param comment - content, parentCmtNo, memberNo
+//	 */
+//	public void insertReply(Comment comment);
+	
+	public void updateCommentSeq(Comment comment);
+
 }

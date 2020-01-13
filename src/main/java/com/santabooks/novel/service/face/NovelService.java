@@ -199,4 +199,19 @@ public interface NovelService {
 	 * @param comment - content, episodeNo, memberNo
 	 */
 	public void addComment(Comment comment);
+
+	/**
+	 * 댓글번호로 댓글 삭제하기
+	 * 
+	 * @param comment - commentNo
+	 */
+	public void removeComment(Comment comment);
+
+	/**
+	 * 답글 작성하기
+	 * 
+	 * @param comment - 내용, 부모댓글번호, 멤버번호
+	 */
+	public void addReply(Comment comment);
+	
 }
