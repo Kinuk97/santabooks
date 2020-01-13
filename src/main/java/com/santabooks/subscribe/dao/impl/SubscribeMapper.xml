@@ -61,6 +61,6 @@
 		VALUES ( #{shipNo}, #{shipmentDate}, #{memberNo}, #{bookNo}, #{subNo} )	
 	</insert>
 	
-	
+
 	
 </mapper>
