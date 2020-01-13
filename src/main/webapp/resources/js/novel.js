@@ -1,6 +1,7 @@
 /**
  * 소설에 적용할 JS
  */
+var curPage = 1;
 
 $(document).ready(function() {
 	var novelNo = $("#novelNo").val();
@@ -146,29 +147,67 @@ $(document).ready(function() {
 	
 	
 	if (episodeNo != undefined && episodeNo != 0) {
-		getList(episodeNo);
+		var totalPage = $("#cmtTotalCount").val();
 		
-		$(".commentDiv").on("click", ".viewReply", function() {
+		getCommentList(episodeNo);
+		
+		$("div.commentDiv").on("click", ".viewReply", function() {
+			$("li[data-parentno='" + $(this).data("commentno") + "']").parent().prepend($("#replyWriteForm").clone());
 			$("li[data-parentno='" + $(this).data("commentno") + "']").show(500);
-			console.log($(this).data("commentno"));
+		});
+		
+		$("div.commentDiv").on("click", "#addCommentBtn", function() {
+			$.ajax({
+				type: "POST"
+				, url: "/comment/write"
+				, data: {
+					"episodeNo" : episodeNo,
+					"content" : $("#commentContent").val(),
+				}
+				, dataType: "json"
+				, success: function(res) {
+					location.href = location.href;
+				}
+				, error: function(e) {
+					$("#loginModal").modal();
+					console.log(e);
+				}
+			});
+		});
+		
+		$(window).scroll(function() {
+//			if (loading) {
+//				return;
+//			}
+			if (curPage >= totalPage) {
+				return;
+			}
+	        
+	        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+		    	curPage += 1;
+//		    	loading = true;
+		    	
+		    	getCommentList(episodeNo);
+	        }
 		});
 	}
 	
-	
 });
 
-function getList(episodeNo) {
+function getCommentList(episodeNo) {
 	$.ajax({
 		type: "POST"
-			, url: "/comment/list"
-				, data: {
-					"episodeNo" : episodeNo,
-				}
+		, url: "/comment/list"
+		, data: {
+			"episodeNo" : episodeNo,
+			"curPage" : curPage
+		}
 		, dataType: "HTML"
-			, success: function(res) {
-				$(".commentDiv").html(res);
-			}
+		, success: function(res) {
+			$(".commentDiv").html($(".commentDiv").html() + res);
+		}
 		, error: function(e) {
+			$("#loginModal").modal();
 			console.log(e);
 		}
 	});

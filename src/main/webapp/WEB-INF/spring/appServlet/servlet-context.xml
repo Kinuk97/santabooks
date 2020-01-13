@@ -19,7 +19,9 @@
 			<mapping path="/episode/**" />
 			<mapping path="/subscribe/**" />
 			<mapping path="/sns/**" />
+			<mapping path="/comment/**" />
 			<mapping path="/mypage/**" />
+			<exclude-mapping path="/comment/list"/>
 			<exclude-mapping path="/novel/list"/>
 			<exclude-mapping path="/novel/view"/>
 			<exclude-mapping path="/episode/list"/>

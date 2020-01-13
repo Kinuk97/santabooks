@@ -86,6 +86,16 @@
 	
 	<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top; "value="${myScore.score }">
 	<div class="commentDiv">
+	<div class="card" style="width: 60rem; margin: 0 auto;">
+	  <div class="card-header">
+	    <div class="input-group">
+		  <textarea class="form-control" aria-label="With textarea" name="content" id="commentContent"></textarea>
+		  <div class="input-group-append">
+		    <span class="input-group-text" style="padding: 0;"><button class="btn btn-default" style="height: 100%; width: 100%;" type="button" id="addCommentBtn">등록</button></span>
+		  </div>
+		</div>
+	  </div>
+  	</div>
 	</div>
 </div>
 
@@ -113,5 +123,6 @@
 <input hidden="hidden" type="text" value="${episode.novelNo }" id="novelNo">
 <input type="text" id="score" hidden="hidden" value="${episode.score }">
 <input type="text" id="cntScore" hidden="hidden" value="${episode.cntScore }">
+<input type="text" id="cmtTotalCount" hidden="hidden" value="${cmtPaging.totalPage }">
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

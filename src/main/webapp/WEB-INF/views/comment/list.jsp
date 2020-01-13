@@ -2,16 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="card" style="width: 60rem; margin: 0 auto;">
-  <div class="card-header">
-    <div class="input-group">
-	  <textarea class="form-control" aria-label="With textarea"></textarea>
-	  <div class="input-group-append">
-	    <span class="input-group-text" style="padding: 0;"><button class="btn btn-default" style="height: 100%; width: 100%;">등록</button></span>
-	  </div>
-	</div>
-  </div>
-  
+
 <ul class="list-group list-group-flush">
 <c:forEach items="${commentList }" var="comment">
   <c:choose>
@@ -44,5 +35,12 @@
   	</c:otherwise>
   </c:choose>
 </c:forEach>
+<!-- 	<li class="list-group-item replyWriteLi" style="display: none;" id="replyWriteForm"> -->
+<!-- 		 <div class="input-group"> -->
+<!-- 		  <textarea class="form-control" aria-label="With textarea"></textarea> -->
+<!-- 		  <div class="input-group-append"> -->
+<!-- 		    <span class="input-group-text" style="padding: 0;"><button class="btn btn-default" style="height: 100%; width: 100%;">등록</button></span> -->
+<!-- 		  </div> -->
+<!-- 		</div> -->
+<!-- 	</li> -->
 </ul>
-</div>
