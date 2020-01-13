@@ -7,7 +7,7 @@
 <mapper namespace="com.santabooks.mypage.dao.face.MypageDao">
 
 <select id="selectByNo" parameterType="int" resultType="com.santabooks.member.dto.Member">
-		SELECT memberNo, memberName, memberId, memberNick FROM member
+		SELECT memberNo, memberName, memberId, memberNick, genre FROM member
 		WHERE 1=1
 			AND memberNo = #{no }
 </select>
@@ -19,81 +19,18 @@
 	
 <update id="infoUpdate" parameterType="com.santabooks.member.dto.Member">
 		UPDATE member
-		SET memberNick = #{memberNick }, memberPw = #{memberPw }, memberBirth = #{memberBirth }, memberTel = #{memberTel }, postCode = #{postCode }, roadAddress = #{roadAddress }, jibunAddress = #{jibunAddress }, detailAddress = #{detailAddress }, extraAddress = #{extraAddress }
+		SET memberNick = #{memberNick }, memberPw = #{memberPw }, memberBirth = #{memberBirth }, memberTel = #{memberTel }, postCode = #{postCode }, roadAddress = #{roadAddress }, jibunAddress = #{jibunAddress }, detailAddress = #{detailAddress }, extraAddress = #{extraAddress }, genre = #{genre }
 		WHERE memberNo = #{memberNo }
 </update>
 
-	<sql id="selectBoard">
-		SELECT
-			qnaNo
-			, memberNo
-			, qnaTitle
-			, qnaContent
-			, writeDate
-			, hit
-		FROM QnA
-	</sql>
-
-	<sql id="selectRownum">
-		SELECT
-			rownum rnum, B.*
-		FROM (
-			<include refid="selectBoard" />
-			ORDER BY qnaNo DESC
-		) B
-		ORDER BY rnum
-	</sql>
-	
-	<select id="selectPageList" parameterType="com.santabooks.util.Paging" resultType="com.santabooks.mypage.dto.QnA">
-		SELECT * FROM (
-			<include refid="selectRownum" />
-		) R
-		<where>
-			rnum BETWEEN #{startNo} AND #{endNo}
-		</where>
-	</select>
-
-	<select id="selectCntAll" resultType="int">
-		SELECT count(*) FROM (
-			<include refid="selectBoard" />
-		) CNT
-	</select>
-	
-	<insert id="write" parameterType="com.santabooks.mypage.dto.QnA">
-		INSERT INTO QnA( qnaNo, memberNo, qnaTitle, qnaContent, writeDate, hit)
-		VALUES( qna_seq.nextval, #{memberNo }, #{qnaTitle }, #{qnaContent }, #{writeDate }, #{hit }, ( SELECT memberId FROM member WHERE memberId=#{memberId } ), #{qnaContent } )
-	</insert>
-	
 	<select id="selectCntPw" parameterType="com.santabooks.member.dto.Member" resultType="int">
 		SELECT count(*) FROM member 
 		WHERE memberPw = #{memberPw }
 		AND memberId = #{memberId }
 	</select>
 	
-	<update id="updateHit" parameterType="com.santabooks.mypage.dto.QnA">
-		UPDATE QnA
-		SET hit = hit + 1
-		WHERE qnaNo = #{qnaNo }
-	</update>
-	
-	<select id="selectQnaByQnaNo" parameterType="com.santabooks.mypage.dto.QnA" resultType="com.santabooks.mypage.dto.QnA">
-		<include refid="selectBoard"/>
-		WHERE qnaNo = #{qnaNo }
-	</select>
-	
-	<update id="qnaUpdate" parameterType="com.santabooks.mypage.dto.QnA">
-		UPDATE QnA
-		SET qnaTitle = #{qnaTitle }, qnaContent = #{qnaContent }
-		WHERE qnaNo = #{qnaNo }
-	</update>
-	
-	<update id="qnaDelete" parameterType="com.santabooks.mypage.dto.QnA">
-		DELETE QnA
-		WHERE qnaNo = #{qnaNo }
-	</update>
-	
 	<select id="selectBySub" parameterType="int" resultType="com.santabooks.member.dto.Member">
-		SELECT M.memberNo,M.memberName,M.memberId, M.memberNick, M.subCheck, S.postCode, S.roadAddress, S.jibunAddress, S.detailAddress, S.extraAddress, S.subDate, S.subPay
+		SELECT M.memberNo,M.memberName,M.memberId, M.memberNick, M.subCheck, S.subNo, S.postCode, S.roadAddress, S.jibunAddress, S.detailAddress, S.extraAddress, S.subDate, S.subPay
 	 	FROM member M, subscription S
  		WHERE M.memberNo = S.memberNo
  		AND M.memberNo = #{M.memberNo}
@@ -102,6 +39,41 @@
 	<update id="delete" parameterType="com.santabooks.member.dto.Member">
 		DELETE member
 		WHERE memberNo = #{memberNo }
+		AND memberPw = #{memberPw}
 	</update>
 
+	<select id="selectUnLoginByMemberNo" resultType="int" parameterType="com.santabooks.member.dto.Member">
+		SELECT unLogin FROM member
+		WHERE memberNo =  #{memberNo }
+	</select>
+
+	<select id="selectCnt" resultType="int" parameterType="com.santabooks.member.dto.Member">
+		SELECT count(*) FROM member
+		WHERE memberNo =  #{memberNo }
+		AND memberPw = #{memberPw }
+	</select>
+
+	<select id="selectInformationByMemberNo" resultType="com.santabooks.member.dto.Member" parameterType="com.santabooks.member.dto.Member">
+		SELECT * FROM member
+		WHERE memberNo =  #{memberNo }
+	</select>
+	
+	<select id="selectSubNoBySubNo" resultType="com.santabooks.member.dto.Member" parameterType="int">
+		SELECT M.memberNo, M.memberId, M.subCheck, S.subNo
+	 	FROM member M, subscription S
+ 		WHERE M.memberNo = S.memberNo
+ 		AND M.memberNo = #{M.memberNo}
+	</select>
+	
+	<delete id="deleteSub" parameterType="int">
+		DELETE FROM subscription
+		WHERE subNo = ${subNo }
+	</delete>
+	
+	<update id="subUpdate" parameterType="com.santabooks.member.dto.Member">
+		UPDATE member
+		SET subCheck = 'n'
+		WHERE memberNo = ${memberNo}
+	</update>
+	
 </mapper>

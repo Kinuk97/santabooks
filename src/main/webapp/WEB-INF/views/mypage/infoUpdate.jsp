@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <jsp:include page="/WEB-INF/views/mypage/mypageMenu.jsp" />
+
 
 <!-- 관심장르 선택 창 갯수 설정-->
 <!-- <script src="https://ajax.googleapis.com/jquery/3.3.1/jquery.min.js"></script> -->
@@ -111,8 +113,8 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		$('#memberPw').blur(function() {
-			var memberPw = $('#memberPw').val();
+		$('#memberPwOrigin').blur(function() {
+			var memberPw = $('#memberPwOrigin').val();
 			console.log(memberPw)
 			$.ajax({
 
@@ -145,6 +147,17 @@
 </script>
 
 <script type="text/javascript">
+
+	$(document).ready(function() {
+		<c:forEach items="${genre }" var="gen_num">
+		$("[name='genre'][value='${gen_num}']").attr('checked', true);
+		</c:forEach>
+	});		
+				
+</script>
+
+
+<script type="text/javascript">
 	$(document).ready(function() {
 		//작성버튼 동작
 		$("#btnUpdate").click(function() {
@@ -163,7 +176,7 @@
 		$("#alert-success").hide();
 		$("#alert-danger").hide();
 		$("input").keyup(function() {
-			var memberPwUp = $("#memberPwUp").val();
+			var memberPwUp = $("#memberPw").val();
 			var memberPwChk = $("#memberPwChk").val();
 			if (memberPwUp != "" || memberPwChk != "") {
 				if (memberPwUp == memberPwChk) {
@@ -249,8 +262,8 @@
 				<div class="col-md-1"></div>
 				<div class="col-md-2" style="font-size: 20px;">현재 비밀번호</div>
 				<div class="col-md-4">
-					<input type="password" class="form-control" id="memberPw"
-						name="memberPw" placeholder="현재 비밀번호를 입력하세요." required />
+					<input type="password" class="form-control" id="memberPwOrigin"
+						name="memberPwOrigin" placeholder="현재 비밀번호를 입력하세요." required />
 					<div class="pw_font" id="blurPw"></div>
 				</div>
 			</div>
@@ -267,8 +280,8 @@
 				<div class="col-md-1"></div>
 				<div class="col-md-2" style="font-size: 20px;">수정 비밀번호</div>
 				<div class="col-md-4">
-					<input type="password" class="form-control" id="memberPwUp"
-						name="memberPwUp" placeholder="변경할 비밀번호를 입력하세요." required />
+					<input type="password" class="form-control" id="memberPw"
+						name="memberPw" placeholder="변경할 비밀번호를 입력하세요." required />
 				</div>
 			</div>
 			<div class="row">
@@ -384,7 +397,10 @@
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-2" style="font-size: 20px;">관심장르</div>
+				
+				<ol>
 
+				</ol>
 				<div class="form-group">
 					<div class="col-xs-3 control-label"></div>
 					<div class="col-xs-9 text-left">
@@ -397,6 +413,7 @@
 					</div>
 				</div>
 
+				
 				<div class="form-group">
 					<div class="col-xs-3 control-label"></div>
 					<div class="col-xs-9 text-left">
