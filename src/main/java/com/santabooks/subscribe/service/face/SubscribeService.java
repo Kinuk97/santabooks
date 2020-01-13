@@ -25,5 +25,6 @@ public interface SubscribeService {
 	public void insertShipmentInfo(Shipment shipment);
 
 
+
 	
 }

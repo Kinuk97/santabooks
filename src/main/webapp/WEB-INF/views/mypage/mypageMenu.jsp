@@ -37,14 +37,7 @@
 			<a class="nav-link" href="/mypage/main">나의 정보<span class="sr-only">(current)</span>
 			</a></li>
 			
-			<c:choose>
-			<c:when test="${not empty subNo }">
-					<li class="nav-item"><a class="nav-link" href="/mypage/subInfo">구독 정보</a></li>
-					</c:when>
-					<c:when test="${empty subNo }">
-					<li class="nav-item"><a class="nav-link" href="/subscribe/agree">구독 정보</a></li>
-					</c:when>
-			</c:choose>
+			<li class="nav-item"><a class="nav-link" href="/mypage/subInfo">구독 정보</a></li>
 
 			<li class="nav-item"><a class="nav-link" href="/mypage/favorite">즐겨찾기</a></li>
 			
@@ -62,8 +55,6 @@
 			<li class="nav-item"><a class="nav-link" href="/mypage/shipmentList">받은 책 내역</a></li>
 			
 			<li class="nav-item"><a class="nav-link" href="/mypage/delete">회원탈퇴</a></li>
-
-			<li class="nav-item"><a class="nav-link" href="/mypage/qna">문의</a></li>
 		</ul>
 
 	</div>

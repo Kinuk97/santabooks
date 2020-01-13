@@ -200,7 +200,7 @@ public class ReviewSnsController {
 	
 	// 리뷰 삭제
 	@RequestMapping(value = "/sns/remove", method = RequestMethod.GET)
-	public String reivewRemove(ReviewSns reviewSns) {
+	public String reviewRemove(ReviewSns reviewSns) {
 
 		reviewSnsService.remove(reviewSns);
 
@@ -247,7 +247,7 @@ public class ReviewSnsController {
 	}
 
 	@RequestMapping(value = "/sns/grade/remove", method = RequestMethod.POST)
-	public ModelAndView removeScore(Grade grade, HttpSession session, ModelAndView mav) {
+	public ModelAndView removeGrade(Grade grade, HttpSession session, ModelAndView mav) {
 		grade.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
 
 		mav.addObject("grade", reviewSnsService.removeGrade(grade));

@@ -13,27 +13,54 @@ body{
 
 
 <script type="text/javascript">
-function chk() {
-	var req = document.form.req.checked;
-	var num = 0;
-	
-		if (req == true) {
-		num = 1;				
-	}
-	if (num == 1) {
-		document.form.submit();
-		location.href = "/subscribe/first";
-		} else {
-		alert("개인정보 약관에 동의하셔야 합니다.");
-		}
-	}
 
-function nochk() {
-	alert("동의하지 않으면 가입하실 수 없습니다");
-	location.href = "/";
+// $(document).ready(function(){    
+// 	$("#nextBtn").click(function(){    
+// 		if($("input[name=check_1]").is(":checked") == false){
+// 		alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+// 		return;
+// 	}else if($("input[name=check_2]").is(":checked") == false){
+// 		alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다..");
+// 		return;
+// 	} else{
+// 		location.href = "/subscribe/first";
+// 		}
+// 	});   
 	
-	}
-	
+// 	$("#Nagree").click(function(){
+// 	    alert("약관에 동의 하셔야 서비스 이용이 가능합니다");
+// 		location.href = "/";
+// 		});
+// });
+
+$(document).ready(function(){
+   
+   $("#nextBtn").click(function(){
+      if($("#hint1").is(":checked") && $("#hint2").is(":checked")){
+  		location.href = "/subscribe/first";
+      } else{
+      $('#myModal').modal('show');  
+      }
+   })
+   $("#Nagree").click(function(){
+   
+      $('#No').modal('show');  
+  		location.href = "/subscribe/first";
+   
+   })
+});
+
+</script>
+
+
+<script type="text/javascript">
+function cAll() {
+    if ($("input[name=checkAll]").is(':checked')) {
+        $("input[type=checkbox]").prop("checked", true);
+    } else {
+        $("input[type=checkbox]").prop("checked", false);
+    }
+}
 </script>
 	
 	
@@ -138,6 +165,7 @@ function nochk() {
 제1조(시행일)
 - 이 약관은 2007년 10월 1일부터 시행합니다.
 </textarea>
+<label for="hint1" style="cursor:pointer"><input type="checkbox" id="hint1" name="check_1"/> 이용 약관에 동의합니다.</label>
 
 <br><br><br><br>
 
@@ -156,17 +184,20 @@ function nochk() {
 회사는 서비스의 원활한 제공을 위한 목적으로 회원이 서비스와 관련하여 회사에 제공하는 개인정보를 수집, 이용하며, 회원은 이에 동의합니다.
 
 </textarea>
-<label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req"> 개인정보 수집 및 이용에 모두 동의합니다.</label>
-
-<br>
-<br>
+<!-- <label for="hint" style="cursor:pointer"><input type="checkbox"  id="hint" name="req"> 개인정보 수집 및 이용에 모두 동의합니다.</label> -->
+<label for="hint2" style="cursor:pointer"><input type="checkbox" id="hint2" name="check_2"/> 개인정보 수집 및 이용에 동의합니다.</label><br />
+<label for="hint3" style="cursor:pointer"><input type="checkbox" id="hint3" name="checkAll" onclick="cAll();"> 전체 동의하기</label>
+<br><br><br>
 <div style="text-align: center;">
 	<tr>
 		<td align="center" valign="top">
 			<input type="button" class="btn btn-success btn-block" 
-	 		style="background: #5BB88B;width: 174px;margin-left: 50;margin-left: 112px;" onclick="chk()" value="동의합니다" />
+	 		style="background: #5BB88B;width: 174px;margin-left: 50;margin-left: 112px;" id = "nextBtn" value="동의합니다" data-toggle="modal" data-target="#myModal" />
 			<input style="width: 174px; margin-top: -66px;  margin-top: 50; margin-left: 196px;  width: 174; background-color: #dee2e6;" 
-			type="button" class="btn" value="동의하지 않습니다" onclick="nochk()" />
+			type="button" class="btn" value="동의하지 않습니다" id = "Nagree" data-toggle="modal" data-target="#No" />
+		
+		
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Open modal</button> -->
 		</td>
 	</tr>
 </div>
@@ -180,6 +211,54 @@ function nochk() {
 <br><br><br>
 
 
-
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: center" >확인 메시지</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+         	모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다.
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success btn-block" data-dismiss="modal" style="background: #5BB88B;">확인</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- The Modal -->
+  <div class="modal fade" id="No">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" style="text-align: center" >확인 메시지</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+         	약관에 동의하지 않으면 이용하실 수 없습니다.
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success btn-block" data-dismiss="modal" style="background: #5BB88B;">확인</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
