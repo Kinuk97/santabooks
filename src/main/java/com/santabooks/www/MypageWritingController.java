@@ -91,7 +91,7 @@ public class MypageWritingController {
 		
 		int userno = (int) session.getAttribute("MemberNo");
 		model.addAttribute("MemberNo", userno);
-
+		
 		logger.info("리뷰 세션 정보 : " + id);
 		
 		paging.setMemberId(id);
@@ -109,10 +109,6 @@ public class MypageWritingController {
 		logger.info(paging.toString());
 		
 		List<ReviewSns> list = reviewSnsService.getMySns(paging);
-		
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).setMemberNick(paging.getMemberNick());
-		}
 		
 		logger.info(list.toString());
 
