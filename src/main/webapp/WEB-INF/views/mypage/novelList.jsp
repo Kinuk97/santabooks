@@ -7,9 +7,15 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <jsp:include page="/WEB-INF/views/mypage/mypageMenu.jsp" />
 
-<!-- <script type="text/javascript" src="/resources/js/novel.js"></script> -->
+<style type="text/css">
+h2 {
+text-align: center;
+}
+</style>
 
 <div class="container">
+
+<h2>📖 나의 웹소설 목록</h2><hr>
 	
 	<div class="col-12">
 		<ul>

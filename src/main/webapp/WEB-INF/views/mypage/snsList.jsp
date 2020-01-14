@@ -68,7 +68,7 @@ body {
 
 <div class="container" style="width: 1000px;">
 
-	<h2 style="text-align: center">나의 리뷰 목록</h2>
+	<h2 style="text-align: center">📄 나의 리뷰 목록</h2>
 	<hr>
 	<br>
 

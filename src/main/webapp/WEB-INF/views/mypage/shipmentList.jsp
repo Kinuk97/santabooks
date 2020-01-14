@@ -12,11 +12,15 @@
 	float: right;
 }
 
+h1 {
+text-align: center;
+}
+
 </style>
 
 <div class="container">
 
-<h1>받은 책 내역</h1>
+<h1>📚 받은 책 내역</h1>
 <hr><br><br>
       <div class="row">
 <c:forEach items="${list }" var="book">
