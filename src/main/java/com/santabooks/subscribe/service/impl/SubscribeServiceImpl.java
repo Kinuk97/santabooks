@@ -58,11 +58,11 @@ public class SubscribeServiceImpl implements SubscribeService {
 		return subscribeDao.getbookGenreNo(genreNo);
 	}
 
-	@Override
-	public void insertShipmentInfo(Shipment shipment) {
-		subscribeDao.insertshipsInfo(shipment);
-		
-	}
+//	@Override
+//	public void insertShipmentInfo(Shipment shipment) {
+//		subscribeDao.insertshipsInfo(shipment);
+//		
+//	}
 
 	@Override
 	public List<Map<String, Object>> getShippedBookList(Member member) {

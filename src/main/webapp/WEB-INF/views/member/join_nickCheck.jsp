@@ -140,13 +140,15 @@ body {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
 
 
-<script type="text/javascript">
+
+<!-- 아이디 중복 체크 -->
+<script>
 $(document).ready(function() {
 	// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
 	$("#memberNick").blur(function() {
 		var uemail = $('#memberNick').val();
 		$.ajax({
-			url : '${pageContext.request.contextPath}/member/nickCheck?memberNick='+ uemail,
+			url : '${pageContext.request.contextPath}/memberNick/nickCheck?memberNick='+ memberNick,
 			type : 'get',
 			success : function(data) {
 				console.log("1 = 중복o / 0 = 중복x : "+ data);			
@@ -154,8 +156,8 @@ $(document).ready(function() {
 				
 				if (data==1) {
 					// 1 : 아이디가 중복되는 문구
-					$("#id_check").text("사용중인 아이디입니다 :p");
-					$("#id_check").css("color", "red");
+					$("#nick_check").text("사용중인 아이디입니다 :p");
+					$("#nick_check").css("color", "red");
 					$("#reg_submit").attr("disabled", true);
 				
 				} else{
@@ -170,11 +172,11 @@ $(document).ready(function() {
 						$("#nick_check").css("color", "blue");
 						
 			
-					} else if(uemail == ""){
+					} else if(memberNick == ""){
 
 						$('#nick_check').text('이메일을 입력해주세요.');
 						$('#nick_check').css('color', 'red');
-						$("#reg_submit").attr("disabled", true);				
+						$("#reg_submit").attr("disablesd", true);				
 						
 					} else {
 						
@@ -183,7 +185,7 @@ $(document).ready(function() {
 						$("#reg_submit").attr("disabled", true);
 					}
 					
-				
+				s
 				}
 			}, error : function() {
 					console.log("실패");
@@ -192,7 +194,6 @@ $(document).ready(function() {
 	});
 	
 });
-
 
 </script>
 

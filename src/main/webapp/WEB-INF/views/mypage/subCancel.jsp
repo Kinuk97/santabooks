@@ -4,6 +4,13 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <jsp:include page="/WEB-INF/views/mypage/mypageMenu.jsp" />
 
+<style type="text/css">
+
+.container {
+text-align: center;
+}
+
+</style>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -24,9 +31,9 @@ $(document).ready(function() {
 </script>
 
 <div class="container">
-	<h1>구독취소</h1><hr><br><br><br>
+	<h1>🛎 구독취소</h1><hr><br><br><br>
 
-	<div class="card" style="max-width: 600px;">
+	<div class="card" style="max-width: 600px; margin:0 auto;">
    	 <div class="row no-gutters">
       	  <div class="col-md-5">
         	    <img src="/resources/images/logo.png" class="card-img-top h-100" alt="...">
@@ -36,7 +43,6 @@ $(document).ready(function() {
         	        <h5 class="card-title">구독 취소</h5><br>
          	       <p class="card-text">산타북스 구독 서비스를 해지하시겠습니까?<br>확인 버튼을 누르면 서비스가 해지됩니다.</p>
             	    <button class="btn btn-secondary stretched-link" id="btnCancel">확인</button>
-                
             	</div>
         	</div>
    	 </div>
