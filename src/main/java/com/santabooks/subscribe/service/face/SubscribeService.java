@@ -1,6 +1,9 @@
 package com.santabooks.subscribe.service.face;
 
 
+import java.util.List;
+import java.util.Map;
+
 import com.santabooks.member.dto.Member;
 import com.santabooks.reviewSns.dto.Book;
 import com.santabooks.subscribe.dto.Shipment;
@@ -23,6 +26,9 @@ public interface SubscribeService {
 	public Book getbookgenreNo(String genreNo);
 
 	public void insertShipmentInfo(Shipment shipment);
+
+	public List<Map<String, Object>> getShippedBookList(Member member);
+
 
 
 	

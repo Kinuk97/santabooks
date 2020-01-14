@@ -209,11 +209,34 @@ public interface NovelDao {
 	public void deleteFavorite(Favorite favorite);
 
 	/**
-	 *  댓글 리스트 가져오기 (reply 제외)
+	 * 댓글 리스트 가져오기 (reply 제외)
 	 * 
 	 * @param comment - episodeNo
 	 * @return 조회 결과
 	 */
-	public List<Comment> selectComment(Comment comment);
+	public List<Comment> selectComment(Paging paging);
+
+	/**
+	 * 댓글 작성하기
+	 * 
+	 * @param comment - episodeNo, memberNo, content 기본
+	 */
+	public void insertComment(Comment comment);
+
+	/**
+	 * 댓글 삭제하기
+	 * 
+	 * @param comment - commentNo
+	 */
+	public void deleteComment(Comment comment);
+
+//	/**
+//	 * 답글 insert
+//	 * 
+//	 * @param comment - content, parentCmtNo, memberNo
+//	 */
+//	public void insertReply(Comment comment);
+	
+	public void updateCommentSeq(Comment comment);
 
 }

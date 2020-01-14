@@ -9,6 +9,7 @@
 
 .header {
 	min-height: 70px;	
+	
 }
 
 .navbar {
@@ -20,8 +21,9 @@
 	color: white;
 }
 
-#navtitle {
+/* #navtitle { */
 	font-size: 22px;
+	
 }
 body {
 	background: rgba(20, 121, 87, 0.5);
@@ -30,15 +32,28 @@ body {
 }
 
 #nav1, #nav2 {
+	font-size: 16px;
 	position: relative;
-    left: 1210px;
+    left: 1100px;
 }
 
 #btnmain {
 	 color: white;
 	 width: 230px;
      display: scroll;
-     position:fixed;
+/*      position:fixed; */
+}
+#btnmain_1 {
+	 color: white;
+	 width: 230px;
+     display: scroll;
+/*      position:fixed; */
+}
+#btnmain_2 {
+	 color: white;
+	 width: 230px;
+     display: scroll;
+/*      position:fixed; */
 }
 
 .container {
@@ -69,7 +84,7 @@ img {
   height: 100%;
 }
 
-.section {
+.box {
 	 display: scroll;
      position:fixed;
 }

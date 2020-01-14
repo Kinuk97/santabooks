@@ -37,6 +37,11 @@
 	border:none;
 }
 
+#cancelLikeBtn{
+	font-weight: bold;
+	border: none;
+}
+
 #cancel{
 	background-color: #f1f1f1;
 	border:none; 
@@ -80,12 +85,12 @@ $(document).ready(function() {
 				, success: function( res ) {
 					if(res.result) {
 						// 추천 성공
-						console.log("추천!!!");
-						$("#likeBtn").html("싫어요");
+// 						console.log("좋아요!!!");
+						$("#likeBtn").html("좋아요 취소");
 						
 					} else {
 						// 추천 취소 성공
-						console.log("추천 취소!!!");
+// 						console.log("좋아요 취소!!!");
 						$("#likeBtn").html("좋아요");
 					}
 					
@@ -94,6 +99,7 @@ $(document).ready(function() {
 				}
 				, error: function(e) {
 					console.log(e);
+					$("#loginModal").modal();
 				}
 			});
 		});
@@ -112,10 +118,14 @@ $(document).ready(function() {
 		<div class="column">
 			<div class="card" id="review">
 				<div class="card-text">
+				<div style="position: relativce">
+					<h5 style="font-weight: bold;">${review.memberNick }</h5>
+				<div style="position: absolute; top: 0px; right:10px">
 				<c:if test="${MemberNo eq review.memberNo }">
 					<button id="btnDelete" style="float: right; border: none; font-size: 30px;">×</button>
 				</c:if>
-					<h5 style="font-weight: bold;">${review.memberNick }</h5>(작성자가 준 별점 들어갈 예정)
+				</div>
+				</div>
 					<hr>
 					<p>${review.review }</p>
 					<br><br><br>
@@ -126,7 +136,7 @@ $(document).ready(function() {
 					<input type="hidden" value="${review.feedNo }" id="feedNo">
 					<c:choose>
 						<c:when test="${not empty checkLike && checkLike}">
-							<button id="likeBtn">싫어요</button>
+							<button id="likeBtn">좋아요 취소</button>
 						</c:when>
 						<c:otherwise>
 							<button id="likeBtn">좋아요</button>
@@ -160,5 +170,26 @@ $(document).ready(function() {
 </div>
 <!-- /.modal -->
 
+<!-- loginModal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <span>로그인이 필요한 기능입니다!</span>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<!-- /.loginModal -->
 <!-- 모달창 -->
+
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

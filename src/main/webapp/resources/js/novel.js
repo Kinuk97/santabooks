@@ -1,6 +1,7 @@
 /**
  * 소설에 적용할 JS
  */
+var curPage = 1;
 
 $(document).ready(function() {
 	var novelNo = $("#novelNo").val();
@@ -145,26 +146,122 @@ $(document).ready(function() {
 	// 댓글 ===================================================
 	
 	
-	if (episodeNo != 0 && episodeNo != undefined) {
-		$.ajax({
-			type: "POST"
-				, url: "/comment/list"
-					, data: {
-						"episodeNo" : episodeNo,
-					}
-			, dataType: "HTML"
-				, success: function(res) {
-					console.log(res);
-					$(".commentDiv").html(res);
-				}
-			, error: function(e) {
-				console.log(e);
+	if (episodeNo != undefined && episodeNo != 0) {
+		var totalPage = $("#cmtTotalCount").val();
+		
+		getCommentList(episodeNo);
+		
+		$("div.commentDiv").on("click", ".replyWriteBtn", function() {
+//			let parentCmtNo = $(this).parent().parent().parent().parent().data("parentno");
+//			let content = $(this).parent().parent().prev().val();
+			
+			let form = $("<form action='/comment/reply' method='POST'></form>").append($(this).parent().parent().prev()).submit();
+			form.append($("<input type='text' name='episodeNo' value='" + episodeNo + "' hidden='hidden'/>"));
+			form.append($("<input type='text' name='parentCmtNo' value='" + $(this).parent().parent().parent().parent().data("parentno") + "' hidden='hidden'/>"));
+			$("div.commentDiv").append(form);
+			$("form").submit();
+			
+		});
+		
+		// 답글보기
+		$("div.commentDiv").on("click", ".viewReply", function() {
+			
+			var textarea = $("<textarea class='form-control' name='content' id=''></textarea>");
+			var addBtnDiv = $("<div class='input-group-append'><span class='input-group-text' style='padding: 0;'><button class='btn btn-default replyWriteBtn' style='height: 100%; width: 100%'>작성</button></span></div>");
+			var inputDiv = $("<div class='input-group'></div>");
+			inputDiv.append(textarea);
+			inputDiv.append(addBtnDiv);
+			var li = $("<li class='list-group-item' data-parentno='" + $(this).data("commentno") +"' style='background: #e9ecef' data-replytext='1'></li>");
+			li.append(inputDiv);
+			li.css("display", "none");
+			
+			if ($("li[data-parentno='" + $(this).data("commentno") + "']").before().data("replytext") == undefined) {
+				$("li[data-parentno='" + $(this).data("commentno") + "']").eq(0).before(li);
 			}
+			
+			$("li[data-parentno='" + $(this).data("commentno") + "']").toggle(300);
+		});
+		// 댓글 수정
+		$("div.commentDiv").on("click", ".modifyBtn", function() {
+//			$("li[data-parentno='" + $(this).data("commentno") + "']").toggle(300);
+			// 수정 textarea만들고 붙이고 수정누르면 수정
+		});
+		// 댓글 삭제
+		$("div.commentDiv").on("click", ".removeBtn", function() {
+//			$("li[data-parentno='" + $(this).data("commentno") + "']").toggle(300);
+			// comfirm 쓰기
+			$.ajax({
+				type: "POST"
+				, url: "/comment/remove"
+				, data: {
+					"commentNo" : $(this).data("commentno")
+				}
+				, dataType: "json"
+				, success: function(res) {
+					location.href = location.href;
+				}
+				, error: function(e) {
+					console.log(e);
+				}
+			});
+		});
+		
+		$("div.commentDiv").on("click", "#addCommentBtn", function() {
+			$.ajax({
+				type: "POST"
+				, url: "/comment/write"
+				, data: {
+					"episodeNo" : episodeNo,
+					"content" : $("#commentContent").val(),
+				}
+				, dataType: "json"
+				, success: function(res) {
+					location.href = location.href;
+				}
+				, error: function(e) {
+					$("#loginModal").modal();
+					console.log(e);
+				}
+			});
+		});
+		
+		$(window).scroll(function() {
+//			if (loading) {
+//				return;
+//			}
+			if (curPage >= totalPage) {
+				return;
+			}
+	        
+	        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+		    	curPage += 1;
+//		    	loading = true;
+		    	
+		    	getCommentList(episodeNo);
+	        }
 		});
 	}
 	
-	
 });
+
+function getCommentList(episodeNo) {
+	$.ajax({
+		type: "POST"
+		, url: "/comment/list"
+		, data: {
+			"episodeNo" : episodeNo,
+			"curPage" : curPage
+		}
+		, dataType: "HTML"
+		, success: function(res) {
+			$(".commentDiv").html($(".commentDiv").html() + res);
+		}
+		, error: function(e) {
+			$("#loginModal").modal();
+			console.log(e);
+		}
+	});
+}
 
 function drawStars(score, cntScore) {
 	$("#starSpan").html("");

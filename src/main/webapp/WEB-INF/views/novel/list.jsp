@@ -82,43 +82,53 @@
 	<hr>
 	
 	<div class="row">
-	<c:forEach items="${list }" var="novel">
-		<div class="col-3 novelItem">
-			<div class="card">
-			  <c:choose>
-		      	<c:when test="${novel.imgOriginName != null }">
-			    	<img src="/upload/${novel.imgStoredName }" class="card-img-top" alt="...">
-		      	</c:when>
-		      	<c:otherwise>
-				    <img src="/resources/images/logo.png" class="card-img-top" alt="...">
-		      	</c:otherwise>
-		      </c:choose>
-			  <div class="card-body">
-			    <h5 class="card-title"><a href="/novel/view?novelNo=${novel.novelNo }">${novel.title }</a></h5>
-			    <p class="card-text">
-			    ${novel.discription }
-			    <br>
-			    <c:forEach begin="1" end="5" step="1" varStatus="i">
-			    	<c:choose>
-			    		<c:when test="${i.count <= novel.score }">
-					    <img alt="..." src="/resources/images/novel/star-fill.svg">
-			    		</c:when>
-			    		<c:otherwise>
-					    <img alt="..." src="/resources/images/novel/star.svg">
-			    		</c:otherwise>
-			    	</c:choose>
-			    </c:forEach>
-			    <small>&nbsp;(${novel.cntScore })</small>
-			    </p>
-			  </div>
+	<c:choose>
+		<c:when test="${paging.search != null && list.size() == 0 }">
+			<h3>검색 결과가 없습니다.</h3>
+		</c:when>
+		<c:otherwise>
+		<c:forEach items="${list }" var="novel">
+			<div class="col-3 novelItem">
+				<div class="card">
+				  <c:choose>
+			      	<c:when test="${novel.imgOriginName != null }">
+				    	<img src="/upload/${novel.imgStoredName }" class="card-img-top" alt="...">
+			      	</c:when>
+			      	<c:otherwise>
+					    <img src="/resources/images/logo.png" class="card-img-top" alt="...">
+			      	</c:otherwise>
+			      </c:choose>
+				  <div class="card-body">
+				    <h5 class="card-title"><a href="/novel/view?novelNo=${novel.novelNo }">${novel.title }</a></h5>
+				    <p class="card-text">
+				    ${novel.discription }
+				    <br>
+				    <c:forEach begin="1" end="5" step="1" varStatus="i">
+				    	<c:choose>
+				    		<c:when test="${i.count <= novel.score }">
+						    <img alt="..." src="/resources/images/novel/star-fill.svg">
+				    		</c:when>
+				    		<c:otherwise>
+						    <img alt="..." src="/resources/images/novel/star.svg">
+				    		</c:otherwise>
+				    	</c:choose>
+				    </c:forEach>
+				    <small>&nbsp;(${novel.cntScore })</small>
+				    </p>
+				  </div>
+				</div>
 			</div>
-		</div>
-	</c:forEach>
+		</c:forEach>
+		
+		</c:otherwise>
+	</c:choose>
+	
 	</div>
 	
 	
-	
-	<jsp:include page="/WEB-INF/views/layout/paging.jsp"/>
+	<c:if test="${list.size() != 0 }">
+		<jsp:include page="/WEB-INF/views/layout/paging.jsp"/>
+	</c:if>
 </div>
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

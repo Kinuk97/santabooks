@@ -113,7 +113,8 @@ public class NovelServiceImpl implements NovelService {
 		resultPaging.setCategory(paging.getCategory());
 		resultPaging.setNovelNo(paging.getNovelNo());
 		resultPaging.setMemberNo(paging.getMemberNo());
-		
+		resultPaging.setEpisodeNo(paging.getEpisodeNo());
+
 		return resultPaging;
 	}
 
@@ -233,7 +234,7 @@ public class NovelServiceImpl implements NovelService {
 
 	@Override
 	public boolean favorite(Favorite favorite) {
-		if( isFavorite(favorite) ) {
+		if (isFavorite(favorite)) {
 			// 이미 즐겨찾기를 한 상태
 			novelDao.deleteFavorite(favorite);
 			return false;
@@ -247,9 +248,28 @@ public class NovelServiceImpl implements NovelService {
 	public int getTotalCntFavorite(Favorite favorite) {
 		return novelDao.selectCntFavorite(favorite);
 	}
+
+	@Override
+	public List<Comment> getCommentList(Paging paging) {
+		return novelDao.selectComment(paging);
+	}
+
+	@Override
+	public void addComment(Comment comment) {
+		novelDao.insertComment(comment);
+	}
+
+	@Override
+	public void removeComment(Comment comment) {
+		novelDao.deleteComment(comment);
+	}
 	
 	@Override
-	public List<Comment> getCommentList(Comment comment) {
-		return novelDao.selectComment(comment);
+	public void addReply(Comment comment) {
+		novelDao.updateCommentSeq(comment);
+		
+		comment.setSeq(1);
+		
+		novelDao.insertComment(comment);
 	}
 }

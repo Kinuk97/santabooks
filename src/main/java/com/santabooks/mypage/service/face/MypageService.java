@@ -28,20 +28,20 @@ public interface MypageService {
 
 	public Paging getPaging(Paging inData);
 
-	public List<QnA> list(Paging paging);
-
-	public void write(Member member);
-
 	public int infoPwChk(Member member);
-
-	public QnA qnaView(QnA viewQna);
-
-	public void qnaUpdate(QnA qna);
-
-	public void qnaDelete(QnA qna);
 
 	public Member subInfo(int subNo);
 
-	public void delete(Member member);
+	public int getUnLogin(Member member);
+
+	public boolean checkPw(Member member);
+
+	public Member getInformation(Member member);
+
+	public void userInformationDelete(Member member);
+
+	public Member subCancel(int subNo);
+
+	public void subUpdate(Member member);
 
 }

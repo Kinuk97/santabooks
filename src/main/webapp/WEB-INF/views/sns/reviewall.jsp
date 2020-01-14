@@ -38,7 +38,7 @@
 	color: black;
 }
 
-#likeBtn{
+.likeBtn{
 	color: #ff2f6e; 
 	font-weight: bold; 
 	border:none;
@@ -60,7 +60,7 @@ $(document).ready(function() {
 	 }
 	
 	//삭제버튼 동작
-		$("#btnDelete").click(function() {
+		$(".btnDelete").click(function() {
 	    	var feedNo = "";
 			feedNo = $(this).attr("data-feedNo");
 			
@@ -73,31 +73,39 @@ $(document).ready(function() {
 		});
 	
 		// 좋아요 버튼
-		$("#likeBtn").on("click", function() {
+		$(".likeBtn").on("click", function() {
+			var $likeBtn = $(this);
+			console.log("---feedno---")
+			console.log($likeBtn)
+			console.log($likeBtn.attr("data-feedNo"))
 			$.ajax({
 		 		type: "POST"
 		 		, url: "/sns/like"
 				, data: {
-					"feedNo" : $("#feedNo").val()
+					"feedNo" : $likeBtn.attr("data-feedNo")
 				}
 				, dataType: "json"
 				, success: function( res ) {
 					if(res.result) {
-						// 추천 성공
+						// 좋아요 성공
 						console.log("추천!!!");
-						$("#likeBtn").html("싫어요");
+						$likeBtn.html("좋아요 취소");
 						
 					} else {
-						// 추천 취소 성공
+						// 좋아요 취소 성공
 						console.log("추천 취소!!!");
-						$("#likeBtn").html("좋아요");
+						$likeBtn.html("좋아요");
 					}
 					
-					//추천수 적용
-	        		$("#likeCnt").html(res.likeCnt);
+					//좋아요 적용
+	        		console.log($likeBtn);
+	        		console.log($likeBtn.parent());
+	        		console.log($likeBtn.parent().find(".likeCnt"));
+	        		$likeBtn.parent().find(".likeCnt").html(res.likeCnt);
 				}
 				, error: function(e) {
 					console.log(e);
+					$("#loginModal").modal();
 				}
 			});
 		});
@@ -118,24 +126,28 @@ $(document).ready(function() {
 		<div class="column">
 			<div class="card" id="review">
 				<div class="card-text">
-				<c:if test="${MemberNo eq review.memberNo }">
-					<button id="btnDelete" style="float: right; border: none; font-size: 30px;" data-feedNo="${review.feedNo }">×</button>
-				</c:if>
-					<h5 style="font-weight: bold;">${review.memberNick }</h5>(작성자가 준 별점 들어갈 예정)
+				<div style="position: relativce">
+					<h5 style="font-weight: bold;">${review.memberNick }</h5>
+					<div style="position: absolute; top: 0px; right:10px">
+						<c:if test="${MemberNo eq review.memberNo }">
+							<button class="btnDelete" style="float: right; border: none; font-size: 30px;" data-feedNo="${review.feedNo }">×</button>
+						</c:if>
+					</div>
+				</div>
 					<hr>
 					<p>${review.review }</p>
 					<br><br><br>
 					<p class="text-right">${review.reviewDate }</p>
 					<hr>
-					&nbsp;&nbsp;<i class="far fa-thumbs-up" id="likeCnt">${likeCnt }</i>
+					&nbsp;&nbsp;<i class="far fa-thumbs-up likeCnt">${review.likeCnt }</i>
 					<hr>
 						<input type="hidden" value="${review.feedNo }" id="feedNo">
 						<c:choose>
-							<c:when test="${not empty checkLike && checkLike}">
-								<button id="likeBtn">싫어요</button>
+							<c:when test="${review.likeCheck == 1}">
+								<button class="likeBtn"  style="background-color: FF2F6E; color: FFFFFF;" data-feedNo="${review.feedNo }">좋아요 취소</button>
 							</c:when>
 							<c:otherwise>
-								<button id="likeBtn">좋아요</button>
+								<button class="likeBtn" data-feedNo="${review.feedNo }">좋아요</button>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -168,6 +180,27 @@ $(document).ready(function() {
 	<!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<!-- loginModal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <span>로그인이 필요한 기능입니다!</span>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<!-- /.loginModal -->
 
 <!-- 모달창 -->
 

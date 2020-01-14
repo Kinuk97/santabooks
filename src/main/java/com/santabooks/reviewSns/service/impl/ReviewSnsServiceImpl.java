@@ -143,16 +143,16 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 	            } 
 	            
 	        } catch (MalformedURLException e) {
-	            // TODO Auto-generated catch block
+	            
 	            e.printStackTrace();
 	        } catch (UnsupportedEncodingException e) {
-	            // TODO Auto-generated catch block
+	            
 	            e.printStackTrace();
 	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
+	            
 	            e.printStackTrace();
 	        } catch (XmlPullParserException e) {
-	            // TODO Auto-generated catch block
+	            
 	            e.printStackTrace();
 	        }
 	        return list;
@@ -291,5 +291,9 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 		return reviewSnsDao.getbookGenreNo(genreNo);
 	}
 
-
+	@Override
+	public List<ReviewSns> getMySns(Paging paging) {
+		return reviewSnsDao.selectMySns(paging);
+	}
+	
 }

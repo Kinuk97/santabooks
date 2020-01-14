@@ -10,7 +10,7 @@ import com.santabooks.novel.dto.Score;
 import com.santabooks.util.Paging;
 
 public interface NovelService {
-	
+
 	/**
 	 * 내가 작성한 소설 가져오기 (memberNo 필요)
 	 * 
@@ -18,7 +18,7 @@ public interface NovelService {
 	 * @return List<Novel>
 	 */
 	public List<Novel> getMyNovel(Paging paging);
-	
+
 	/**
 	 * 내가 즐겨찾기한 소설 가져오기 (memberNo 필요)
 	 * 
@@ -152,7 +152,7 @@ public interface NovelService {
 	 * @param score - memberNo, episodeNo
 	 */
 	public Score removeScore(Score score);
-	
+
 	/**
 	 * 내 별점 확인하기
 	 * 
@@ -176,7 +176,7 @@ public interface NovelService {
 	 * @return 결과
 	 */
 	public boolean favorite(Favorite favorite);
-	
+
 	/**
 	 * 즐겨찾기 수 카운트하기
 	 * 
@@ -188,8 +188,30 @@ public interface NovelService {
 	/**
 	 * 댓글 리스트 가져오기
 	 * 
-	 * @param episode - episodeNo
+	 * @param paging - episodeNo 필요
 	 * @return List<Comment> - 댓글 리스트 (reply 제외)
 	 */
-	public List<Comment> getCommentList(Comment comment);
+	public List<Comment> getCommentList(Paging paging);
+
+	/**
+	 * 댓글 작성하는 서비스
+	 * 
+	 * @param comment - content, episodeNo, memberNo
+	 */
+	public void addComment(Comment comment);
+
+	/**
+	 * 댓글번호로 댓글 삭제하기
+	 * 
+	 * @param comment - commentNo
+	 */
+	public void removeComment(Comment comment);
+
+	/**
+	 * 답글 작성하기
+	 * 
+	 * @param comment - 내용, 부모댓글번호, 멤버번호
+	 */
+	public void addReply(Comment comment);
+	
 }

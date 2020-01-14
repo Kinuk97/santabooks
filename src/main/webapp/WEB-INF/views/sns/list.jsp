@@ -46,6 +46,11 @@ body {
 	background-color: #f1f1f1;
 }
 
+.clearBox {
+	height: 0;
+	clear: both;
+}
+
 @media screen and (max-width: 600px) {
 	.column {
 		width: 100%;
@@ -84,7 +89,7 @@ body {
 	
 }
 
-#searchBtn{
+.searchBtn{
 	width:70px;
 	background-color:rgba(20, 121, 87,.25); 
 	border:none; 
@@ -112,16 +117,41 @@ body {
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$(window).scroll(function() {
-		   if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-			   $("#stickyBox").css("position", "static");
-			   console.log(1)
-		   }
-		   else {
-			   $("#stickyBox").css("position", "sticky");
-			   console.log(2)
-		   }
+		
+	
+	// sticky 스크롤 처리
+	$(window).scroll(
+			function() {
+				if ($(window).scrollTop() + $(window).height() > $(
+						document).height() - 100) {
+					$("#stickyBox").css("position", "static");
+					console.log(1)
+				} else {
+					$("#stickyBox").css("position", "sticky");
+					console.log(2)
+				}
+			});
+
+				
+	//알림 모달 호출 메서드
+	function warningModal(content) {
+		$(".modal-contents").text(content);
+		$("#defaultModal").modal('show');
+	}
+
+	
+	$(".searchBtn").on("click", function() {
+// 		var keyword = $("#keyword").val();
+		var keyword = $(this).parents("form").find("[name='keyword']").val();
+
+		if (keyword == null || keyword == "") {
+			warningModal("검색어가 없습니다.");
+		} else {
+// 			$("#reviewSearch").submit();
+			$(this).parents("form").submit();
+		}
 	});
+
 })
 </script>
 
@@ -132,16 +162,16 @@ $(document).ready(function() {
 		<div>
 			<center>
 				<h3 style="font-weight: bold;">🔍리뷰 검색</h3>
-				<form action="/sns/list" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+				<form action="/sns/list" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="reviewSearch">
 					<div class="input-group">
 					<select name="searchType" class="bg-light border-0">
 						<option value="bookName">제목</option>
 						<option value="bookWriter">작가</option>
 					</select>
 					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목,작가를 입력하여 리뷰를 검색하세요" 
-					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
+					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;" id="keyword"> 
 					 <div class="input-group-append">
-					<button class="btn btn-primary" id ="searchBtn" type="submit"><i class="fas fa-search"></i></button>
+					<button class="btn btn-primary searchBtn" type="button"><i class="fas fa-search"></i></button>
 					</div>
 					</div>
 				</form>
@@ -159,7 +189,7 @@ $(document).ready(function() {
 					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목, 작가를 입력하세요" 
 					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
 					 <div class="input-group-append">
-					<button class="btn btn-primary" id ="searchBtn" type="submit"><i class="fas fa-search"></i></button>
+					<button class="btn btn-primary searchBtn" type="button"><i class="fas fa-search"></i></button>
 					</div>
 					</div>
 				</form>
@@ -174,36 +204,50 @@ $(document).ready(function() {
 					<input type="text" class="form-control bg-light border-0 small" name="keyword" placeholder="책제목, 작가를 입력하세요" 
 					aria-label="Search" aria-describedby="basic-addon2" style="width:500px;"> 
 					 <div class="input-group-append">
-					<button class="btn btn-primary" id ="searchBtn" type="submit"><i class="fas fa-search"></i></button>
+					<button class="btn btn-primary searchBtn" type="button"><i class="fas fa-search"></i></button>
 					</div>
 					</div>
 				</form>
 			</center>
 			</div>
 			<br>
-			
+
+			<c:if test="${not empty memberId }">
 				<div class="card sidenav" id="bookRecommand" style="height: 470px;">
-					<div class="card-text"><h4 style="font-weight: bold;">책추천</h4></div>
-					<c:forEach items="${bookInfo }" var="book">
-					<div style="position: relative;">
-					<a  href="/sns/view?bookNo=${book.bookNo}">	
-					<img style="height: 60px; width: 50px;" src="/resources/images/${book.bookName}.jpg">
-					</a>
-						<div style="position: absolute; top:3px; left:60px;">
-						<small style="font-weight: bold;">${book.bookName }</small>
-						<br> 
-						<small style="font-weight: bold;">${book.bookWriter }</small>
-						</div>
+					<div class="card-text">
+						<h4 style="font-weight: bold;">책추천</h4>
 					</div>
-					<br>
+					<c:forEach items="${bookInfo }" var="book">
+						<div style="position: relative;">
+							<a href="/sns/view?bookNo=${book.bookNo}"> 
+							<img style="height: 60px; width: 50px;" src="/resources/images/${book.bookName}.jpg">
+							</a>
+							<div style="position: absolute; top: 3px; left: 60px;">
+								<small style="font-weight: bold;">${book.bookName }</small> <br>
+								<small style="font-weight: bold;">${book.bookWriter }</small>
+							</div>
+						</div>
+						<br>
 					</c:forEach>
 				</div>
-					<div style="float: right; position: relative; top: 645px; z-index:1; right:10px;">
-					<i class="fas fa-arrow-up" id="top" onclick="location.href='#'">TOP</i>
+			</c:if>
+			
+<%-- 			<input type="hidden" id="memberId" value="${memberId }"> --%>
+			<c:choose>
+				<c:when test="${not empty memberId }">
+					<div style="float: right; position: relative; top: 645px; z-index: 1; right: 10px;">
+						<i class="fas fa-arrow-up" id="top" onclick="location.href='#'">TOP</i>
 					</div>
-				
-			</div>
+				</c:when>
+				<c:otherwise>
+					<div style="float: right; position: relative; top: 160px; z-index: 1; right: 10px;">
+						<i class="fas fa-arrow-up" id="top" onclick="location.href='#'">TOP</i>
+					</div>
+				</c:otherwise>
+			</c:choose>
 
+		</div>
+				<div class="clearBox"></div>
 				<c:forEach items="${reviewList }" var="review">
 					<c:if test="${review.privacy eq 1}">
 					<div class="row">
@@ -233,5 +277,27 @@ $(document).ready(function() {
 				</c:forEach>
 		</div>
 	</div>
+
+<!--모달창 -->
+<div class="modal fade" id="defaultModal">
+	<div class="modal-dialog">
+		<div class="modal-content ">
+			<div class="modal-header panel-heading">
+				<h4 class="modal-title">알림</h4>
+			</div>
+			<div class="modal-body">
+				<p class="modal-contents"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal"
+					id="ok" style="background-color:rgba(20, 121, 87,.25); border: none;">확인</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <jsp:include page="/WEB-INF/views/layout/paging.jsp" />
-	<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />

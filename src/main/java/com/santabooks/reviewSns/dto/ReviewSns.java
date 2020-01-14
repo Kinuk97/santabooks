@@ -20,13 +20,17 @@ public class ReviewSns {
 	// member
 	private String memberNick;
 
+	// like
+	private int likeCnt;
+	private int likeCheck;
+
 	@Override
 	public String toString() {
 		return "ReviewSns [feedNo=" + feedNo + ", bookNo=" + bookNo + ", memberNo=" + memberNo + ", review=" + review
 				+ ", privacy=" + privacy + ", reviewDate=" + reviewDate + ", bookName=" + bookName + ", bookWriter="
 				+ bookWriter + ", bookPublisher=" + bookPublisher + ", publishingYear=" + publishingYear
 				+ ", bookContent=" + bookContent + ", genreNo=" + genreNo + ", grade=" + grade + ", memberNick="
-				+ memberNick + "]";
+				+ memberNick + ", likeCnt=" + likeCnt + ", likeCheck=" + likeCheck + "]";
 	}
 
 	public int getFeedNo() {
@@ -139,6 +143,22 @@ public class ReviewSns {
 
 	public void setMemberNick(String memberNick) {
 		this.memberNick = memberNick;
+	}
+
+	public int getLikeCnt() {
+		return likeCnt;
+	}
+
+	public void setLikeCnt(int likeCnt) {
+		this.likeCnt = likeCnt;
+	}
+
+	public int getLikeCheck() {
+		return likeCheck;
+	}
+
+	public void setLikeCheck(int likeCheck) {
+		this.likeCheck = likeCheck;
 	}
 
 }

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-	
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <link href="/resources/css/mypagecommon.css" rel="stylesheet">
 
 <style type="text/css">
@@ -54,8 +55,6 @@
 			<li class="nav-item"><a class="nav-link" href="/mypage/shipmentList">받은 책 내역</a></li>
 			
 			<li class="nav-item"><a class="nav-link" href="/mypage/delete">회원탈퇴</a></li>
-
-			<li class="nav-item"><a class="nav-link" href="/mypage/qna">문의</a></li>
 		</ul>
 
 	</div>

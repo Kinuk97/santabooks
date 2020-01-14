@@ -12,27 +12,27 @@
 	float: right;
 }
 
-
 </style>
-
 
 <div class="container">
 
 <h1>받은 책 내역</h1>
 <hr><br><br>
-
       <div class="row">
+<c:forEach items="${list }" var="book">
         <div class="col-4">
           <div class="card">
-            <div class="card-header">날짜</div>
+            <div class="card-header">${book.SHIPMENTDATE }</div>
             <div class="card-body">
-              <h5 class="card-title">겨울왕국</h5><br>
-              <p class="card-text"><a href="/sns/list">리뷰작성</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/mypage/shipmentChk">배송조회</a></p><br>
+              <h5 class="card-title">${book.BOOKNAME }</h5><br>
+              <p class="card-text"><a href="/sns/view?bookNo=${book.BOOKNO }">리뷰작성</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/mypage/shipmentChk">배송조회</a></p><br>
             </div>
           </div>
         </div>
       </div>
+</c:forEach>
     </div>
+	
 
 <br><br><br><br><br><br><br><br><br>
 

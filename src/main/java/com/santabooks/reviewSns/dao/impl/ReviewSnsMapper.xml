@@ -12,6 +12,9 @@
 		<if test="keyword != null and !keyword.equals('')">
 		AND ${searchType} like '%'||#{keyword}||'%'
 		</if>
+		<if test="memberNo > 0">
+		AND memberNo = #{memberNo}
+		</if>
 	</select>
 	
 	<select id="selectAll" resultType="com.santabooks.reviewSns.dto.ReviewSns" parameterType="com.santabooks.util.Paging">
@@ -42,7 +45,12 @@
 		SELECT * FROM (
       	SELECT rownum rnum, B.* FROM(
       	SELECT  r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher,
-      	b.publishingYear, b.bookContent, b.genreNo, b.grade, m.memberId, m.memberNick FROM review_sns r, book b, member m 
+      	b.publishingYear, b.bookContent, b.genreNo, b.grade, m.memberId, m.memberNick
+      	, ( SELECT count(*) FROM like_table L WHERE L.feedNo = r.feedNo ) likeCnt
+      	<if test="memberNo != null and memberNo != '' and memberNo != 0">
+      	, ( SELECT count(*) FROM like_table L WHERE L.feedNo = r.feedNo AND L.memberNo = #{memberNo } ) likeCheck
+      	</if>
+      	FROM review_sns r, book b, member m 
       	WHERE 1=1 AND
       	(r.bookNo = b.bookNo) AND (r.memberNo = m.memberNo) AND (r.bookNo = #{bookNo}) ORDER BY r.feedNo DESC)B )C WHERE rnum BETWEEN #{startNo} AND #{endNo} ORDER BY rnum
 	</select>
@@ -160,5 +168,17 @@
 		WHERE rank = 1	
 	</select>
 	
+	<!-- 나의 sns리뷰 모아보기 -->
+	<select id="selectMySns" parameterType="com.santabooks.util.Paging" resultType="com.santabooks.reviewSns.dto.ReviewSns">
+		select * from (
+			select rownum rnum, B.* FROM (
+				SELECT r.feedNo, r.bookNo, r.memberNo, r.review, r.privacy, r.reviewDate, b.bookName, b.bookWriter, b.bookPublisher,
+      	b.publishingYear, b.bookContent, b.genreNo, b.grade, m.memberId, m.memberNick
+				FROM review_sns r, book b, member m
+				WHERE 1=1
+				AND m.memberNo = #{memberNo}
+			) B ORDER BY rnum
+		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
+	</select>
+	
 </mapper>
-  

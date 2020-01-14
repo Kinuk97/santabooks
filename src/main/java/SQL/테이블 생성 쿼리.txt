@@ -97,7 +97,7 @@ CREATE TABLE Genre (
 );
 
 CREATE TABLE GRADE (
- grade VARCHAR(5) PRIMARY KEY,
+ grade VARCHAR(5) NOT NULL,
  memberNo NUMBER NOT NULL,
  bookNo NUMBER NOT NULL
 );
@@ -143,7 +143,7 @@ CREATE TABLE comment_TABLE (
  episodeNo NUMBER NOT NULL,
  memberNo NUMBER NOT NULL,
  content VARCHAR2(300) NOT NULL,
- addDate VARCHAR2(100) NOT NULL,
+ addDate VARCHAR2(100) DEFAULT to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),
  parentCmtNo int DEFAULT 0,
  seq int DEFAULT 1
 );
@@ -319,12 +319,12 @@ DROP SEQUENCE novel_seq;
 DROP SEQUENCE episode_seq;
 DROP SEQUENCE qna_seq;
 
-CREATE SEQUENCE qna_seq increment by 1 start with 0 minvalue 0;
-CREATE SEQUENCE book_seq increment by 1 start with 0 minvalue 0;
-CREATE SEQUENCE review_sns_seq increment by 1 start with 0 minvalue 0;
-CREATE SEQUENCE member_seq increment by 1 start with 0 minvalue 0;
-CREATE SEQUENCE subscription_seq increment by 1 start with 0 minvalue 0;
-CREATE SEQUENCE shipment_seq increment by 1 start with 0 minvalue 0;
-CREATE SEQUENCE comment_table_seq increment by 1 start with 0 minvalue 0;
-CREATE SEQUENCE novel_seq increment by 1 start with 0 minvalue 0;
-CREATE SEQUENCE episode_seq increment by 1 start with 0 minvalue 0;
+CREATE SEQUENCE qna_seq;
+CREATE SEQUENCE book_seq;
+CREATE SEQUENCE review_sns_seq;
+CREATE SEQUENCE member_seq;
+CREATE SEQUENCE subscription_seq;
+CREATE SEQUENCE shipment_seq;
+CREATE SEQUENCE comment_table_seq;
+CREATE SEQUENCE novel_seq;
+CREATE SEQUENCE episode_seq;

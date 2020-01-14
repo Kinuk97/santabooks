@@ -1,7 +1,5 @@
 package com.santabooks.www;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
-import com.santabooks.mypage.dto.QnA;
 import com.santabooks.mypage.service.face.MypageService;
 import com.santabooks.subscribe.dto.Subscription;
-import com.santabooks.util.Paging;
 
 @Controller
 public class MyPageInfoController {
@@ -33,7 +29,55 @@ public class MyPageInfoController {
 		
 		Member info = mypageService.info(no);
 		   
+		String genre = info.getGenre();
+		String[] split = genre.split(",");
+		String[] gen_arr = new String[split.length];
+		
+		for (int i = 0; i < split.length; i++) {
+			int gen_no = Integer.parseInt(split[i]);
+			String gen_str = null;
+			switch(gen_no) {
+			
+			case 1:
+				gen_str = "로맨스";
+				break;
+			case 2:
+				gen_str = "판타지";
+				break;
+			case 3:
+				gen_str = "자기계발";
+				break;
+			case 4:
+				gen_str = "예술";
+				break;
+			case 5:
+				gen_str = "컴퓨터/IT";
+				break;
+			case 6:
+				gen_str = "시/에세이";
+				break;
+			case 7:
+				gen_str = "경제/경영";
+				break;
+			case 8:
+				gen_str = "만화";
+				break;
+			case 9:
+				gen_str = "영화";
+				break;
+			case 10:
+				gen_str = "건강";
+				break;
+			default:
+				gen_str = "관심장르 없음";
+				break;
+			}
+			
+			gen_arr[i] = gen_str;
+		}
+		
 		model.addAttribute("info", info);
+		model.addAttribute("genre", gen_arr);
 		   
 		logger.info("개인정보조회 요청");
 		   
@@ -43,7 +87,17 @@ public class MyPageInfoController {
 	public void infoUpdate(Member member, HttpSession session, Model model) {
 		
 		member = mypageService.infoUpdateView(member);
+		
+		String genre = member.getGenre();
+		String[] split = genre.split(",");
+		
+		
 		model.addAttribute("view", member);
+		model.addAttribute("genre", split);
+		
+//		for (String string : split) {
+//			logger.info(string);
+//		}
 		
 		logger.info(member.toString());
 		logger.info("개인정보수정 요청");
@@ -52,6 +106,7 @@ public class MyPageInfoController {
 	
 	@RequestMapping(value="/mypage/infoUpdate", method=RequestMethod.POST)
 	public String updateProcess(Member member) {
+		logger.info(member.toString());
 		mypageService.infoUpdate(member);
 		
 		return "redirect:/mypage/main?memberId="+member.getMemberId();
@@ -73,84 +128,8 @@ public class MyPageInfoController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/mypage/qna", method = RequestMethod.GET)
-	public void qna() {
-		logger.info("고객센터 요청");
-	}
-	
-	@RequestMapping(value = "/mypage/qnaList", method = RequestMethod.GET)
-	public void list(Paging inData, Model model) {
-		
-		Paging paging = mypageService.getPaging(inData);
-		model.addAttribute("paging", paging);
-		logger.info(paging.toString());
-		
-		List<QnA> list = mypageService.list(paging);
-		model.addAttribute("list", list);
-
-		logger.info("문의 요청");
-	}
-	
-	@RequestMapping(value = "/mypage/qnaWrite", method = RequestMethod.GET)
-	public void qnaWrite() {
-		logger.info("문의글쓰기 요청");
-	}
-	
-	@RequestMapping(value = "/mypage/qnaWrite", method = RequestMethod.POST)
-	public String qnaWriteProc(Member member, HttpSession session) {
-		
-		// 작성자 아이디 추가
-		member.setMemberId((String) session.getAttribute("MemberId"));
-
-		mypageService.write(member);
-
-		logger.info("문의글쓰기 요청");
-
-		return "redirect:/qna/list";
-				
-	}
-	
-	@RequestMapping(value="/mypage/qnaView", method=RequestMethod.GET)
-	public String view( QnA viewQna, Model model, HttpSession session) {
-		
-		// 게시글 번호가 1보다 작으면 목록으로 보내기
-		if(viewQna.getQnaNo() < 1) {
-			return "redirect:/mypage/qnaList";
-		}
-		
-		// 게시글 상세 정보 전달
-		viewQna = mypageService.qnaView(viewQna);
-		model.addAttribute("viewQna", viewQna);
-
-		return "/mypage/qnaView";
-	}
-	
-	@RequestMapping(value="/mypage/qnaUpdate", method=RequestMethod.GET)
-	public void qnaUpdate(QnA qna, HttpSession session, Model model) {
-		
-		qna = mypageService.qnaView(qna);
-		model.addAttribute("viewQna", qna);
-	}
-
-	@RequestMapping(value="/mypage/qnaUpdate", method=RequestMethod.POST)
-	public String qnaUpdateProc(QnA qna) {
-		mypageService.qnaUpdate(qna);
-		
-		return "redirect:/mypage/qnaView?qnaNo="+qna.getQnaNo();
-	}
-
-	@RequestMapping(value="/mypage/anqDelete", method=RequestMethod.GET)
-	public String qnaDeleteProc(QnA qna, Model model) {
-		mypageService.qnaDelete(qna);
-		
-		model.addAttribute("msg", "게시글 삭제 완료");
-		model.addAttribute("url", "/mypage/qnaList");
-		
-		return "util/alert";
-	}
-	
 	@RequestMapping(value = "/mypage/subInfo", method = RequestMethod.GET)
-	public void subInfo(Member member, Subscription subScription, HttpSession session, Model model) {
+	public String subInfo(Member member, Subscription subScription, HttpSession session, Model model) {
 		
 		logger.info("memberNo : " + session.getAttribute("MemberNo") );
 		
@@ -158,26 +137,102 @@ public class MyPageInfoController {
 		logger.info("subNo : " + subNo);
 		
 		Member subInfo = mypageService.subInfo(subNo);
+		
+		if(subInfo == null) {
+			return "redirect:/subscribe/agree";
+		}
+		
 		logger.info("여기 : " + subInfo);
 		
 		model.addAttribute("subInfo", subInfo);
+		
 		logger.info("jsp로가는 subInfo : " + subInfo.toString());
 		logger.info("구독정보 요청");
+		
+		return "/mypage/subInfo";
 	}
 	
 	@RequestMapping(value = "/mypage/subCancel", method = RequestMethod.GET)
-	public void subCancel() {
+	public void subCancel(Member member, HttpSession session, Model model) {
+		
+		int subNo = (Integer)session.getAttribute("MemberNo");
+		Member subInfo = mypageService.subInfo(subNo);
+		
+		model.addAttribute("subCancel", subInfo);
+		
 		logger.info("구독취소 요청");
 	}
 	
+	@RequestMapping(value = "/mypage/subCancel", method = RequestMethod.POST)
+	public String subCancelProc(Member member, HttpSession session, Model model) {
+		
+		logger.info("member : " + member);
+		mypageService.subUpdate(member);
+		session.removeAttribute("subNo");
+		
+		return "redirect:/mypage/main";
+	}
+	
+	@RequestMapping(value = "/mypage/deletepwchk", method = RequestMethod.GET)
+	public String deletePwCheck(Member member, HttpSession session) {
+		
+		member.setMemberNo((int)session.getAttribute("memberNo"));
+		
+		int nuLogin = mypageService.getUnLogin(member);
+		
+		if(nuLogin == 1) {
+			return "redirect:mypage/delete?memberNo=" + member.getMemberNo();
+		}
+		
+		logger.info("회원탈퇴-비밀번호입력요구창 접속성공");
+		
+		return "/mypage/deletepwchk";
+	}
+	
+	@RequestMapping(value = "mypage/deletepwchk", method = RequestMethod.POST)
+	public String deletePwCheckProc(HttpSession session, Member member) {
+
+		member.setMemberNo((int)session.getAttribute("memberNo"));
+		member.setMemberPw((String)session.getAttribute("memberPw"));
+
+		logger.info(member.toString());
+
+		boolean res = mypageService.checkPw(member);
+
+		if (res) { // 맞을때
+			return "redirect:/mypage/delete?memberNo=" + member.getMemberNo();
+		}
+
+		// 틀릴때
+		return "redirect:/mypage/deletepwchk";
+	}
+	
 	@RequestMapping(value="/mypage/delete", method=RequestMethod.GET)
-	public String deleteProcess(Member member, Model model) {
-		mypageService.delete(member);
+	public String userDelete(Model model, Member member) {
+		logger.info("회원탈퇴폼 접속완료");
 		
-		model.addAttribute("msg", "회원 탈퇴 완료");
-		model.addAttribute("url", "/novel/list");
+		logger.info("탈퇴 : " + member.toString());
 		
-		return "/mypage/alert";
+		member = mypageService.getInformation(member);		
+		
+		model.addAttribute("member", member);
+		
+		
+		return "/mypage/deleteForm";
+	}
+
+	@RequestMapping(value="/mypage/delete", method=RequestMethod.POST)
+	public String userDeleteProc(Member member, HttpSession session) {
+		
+		logger.info("[POST]-/mypage/delete");
+		
+		logger.info(member.toString());
+		
+		mypageService.userInformationDelete(member);
+		
+		session.invalidate();
+		
+		return "/main";
 	}
 	
 }

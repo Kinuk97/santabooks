@@ -35,11 +35,11 @@
 					<c:choose>
 					<c:when test="${not empty subNo }">
 						<li class="nav-item"><a class="nav-link" href="/mypage/subInfo">구독
-						<span class="sr-only">(current)</span></a></li>
+						</a></li>
 					</c:when>
 					<c:when test="${empty subNo }">
 						<li class="nav-item"><a class="nav-link" href="/subscribe/agree">구독
-						<span class="sr-only">(current)</span></a></li>
+						</a></li>
 					</c:when>
 					</c:choose>
 					
@@ -61,6 +61,7 @@
 <!-- 						<input class="form-control" type="text" placeholder="Search" -->
 <!-- 							aria-label="Search"> -->
 <!-- 					</form> -->
+				
 					<c:if test="${not login}">	
 						<span>
 							<a href="/member/login">로그인</a> / <a href="/member/join">회원가입</a>

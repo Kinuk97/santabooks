@@ -2,6 +2,7 @@ package com.santabooks.subscribe.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +63,12 @@ public class SubscribeServiceImpl implements SubscribeService {
 		subscribeDao.insertshipsInfo(shipment);
 		
 	}
+
+	@Override
+	public List<Map<String, Object>> getShippedBookList(Member member) {
+		return subscribeDao.selectShippedBooks(member.getMemberNo());
+	}
+
 
 
 

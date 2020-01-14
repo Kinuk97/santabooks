@@ -21,6 +21,7 @@ public class Member {
 	// 마이페이지 구독정보 추가
 	private String subDate;
 	private String subPay;
+	private int subNo;
 	
 	@Override
 	public String toString() {
@@ -29,144 +30,115 @@ public class Member {
 				+ ", memberTel=" + memberTel + ", memberGender=" + memberGender + ", genre=" + genre + ", subcheck="
 				+ subcheck + ", postCode=" + postCode + ", roadAddress=" + roadAddress + ", jibunAddress="
 				+ jibunAddress + ", detailAddress=" + detailAddress + ", extraAddress=" + extraAddress + ", subDate="
-				+ subDate + ", subPay=" + subPay + "]";
+				+ subDate + ", subPay=" + subPay + ", subNo=" + subNo + "]";
 	}
-
 	public int getMemberNo() {
 		return memberNo;
 	}
-
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-
 	public String getMemberId() {
 		return memberId;
 	}
-
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-
 	public String getMemberName() {
 		return memberName;
 	}
-
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
-
 	public String getMemberNick() {
 		return memberNick;
 	}
-
 	public void setMemberNick(String memberNick) {
 		this.memberNick = memberNick;
 	}
-
 	public String getMemberPw() {
 		return memberPw;
 	}
-
 	public void setMemberPw(String memberPw) {
 		this.memberPw = memberPw;
 	}
-
 	public long getMemberBirth() {
 		return memberBirth;
 	}
-
 	public void setMemberBirth(long memberBirth) {
 		this.memberBirth = memberBirth;
 	}
-
 	public String getMemberTel() {
 		return memberTel;
 	}
-
 	public void setMemberTel(String memberTel) {
 		this.memberTel = memberTel;
 	}
-
 	public String getMemberGender() {
 		return memberGender;
 	}
-
 	public void setMemberGender(String memberGender) {
 		this.memberGender = memberGender;
 	}
-
 	public String getGenre() {
 		return genre;
 	}
-
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-
 	public String getSubcheck() {
 		return subcheck;
 	}
-
 	public void setSubcheck(String subcheck) {
 		this.subcheck = subcheck;
 	}
-
 	public String getPostCode() {
 		return postCode;
 	}
-
 	public void setPostCode(String postCode) {
 		this.postCode = postCode;
 	}
-
 	public String getRoadAddress() {
 		return roadAddress;
 	}
-
 	public void setRoadAddress(String roadAddress) {
 		this.roadAddress = roadAddress;
 	}
-
 	public String getJibunAddress() {
 		return jibunAddress;
 	}
-
 	public void setJibunAddress(String jibunAddress) {
 		this.jibunAddress = jibunAddress;
 	}
-
 	public String getDetailAddress() {
 		return detailAddress;
 	}
-
 	public void setDetailAddress(String detailAddress) {
 		this.detailAddress = detailAddress;
 	}
-
 	public String getExtraAddress() {
 		return extraAddress;
 	}
-
 	public void setExtraAddress(String extraAddress) {
 		this.extraAddress = extraAddress;
 	}
-
 	public String getSubDate() {
 		return subDate;
 	}
-
 	public void setSubDate(String subDate) {
-		
 		this.subDate = subDate.split("T")[0];
 	}
-
 	public String getSubPay() {
 		return subPay;
 	}
-
 	public void setSubPay(String subPay) {
 		this.subPay = subPay;
 	}
-
+	public int getSubNo() {
+		return subNo;
+	}
+	public void setSubNo(int subNo) {
+		this.subNo = subNo;
+	}
+	
 }

@@ -197,8 +197,20 @@ body{
 	<hr>
 	
 	<div style="position: relative;">
-	<button class="btn btn-secondary" id="subBtn"
-		onclick="location.href='/subscribe/agree'">구독 하기</button>
+		<c:choose>
+			<c:when test="${0 eq subNo }">
+				<button class="btn btn-secondary" id="subBtn"
+					onclick="location.href='/subscribe/agree'">구독 하기</button>
+			</c:when>
+			<c:when test="${null eq subNo }">
+				<button class="btn btn-secondary" id="subBtn"
+					onclick="location.href='/subscribe/agree'">구독 하기</button>
+			</c:when>
+			<c:otherwise>
+				<button class="btn btn-secondary" id="subBtn"
+					onclick="location.href='/mypage/subInfo'">구독 하기</button>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<hr>
 	
@@ -272,6 +284,7 @@ body{
 
 </div>
 
+<!-- writeModal -->
 <form action="/sns/write" method="post" id="writeForm">
 	<div class="modal fade" id="writeModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
@@ -317,6 +330,26 @@ body{
 		</div>
 	</div>
 </form>
+
+	<!-- loginModal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <span>로그인이 필요한 기능입니다!</span>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

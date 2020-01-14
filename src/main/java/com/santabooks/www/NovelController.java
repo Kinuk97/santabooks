@@ -194,6 +194,12 @@ public class NovelController {
 
 		model.addAttribute("episode", episode);
 		model.addAttribute("novel", novelService.getNovelByNovelNo(episode.getNovelNo()));
+		
+		// 댓글
+		Paging paging = new Paging();
+		paging.setEpisodeNo(episode.getEpisodeNo());
+		paging.setTableName("comment_table");
+		model.addAttribute("cmtPaging", novelService.getPaging(paging));
 	}
 
 	@RequestMapping(value = "/episode/score/add", method = RequestMethod.POST)
@@ -242,9 +248,48 @@ public class NovelController {
 	// ====================================== 댓글 ==============================================
 
 	@RequestMapping(value = "/comment/list", method = RequestMethod.POST)
-	public void commentList(Comment comment, Model model) {
+	public void commentList(Paging paging, Model model, HttpServletRequest req) {
+		paging.setTableName("comment_table");
+		paging = novelService.getPaging(paging);
+		model.addAttribute("commentList", novelService.getCommentList(paging));
+		model.addAttribute("paging", paging);
+	}
+	
+	@RequestMapping(value = "/comment/write", method = RequestMethod.POST)
+	public ModelAndView commentWrite(ModelAndView mav, Comment comment, HttpSession session) {
 		
-		model.addAttribute("commentList", novelService.getCommentList(comment));
+		comment.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
+		
+		novelService.addComment(comment);
+		
+//		mav.addObject()
+		
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/comment/remove", method = RequestMethod.POST)
+	public ModelAndView commentRemove(ModelAndView mav, Comment comment, HttpSession session) {
+		Object memberNo = session.getAttribute("MemberNo");
+
+		if (memberNo != null) {
+			novelService.removeComment(comment);
+		}
+		
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/comment/reply", method = RequestMethod.POST)
+	public String replyWrite(Comment comment, HttpSession session) {
+		// episodeNo, parentCmtNo, content
+		comment.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
+		
+		novelService.addReply(comment);
+		
+		return "redirect:/episode/view?episodeNo=" + comment.getEpisodeNo();
 	}
 	
 	// =========================================================================================
