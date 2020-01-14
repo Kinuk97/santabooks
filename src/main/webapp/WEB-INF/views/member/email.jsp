@@ -76,7 +76,7 @@ $(document).ready(function() {
 				<tr>
 					<td>
 
-						<form action="/member/auth" method="post">
+						<form action="/member/auth.do" method="post">
 
 
 							<br>
@@ -84,7 +84,7 @@ $(document).ready(function() {
 								이메일 : <input type="email" id="memberId" name="memberId"
 									placeholder="  이메일주소를 입력하세요. ">
 							</div>
-							<div class="check_front" id="id_check"></div>
+							<div class="check_front" id="memberId"></div>
 							<br> <br>
 							<button type="submit" id="submit" name="submit">이메일 인증받기
 								(이메일 보내기)</button>

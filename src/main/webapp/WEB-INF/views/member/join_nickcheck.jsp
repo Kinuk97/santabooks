@@ -142,57 +142,59 @@ body {
 
 <script type="text/javascript">
 $(document).ready(function() {
-	 $("#membernick").on("click", function() {
-			var memberNick = $('#memberNick').val();
+	// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
+	$("#memberNick").blur(function() {
+		var uemail = $('#memberNick').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/member/nickCheck?memberNick='+ uemail,
+			type : 'get',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : "+ data);			
+				
+				
+				if (data==1) {
+					// 1 : 아이디가 중복되는 문구
+					$("#id_check").text("사용중인 아이디입니다 :p");
+					$("#id_check").css("color", "red");
+					$("#reg_submit").attr("disabled", true);
+				
+				} else{
+				
+					var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+					if(regExp.test(uemail)){
+						// 0 : 아이디 길이 / 문자열 검사
+						$("#nick_check").text("");
+// 						$("#reg_submit").attr("disabled", false);
+						
+						$("#nick_check").text("사용가능한 이메일입니다 .");
+						$("#nick_check").css("color", "blue");
+						
+			
+					} else if(uemail == ""){
 
-			$.ajax({
-				url : "/member/join",
-				type : 'post',
-				data : {
-					"memberNick" : memberNick
-				},
-				datatype : "json",
-				success : function(res) {
-					console.log(res)
-					console.log(res.nickCheck);
-
-					if (res.nickCheck == 1) {
-						$('#nick_check').text('중복된 닉네임입니다')
-						$('#nick_check').css('color', 'red')
-						nick_Check = false;
-
+						$('#nick_check').text('이메일을 입력해주세요.');
+						$('#nick_check').css('color', 'red');
+						$("#reg_submit").attr("disabled", true);				
+						
 					} else {
-						if (nickCheck.test(membernick)) {
-							$('#nick_check').text('사용가능한 닉네임입니다')
-							$('#nick_check').css('color', 'green')
-							nick_Check = true;
-
-						} else if ($('#memberNick').val() == '') {
-							$('#nick_check').text('닉네임을 입력해주세요')
-							$('#nick_check').css('color', 'red')
-							nick_Check = false;
-
-						} else {
-							$('#nick_check').text('올바른 닉네임 형식이 아닙니다')
-							$('#nick_check').css('color', 'red')
-							nick_Check = false;
-
-						}
+						
+						$('#nick_check').text("이메일형식으로 입력해주세요.");
+						$('#nick_check').css('color', 'red');
+						$("#reg_submit").attr("disabled", true);
 					}
 					
-					if (res.nickCheck == 1) {
-						console.log("중복")
-					} else {
-						console.log("안중복")
-					}
+				
 				}
+			}, error : function() {
+					console.log("실패");
+			}
+		});
+	});
+	
+});
 
-			})
-	 })
-})
+
 </script>
-
-
 
 
 <script>

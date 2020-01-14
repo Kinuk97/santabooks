@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,10 +57,12 @@
         new daum.Postcode({
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
                 // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                 var roadAddr = data.roadAddress; // 도로명 주소 변수
                 var extraRoadAddr = ''; // 참고 항목 변수
+
                 // 법정동명이 있을 경우 추가한다. (법정리는 제외)
                 // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
                 if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
@@ -74,6 +76,7 @@
                 if(extraRoadAddr !== ''){
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
+
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postCode').value = data.zonecode;
                 document.getElementById("roadAddress").value = roadAddr;
@@ -90,6 +93,52 @@
         }).open();
     }
 </script>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#form-joining").on("submit", function() {
+// 			console.log($(this).serialize());
+			$(".btn.btn-success").click();
+			return false;
+		});
+		$(".btn.btn-success").on("click", function() {
+			$.ajax({
+				url : "/member/join/google/proc",
+				data : 
+//					$(this).serialize(),
+ 				{
+					memberId : $("#memberId").val(),
+					memberName : $("#memberName").val(),
+					memberNick : $("#memberNick").val(),
+					memberGender : $("input[name='memberGender']:checked").val(),
+					memberBirth : $("#memberBirth").val(),
+					memberTel : $("#memberTel").val(),
+					genre : $("#genre").val(),
+					id_token: $("#id_token").val()
+				},
+				method : "POST",
+				dataType : "json"
+			}).done(function(data) {
+				console.log("---join ajax---");
+				console.log(data);
+				if (data == true) {
+					window.location.replace('/');
+				} else {
+					var nameinput = $("#memberNick");
+					nameinput.val("다른 별명을 사용하세요");
+					nameinput.focus();
+				}
+			}).fail(function(data) {
+				
+				console.log(data);
+			});
+			return false;
+		})
+	});
+</script>
+		
+
 
 
 <!-- 관심장르 선택 창 갯수 설정-->
@@ -119,15 +168,31 @@ $(document).ready(function(){
             dateFormat:'yymmdd',
        
        });
+
 });
 </script>
 
 
 
+
+
 <script type="text/javascript">
+
 	
+	//닉네임
+// 	if(!id_Check || $('#userid').val() == ""){
+// 		$(".content").text('아이디를 확인해주세요.');
+// 		$("#joinAuthenticationModal").modal({backdrop: 'static', keyboard: false});
+// 		$("#inputjoinCheckBtn").click(function(){
+// 			$("#userid").focus();	
+			
+// 		})
+		
+// 	}
+
 
 	//비밀번호
+
 	$(function() {
 		$("#alert-success").hide();
 		$("#alert-danger").hide();
@@ -149,29 +214,30 @@ $(document).ready(function(){
 	});
 </script>
 
-
 <script type="text/javascript">
-$(document).ready(function(e){
-	$('#btm-memberNick').click(function(){
 
-		// 입력 값 체크
-		if($.trim($('#memberId').val()) == ''){
-			alert("아이디를 입력해 주세요.");
-			$('#memberId').focus();
-			return;
-		}else if($.trim($('#memberPw').val()) == ''){
-			alert("패스워드를 입력해 주세요.");
-			$('#memberPw').focus();
-			return;
-		}
-		
-		//전송
-		$('#loginFrm').submit();
-	});
-	
- 
- 
+$(document).ready(function(){
+    $('#checkbtn').on('click', function(){
+        $.ajax({
+            type: 'POST',
+            url: '/mate/checkSignup',
+            data: {
+                "memberId" : $('#memberId').val()
+            },
+            success: function(data){
+                if($.trim(data) == 0){
+                    $('#checkMsg').html('<p style="color:blue">사용가능</p>');
+                }
+                else{
+                    $('#checkMsg').html('<p style="color:red">사용불가능</p>');
+                }
+            }
+        });    //end ajax    
+    });    //end on    
+});
 </script>
+
+
 
 
 
@@ -179,6 +245,7 @@ $(document).ready(function(e){
 #selCnt {
 	width: 180px;
 }
+
 .form-group :not (:first-child ) * {
 	font-weight: normal;
 }
@@ -191,30 +258,35 @@ $(document).ready(function(e){
 		<div class="col-xs-12 text-center">
 
 			<div class="col-xs-8" style="margin: 0 auto; float: none;">
-				<h2>산타북스 회원가입</h2>
-				<form action="/member/join" method="post" class="form-horizontal">
-
+				<h2>처음이시군요?</h2>
+				<form id="form-joining" class="form-horizontal">
+					
+					<!-- ID토큰 값 -->
+					<input type="text" id="id_token" value="${id_token }" hidden="hidden" name="id_token" required/>
+					
+					
+					
 					<div class="form-group">
 						<div class="col-xs-3 control-label">
 							<label for="memberID">이메일</label>
 						</div>
 						<div class="col-xs-6">
 							<input type="email" class="form-control" name="memberId"
-								id="memberId" placeholder="e-mail을 입력하세요" required="required">
+								id="memberId" readonly required value="${memberId }" />
 						</div>
 						<div class="col-xs-3">
-							<a href="/member/email"><input type="button" onclick="CheckId" value="인증하기"
-								name="submit" class="btn btn-primary"></a>
+							<input type="button" onclick="CheckId" value="인증하기"
+								name="submit" class="btn btn-primary" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-xs-3 control-label">
-							<label id="memberName">이름</label>
+							<label for="memberName">이름</label>
 						</div>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" name="memberName"
-								id="memberName" placeholder="성함을 입력해주세요" required="required">
+								id="memberName" />
 						</div>
 					</div>
 
@@ -224,57 +296,57 @@ $(document).ready(function(e){
 						</div>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" name="memberNick"
-								id="memberNick" placeholder="닉네임을 입력해주세요" required="required">
+								id="memberNick" placeholder="닉네임을 입력해주세요" required="required" />
 								
 						</div>
 						<div class="col-xs-3">
-							<a href ="/member/join_nickcheck">
+							<a href="/member/join_nickcheck" target="_blank">
 							<input type="button" id="btn-membernick"
-								value="중복확인" class="btn btn-primary"></a>
+								value="중복확인" class="btn btn-primary" /></a>
 							<div class="check_font" id="nick_check"></div>
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group" style="display:none;">
 						<div class="col-xs-3 control-label">
-							<label id="memberPw">비밀번호</label>
+							<label for="memberPw">비밀번호</label>
 						</div>
 						<div class="col-xs-6">
 							<input type="password" class="form-control" name="memberPw"
-								id="memberPw" placeholder="영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8-16자">
+								id="memberPw" placeholder="영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8-16자" />
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group"  style="display:none;">
 						<div class="col-xs-3 control-label">
-							<label id="memberPwChk">비밀번호 확인</label>
+							<label for="memberPwChk">비밀번호 확인</label>
 						</div>
 						<div class="col-xs-6">
 							<input type="password" class="form-control" name="memberPwChk"
-								id="memberPwChk" >
+								id="memberPwChk" />
 						</div>
 					</div>
 
-					<div class="alert alert-success" id="alert-success">비밀번호가
-						일치합니다.</div>
-					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지
-						않습니다.</div>
+<!-- 					<div class="alert alert-success" id="alert-success">비밀번호가 -->
+<!-- 						일치합니다.</div> -->
+<!-- 					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 -->
+<!-- 						않습니다.</div> -->
 
 
 
 					<div class="form-group">
 						<div class="col-xs-3 control-label">
-							<label id="memberBirth">생년월일</label>
+							<label for="memberBirth">생년월일</label>
 						</div>
 						<div class="col-xs-6">
 							<input type="text" style="cursor: pointer;" class="form-control"
-								id="testDatepicker" name="memberBirth" readonly="readonly" required="required">
+								id="testDatepicker" name="memberBirth" readonly="readonly" required="required" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-xs-3 control-label">
-							<label id="memberTel">휴대전화</label>
+							<label for="memberTel">휴대전화</label>
 						</div>
 						<div class="col-xs-6">
 							<input type="text" class="form-control" name="memberTel"
@@ -284,7 +356,7 @@ $(document).ready(function(e){
 
 					<div class="form-group">
 						<div class="col-xs-3 control-label">
-							<label id="zip_num">우편번호</label>
+							<label>우편번호</label>
 						</div>
 						<div class="col-xs-3">
 							<input type="text" id="postCode" placeholder="우편번호"
@@ -298,7 +370,7 @@ $(document).ready(function(e){
 
 					<div class="form-group">
 						<div class="col-xs-3 control-label">
-							<label id="address1">배송지 주소</label>
+							<label for="address1">배송지 주소</label>
 						</div>
 						<div class="col-xs-8">
 							<input type="text" class="form-control" id="roadAddress"
@@ -328,7 +400,7 @@ $(document).ready(function(e){
 
 					<div class="form-group">
 						<div class="col-xs-3 control-label">
-							<label id="memberGender">성별</label>
+							<label>성별</label>
 						</div>
 						<div class="col-xs-2">
 							<label><input type="radio" name="memberGender"
@@ -344,7 +416,7 @@ $(document).ready(function(e){
 
 					<div class="form-group">
 						<div class="col-xs-3 control-label">
-							<label id="genre">관심분야</label>
+							<label>관심분야</label>
 						</div>
 						<div class="col-xs-9 text-left">
 							<label><input type="checkbox" name="genre" value="1" />로맨스</label>&nbsp;
@@ -394,8 +466,6 @@ $(document).ready(function(e){
 <!-- 								구독</label> -->
 <!-- 						</div> -->
 
-
-					</div>
 					<div class="form-group">
 						<div class="text-center">
 							<label><input type="checkbox" name="termsofuse"
@@ -414,5 +484,6 @@ $(document).ready(function(e){
 				</form>
 			</div>
 		</div>
-	</body>
-	</html>s
+	</div>
+</body>
+</html>
