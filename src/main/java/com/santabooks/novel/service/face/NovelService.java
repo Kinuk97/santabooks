@@ -194,6 +194,14 @@ public interface NovelService {
 	public List<Comment> getCommentList(Paging paging);
 
 	/**
+	 * 답글 리스트 가져오기
+	 * 
+	 * @param comment - episodeNo, parentCmtNo
+	 * @return
+	 */
+	List<Comment> getReplyList(Comment comment);
+	
+	/**
 	 * 댓글 작성하는 서비스
 	 * 
 	 * @param comment - content, episodeNo, memberNo
@@ -213,5 +221,13 @@ public interface NovelService {
 	 * @param comment - 내용, 부모댓글번호, 멤버번호
 	 */
 	public void addReply(Comment comment);
+
+	/**
+	 * 댓글 수정하기
+	 * 
+	 * @param comment - commentNo, content
+	 */
+	public void modifyComment(Comment comment);
+
 	
 }

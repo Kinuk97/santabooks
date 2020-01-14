@@ -215,15 +215,21 @@
 
 	<!-- 댓글 -->
 	<select id="selectComment" parameterType="com.santabooks.util.Paging" resultType="com.santabooks.novel.dto.Comment">
-		select * from (
-			select rownum rnum, B.* FROM (
-            	SELECT ct.*,
-				(SELECT memberName FROM member WHERE memberNo = ct.memberNo) AS memberName,
-				(SELECT count(*) FROM comment_table c WHERE parentCmtNo = ct.commentNo AND parentCmtNo != 0) AS replyCnt
-				FROM comment_table ct WHERE episodeNo = #{episodeNo}
-				ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq
-			) B ORDER BY rnum
-		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
+	  	SELECT ct.*,
+		(SELECT memberName FROM member WHERE memberNo = ct.memberNo) AS memberName,
+		(SELECT count(*) FROM comment_table c WHERE parentCmtNo = ct.commentNo AND parentCmtNo != 0) AS replyCnt
+		FROM comment_table ct WHERE episodeNo = #{episodeNo} AND parentCmtNo = 0
+		ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq
+	</select>
+	<select id="selectReply" parameterType="com.santabooks.novel.dto.Comment" resultType="com.santabooks.novel.dto.Comment">
+		SELECT ct.*,
+			(SELECT memberName FROM member WHERE memberNo = ct.memberNo) AS memberName,
+			(SELECT count(*) FROM comment_table c WHERE parentCmtNo = ct.commentNo AND parentCmtNo != 0) AS replyCnt
+		FROM comment_table ct WHERE episodeNo = #{episodeNo} AND parentCmtNo = #{parentCmtNo}
+		ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq
+	</select>
+	<select id="selectCommentByCommentNo" parameterType="com.santabooks.novel.dto.Comment" resultType="com.santabooks.novel.dto.Comment">
+		SELECT * FROM comment_table WHERE commentNo = #{commentNo}
 	</select>
 	<insert id="insertComment" parameterType="com.santabooks.novel.dto.Comment">
 	<selectKey order="BEFORE" keyColumn="commentNo" keyProperty="commentNo" resultType="int">
@@ -232,19 +238,21 @@
 		INSERT INTO comment_table (commentNo, episodeNo, memberNo, content, parentCmtNo, seq)
 		VALUES (#{commentNo}, #{episodeNo}, #{memberNo}, #{content}, #{parentCmtNo}, #{seq})
 	</insert>
-	<update id="updateCommentSeq" parameterType="com.santabooks.novel.dto.Comment">
+	<update id="updateComment" parameterType="com.santabooks.novel.dto.Comment">
+		UPDATE comment_table SET content = #{content} WHERE commentNo = #{commentNo}
+	</update>
+	<update id="updateCommentSeqInsert" parameterType="com.santabooks.novel.dto.Comment">
 		UPDATE comment_table SET seq = seq + 1 WHERE parentCmtNo = #{parentCmtNo}
+	</update>
+	<update id="updateCommentSeqDelete" parameterType="com.santabooks.novel.dto.Comment">
+		UPDATE comment_table SET seq = seq - 1 WHERE parentCmtNo = #{parentCmtNo} AND seq > #{seq}
 	</update>
 	<delete id="deleteComment" parameterType="com.santabooks.novel.dto.Comment">
 		DELETE FROM comment_table WHERE commentNo = #{commentNo} OR parentCmtNo = #{commentNo}
 	</delete>
-<!-- 	<insert id="insertReply" parameterType="com.santabooks.novel.dto.Comment"> -->
-<!-- 	<selectKey order="BEFORE" keyColumn="commentNo" keyProperty="commentNo" resultType="int"> -->
-<!-- 		SELECT comment_table_seq.nextval AS commentNo FROM dual -->
-<!-- 	</selectKey> -->
-<!-- 		INSERT INTO comment_table (commentNo, episodeNo, memberNo, content, parentCmtNo, seq) -->
-<!-- 		VALUES (#{commentNo}, #{episodeNo}, #{memberNo}, #{content}, #{parentCmtNo}, #{seq}) -->
-<!-- 	</insert> -->
-
+	
+	<select id="selectMyComment">
+	
+	</select>
 
 </mapper>
