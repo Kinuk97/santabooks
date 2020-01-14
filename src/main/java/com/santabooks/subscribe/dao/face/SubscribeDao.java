@@ -25,7 +25,7 @@ public interface SubscribeDao {
 
 	public Book getbookGenreNo(String genreNo);
 
-	public void insertshipsInfo(Shipment shipment);
+//	public void insertshipsInfo(Shipment shipment);
 
 	public List<Map<String, Object>> selectShippedBooks(int memberNo);
 

@@ -55,12 +55,11 @@
 		WHERE rownum = 1
 	</select>
 	
-	
-	<insert id="insertshipsInfo" parameterType="com.santabooks.subscribe.dto.Shipment">
-		INSERT INTO shipment (shipno, shipmentdate, memberno, bookno, subno )
-		VALUES ( #{shipNo}, #{shipmentDate}, #{memberNo}, #{bookNo}, #{subNo} )	
-	</insert>
-	
+<!-- 	<insert id="insertshipsInfo" parameterType="com.santabooks.subscribe.dto.Shipment"> -->
+<!-- 		INSERT INTO shipment (shipno, shipmentdate, memberno, bookno, subno ) -->
+		
+<!-- 		VALUES ( #{shipNo}, #{shipmentDate}, #{memberNo}, #{bookNo}, #{subNo} )	 -->
+<!-- 	</insert> -->
 	
 	<select id="selectShippedBooks" parameterType="int" resultType="hashmap">
 		select 

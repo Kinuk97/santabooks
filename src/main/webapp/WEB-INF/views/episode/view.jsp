@@ -96,6 +96,10 @@
 		</div>
 	  </div>
   	</div>
+  	
+  	<ul class="list-group list-group-flush commentUl">
+  	
+  	</ul>
 	</div>
 </div>
 
@@ -117,6 +121,11 @@
       </div>
     </div>
   </div>
+</div>
+
+<div style="position: fixed; top: 50%; left: 85%; width: 160px;
+    height: 100px;">
+test
 </div>
 
 <input type="text" id="episodeNo" hidden="hidden" value="${episode.episodeNo }">

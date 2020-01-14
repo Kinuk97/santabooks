@@ -1,7 +1,15 @@
 /**
  * 소설에 적용할 JS
  */
-var curPage = 1;
+
+var curPage = 0;
+
+var listCount = 10;
+
+var endPage = 9;
+
+var startNo = 1;
+var endNo = 10;
 
 $(document).ready(function() {
 	var novelNo = $("#novelNo").val();
@@ -166,6 +174,7 @@ $(document).ready(function() {
 		// 답글보기
 		$("div.commentDiv").on("click", ".viewReply", function() {
 			
+			// 답글 작성 폼 만들기
 			var textarea = $("<textarea class='form-control' name='content' id=''></textarea>");
 			var addBtnDiv = $("<div class='input-group-append'><span class='input-group-text' style='padding: 0;'><button class='btn btn-default replyWriteBtn' style='height: 100%; width: 100%'>작성</button></span></div>");
 			var inputDiv = $("<div class='input-group'></div>");
@@ -176,15 +185,46 @@ $(document).ready(function() {
 			li.css("display", "none");
 			
 			if ($("li[data-parentno='" + $(this).data("commentno") + "']").before().data("replytext") == undefined) {
-				$("li[data-parentno='" + $(this).data("commentno") + "']").eq(0).before(li);
+				
+				if ($("li[data-parentno='" + $(this).data("commentno") + "']").eq(0).data("commentno") == undefined) {
+					$("li[data-commentno='" + $(this).data("commentno") + "']").after(li);
+				} else {
+					$("li[data-parentno='" + $(this).data("commentno") + "']").eq(0).before(li);
+				}
 			}
+			
+			$.ajax({
+				type: "POST"
+				, url: "/comment/getReply"
+				, data: {
+					"episodeNo" : episodeNo,
+					"parentCmtNo" : $(this).data("commentno")
+				}
+				, dataType: "json"
+				, success: function(res) {
+					location.href = location.href;
+				}
+				, error: function(e) {
+					console.log(e);
+				}
+			});
+			
+			
 			
 			$("li[data-parentno='" + $(this).data("commentno") + "']").toggle(300);
 		});
 		// 댓글 수정
 		$("div.commentDiv").on("click", ".modifyBtn", function() {
-//			$("li[data-parentno='" + $(this).data("commentno") + "']").toggle(300);
-			// 수정 textarea만들고 붙이고 수정누르면 수정
+			
+			if ($("textarea[data-commentno='" + $(this).data("commentno") + "']").val() == undefined) {
+				$(this).parent().prev().html(
+						"<form action='/comment/modify' method='POST'><div class='input-group'><textarea class='form-control' style='margin-bottom: 5px;' data-commentno='" + $(this).data("commentno") +"' name='content'>" + $(this).parent().prev().text().trim() + "</textarea>"
+						+ "<div class='input-group-append' style='margin-bottom: 5px;'><span class='input-group-text' style='padding: 0;'><button class='btn btn-defualt' style='height: 100%; width: 100%;'>수정완료</button></span></div></div>"
+						+ "<input type='text' hidden='hidden' value='" + $(this).data("commentno") + "' name='commentNo'>"
+						+ "<input type='text' hidden='hidden' value='" + episodeNo + "' name='episodeNo'>"
+						+ "</from>"
+				);
+			}
 		});
 		// 댓글 삭제
 		$("div.commentDiv").on("click", ".removeBtn", function() {
@@ -229,12 +269,8 @@ $(document).ready(function() {
 //			if (loading) {
 //				return;
 //			}
-			if (curPage >= totalPage) {
-				return;
-			}
 	        
 	        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-		    	curPage += 1;
 //		    	loading = true;
 		    	
 		    	getCommentList(episodeNo);
@@ -249,15 +285,38 @@ function getCommentList(episodeNo) {
 		type: "POST"
 		, url: "/comment/list"
 		, data: {
-			"episodeNo" : episodeNo,
-			"curPage" : curPage
+			"episodeNo" : episodeNo
 		}
-		, dataType: "HTML"
+		, dataType: "JSON"
 		, success: function(res) {
-			$(".commentDiv").html($(".commentDiv").html() + res);
+			var commentList = res.commentList;
+			
+			// 길이 문제
+			if (endNo + 9 > commentList.length) {
+				console.log(commentList.length - endNo);
+				startNo = commentList.length - endNo;
+			} else {
+				
+			}
+			for (var i = startNo - 1; i < endNo - 1; i++) {
+				var li = $("<li class='list-group-item' data-commentno='" + commentList[i].commentNo + "'><div class='row'><div class='col-5 text-left'>" + commentList[i].memberName + "</div><div class='col-7 text-right'>" + commentList[i].addDate + "</div></div></li>")
+				li.append($("<hr>"));
+				li.append($("<div>" + commentList[i].content + "</div>"));
+				var btnDiv = $("<div class='text-right btnDiv'></div>");
+				if (res.MemberNo != undefined && res.MemberNo != null && res.MemberNo == commentList[i].memberNo) {
+					btnDiv.append($("<button class='modifyBtn btn btn-warning' data-commentno='" + commentList[i].commentNo + "'>수정</button>"
+							+ "<button class='removeBtn btn btn-danger' data-commentno='" + commentList[i].commentNo + "'>삭제</button>"
+					));
+				}
+				btnDiv.append($("<button class='viewReply btn btn-info' data-commentno='" + commentList[i].commentNo + "'>답글(" + commentList[i].replyCnt + ")</button>"));
+				li.append(btnDiv);
+				
+				$(".commentUl").append(li);
+			}
+			
+			
 		}
 		, error: function(e) {
-			$("#loginModal").modal();
 			console.log(e);
 		}
 	});
@@ -325,3 +384,4 @@ function showImage(e) {
 	});
 
 }
+
