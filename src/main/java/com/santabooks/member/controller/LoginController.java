@@ -297,7 +297,6 @@ public class LoginController {
 	            
 	}
 
-	
 
 
 //	//구글 로그인하기
@@ -309,12 +308,13 @@ public class LoginController {
 		logger.info("/member/login/google : " + id_token);
 		
 		try {
-			loginService.login(id_token, "google");
+			loginService.login(id_token, "GOOGLE");
 			return true;
 		} catch (MemberNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			return false;
 		}
+		
 		
 	
 	}

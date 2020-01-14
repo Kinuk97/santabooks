@@ -24,7 +24,11 @@
 	
 	
 	<select id="selectMemberByMemberId" parameterType="java.lang.String" resultType="com.santabooks.member.dto.Member">
-		SELECT memberNo, memberId, memberName, memberNick, memberPw, memberBirth, memberTel, memberGender, genre, subcheck, postCode, roadAddress, jibunAddress, detailAddress, extraAddress FROM member
+		SELECT
+			memberNo, memberId, memberName, memberNick, memberPw,
+			memberBirth, memberTel, memberGender, genre, subcheck,
+			postCode, roadAddress, jibunAddress, detailAddress, extraAddress
+		FROM member
 		WHERE memberId = #{memberId}
 	</select>
 
