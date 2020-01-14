@@ -116,6 +116,30 @@ img {
 
 
 
+<!-- google login -->
+<script src="https://apis.google.com/js/platform.js?onload=start" async defer></script>
+<meta name="google-signin-client_id" content="885356568935-shi7r2ikuk7k8snemu76ckiec978dkpe.apps.googleusercontent.com">
+
+<script>
+function start() {
+  gapi.load('auth2', function() {
+    auth2 = gapi.auth2.init({
+      client_id: '885356568935-shi7r2ikuk7k8snemu76ckiec978dkpe.apps.googleusercontent.com'
+      , scope: 'profile email'
+    });
+  });
+}
+
+function signOut() {
+	auth2.signOut().then(function () {
+		console.log('User signed out.');
+	});
+	
+	auth2.disconnect();
+	location.href="/member/logout";
+}
+</script>
+
 
 </head>
 <body>
@@ -161,16 +185,11 @@ img {
 	    	</li>
 	   </c:if>
 	    <c:if test="${login}">	
-	   		
 	    	<li class="nav-item" id="nav2">
-	   		   	<a class="nav-link" href="/member/logout">로그아웃</a>
+	   		   	<a class="nav-link"  href="#" onclick="signOut();">로그아웃</a>
 	    	</li>
 	   </c:if>
 	  </ul>
-	  
-	  
-	  
-	  
 	  
 
 </nav>
