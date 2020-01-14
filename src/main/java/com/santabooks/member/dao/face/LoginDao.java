@@ -12,5 +12,7 @@ public interface LoginDao {
 
 	public void change_pass(Map<String, Object> map);
 
+	public Member selectMemberBySoicalToken(Map<String, String> map);
+
 
 }

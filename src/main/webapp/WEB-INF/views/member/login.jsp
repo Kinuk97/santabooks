@@ -16,6 +16,12 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 
+<!-- google login -->
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+<meta name="google-signin-client_id" content="885356568935-shi7r2ikuk7k8snemu76ckiec978dkpe.apps.googleusercontent.com">
+
+
 
 <script>
 	$(document).ready(function() {
@@ -23,7 +29,109 @@
 			location.href="/member/find_pw"
 		});
 	});
+	
 </script>
+
+
+
+<!-- 구글로그인 -->
+
+
+<script>
+	
+	
+	var clickedGSignIn = false;
+	function clickGSignIn() {
+		clickedGSignIn = true;
+	}
+	
+    function onSuccess(googleUser) {
+		$("div.abcRioButton.abcRioButtonBlue").css("width", "100%");
+		$("span.abcRioButtonContents").children("span:nth-child(2)").text("구글 계정으로 로그인");
+		$("div.abcRioButton.abcRioButtonBlue").css("visibility", "visible");
+    	if (!clickedGSignIn) return;
+    	
+    	var profile = googleUser.getBasicProfile();
+    	var email = profile.getEmail();
+    	var name = profile.getName();
+    	var id_token = email;
+    	
+		var url = '/member/login/google';
+		$.ajax({
+			url : url,
+			data : {
+				id_token: id_token,
+			},
+			method : "POST",
+			dataType : "json"
+		}).done(function(data) {
+			if (data == true) {
+				var href = window.location.href;
+				var loginUriRegex = RegExp("/member/login");
+				
+				if (loginUriRegex.test(href)) {
+					window.location.replace("/");
+				} else {
+					window.location.replace(href);
+				}
+				
+			} else {
+				var url = '/member/join/google';
+				var form = $('<form action="' + url + '" method="post">'
+					+ '<input type="email" name="memberId" value="' + email + '" />'
+					+ '<input type="text" name="memberName" value="' + name + '" />'
+					+ '<input type="text" name="id_token" value="' + id_token + '" />'
+					+ '</form>');
+				$('body').append(form);
+				form.submit();
+			}
+		})
+	}
+	function onFailure(error) {
+		console.log(error);
+	}
+	function renderButton() {
+		gapi.signin2.render('my-signin2', {
+			'scope' : 'profile email',
+			'longtitle' : false,
+			'height': 48,
+			'theme' : 'dark',
+			'onsuccess' : onSuccess,
+			'onfailure' : onFailure
+		});
+	}
+</script>
+
+<!-- 시영이네 로그인 -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".form-signin").on("submit", function(){
+			$(".btn-ajax").click();
+   			return false;
+ 		});
+ 		
+		$(".btn-ajax").on("click", function() {
+			$.ajax({
+				url: "/ajax/member/login", 
+				data: {
+					user_id: $("#memberId").val(),
+					user_pw: $("#memberPw").val(),
+					shouldRemember: $("#shouldRemember").val()
+				},
+				method: "POST", 
+				dataType: "json"
+			}).done(function(data) {
+				if (data == true) {
+					window.location.replace(window.location.href);
+				} else {
+					alert("틀림");
+				}
+			})
+		});
+	});
+	
+</script>
+
 
 
 
@@ -84,7 +192,6 @@
 	}
  
  </script>
-
 
 
 
@@ -175,9 +282,8 @@
         
          <div class="text-center social-btn">
             <a href="#" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Sign in with <b>Facebook</b></a>
-            <a href="#" class="btn btn-info btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a>
-			<a href="${google_url }" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a>
-        </div>
+            <a href="#" class="btn btn-info btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a></div>
+		<div id="my-signin2" onclick="clickGSignIn()" data-onsuccess="onSignIn"></div>
         
           
         </div>

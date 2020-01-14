@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,700"
 	rel="stylesheet">
-<title>BangCops</title>
+<title>산타북스 회원가입</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -162,8 +162,8 @@ $(document).ready(function(){
 		<form action="/member/check" method="post">
 
 			<div class="form-group">
-				<input type="text" class="form-control" id="nick"
-					name="UserNick" placeholder="닉네임을 입력해주세요" data-clipboard-action="cut" value=""
+				<input type="text" class="form-control" id="memberNick"
+					name="memberNick" placeholder="닉네임을 입력해주세요" data-clipboard-action="cut" value=""
 					required="required">
 			</div>
 			<div class="form-group">

@@ -4,17 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.santabooks.member.dao.face.MemberDao">
 
-	<select id="join"
+	<insert id="join"
 		parameterType="com.santabooks.member.dto.Member">
 		INSERT INTO member (memberNo, memberId, memberName, memberNick, memberPw, memberBirth, memberTel, memberGender, genre, subcheck, postCode, roadAddress, jibunAddress, detailAddress, extraAddress  )
 		VALUES (member_seq.nextval, #{memberId }, #{memberName }, #{memberNick }, #{memberPw }, #{memberBirth }, #{memberTel }, #{memberGender }, #{genre }, #{subcheck }, #{postCode }, #{roadAddress }, #{jibunAddress }, #{detailAddress }, #{extraAddress } )
 		
-	</select>
+	</insert>
 
 	<select id="selectByMemberId" parameterType="com.santabooks.member.dto.Member"
 		resultType="int">
-		SELECT count(*) FROM member
-		WHERE memberId = #{memberId }
+		SELECT count(*) FROM member WHERE memberId = #{memberId }
 	
 	</select>
 	
@@ -23,7 +22,18 @@
 	  	SELECT count(*) from member WHERE memberNick = #{memberNick }
 	</select>
 	
+	
+	<select id="selectMemberByMemberNo" parameterType="java.lang.String" resultType="com.santabooks.member.dto.Member">
+		SELECT memberNo, memberId, memberName, memberNick, memberPw, memberBirth, memberTel, memberGender, genre, subcheck, postCode, roadAddress, jibunAddress, detailAddress, extraAddress FROM member
+		WHERE memberId = #{memberId}
+	</select>
+
+	<insert id="insertSocialMember" parameterType="hashmap">
+		INSERT INTO social_member (memberId, social_no, social_member_key)
+		VALUES (#{memberId}, #{social_no}, #{id_token})
+	</insert>
 
 
+		
 </mapper>
 

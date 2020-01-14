@@ -173,6 +173,21 @@
 			<version>1.2</version>
 		</dependency>
 		
+	        <!-- Google Login -->
+ 
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-google</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+ 
+ 
+    	<dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.3</version>
+        </dependency>	
+		
 	<!-- Mail -->
 	<dependency>
 		<groupId>org.springframework</groupId>
@@ -191,8 +206,7 @@
    		<artifactId>mail</artifactId>
     	<version>1.4</version>
 	</dependency>
-	
-	
+
 		
 		<!-- Test -->
 		<dependency>

@@ -30,4 +30,13 @@
 		WHERE memberId = #{memberId }
 		
 	</update> 
+	
+	<select id="selectMemberBySoicalToken" parameterType="hashmap" resultType="com.santabooks.member.dto.Member">
+		SELECT m.memberNo,m.memberName, m.memberBirth, m.memberId, m.memberNick, m.memberTel, m.memberGender, m.genre, m.subcheck, m.postCode, m.roadAddress, m.jibunAddress, m.detailAddress, m.extraAddress FROM Member M
+		inner JOIN social_Member S on m.memberNo = s.memberNo
+		WHERE social_member_key = #{social_member_key}
+		AND social_no = #{social_no }
+	</select>
+	
+	
 </mapper>

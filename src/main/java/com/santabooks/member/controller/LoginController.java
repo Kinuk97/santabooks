@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
+import com.santabooks.member.exception.MemberNotFoundException;
 import com.santabooks.member.service.face.GoogleService;
 import com.santabooks.member.service.face.LoginService;
 import com.santabooks.subscribe.dto.Subscription;
@@ -50,12 +52,8 @@ public class LoginController {
 	public void login(Model model,
             @CookieValue(value="storeIdCookie", required = false) Cookie storeIdCookie) { 
 		
-		
-		
 	}
 	
-	
-
 	@RequestMapping(value="/member/login", method=RequestMethod.POST)
 	public String loginProcess(
 			Member member,
@@ -119,15 +117,14 @@ public class LoginController {
 	@RequestMapping(value="/member/login_fail")
 	public String login_fail() throws IOException {
 		return "/member/login_fail";
+		
+		
 	}
 
+	@RequestMapping(value = "/member/find_pass", method = RequestMethod.GET)
+	public void pass_send(){}	
 	
-	//이메일 전송
-	@RequestMapping(value = "/member/email_send", method = RequestMethod.GET)
-	public void password(){}	
-
-	//이메일 인증번호 전송
-	@RequestMapping(value = "/member/email_send", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/find_pass", method = RequestMethod.POST)
 	public ModelAndView find_pass(HttpServletRequest request, String member_id, String memberId,
 	        HttpServletResponse response_email) throws IOException{
 	    
@@ -177,7 +174,8 @@ public class LoginController {
 	    
 	    
 	    ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
-	    mv.setViewName("/member/mail_send");     //뷰의이름
+//	    mv.setViewName("/member/mail_send");     //뷰의이름
+	    mv.setViewName("member/email_send");     //뷰의이름
 	    mv.addObject("dice", dice);
 	    mv.addObject("memberId", memberId);
 	    
@@ -193,6 +191,14 @@ public class LoginController {
 	    
 	    
 	}
+	
+	//로그인 실패 이메일 전송
+	@RequestMapping(value = "/member/email_send", method = RequestMethod.GET)
+	public void password(){}	
+
+	//비밀번호 이메일 인증번호 전송
+//	@RequestMapping(value = "/member/email_send", method = RequestMethod.POST)
+
 	    
 	    //요기까지 체크 완료
 	    
@@ -207,7 +213,7 @@ public class LoginController {
 	
 	
 	//인증번호를 입력한 후에 확인 버튼을 누르면 자료가 넘어오는 컨트롤러
-	@RequestMapping(value = "/member/pass_injeung{dice}", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/pass_injeung", method = RequestMethod.POST)
 	    public ModelAndView pass_injeung(String pass_injeung, @PathVariable String dice, String memberId, 
 	            HttpServletResponse response_equals) throws IOException{
 	    
@@ -290,7 +296,27 @@ public class LoginController {
 	return mv;
 	            
 	}
+
+	
+
+
+//	//구글 로그인하기
+	
+
+	@ResponseBody
+	@RequestMapping(value = "/member/login/google")
+	public boolean loginByGoogle(String id_token) {
+		logger.info("/member/login/google : " + id_token);
+		
+		try {
+			loginService.login(id_token, "google");
+			return true;
+		} catch (MemberNotFoundException e) {
+			// TODO Auto-generated catch block
+			return false;
+		}
+		
 	
 	}
 	
-	
+}
