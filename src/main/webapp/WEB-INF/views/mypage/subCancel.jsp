@@ -31,7 +31,7 @@ $(document).ready(function() {
 </script>
 
 <div class="container">
-	<h1>구독취소</h1><hr><br><br><br>
+	<h1>🛎 구독취소</h1><hr><br><br><br>
 
 	<div class="card" style="max-width: 600px; margin:0 auto;">
    	 <div class="row no-gutters">
