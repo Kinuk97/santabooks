@@ -12,7 +12,6 @@
 		
 		VALUES ( subscription_seq.nextval, #{memberNo},  #{subDate}, #{subName}, #{subTel}, #{subTerm}, #{subPay}, 
 		#{postCode}, #{roadAddress}, #{jibunAddress}, #{detailAddress}, #{extraAddress} )
-	
 	</insert>
 
 
@@ -20,14 +19,13 @@
 		SELECT memberName, memberTel, postcode, roadaddress, jibunaddress, detailaddress, extraaddress FROM member
 		WHERE memberId = #{id}
 	</select>
-	
-	
+
 	
 	<select id="getmemNo" parameterType="String" resultType="int">
 		SELECT memberNo FROM member
 		WHERE memberID = #{memberId}
-	
 	</select>
+	
 	
 	<select id="getsubNo" parameterType="String" resultType="com.santabooks.subscribe.dto.Subscription">
 	select subscription.subNo from member,subscription 
@@ -35,16 +33,18 @@
 	AND member.memberId = #{memberId}
 	</select>
 	
+	
 	<update id="updatecheck" parameterType="String">
 	UPDATE member SET subcheck = '구독중'
 	WHERE memberID = #{memberId}
-	
 	</update>
+
 
 	<select id="getGenre" parameterType="String" resultType="com.santabooks.member.dto.Member">
 		SELECT genre FROM member
 		WHERE memberId = #{id}
 	</select>
+
 
 	<select id="getbookGenreNo" parameterType="String" resultType="com.santabooks.reviewSns.dto.Book">
 		SELECT * FROM (

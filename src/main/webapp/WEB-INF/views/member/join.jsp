@@ -123,7 +123,6 @@ $(document).ready(function(){
 </script>
 
 
-
 <script type="text/javascript">
 	
 
@@ -150,6 +149,62 @@ $(document).ready(function(){
 </script>
 
 
+<!-- 아이디 중복 체크 -->
+<script>
+$(document).ready(function() {
+	// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
+	$("#memberNick").blur(function() {
+		var memberNick = $('#memberNick').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/member/nickCheck?memberNick='+ memberNick,
+			type : 'get',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : "+ data);			
+				
+				
+				if (data==1) {
+					// 1 : 아이디가 중복되는 문구
+					$("#nick_check").text("사용중인 아이디입니다 :p");
+					$("#nick_check").css("color", "red");
+					$("#reg_submit").attr("disabled", true);
+				
+				} else{
+				
+					var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+					if(regExp.test(uemail)){
+						// 0 : 아이디 길이 / 문자열 검사
+						$("#nick_check").text("");
+// 						$("#reg_submit").attr("disabled", false);
+						
+						$("#nick_check").text("사용가능한 이메일입니다 .");
+						$("#nick_check").css("color", "blue");
+						
+			
+					} else if(memberNick == ""){
+
+						$('#nick_check').text('이메일을 입력해주세요.');
+						$('#nick_check').css('color', 'red');
+						$("#reg_submit").attr("disablesd", true);				
+						
+					} else {
+						
+						$('#nick_check').text("이메일형식으로 입력해주세요.");
+						$('#nick_check').css('color', 'red');
+						$("#reg_submit").attr("disabled", true);
+					}
+					
+				s
+				}
+			}, error : function() {
+					console.log("실패");
+			}
+		});
+	});
+	
+});
+
+</script>
+
 <script type="text/javascript">
 $(document).ready(function(e){
 	$('#btm-memberNick').click(function(){
@@ -169,8 +224,8 @@ $(document).ready(function(e){
 		$('#loginFrm').submit();
 	});
 	
- 
- 
+});
+	
 </script>
 
 
@@ -192,11 +247,12 @@ $(document).ready(function(e){
 
 			<div class="col-xs-8" style="margin: 0 auto; float: none;">
 				<h2>산타북스 회원가입</h2>
+				
 				<form action="/member/join" method="post" class="form-horizontal">
 
 					<div class="form-group">
 						<div class="col-xs-3 control-label">
-							<label for="memberID">이메일</label>
+							<label for="memberId">이메일</label>
 						</div>
 						<div class="col-xs-6">
 							<input type="email" class="form-control" name="memberId"
@@ -228,7 +284,6 @@ $(document).ready(function(e){
 								
 						</div>
 						<div class="col-xs-3">
-							<a href ="/member/join_nickcheck">
 							<input type="button" id="btn-membernick"
 								value="중복확인" class="btn btn-primary"></a>
 							<div class="check_font" id="nick_check"></div>
@@ -396,6 +451,7 @@ $(document).ready(function(e){
 
 
 					</div>
+					
 					<div class="form-group">
 						<div class="text-center">
 							<label><input type="checkbox" name="termsofuse"
@@ -409,10 +465,11 @@ $(document).ready(function(e){
 							<input type="submit" value="회원가입" class="btn btn-success">
 							<input type="reset" value="취소" class="btn btn-warning">
 						</div>
+						
 					</div>
-
 				</form>
 			</div>
 		</div>
+
 	</body>
-	</html>s
+	</html>

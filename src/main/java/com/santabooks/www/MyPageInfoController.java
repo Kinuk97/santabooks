@@ -95,10 +95,6 @@ public class MyPageInfoController {
 		model.addAttribute("view", member);
 		model.addAttribute("genre", split);
 		
-//		for (String string : split) {
-//			logger.info(string);
-//		}
-		
 		logger.info(member.toString());
 		logger.info("개인정보수정 요청");
 		

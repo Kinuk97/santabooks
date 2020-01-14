@@ -8,11 +8,15 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <jsp:include page="/WEB-INF/views/mypage/mypageMenu.jsp" />
 
-<c:set var="query" value="&searchType=${paging.searchType}&keyword=${paging.keyword }"/>
+<c:set var="query"
+	value="&searchType=${paging.searchType}&keyword=${paging.keyword }" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="/resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+
 <style type="text/css">
+
 * {
 	box-sizing: border-box;
 }
@@ -59,35 +63,40 @@ body {
 	outline: 0; /
 	box-shadow: 0 0 0 0.2rem rgba(20, 121, 87, .0);
 }
+
 </style>
 
-	<div class="container" style="width:950px" >
-	
-					<h2 style="text-align: center">나의 리뷰 목록</h2><hr><br>
+<div class="container" style="width: 1000px;">
 
-				<c:forEach items="${myReview }" var="myReview">
-					<div class="row">
-						<div class="column" onclick="location.href='/sns/view?bookNo=${myReview.bookNo}'">
-							<div class="card" id="review">
-								<div class="card-text">
-									<div style="position: relative;">
-									<h4>${myReview.bookName } | ${myReview.bookWriter }</h4>
-									<hr>
-									<input type="hidden" value="${myReview.memberNick }">
-									<small>작성자 : ${myReview.memberNick }</small>
-									</div>
-									<hr>
-									<p>${myReview.review }</p>
-									
-									<div style="text-align: right; position: absolute; bottom: 10px; right: 20px;">${myReview.reviewDate }</div>
-								</div>
-							</div>
-			
-					<br>
-					<br>
+	<h2 style="text-align: center">📄 나의 리뷰 목록</h2>
+	<hr>
+	<br>
+
+	<div class="row">
+	<c:forEach items="${myReview }" var="myReview">
+			<div class="col-6"
+				onclick="location.href='/sns/view?bookNo=${myReview.bookNo}'">
+				<div class="card" id="review">
+					<div class="card-text">
+						<div style="position: relative;">
+							<h4>${myReview.bookName } | ${myReview.bookWriter }</h4>
+							<hr>
+							<input type="hidden" value="${myReview.memberNick }">
+							<small>작성자 : ${myReview.memberNick }</small>
 						</div>
+						<hr>
+						<p>${myReview.review }</p>
+
+						<div
+							style="text-align: right; position: absolute; bottom: 10px; right: 20px;">${myReview.reviewDate }</div>
 					</div>
-				</c:forEach>
-		</div>
+				</div>
+
+				<br> <br>
+			</div>
+	</c:forEach>
+	</div>
+</div>
+
 <jsp:include page="/WEB-INF/views/layout/paging.jsp" />
-	<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
