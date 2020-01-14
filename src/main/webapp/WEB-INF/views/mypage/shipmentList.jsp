@@ -32,7 +32,7 @@ text-align: center;
               <h6 class="card-title">${book.BOOKWRITER }&nbsp;|&nbsp;${book.BOOKPUBLISHER }</h6>
               <p class="card-text"><a href="/sns/view?bookNo=${book.BOOKNO }">리뷰작성</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/mypage/shipmentChk">배송조회</a></p><br>
             </div>
-          </div>
+          </div><br>
         </div>
 </c:forEach>
       </div>

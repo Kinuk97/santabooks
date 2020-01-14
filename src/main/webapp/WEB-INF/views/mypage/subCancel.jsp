@@ -43,7 +43,6 @@ $(document).ready(function() {
         	        <h5 class="card-title">구독 취소</h5><br>
          	       <p class="card-text">산타북스 구독 서비스를 해지하시겠습니까?<br>확인 버튼을 누르면 서비스가 해지됩니다.</p>
             	    <button class="btn btn-secondary stretched-link" id="btnCancel">확인</button>
-                
             	</div>
         	</div>
    	 </div>
