@@ -4,11 +4,15 @@
 
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
+<br><br><br><br>
+<div class="text-center">
+<h3><Strong>로그인에 실패하였습니다.</Strong></h3>
+
+<br><br><br>
+
+<a href="/member/find_pass"><input type="submit" value="비밀번호 찾기" class="btn btn-success"></aㄴ>
+<a href="/member/join"><input type="submit" value="회원가입 하기" class="btn btn-success"></a>
 
 
-<h1>로그인에 실패하였습니다.</h1>
-
-<a href="/member/find_pass"><button>비밀번호 찾기</button></a>
-<a href="/member/join"><button>회원가입 하기</button></a>
-
+</div>
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

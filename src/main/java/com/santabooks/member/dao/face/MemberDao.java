@@ -18,7 +18,7 @@ public interface MemberDao {
 
 	public int selectByMemberId(Member member);
 
-	public void insertSocialMember(Map<String, String> map);
+	public void insertSocialMember(Map<String, Object> map);
 
 	public Member selecMemberBySocialToken(Map<String, String> map);
 

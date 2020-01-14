@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.member.exception.MemberNotFoundException;
@@ -27,7 +28,6 @@ public interface MemberService  {
 
 
 	public void linkSocial(Object memberByMemberId, String id_token, String string);
-
 
 	
 

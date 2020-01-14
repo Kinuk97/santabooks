@@ -29,7 +29,4 @@ public interface SubscribeService {
 
 	public List<Map<String, Object>> getShippedBookList(Member member);
 
-
-
-	
 }

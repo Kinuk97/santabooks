@@ -213,7 +213,7 @@ public class LoginController {
 	
 	
 	//인증번호를 입력한 후에 확인 버튼을 누르면 자료가 넘어오는 컨트롤러
-	@RequestMapping(value = "/member/pass_injeung", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/pass_injeung{dice}", method = RequestMethod.POST)
 	    public ModelAndView pass_injeung(String pass_injeung, @PathVariable String dice, String memberId, 
 	            HttpServletResponse response_equals) throws IOException{
 	    

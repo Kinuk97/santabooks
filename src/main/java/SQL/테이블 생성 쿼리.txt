@@ -14,25 +14,18 @@ DROP TABLE Score CASCADE CONSTRAINTS;
 DROP TABLE Episode CASCADE CONSTRAINTS;
 DROP TABLE LIKE_TABLE CASCADE CONSTRAINTS;
 DROP TABLE category;
+<<<<<<< HEAD
 DROP TABLE QnA CASCADE CONSTRAINTS;
 DROP TABLE social CASCADE CONSTRAINTS;
 DROP TABLE social_member CASCADE CONSTRAINTS;
 
+=======
+>>>>>>> refs/remotes/origin/develop
 
 CREATE TABLE ADMIN (
  adminId VARCHAR2(100) PRIMARY KEY,
  adminPw VARCHAR2(100) NOT NULL
 );
-
-CREATE TABLE QnA (
-   qnaNo   NUMBER   NOT NULL,
-   memberNo   NUMBER   NOT NULL,
-   qnaTitle   VARCHAR2(100)   NOT NULL,
-   qnaContent   VARCHAR2(150)   NOT NULL,
-   writeDate   VARCHAR2(100)   NOT NULL,
-   hit   NUMBER   NOT NULL
-);
-
 
 CREATE TABLE BOOK (
  bookNo NUMBER PRIMARY KEY,
@@ -317,12 +310,7 @@ REFERENCES Episode (
  episodeNo
 ) on DELETE CASCADE;
 
-ALTER TABLE QnA ADD CONSTRAINT FK_MEMBER_TO_QnA_1 FOREIGN KEY (
-   memberNo
-)
-REFERENCES MEMBER (
-   memberNo
-) on DELETE CASCADE;
+
 
 
 ALTER TABLE social_member ADD CONSTRAINT PK_SOCIAL_MEMBER PRIMARY KEY (
@@ -357,10 +345,12 @@ DROP SEQUENCE shipment_seq;
 DROP SEQUENCE comment_table_seq;
 DROP SEQUENCE novel_seq;
 DROP SEQUENCE episode_seq;
+<<<<<<< HEAD
 DROP SEQUENCE qna_seq;
 DROP SEQUENCE social_user_seq;
+=======
+>>>>>>> refs/remotes/origin/develop
 
-CREATE SEQUENCE qna_seq;
 CREATE SEQUENCE book_seq;
 CREATE SEQUENCE review_sns_seq;
 CREATE SEQUENCE member_seq;
