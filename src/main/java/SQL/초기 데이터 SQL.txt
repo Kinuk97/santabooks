@@ -823,24 +823,16 @@ INSERT INTO comment_table VALUES(comment_table_seq.nextval, 23, 1, 'comment11', 
 
 commit;
 
--- QNA
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
-INSERT INTO qna ( QNANO, MEMBERNO, QNATITLE, QNACONTENT, WRITEDATE, HIT ) VALUES ( qna_seq.nextval, 2, '제목1', '본문1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1 );
+-- shipment
+insert into shipment values (222222, '2020-01-13', 1, 1, 1);
+insert into shipment values (333333, '2020-01-14', 1, 2, 1);
+insert into shipment values (444444, '2020-01-15', 1, 3, 1);
+insert into shipment values (555555, '2020-01-16', 1, 4, 1);
+insert into shipment values (666666, '2020-01-17', 1, 5, 1);
+insert into shipment values (777777, '2020-01-18', 1, 6, 1);
+insert into shipment values (888888, '2020-01-19', 1, 7, 1);
+insert into shipment values (999999, '2020-01-20', 1, 8, 1);
+insert into shipment values (222223, '2020-01-21', 1, 9, 1);
+insert into shipment values (222224, '2020-01-22', 1, 10, 1);
 
 commit;
