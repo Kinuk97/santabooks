@@ -14,13 +14,6 @@ DROP TABLE Score CASCADE CONSTRAINTS;
 DROP TABLE Episode CASCADE CONSTRAINTS;
 DROP TABLE LIKE_TABLE CASCADE CONSTRAINTS;
 DROP TABLE category;
-<<<<<<< HEAD
-DROP TABLE QnA CASCADE CONSTRAINTS;
-DROP TABLE social CASCADE CONSTRAINTS;
-DROP TABLE social_member CASCADE CONSTRAINTS;
-
-=======
->>>>>>> refs/remotes/origin/develop
 
 CREATE TABLE ADMIN (
  adminId VARCHAR2(100) PRIMARY KEY,
@@ -345,11 +338,6 @@ DROP SEQUENCE shipment_seq;
 DROP SEQUENCE comment_table_seq;
 DROP SEQUENCE novel_seq;
 DROP SEQUENCE episode_seq;
-<<<<<<< HEAD
-DROP SEQUENCE qna_seq;
-DROP SEQUENCE social_user_seq;
-=======
->>>>>>> refs/remotes/origin/develop
 
 CREATE SEQUENCE book_seq;
 CREATE SEQUENCE review_sns_seq;

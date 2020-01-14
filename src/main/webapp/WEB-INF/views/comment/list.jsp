@@ -20,11 +20,3 @@
     	</div>
     </li>
 </c:forEach>
-<!-- 	<li class="list-group-item replyWriteLi" style="display: none;" id="replyWriteForm"> -->
-<!-- 		 <div class="input-group"> -->
-<!-- 		  <textarea class="form-control" aria-label="With textarea"></textarea> -->
-<!-- 		  <div class="input-group-append"> -->
-<!-- 		    <span class="input-group-text" style="padding: 0;"><button class="btn btn-default" style="height: 100%; width: 100%;">등록</button></span> -->
-<!-- 		  </div> -->
-<!-- 		</div> -->
-<!-- 	</li> -->

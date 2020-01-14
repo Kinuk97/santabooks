@@ -843,6 +843,9 @@ INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply8',  to_
 
 commit;
 
+-- subscribe
+INSERT INTO SUBSCRIPTION VALUES (SUBSCRIPTION_seq.nextval, 1, to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test');
+
 -- shipment
 insert into shipment values (222222, '2020-01-13', 1, 1, 1);
 insert into shipment values (333333, '2020-01-14', 1, 2, 1);
