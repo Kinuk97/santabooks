@@ -4,6 +4,13 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <jsp:include page="/WEB-INF/views/mypage/mypageMenu.jsp" />
 
+<style type="text/css">
+
+.container {
+text-align: center;
+}
+
+</style>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -26,7 +33,7 @@ $(document).ready(function() {
 <div class="container">
 	<h1>구독취소</h1><hr><br><br><br>
 
-	<div class="card" style="max-width: 600px;">
+	<div class="card" style="max-width: 600px; margin:0 auto;">
    	 <div class="row no-gutters">
       	  <div class="col-md-5">
         	    <img src="/resources/images/logo.png" class="card-img-top h-100" alt="...">
