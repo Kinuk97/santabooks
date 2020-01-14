@@ -219,14 +219,25 @@
 		(SELECT memberName FROM member WHERE memberNo = ct.memberNo) AS memberName,
 		(SELECT count(*) FROM comment_table c WHERE parentCmtNo = ct.commentNo AND parentCmtNo != 0) AS replyCnt
 		FROM comment_table ct WHERE episodeNo = #{episodeNo} AND parentCmtNo = 0
-		ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq
+		ORDER BY
+		<choose>
+			<when test="orderType == 2">
+				commentNo ASC
+			</when>
+			<when test="orderType == 3">
+				replyCnt DESC, commentNo ASC
+			</when>
+			<otherwise>
+				commentNo DESC
+			</otherwise>
+		</choose>
 	</select>
 	<select id="selectReply" parameterType="com.santabooks.novel.dto.Comment" resultType="com.santabooks.novel.dto.Comment">
 		SELECT ct.*,
 			(SELECT memberName FROM member WHERE memberNo = ct.memberNo) AS memberName,
 			(SELECT count(*) FROM comment_table c WHERE parentCmtNo = ct.commentNo AND parentCmtNo != 0) AS replyCnt
 		FROM comment_table ct WHERE episodeNo = #{episodeNo} AND parentCmtNo = #{parentCmtNo}
-		ORDER BY DECODE(parentCmtNo, 0, commentNo, parentCmtNo), seq
+		ORDER BY seq
 	</select>
 	<select id="selectCommentByCommentNo" parameterType="com.santabooks.novel.dto.Comment" resultType="com.santabooks.novel.dto.Comment">
 		SELECT * FROM comment_table WHERE commentNo = #{commentNo}

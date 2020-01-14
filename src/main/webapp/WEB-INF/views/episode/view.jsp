@@ -86,6 +86,7 @@
 	
 	<input name="rating" id="rating-system" type="text" class="rating rating-loading" data-size="lg" style="vertical-align: top; "value="${myScore.score }">
 	<div class="commentDiv">
+	<div class="text-right" style="margin-bottom: 8px;"><button class='btn btn-outline-dark' id="newOrder">최신순</button> <button class='btn btn-outline-dark' id="addOrder">등록순</button> <button class='btn btn-outline-dark' id="replyOrder">답글수</button></div>
 	<div class="card" style="width: 60rem; margin: 0 auto;">
 	  <div class="card-header">
 	    <div class="input-group">
@@ -100,6 +101,7 @@
   	<ul class="list-group list-group-flush commentUl">
   	
   	</ul>
+  	<div class="text-left"><button class="btn" style="background: #6c757d; margin-top: 5px; color: white;" id="moreBtn">더보기</button></div>
 	</div>
 </div>
 
@@ -123,15 +125,16 @@
   </div>
 </div>
 
-<div style="position: fixed; top: 50%; left: 85%; width: 160px;
-    height: 100px;">
-test
-</div>
+<!-- <div style="position: fixed; top: 50%; left: 85%; width: 160px; -->
+<!--     height: 100px;"> -->
+<!-- test -->
+<!-- </div> -->
 
 <input type="text" id="episodeNo" hidden="hidden" value="${episode.episodeNo }">
 <input hidden="hidden" type="text" value="${episode.novelNo }" id="novelNo">
 <input type="text" id="score" hidden="hidden" value="${episode.score }">
 <input type="text" id="cntScore" hidden="hidden" value="${episode.cntScore }">
 <input type="text" id="cmtTotalCount" hidden="hidden" value="${cmtPaging.totalPage }">
+<input type="text" id="orderType" hidden="hidden" value="${param.orderType }">
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

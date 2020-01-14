@@ -259,6 +259,18 @@ public class NovelController {
 		
 		return mav;
 	}
+	@RequestMapping(value = "/comment/getReply", method = RequestMethod.POST)
+	public ModelAndView getReplyList(ModelAndView mav, Comment comment, HttpSession session) {
+//		paging.setTableName("comment_table");
+//		paging = novelService.getPaging(paging);
+		mav.addObject("commentList", novelService.getReplyList(comment));
+		mav.addObject("MemberNo", session.getAttribute("MemberNo"));
+//		model.addAttribute("paging", paging);
+		
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
 	
 	@RequestMapping(value = "/comment/write", method = RequestMethod.POST)
 	public ModelAndView commentWrite(ModelAndView mav, Comment comment, HttpSession session) {
