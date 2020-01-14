@@ -25,14 +25,15 @@
             <div class="card-header">${book.SHIPMENTDATE }</div>
             <div class="card-body">
               <h5 class="card-title">${book.BOOKNAME }</h5><br>
+              <h6 class="card-title">${book.BOOKWRITER }&nbsp;|&nbsp;${book.BOOKPUBLISHER }</h6>
               <p class="card-text"><a href="/sns/view?bookNo=${book.BOOKNO }">리뷰작성</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/mypage/shipmentChk">배송조회</a></p><br>
             </div>
           </div>
         </div>
-      </div>
 </c:forEach>
+      </div>
     </div>
-	
+    
 <br><br><br><br><br><br><br><br><br>
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

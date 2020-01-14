@@ -71,6 +71,7 @@
 		and h.bookno = b.bookno
 		and b.genreno = g.genreno
 		and s.memberno = ${memberNo}
+		order by shipmentdate desc
 	</select>
 	
 </mapper>
