@@ -25,7 +25,7 @@ public interface SubscribeService {
 
 	public Book getbookgenreNo(String genreNo);
 
-	public void insertShipmentInfo(Shipment shipment);
+//	public void insertShipmentInfo(Shipment shipment);
 
 	public List<Map<String, Object>> getShippedBookList(Member member);
 
