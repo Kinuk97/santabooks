@@ -366,3 +366,8 @@ CREATE SEQUENCE social_user_seq;
 INSERT INTO social(social_no,social_name)VALUES(1,'NAVER');
 INSERT INTO social(social_no,social_name)VALUES(2,'KAKAO');
 INSERT INTO social(social_no,social_name)VALUES(3,'GOOGLE');
+
+
+
+ALTER TABLE social_member
+DROP CONSTRAINT fk_social_to_social_member_1;
