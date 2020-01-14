@@ -291,6 +291,7 @@ function getCommentList(episodeNo) {
 		, success: function(res) {
 			var commentList = res.commentList;
 			
+			// 길이 문제
 			if (endNo + 9 > commentList.length) {
 				console.log(commentList.length - endNo);
 				startNo = commentList.length - endNo;
