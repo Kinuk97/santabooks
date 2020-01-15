@@ -30,7 +30,7 @@ text-align: center;
             <div class="card-body">
               <h5 class="card-title">${book.BOOKNAME }</h5><br>
               <h6 class="card-title">${book.BOOKWRITER }&nbsp;|&nbsp;${book.BOOKPUBLISHER }</h6>
-              <p class="card-text"><a href="/sns/view?bookNo=${book.BOOKNO }">리뷰작성</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/mypage/shipmentChk">배송조회</a></p><br>
+              <p class="card-text"><a href="/sns/view?bookNo=${book.BOOKNO }">리뷰작성</a></p><br>
             </div>
           </div><br>
         </div>

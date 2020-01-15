@@ -36,8 +36,4 @@ public class MypageShipmentController {
 		logger.info("받은책 목록 요청");
 	}
 	
-	@RequestMapping(value = "/mypage/shipmentChk", method = RequestMethod.GET)
-	public void shipmentChk() {
-		logger.info("배송 조회 요청");
-	}
 }
