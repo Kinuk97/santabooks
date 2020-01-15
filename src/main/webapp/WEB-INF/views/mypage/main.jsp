@@ -92,7 +92,9 @@
 	<br><br>
 	<a href="/mypage/infoUpdate?memberId=${info.memberId }"><button id="my_info" class="btn btn-success btn-sm">개인정보 수정</button></a>
 	<a href="/mypage/delete?memberNo=${info.memberNo }"><button id="memberDrawal" class="btn btn-danger btn-sm">회원탈퇴</button></a>
-	<a href="/mypage/subCancel?memberNo=${info.memberNo }"><button id="subCancel" class="btn btn-warning btn-sm">구독취소</button></a>
+	<c:if test="${info.subcheck == '구독중'}">
+		<a href="/mypage/subCancel?memberNo=${info.memberNo }"><button id="subCancel" class="btn btn-warning btn-sm">구독취소</button></a>
+	</c:if>
 </div>
 </div>
 
