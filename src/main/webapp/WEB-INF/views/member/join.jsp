@@ -286,13 +286,10 @@ $(document).ready(function(e){
 							<label for="memberNick">닉네임</label>
 						</div>
 						<div class="col-xs-6">
-							<input type="text" class="form-control" name="memberNick" hidden="hidden"
-								id="memberNick" placeholder="닉네임을 입력해주세요" required="required">
+							<input type="text" class="form-control" name="memberNick" id="memberNick" placeholder="닉네임을 입력해주세요" required="required">
 								
 						</div>
 						<div class="col-xs-3">
-							<input type="button" id="btn-membernick"
-								value="중복확인" class="btn btn-primary"></a>
 							<div class="check_font" id="nick_check"></div>
 						</div>
 					</div>
