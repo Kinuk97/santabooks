@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.mypage.service.face.MypageService;
+import com.santabooks.novel.dto.Comment;
 import com.santabooks.novel.dto.Novel;
 import com.santabooks.novel.service.face.NovelService;
 import com.santabooks.reviewSns.dto.Book;
@@ -136,9 +137,10 @@ public class MypageWritingController {
 	}
 	
 	@RequestMapping(value = "/mypage/commentList", method = RequestMethod.POST)
-	public ModelAndView commentList(ModelAndView mav, Paging paging, Model model, HttpSession session) {
+	public ModelAndView commentList(ModelAndView mav, Comment comment, Model model, HttpSession session) {
+		comment.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
 		
-		mav.addObject("commentList", novelService.getCommentList(paging));
+		mav.addObject("commentList", novelService.getMyComment(comment));
 		mav.addObject("MemberNo", session.getAttribute("MemberNo"));
 		
 		mav.setViewName("jsonView");

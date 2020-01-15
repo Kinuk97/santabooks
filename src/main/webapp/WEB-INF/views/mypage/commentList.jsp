@@ -6,6 +6,8 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 <jsp:include page="/WEB-INF/views/mypage/mypageMenu.jsp" />
 
+<script type="text/javascript" src="/resources/js/mypage.js"></script>
+
 <style type="text/css">
 h2 {
 text-align: center;
@@ -16,23 +18,13 @@ text-align: center;
 
 <h2>나의 댓글 목록</h2><hr>
 
-<c:forEach items="${commentList }" var="comment" begin="1" end="10">
-    <li class="list-group-item" data-commentno="${comment.commentNo }">
-    	<div class="row">
-    		<div class="col-5 text-left">${comment.memberName }</div><div class="col-7 text-right">${comment.addDate }</div>
-    	</div>
-    	<hr>
-    	<div>${comment.content }</div>
-    	<div class="text-right btnDiv">
-    	<c:if test="${comment.memberNo == MemberNo}">
-    		<button class="modifyBtn btn btn-warning" data-commentno=${comment.commentNo }>수정</button>
-    		<button class="removeBtn btn btn-danger" data-commentno=${comment.commentNo }>삭제</button>
-    	</c:if>
-   		<button class="viewReply btn btn-info" data-commentno=${comment.commentNo }>답글 (${comment.replyCnt })</button>
-    	</div>
-    </li>
-</c:forEach>
+<div class="commentDiv">
 
+<ul class="list-group list-group-flush commentUl">
+ 	
+</ul>
+<div class="text-left"><button class="btn" style="background: #6c757d; margin-top: 5px; color: white;" id="moreBtn">더보기</button></div>
+</div>
 </div>
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

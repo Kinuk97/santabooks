@@ -134,7 +134,6 @@
 <input hidden="hidden" type="text" value="${episode.novelNo }" id="novelNo">
 <input type="text" id="score" hidden="hidden" value="${episode.score }">
 <input type="text" id="cntScore" hidden="hidden" value="${episode.cntScore }">
-<input type="text" id="cmtTotalCount" hidden="hidden" value="${cmtPaging.totalPage }">
 <input type="text" id="orderType" hidden="hidden" value="${param.orderType }">
 
 <jsp:include page="/WEB-INF/views/layout/footer.jsp" />

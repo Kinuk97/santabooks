@@ -177,7 +177,7 @@ $(document).ready(function() {
 		});
 		
 		// 답글보기
-		$("div.commentDiv").on("click", ".viewReply", function() {
+		$("ul.commentUl").on("click", ".viewReply", function() {
 			
 			// 답글 작성 폼 만들기
 			var textarea = $("<textarea class='form-control' name='content' id=''></textarea>");
@@ -222,7 +222,6 @@ $(document).ready(function() {
 										+ "<button class='removeBtn btn btn-danger' data-commentno='" + commentList[i].commentNo + "'>삭제</button>"
 								));
 							}
-							btnDiv.append($("<button class='viewReply btn btn-info' data-commentno='" + commentList[i].commentNo + "'>답글(" + commentList[i].replyCnt + ")</button>"));
 							li.append(btnDiv);
 							
 							li.css("display", "none");
@@ -323,7 +322,9 @@ $(document).ready(function() {
 				$("li[data-cmtrownum='" + i + "']").show(300);
 			}
 			curComment += 5;
-			if (maxComment < curComment) {
+			console.log(curComment);
+			console.log(maxComment);
+			if (maxComment <= curComment) {
 				if ($(this).text() == '더보기') {
 					$(this).text("모두 접기");
 				} else {
