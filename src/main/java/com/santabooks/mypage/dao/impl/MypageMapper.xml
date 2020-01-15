@@ -19,7 +19,11 @@
 	
 <update id="infoUpdate" parameterType="com.santabooks.member.dto.Member">
 		UPDATE member
-		SET memberNick = #{memberNick }, memberPw = #{memberPw }, memberBirth = #{memberBirth }, memberTel = #{memberTel }, postCode = #{postCode }, roadAddress = #{roadAddress }, jibunAddress = #{jibunAddress }, detailAddress = #{detailAddress }, extraAddress = #{extraAddress }, genre = #{genre }
+		SET memberNick = #{memberNick }
+		<if test="memberPw != null and memberPw != ''">
+		, memberPw = #{memberPw }
+		</if>
+		, memberBirth = #{memberBirth }, memberTel = #{memberTel }, postCode = #{postCode }, roadAddress = #{roadAddress }, jibunAddress = #{jibunAddress }, detailAddress = #{detailAddress }, extraAddress = #{extraAddress }, genre = #{genre }
 		WHERE memberNo = #{memberNo }
 </update>
 
