@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<jsp:include page="/WEB-INF/views/layout/header.jsp" />
+<jsp:include page="/WEB-INF/views/layout/header_join.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -253,8 +253,8 @@ $(document).ready(function(e){
 		<div class="col-xs-12 text-center">
 
 			<div class="col-xs-8" style="margin: 0 auto; float: none;">
-				<h2>산타북스 회원가입</h2>
-				
+					<h2>산타북스 회원가입</h2>
+				<br><br>
 				<form action="/member/join" method="post" class="form-horizontal">
 
 					<div class="form-group">
@@ -286,7 +286,7 @@ $(document).ready(function(e){
 							<label for="memberNick">닉네임</label>
 						</div>
 						<div class="col-xs-6">
-							<input type="text" class="form-control" name="memberNick"
+							<input type="text" class="form-control" name="memberNick" hidden="hidden"
 								id="memberNick" placeholder="닉네임을 입력해주세요" required="required">
 								
 						</div>
@@ -480,3 +480,7 @@ $(document).ready(function(e){
 
 	</body>
 	</html>
+	
+	
+	
+<jsp:include page="/WEB-INF/views/layout/footer.jsp" />
