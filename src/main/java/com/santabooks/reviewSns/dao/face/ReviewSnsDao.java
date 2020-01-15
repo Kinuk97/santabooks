@@ -155,7 +155,7 @@ public interface ReviewSnsDao {
 	 * @param bookNo
 	 * @return
 	 */
-	public ReviewSns selectReviewByBookNo2(int bookNo);
+//	public ReviewSns selectReviewByBookNo2(int bookNo);
 	
 	/**
 	 * 작성한 sns리뷰 조회
@@ -164,6 +164,6 @@ public interface ReviewSnsDao {
 	 * 
 	 * @return List<ReviewSns>
 	 */
-	public List<ReviewSns> selectMySns(Paging paging);
+//	public List<ReviewSns> selectMySns(Paging paging);
 	
 }
