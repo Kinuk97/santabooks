@@ -280,11 +280,11 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 		return reviewSnsDao.selectCntLike(like);
 	}
 
-	@Override
-	public ReviewSns getReviewSns(int bookNo) {
-		
-		return reviewSnsDao.selectReviewByBookNo2(bookNo);
-	}
+//	@Override
+//	public ReviewSns getReviewSns(int bookNo) {
+//		
+//		return reviewSnsDao.selectReviewByBookNo2(bookNo);
+//	}
 	
 	@Override
 	public List<Book> getbookgenreNo(String genreNo) {

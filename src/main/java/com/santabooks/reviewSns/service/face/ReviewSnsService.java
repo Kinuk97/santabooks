@@ -169,7 +169,7 @@ public interface ReviewSnsService {
 	 * @param bookNo
 	 * @return
 	 */
-	public ReviewSns getReviewSns(int bookNo);
+//	public ReviewSns getReviewSns(int bookNo);
 	
 	/**
 	 * 내가 작성한 sns 가져오기

@@ -16,7 +16,7 @@ text-align: center;
 
 <div class="container">
 
-<h2>나의 댓글 목록</h2><hr>
+<h2>✏ 나의 댓글 목록</h2><hr>
 
 <div class="commentDiv">
 
