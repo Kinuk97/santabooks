@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.mypage.service.face.MypageService;
@@ -128,10 +129,21 @@ public class MypageWritingController {
 		logger.info("내가 쓴 sns 리스트");
 	}
 	
-	@RequestMapping(value = "/mypage/comment", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage/commentList", method = RequestMethod.GET)
 	public void comment() {
 		
 		logger.info("댓글");
+	}
+	
+	@RequestMapping(value = "/mypage/commentList", method = RequestMethod.POST)
+	public ModelAndView commentList(ModelAndView mav, Paging paging, Model model, HttpSession session) {
+		
+		mav.addObject("commentList", novelService.getCommentList(paging));
+		mav.addObject("MemberNo", session.getAttribute("MemberNo"));
+		
+		mav.setViewName("jsonView");
+		
+		return mav;
 	}
 
 }
