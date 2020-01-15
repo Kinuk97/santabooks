@@ -18,8 +18,6 @@ public interface MemberService  {
 	
 	public int nickCheck(String memberNick) ;
 
-	public boolean getMember();
-
 
 	void login(String id_token, String google, HttpSession session) throws MemberNotFoundException;
 
