@@ -10,4 +10,4 @@
 - [diagrams]()
 
 ## 개발자
-- 소설 Kinuk (kiukangg@gmail.com)
+- 소설 Kinuk97 <kiukangg@gmail.com>
