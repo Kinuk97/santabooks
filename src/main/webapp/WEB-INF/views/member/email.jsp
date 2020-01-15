@@ -82,7 +82,7 @@ $(document).ready(function() {
 							<br>
 							<div>
 								이메일 : <input type="email" id="memberId" name="memberId"
-									placeholder="  이메일주소를 입력하세요. ">
+									placeholder="  이메일주소를 입력하세요. " value="${email }">
 							</div>
 							<div class="check_front" id="memberId"></div>
 							<br> <br>

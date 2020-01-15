@@ -22,7 +22,7 @@
                                 placeholder="  인증번호를 입력하세요. ">
                                 
                                 
-                                <input hidden="hidden" type="email" name="uemail" value="${memberId }"/>
+                                <input hidden="hidden" type="email" name="uemail" value="${email }"/>
                         </div>                                        
  
                         <br> <br>

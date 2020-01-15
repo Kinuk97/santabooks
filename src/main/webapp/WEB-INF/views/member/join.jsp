@@ -151,7 +151,13 @@ $(document).ready(function(){
 
 <!-- 아이디 중복 체크 -->
 <script>
+//이메일 인증으로 입력한 값 보내기
+function CheckId() {
+	location.href = "/member/email?memberId=" + $("input[type='email']").val();
+}
 $(document).ready(function() {
+	
+	
 	// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
 	$("#memberNick").blur(function() {
 		var memberNick = $('#memberNick').val();
@@ -256,11 +262,11 @@ $(document).ready(function(e){
 						</div>
 						<div class="col-xs-6">
 							<input type="email" class="form-control" name="memberId"
-								id="memberId" placeholder="e-mail을 입력하세요" required="required">
+								id="memberId" placeholder="e-mail을 입력하세요" required="required" value="${email }">
 						</div>
 						<div class="col-xs-3">
-							<a href="/member/email"><input type="button" onclick="CheckId" value="인증하기"
-								name="submit" class="btn btn-primary"></a>
+							<input type="button" onclick="CheckId();" value="인증하기"
+								name="submit" class="btn btn-primary">
 						</div>
 					</div>
 
