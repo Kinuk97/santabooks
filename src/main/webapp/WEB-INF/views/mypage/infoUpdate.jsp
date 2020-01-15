@@ -127,13 +127,15 @@
 				success : function(res) {
 
 					if (res.password == 1) {
-						console.log("결과값 1")
-						$('#blurPw').css('color', 'green')
-						$('#blurPw').text('현재 비밀번호가 일치합니다.')
+						console.log("결과값 1");
+						$('#blurPw').css('color', 'green');
+						$('#blurPw').text('현재 비밀번호가 일치합니다.');
+						checkPwd = true;
 					} else {
-						console.log("결과값2")
-						$('#blurPw').css('color', 'red')
-						$('#blurPw').text('현재 비밀번호가 일치하지않습니다.')
+						console.log("결과값2");
+						$('#blurPw').css('color', 'red');
+						$('#blurPw').text('현재 비밀번호가 일치하지않습니다.');
+						checkPwd = false;
 					}
 
 				},
@@ -158,14 +160,21 @@
 
 
 <script type="text/javascript">
+	var checkPwd = false;
+
 	$(document).ready(function() {
 		//작성버튼 동작
 		$("#btnUpdate").click(function() {
-			alert("수정 되었습니다.");
+			if($("#memberPwOrigin").val() != "" && checkPwd){
+				alert("수정 되었습니다.");
+			}  else {
+				alert("현재 비밀번호를 확인해주세요.")
+				return false;
+			}
 		});
 		//취소버튼 동작
 		$("#btnCancel").click(function() {
-			alert("취소 하시겠습니까?");
+			confirm("취소 하시겠습니까?");
 			history.go(-1);
 		});
 	});
@@ -240,7 +249,7 @@
 				<div class="col-md-2" style="font-size: 20px;">닉네임</div>
 				<div class="col-md-4">
 					<input type="text" class="form-control" id="memberNick"
-						name="memberNick" value="${view.memberNick }" />
+						name="memberNick" value="${view.memberNick }" required />
 				</div>
 				<div class="col-md-4">
 					<a href="/member/check" target="_blank">
@@ -281,7 +290,7 @@
 				<div class="col-md-2" style="font-size: 20px;">수정 비밀번호</div>
 				<div class="col-md-4">
 					<input type="password" class="form-control" id="memberPw"
-						name="memberPw" placeholder="변경할 비밀번호를 입력하세요." required />
+						name="memberPw" placeholder="변경할 비밀번호를 입력하세요." />
 				</div>
 			</div>
 			<div class="row">
@@ -298,11 +307,10 @@
 				<div class="col-md-2" style="font-size: 20px;">수정 비밀번호 확인</div>
 				<div class="col-md-4">
 					<input type="password" class="form-control" id="memberPwChk"
-						name="memberPwChk" placeholder="변경할 비밀번호를 입력하세요." required />
+						name="memberPwChk" placeholder="변경할 비밀번호를 입력하세요." />
 					<div class="alert alert-success" id="alert-success">수정 비밀번호가
 						일치</div>
-					<div class="alert alert-danger" id="alert-danger">수정 비밀번호가
-						일치하지 않음</div>
+					<div class="alert alert-danger" id="alert-danger">수정 비밀번호가 일치하지 않음</div>
 				</div>
 			</div>
 			<div class="row">
@@ -318,8 +326,8 @@
 				<div class="col-md-1"></div>
 				<div class="col-md-2" style="font-size: 20px;">생년월일</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" id="memberBirth"
-						name="memberBirth" value="${view.memberBirth  }" />
+					<input type="text" class="form-control" id="memberBirth" required
+						name="memberBirth" value="${view.memberBirth  }"  />
 				</div>
 			</div>
 			<div class="row">
@@ -335,7 +343,7 @@
 				<div class="col-md-1"></div>
 				<div class="col-md-2" style="font-size: 20px;">연락처</div>
 				<div class="col-md-4">
-					<input type="text" class="form-control" id="memberTel"
+					<input type="text" class="form-control" id="memberTel" required
 						name="memberTel" value="${view.memberTel }" />
 				</div>
 			</div>
@@ -354,7 +362,7 @@
 					<label id="zip_num" style="font-size: 20px;">우편번호</label>
 				</div>
 				<div class="col-sm-3">
-					<input type="text" id="postCode" value="${view.postCode }"
+					<input type="text" id="postCode" value="${view.postCode }" required
 						name="postCode" placeholder="우편번호" class="form-control">
 				</div>
 				<div class="col-sm-3">
@@ -369,19 +377,19 @@
 					<label id="address1" style="font-size: 20px;">배송지 주소</label>
 				</div>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="roadAddress"
+					<input type="text" class="form-control" id="roadAddress" required
 						value="${view.roadAddress }" name="roadAddress"
 						placeholder="도로명주소"> <input type="text"
 						class="form-control" id="jibunAddress"
-						value="${view.jibunAddress }" name="jibunAddress"
+						value="${view.jibunAddress }" name="jibunAddress" required
 						placeholder="지번주소">
 				</div>
 				<div class="col-sm-3">
 					<input type="text" class="form-control" id="detailAddress"
-						value="${view.detailAddress }" name="detailAddress"
+						value="${view.detailAddress }" name="detailAddress" required
 						placeholder="상세주소"> <input type="text"
 						class="form-control" id="extraAddress"
-						value="${view.extraAddress }" name="extraAddress"
+						value="${view.extraAddress }" name="extraAddress" required
 						placeholder="참고항목">
 				</div>
 			</div>
@@ -428,8 +436,7 @@
 			</div>
 
 			<div class="text-center">
-				<button type="submit" id="btnUpdate" class="btn btn-info">정보
-					수정</button>
+				<button type="submit" id="btnUpdate" class="btn btn-info">정보수정</button>
 				<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
 			</div>
 

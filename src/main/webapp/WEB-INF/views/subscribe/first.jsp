@@ -284,13 +284,13 @@ function requestPayment() {
 	
 
 		<label for="subName"  class="col-5">수령인</label>
-		<input class="input" type="text" id="subName" name="subName" placeholder="받으실 분의 이름을 입력하세요" style = "width: 357px" /> <br><br>
+		<input class="input" type="text" id="subName" name="subName" placeholder="받으실 분의 이름을 입력하세요" style = "width: 354px" /> <br><br>
 
 		<label for="subTel" class="col-5">휴대전화</label>
-		<input class="input" type="text" id="subTel" name="subTel" placeholder="휴대폰 번호를 입력하세요"style = "width: 357px" />  <br><br>
+		<input class="input" type="text" id="subTel" name="subTel" placeholder="휴대폰 번호를 입력하세요"style = "width: 354px" />  <br><br>
 
 		<label for="subTerm" class="col-5">배송 메모</label>
-		<select  class="input" id="subTerm" name="subTerm"  style = "width: 357px; height: 28px; text-align-last: center; " >	
+		<select  class="input" id="subTerm" name="subTerm"  style = "width: 354px; height: 28px; text-align-last: center; " >	
 			<option value="선택 안함" style = "color: #6c757d;" >선택하세요</option>
 			<option value="배송 전 연락 바랍니다." style = "color: #6c757d;">배송 전 연락 바랍니다.</option>
 			<option value="부재시 전화나 문자 바랍니다." style = "color: #6c757d;">부재시 전화나 문자 바랍니다.</option>
@@ -305,20 +305,20 @@ function requestPayment() {
 		<label for="subAdd_1" class="col-5">배송지 주소
 			<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호" class="btn btn-secondary btn-sm" 
 			style="height: 25px;font-size: 10px; position: relative; bottom: 3px;"><br></label>
-			<input class="input" type="text" id="postCode" name="postCode" placeholder="우편번호" style = "width: 357px">
+			<input class="input" type="text" id="postCode" name="postCode" placeholder="우편번호" style = "width: 354px">
 			
 		<div style="margin-left: -75px; margin-bottom: 4px;">
 		<label for="" style="width:333px"></label>
 		
-			<input class="input" type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" style="width: 181px;" >
-			<input class="input" type="text" id="jibunAddress" name="jibunAddress" placeholder="지번주소" style="width: 172px;">
+			<input class="input" type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소" style="width: 179px;" >
+			<input class="input" type="text" id="jibunAddress" name="jibunAddress" placeholder="지번주소" style="width: 171px;">
 		</div>	
 			<span id="guide" style="color:#999;display:none"></span>
 			
 		<div  style="margin-left: -75px">
 			<label for="" style="width:333px"></label>
-			<input class="input" type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" style="width: 181px;">
-			<input class="input" type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" style="width: 172px;">
+			<input class="input" type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" style="width: 179px;">
+			<input class="input" type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" style="width: 171px;">
 		</div>
 
 
@@ -327,7 +327,7 @@ function requestPayment() {
 		<div style="position: relative;">
 		<label for="subPay" class="col-5">결제 정보</label>
 		
-		<select  class="input" id="subPay" name="subPay"  style = "width: 357px; height: 28px; text-align-last: center;" >	
+		<select  class="input" id="subPay" name="subPay"  style = "width: 354px; height: 28px; text-align-last: center;" >	
 			<option disabled selected  style = "color: #6c757d;">선택하세요</option>
 			<option value="card" style = "color: #6c757d;" >카드 / 간편결제</option>
 			<option value="deposit" style = "color: #6c757d;">무통장 입금  110-41071946 (신한은행) </option>
