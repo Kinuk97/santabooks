@@ -285,7 +285,7 @@ $(document).ready(function(e){
 							<label for="memberNick">닉네임</label>
 						</div>
 						<div class="col-xs-6">
-							<input type="text" class="form-control" name="memberNick"
+							<input type="text" class="form-control" name="memberNick" hidden="hidden"
 								id="memberNick" placeholder="닉네임을 입력해주세요" required="required">
 								
 						</div>
