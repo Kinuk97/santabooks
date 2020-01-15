@@ -116,12 +116,14 @@ public class MemberController {
 	
 	//이메일 전송
 	@RequestMapping(value = "/member/email", method = RequestMethod.GET)
-	public void join_mail(){}	
+	public void join_mail(Member member, Model model) {
+		model.addAttribute("email", member.getMemberId());
+	}	
 	
 	
 	
 	@RequestMapping( value = "/member/auth.do" , method=RequestMethod.POST )
-    public ModelAndView mailSending(HttpServletRequest request, String e_mail, HttpServletResponse response_email) throws IOException {
+    public ModelAndView mailSending(HttpServletRequest request, String memberId, HttpServletResponse response_email) throws IOException {
 
         Random r = new Random();
         int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
@@ -168,6 +170,7 @@ public class MemberController {
         ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
         mv.setViewName("/member/email_injeung_join");     //뷰의이름
         mv.addObject("dice", dice);
+        mv.addObject("email", memberId);
         
         System.out.println("mv : "+mv);
 
@@ -192,7 +195,7 @@ public class MemberController {
 		//내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 회원가입 페이지로 넘어가고,
 		//틀리면 다시 원래 페이지로 돌아오는 메소드
 		@RequestMapping(value = "/member/join_injeung.do{dice}", method = RequestMethod.POST)
-		public ModelAndView join_injeung(String email_injeung, @PathVariable String dice, HttpServletResponse response_equals) throws IOException {
+		public ModelAndView join_injeung(String uemail, String email_injeung, @PathVariable String dice, HttpServletResponse response_equals) throws IOException {
 		
 		    
 		    
@@ -218,7 +221,7 @@ public class MemberController {
         
 		    mv.setViewName("member/join");
         
-		    mv.addObject("e_mail",email_injeung);
+		    mv.addObject("email",uemail);
         
         //만약 인증번호가 같다면 이메일을 회원가입 페이지로 같이 넘겨서 이메일을
         //한번더 입력할 필요가 없게 한다.

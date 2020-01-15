@@ -37,12 +37,6 @@ public class MemeberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public boolean getMember() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public int nickCheck(String memberNick) {
 		int result = memberDao.nickCheck(memberNick);
 		return result;

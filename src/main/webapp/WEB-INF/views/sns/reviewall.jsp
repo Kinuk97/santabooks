@@ -122,6 +122,7 @@ $(document).ready(function() {
 <hr>
 <div class="container">
 <c:forEach items="${reviewList }" var="review">
+<c:if test="${review.privacy eq 1}">
 	<div class="row">
 		<div class="column">
 			<div class="card" id="review">
@@ -157,6 +158,7 @@ $(document).ready(function() {
 	</div>
 	<br>
 	<br>
+	</c:if>
 </c:forEach>
 </div>
 
