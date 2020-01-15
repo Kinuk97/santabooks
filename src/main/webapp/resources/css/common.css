@@ -40,7 +40,7 @@
 }
 
 .card-img-top {
-	height: 150px;
+	height: 210px;
 }
 
 .category {
@@ -59,7 +59,7 @@ ul .addNovel {
 }
 
 .bestNovelImg {
-	height: 200px;
+	height: 250px;
 }
 
 .img_wrap {
@@ -92,7 +92,7 @@ ul .addNovel {
 .empty-stars {
 	vertical-align: super;
 }
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                
 .commentDiv {
     width: 90%;
     margin: 0 auto;
