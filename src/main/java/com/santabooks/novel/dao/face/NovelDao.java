@@ -215,7 +215,7 @@ public interface NovelDao {
 	 * @return 조회 결과
 	 */
 	public List<Comment> selectComment(Paging paging);
-	
+
 	/**
 	 * 답글 리스트 가져오기 (reply)
 	 * 
@@ -244,8 +244,9 @@ public interface NovelDao {
 //	 * @param comment - content, parentCmtNo, memberNo
 //	 */
 //	public void insertReply(Comment comment);
-	
+
 	public void updateCommentSeqInsert(Comment comment);
+
 	public void updateCommentSeqDelete(Comment comment);
 
 	/**
@@ -254,7 +255,7 @@ public interface NovelDao {
 	 * @param comment - content, commentNo
 	 */
 	public void updateComment(Comment comment);
-	
+
 	/**
 	 * 댓글 하나 조회하기
 	 * 
@@ -262,5 +263,13 @@ public interface NovelDao {
 	 * @return
 	 */
 	public Comment selectCommentByCommentNo(Comment comment);
+
+	/**
+	 * 내 댓글 가져오기
+	 * 
+	 * @param comment - memberNo
+	 * @return
+	 */
+	public List<Comment> selectMyComment(Comment comment);
 
 }

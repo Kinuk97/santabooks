@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.santabooks.member.dto.Member;
 import com.santabooks.mypage.service.face.MypageService;
+import com.santabooks.novel.dto.Comment;
 import com.santabooks.novel.dto.Novel;
 import com.santabooks.novel.service.face.NovelService;
 import com.santabooks.reviewSns.dto.Book;
@@ -128,10 +130,22 @@ public class MypageWritingController {
 		logger.info("내가 쓴 sns 리스트");
 	}
 	
-	@RequestMapping(value = "/mypage/comment", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage/commentList", method = RequestMethod.GET)
 	public void comment() {
 		
 		logger.info("댓글");
+	}
+	
+	@RequestMapping(value = "/mypage/commentList", method = RequestMethod.POST)
+	public ModelAndView commentList(ModelAndView mav, Comment comment, Model model, HttpSession session) {
+		comment.setMemberNo(Integer.parseInt(session.getAttribute("MemberNo").toString()));
+		
+		mav.addObject("commentList", novelService.getMyComment(comment));
+		mav.addObject("MemberNo", session.getAttribute("MemberNo"));
+		
+		mav.setViewName("jsonView");
+		
+		return mav;
 	}
 
 }

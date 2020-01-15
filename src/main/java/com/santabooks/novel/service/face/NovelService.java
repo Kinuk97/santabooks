@@ -229,5 +229,12 @@ public interface NovelService {
 	 */
 	public void modifyComment(Comment comment);
 
+	/**
+	 * 내 댓글 가져오기
+	 * 
+	 * @param comment - memberNo
+	 * @return
+	 */
+	public List<Comment> getMyComment(Comment comment);
 	
 }

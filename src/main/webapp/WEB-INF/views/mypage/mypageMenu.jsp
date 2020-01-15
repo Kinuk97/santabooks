@@ -49,7 +49,7 @@
 
 					<a class="dropdown-item" href="/mypage/snsList">작성한 리뷰</a> <a
 						class="dropdown-item" href="/mypage/novelList">작성한 웹소설</a> <a
-						class="dropdown-item" href="#">작성한 댓글</a>
+						class="dropdown-item" href="/mypage/commentList">작성한 댓글</a>
 
 				</div></li>
 			<li class="nav-item"><a class="nav-link" href="/mypage/shipmentList">받은 책 내역</a></li>

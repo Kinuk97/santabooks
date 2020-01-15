@@ -58,6 +58,7 @@
 				SELECT novel.*,
 				<include refid="memberNameAndScore"></include>
 				FROM novel WHERE memberNo = #{memberNo}
+				order by novelNo DESC
 			) B ORDER BY rnum
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
@@ -262,8 +263,11 @@
 		DELETE FROM comment_table WHERE commentNo = #{commentNo} OR parentCmtNo = #{commentNo}
 	</delete>
 	
-	<select id="selectMyComment">
-	
+	<select id="selectMyComment" parameterType="com.santabooks.novel.dto.Comment" resultType="com.santabooks.novel.dto.Comment">
+		SELECT ct.*,
+			(SELECT memberName FROM member WHERE memberNo = ct.memberNo) AS memberName,
+			(SELECT count(*) FROM comment_table c WHERE parentCmtNo = ct.commentNo AND parentCmtNo != 0) AS replyCnt
+		FROM comment_table ct WHERE parentCmtNo = 0 AND memberNo = #{memberNo}
 	</select>
 
 </mapper>

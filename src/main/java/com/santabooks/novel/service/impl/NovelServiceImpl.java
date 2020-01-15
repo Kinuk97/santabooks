@@ -288,4 +288,9 @@ public class NovelServiceImpl implements NovelService {
 	public void modifyComment(Comment comment) {
 		novelDao.updateComment(comment);
 	}
+	
+	@Override
+	public List<Comment> getMyComment(Comment comment) {
+		return novelDao.selectMyComment(comment);
+	}
 }
