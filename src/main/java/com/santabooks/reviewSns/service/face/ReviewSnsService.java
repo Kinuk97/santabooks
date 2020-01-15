@@ -178,5 +178,5 @@ public interface ReviewSnsService {
 	 * 
 	 * @return List<ReviewSns>
 	 */
-//	public List<ReviewSns> getMySns(Paging paging);
+	public List<ReviewSns> getMySns(Paging paging);
 }

@@ -164,6 +164,6 @@ public interface ReviewSnsDao {
 	 * 
 	 * @return List<ReviewSns>
 	 */
-//	public List<ReviewSns> selectMySns(Paging paging);
+	public List<ReviewSns> selectMySns(Paging paging);
 	
 }

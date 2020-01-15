@@ -291,9 +291,9 @@ public class ReviewSnsServiceImpl implements ReviewSnsService{
 		return reviewSnsDao.getbookGenreNo(genreNo);
 	}
 
-//	@Override
-//	public List<ReviewSns> getMySns(Paging paging) {
-//		return reviewSnsDao.selectMySns(paging);
-//	}
+	@Override
+	public List<ReviewSns> getMySns(Paging paging) {
+		return reviewSnsDao.selectMySns(paging);
+	}
 	
 }
