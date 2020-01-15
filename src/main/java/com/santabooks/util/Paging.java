@@ -37,6 +37,9 @@ public class Paging {
 	private String memberId;
 	private String memberNick;
 
+	// 댓글 정렬
+	private String orderType;
+
 	public Paging() {
 
 	}
@@ -107,6 +110,17 @@ public class Paging {
 		// 화면에 보여질 게시글의 시작번호와 끝번호
 		startNo = (curPage - 1) * listCount + 1;
 		endNo = curPage * listCount;
+	}
+
+	@Override
+	public String toString() {
+		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
+				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
+				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchNo=" + searchNo
+				+ ", category=" + category + ", novelNo=" + novelNo + ", episodeNo=" + episodeNo + ", tableName="
+				+ tableName + ", bookNo=" + bookNo + ", searchType=" + searchType + ", keyword=" + keyword
+				+ ", memberNo=" + memberNo + ", memberId=" + memberId + ", memberNick=" + memberNick + ", orderType="
+				+ orderType + "]";
 	}
 
 	public int getCurPage() {
@@ -277,14 +291,12 @@ public class Paging {
 		this.memberNick = memberNick;
 	}
 
-	@Override
-	public String toString() {
-		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
-				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
-				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", searchNo=" + searchNo
-				+ ", category=" + category + ", novelNo=" + novelNo + ", episodeNo=" + episodeNo + ", tableName="
-				+ tableName + ", bookNo=" + bookNo + ", searchType=" + searchType + ", keyword=" + keyword
-				+ ", memberNo=" + memberNo + ", memberId=" + memberId + ", memberNick=" + memberNick + "]";
+	public String getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
 	}
 
 }

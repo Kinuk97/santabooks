@@ -82,7 +82,7 @@ public class MemberController {
 		model.addAttribute("id_token", id_token);
 		model.addAttribute("memberId", memberId);
 		model.addAttribute("memberName", memberName);
-		
+
 //		logger.info(id_token);
 //		logger.info(memberId);
 //		logger.info(memberName);
@@ -95,6 +95,7 @@ public class MemberController {
 		@RequestMapping(value = "/member/join/google/proc")
 		public boolean googleJoinProc(Model model, String id_token, Member member) {
 				logger.info("으아아아아아 살려달라");
+				logger.info(id_token);
 			member.setMemberPw("randompw");
 			try {
 				memberService.join(member);
@@ -102,6 +103,7 @@ public class MemberController {
 				logger.info("true - " + member);
 				return true;
 			} catch (Exception e) {
+				e.printStackTrace();
 				logger.info("false");
 				return false;
 			}
@@ -253,7 +255,7 @@ public class MemberController {
 		
 		//닉네임중복 체크
 		
-		@RequestMapping(value = "/member/join_nickcheck", method = RequestMethod.GET)
+		@RequestMapping(value = "/member/nickCheck", method = RequestMethod.GET)
 		@ResponseBody
 		public int nickCheck(@RequestParam("memberNick") String memberNick) {
 
@@ -261,9 +263,11 @@ public class MemberController {
 		
 		
 	}
+		
 }
-	
-	
+
+		
+
 		
 	
 

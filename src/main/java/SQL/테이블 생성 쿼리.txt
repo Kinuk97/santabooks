@@ -148,6 +148,18 @@ CREATE TABLE Score (
  score NUMBER NOT NULL
 );
 
+
+CREATE TABLE social_member (
+	memberNo NUMBER	NOT NULL,
+	social_no VARCHAR2(100)	NOT NULL,
+	social_member_key	VARCHAR2(300)	NOT NULL
+);
+
+CREATE TABLE social (
+	social_no	VARCHAR2(100)	NOT NULL,
+	social_name	VARCHAR2(300)	NOT NULL
+);
+
 -------------------------------------------------------------
 
 
@@ -293,6 +305,31 @@ REFERENCES Episode (
 
 
 
+
+ALTER TABLE social_member ADD CONSTRAINT PK_SOCIAL_MEMBER PRIMARY KEY (
+	memberNo,
+	social_no
+);
+
+ALTER TABLE social ADD CONSTRAINT PK_SOCIAL PRIMARY KEY (
+	social_no
+);
+
+ALTER TABLE social_member ADD CONSTRAINT FK_MEMBER_TO_social_member_1 FOREIGN KEY (
+	memberNo
+)
+REFERENCES MEMBER (
+	memberNo
+);
+
+ALTER TABLE social_member ADD CONSTRAINT FK_social_TO_social_member_1 FOREIGN KEY (
+	social_no
+)
+REFERENCES social (
+	social_no
+);
+
+
 DROP SEQUENCE book_seq;
 DROP SEQUENCE review_sns_seq;
 DROP SEQUENCE member_seq;
@@ -310,3 +347,15 @@ CREATE SEQUENCE shipment_seq;
 CREATE SEQUENCE comment_table_seq;
 CREATE SEQUENCE novel_seq;
 CREATE SEQUENCE episode_seq;
+CREATE SEQUENCE social_user_seq;
+
+
+
+INSERT INTO social(social_no,social_name)VALUES(1,'NAVER');
+INSERT INTO social(social_no,social_name)VALUES(2,'KAKAO');
+INSERT INTO social(social_no,social_name)VALUES(3,'GOOGLE');
+
+
+
+ALTER TABLE social_member
+DROP CONSTRAINT fk_social_to_social_member_1;

@@ -809,19 +809,42 @@ INSERT INTO review_sns(feedno,memberNo,bookNo,review,privacy,reviewDate) VALUES(
 commit;
 
 --comment_table
-INSERT INTO comment_table VALUES(comment_table_seq.nextval, 23, 2, 'comment1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 0, 1);
-INSERT INTO comment_table VALUES(comment_table_seq.nextval, 23, 2, 'comment2', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 0, 1);
-INSERT INTO comment_table VALUES(comment_table_seq.nextval, 23, 2, 'comment3', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 0, 1);
-INSERT INTO comment_table VALUES(comment_table_seq.nextval, 23, 2, 'comment4', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 0, 1);
-INSERT INTO comment_table VALUES(comment_table_seq.nextval, 23, 2, 'reply1', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1, 2);
-INSERT INTO comment_table VALUES(comment_table_seq.nextval, 23, 1, 'comment6', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 0, 1);
-INSERT INTO comment_table VALUES(comment_table_seq.nextval, 23, 1, 'comment7', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 0, 1);
-INSERT INTO comment_table VALUES(comment_table_seq.nextval, 23, 1, 'reply2', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 1, 3);
-INSERT INTO comment_table VALUES(comment_table_seq.nextval, 23, 1, 'comment9', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 0, 1);
-INSERT INTO comment_table VALUES(comment_table_seq.nextval, 23, 1, 'comment10', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 0, 1);
-INSERT INTO comment_table VALUES(comment_table_seq.nextval, 23, 1, 'comment11', to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 0, 1);
+
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment1',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 0,1);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment2',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),0,1);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment3',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),0,1);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment4',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),0,1);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'comment5',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),0,1);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment6',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),0,1);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment7',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),0,1);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment8',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),0,1);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment9',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),0,1);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment10',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),0,1);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'comment11',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),0,1);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'reply1',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),1,2);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'reply2',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),1,3);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'reply3',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),1,4);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'reply4',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),1,5);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 2, 'reply5',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),1,6);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply6',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),1,7);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply7',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),1,8);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply8',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),1,9);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply9',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),1,10);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply10',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),1,11);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply11',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),1,12);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply1',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),2,2);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply2',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),2,3);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply3',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),2,4);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply4',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),2,5);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply5',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),2,6);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply6',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),2,7);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply7',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),2,8);
+INSERT INTO comment_table VALUES(comment_table_seq.nextval, 1, 1, 'reply8',  to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'),2,9);
 
 commit;
+
+-- subscribe
+INSERT INTO SUBSCRIPTION VALUES (SUBSCRIPTION_seq.nextval, 1, to_char(sysdate,'yyyy/mm/dd hh24:mi:ss'), 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test');
 
 -- shipment
 insert into shipment values (222222, '2020-01-13', 1, 1, 1);

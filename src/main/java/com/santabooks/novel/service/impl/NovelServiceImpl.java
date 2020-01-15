@@ -253,6 +253,11 @@ public class NovelServiceImpl implements NovelService {
 	public List<Comment> getCommentList(Paging paging) {
 		return novelDao.selectComment(paging);
 	}
+	
+	@Override
+	public List<Comment> getReplyList(Comment comment) {
+		return novelDao.selectReply(comment);
+	}
 
 	@Override
 	public void addComment(Comment comment) {
@@ -261,15 +266,26 @@ public class NovelServiceImpl implements NovelService {
 
 	@Override
 	public void removeComment(Comment comment) {
+		Comment result = novelDao.selectCommentByCommentNo(comment);
+		
+		if (result.getParentCmtNo() != 0) {
+			novelDao.updateCommentSeqDelete(comment);
+		}
+		
 		novelDao.deleteComment(comment);
 	}
 	
 	@Override
 	public void addReply(Comment comment) {
-		novelDao.updateCommentSeq(comment);
+		novelDao.updateCommentSeqInsert(comment);
 		
-		comment.setSeq(1);
+		comment.setSeq(2);
 		
 		novelDao.insertComment(comment);
+	}
+	
+	@Override
+	public void modifyComment(Comment comment) {
+		novelDao.updateComment(comment);
 	}
 }

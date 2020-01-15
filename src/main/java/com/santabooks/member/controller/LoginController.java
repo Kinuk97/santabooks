@@ -213,7 +213,7 @@ public class LoginController {
 	
 	
 	//인증번호를 입력한 후에 확인 버튼을 누르면 자료가 넘어오는 컨트롤러
-	@RequestMapping(value = "/member/pass_injeung", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/pass_injeung{dice}", method = RequestMethod.POST)
 	    public ModelAndView pass_injeung(String pass_injeung, @PathVariable String dice, String memberId, 
 	            HttpServletResponse response_equals) throws IOException{
 	    
@@ -297,7 +297,6 @@ public class LoginController {
 	            
 	}
 
-	
 
 
 //	//구글 로그인하기
@@ -309,12 +308,13 @@ public class LoginController {
 		logger.info("/member/login/google : " + id_token);
 		
 		try {
-			loginService.login(id_token, "google");
+			loginService.login(id_token, "GOOGLE");
 			return true;
 		} catch (MemberNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			return false;
 		}
+		
 		
 	
 	}

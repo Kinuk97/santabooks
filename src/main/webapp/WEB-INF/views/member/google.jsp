@@ -97,37 +97,45 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		
 		$("#form-joining").on("submit", function() {
-// 			console.log($(this).serialize());
-			$(".btn.btn-success").click();
-			return false;
-		});
-		$(".btn.btn-success").on("click", function() {
+			console.log($(this).serialize());
+// 			$(".btn.btn-success").click();
+// 			return false;
+// 		});
+// 		$(".btn.btn-success").on("click", function() {
 			$.ajax({
 				url : "/member/join/google/proc",
 				data : 
-//					$(this).serialize(),
- 				{
-					memberId : $("#memberId").val(),
-					memberName : $("#memberName").val(),
-					memberNick : $("#memberNick").val(),
-					memberGender : $("input[name='memberGender']:checked").val(),
-					memberBirth : $("#memberBirth").val(),
-					memberTel : $("#memberTel").val(),
-					genre : $("#genre").val(),
-					id_token: $("#id_token").val()
-				},
+					$(this).serialize(),
+//  				{
+// 					memberId : $("#memberId").val(),
+// 					memberName : $("#memberName").val(),
+// 					memberNick : $("#memberNick").val(),
+// 					memberGender : $("input[name='memberGender']:checked").val(),
+// 					memberBirth : $("#memberBirth").val(),
+// 					memberTel : $("#memberTel").val(),
+// 					genre : $("#genre").val(),
+// 					id_token: $("#id_token").val()
+// 				},
 				method : "POST",
 				dataType : "json"
 			}).done(function(data) {
+// 				console.log("---join ajax---");
+// 				console.log(data);
+// 				if (data == true) {
+// 					window.location.replace('/');
+// 				} else {
+// 					var nameinput = $("#memberNick");
+// 					nameinput.val("다른 별명을 사용하세요");
+// 					nameinput.focus();
+// 				}
 				console.log("---join ajax---");
 				console.log(data);
 				if (data == true) {
 					window.location.replace('/');
 				} else {
-					var nameinput = $("#memberNick");
-					nameinput.val("다른 별명을 사용하세요");
-					nameinput.focus();
+					alert("회원가입실패")
 				}
 			}).fail(function(data) {
 				
@@ -465,6 +473,7 @@ $(document).ready(function(){
 <!-- 							<label><input type="radio" name="subcheck" value="y" /> -->
 <!-- 								구독</label> -->
 <!-- 						</div> -->
+					</div>
 
 					<div class="form-group">
 						<div class="text-center">
@@ -484,6 +493,5 @@ $(document).ready(function(){
 				</form>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

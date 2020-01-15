@@ -58,12 +58,16 @@ public class LoginServiceImpl implements LoginService {
 		
 		setMemberToSession(member);
 		
-
-		
 	}
 	private void setMemberToSession(Member member) {
 		session.setAttribute("loggerdInMember", member);
 		
+		session.setAttribute("login", true);
+		session.setAttribute("MemberId", member.getMemberId());
+		session.setAttribute("MemberNick", member.getMemberNick());
+		session.setAttribute("MemberNo", member.getMemberNo());
+		session.setAttribute("Genre", member.getGenre());
+
 	}
 
 

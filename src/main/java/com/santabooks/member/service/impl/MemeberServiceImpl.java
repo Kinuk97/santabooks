@@ -81,11 +81,12 @@ public class MemeberServiceImpl implements MemberService{
 
 	@Override
 	public void linkSocial(Object memberByMemberId, String id_token, String string) {
-		Map<String, String> map = new HashMap<>();
-		map.put("memberN", String.valueOf(((Member) memberByMemberId).getMemberId()));
+		Map<String, Object> map = new HashMap<>();
+//		map.put("memberNo", String.valueOf(((Member) memberByMemberId).getMemberId()));
+		map.put("memberNo", ((Member)memberByMemberId).getMemberNo() );
 		map.put("id_token", id_token);
 		map.put("social_no", string);
-		
+		System.out.println(map);
 		memberDao.insertSocialMember(map);
 		
 	}

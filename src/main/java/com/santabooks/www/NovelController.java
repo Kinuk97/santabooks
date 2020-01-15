@@ -248,11 +248,28 @@ public class NovelController {
 	// ====================================== 댓글 ==============================================
 
 	@RequestMapping(value = "/comment/list", method = RequestMethod.POST)
-	public void commentList(Paging paging, Model model, HttpServletRequest req) {
-		paging.setTableName("comment_table");
-		paging = novelService.getPaging(paging);
-		model.addAttribute("commentList", novelService.getCommentList(paging));
-		model.addAttribute("paging", paging);
+	public ModelAndView commentList(ModelAndView mav, Paging paging, Model model, HttpSession session) {
+//		paging.setTableName("comment_table");
+//		paging = novelService.getPaging(paging);
+		mav.addObject("commentList", novelService.getCommentList(paging));
+		mav.addObject("MemberNo", session.getAttribute("MemberNo"));
+//		model.addAttribute("paging", paging);
+		
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
+	@RequestMapping(value = "/comment/getReply", method = RequestMethod.POST)
+	public ModelAndView getReplyList(ModelAndView mav, Comment comment, HttpSession session) {
+//		paging.setTableName("comment_table");
+//		paging = novelService.getPaging(paging);
+		mav.addObject("commentList", novelService.getReplyList(comment));
+		mav.addObject("MemberNo", session.getAttribute("MemberNo"));
+//		model.addAttribute("paging", paging);
+		
+		mav.setViewName("jsonView");
+		
+		return mav;
 	}
 	
 	@RequestMapping(value = "/comment/write", method = RequestMethod.POST)
@@ -289,6 +306,13 @@ public class NovelController {
 		
 		novelService.addReply(comment);
 		
+		return "redirect:/episode/view?episodeNo=" + comment.getEpisodeNo();
+	}
+	
+	@RequestMapping(value = "/comment/modify", method = RequestMethod.POST)
+	public String commentModify(Comment comment) {
+		System.out.println("testseteteststse" + comment);
+		novelService.modifyComment(comment);
 		return "redirect:/episode/view?episodeNo=" + comment.getEpisodeNo();
 	}
 	
