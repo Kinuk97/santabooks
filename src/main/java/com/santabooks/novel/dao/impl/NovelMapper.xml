@@ -58,6 +58,7 @@
 				SELECT novel.*,
 				<include refid="memberNameAndScore"></include>
 				FROM novel WHERE memberNo = #{memberNo}
+				order by novelNo DESC
 			) B ORDER BY rnum
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
