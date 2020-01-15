@@ -1,10 +1,6 @@
 package com.santabooks.mypage.dao.face;
 
-import java.util.List;
-
 import com.santabooks.member.dto.Member;
-import com.santabooks.mypage.dto.QnA;
-import com.santabooks.util.Paging;
 
 public interface MypageDao {
 

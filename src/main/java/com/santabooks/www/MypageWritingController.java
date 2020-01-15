@@ -127,5 +127,11 @@ public class MypageWritingController {
 
 		logger.info("내가 쓴 sns 리스트");
 	}
+	
+	@RequestMapping(value = "/mypage/comment", method = RequestMethod.GET)
+	public void comment() {
+		
+		logger.info("댓글");
+	}
 
 }
