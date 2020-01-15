@@ -174,32 +174,33 @@ $(document).ready(function() {
 					$("#nick_check").css("color", "red");
 					$("#reg_submit").attr("disabled", true);
 				
-				} else{
+				} else {
 				
-					var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-					if(regExp.test(uemail)){
+// 					var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+// 					if(regExp.test(uemail)){
 						// 0 : 아이디 길이 / 문자열 검사
-						$("#nick_check").text("");
+// 						$("#nick_check").text("");
 // 						$("#reg_submit").attr("disabled", false);
 						
-						$("#nick_check").text("사용가능한 이메일입니다 .");
-						$("#nick_check").css("color", "blue");
+// 						$("#nick_check").text("사용가능한 이메일입니다.");
+// 						$("#nick_check").css("color", "blue");
 						
 			
-					} else if(memberNick == ""){
+// 					} else if(memberNick == ""){
+					if(memberNick == ""){
 
-						$('#nick_check').text('이메일을 입력해주세요.');
+						$('#nick_check').text('닉네임을 입력해주세요.');
 						$('#nick_check').css('color', 'red');
-						$("#reg_submit").attr("disablesd", true);				
+						$("#reg_submit").attr("disabled", true);				
 						
-					} else {
-						
-						$('#nick_check').text("이메일형식으로 입력해주세요.");
-						$('#nick_check').css('color', 'red');
-						$("#reg_submit").attr("disabled", true);
 					}
 					
-				s
+					if (data == 0) {
+						$('#nick_check').text('사용가능한 닉네임입니다..');
+						$('#nick_check').css('color', 'blue');
+						console.log($("#reg_submit"));
+						$("#reg_submit").attr("disabled", false);				
+					}
 				}
 			}, error : function() {
 					console.log("실패");
@@ -468,7 +469,7 @@ $(document).ready(function(e){
 					<input type="hidden" name="ip" value="${GetIpAddress.getIp()}">
 					<div class="form-group">
 						<div class="col-xs-12  text-center">
-							<input type="submit" value="회원가입" class="btn btn-success">
+							<input type="submit" value="회원가입" class="btn btn-success" id="reg_submit">
 							<input type="reset" value="취소" class="btn btn-warning">
 						</div>
 						
