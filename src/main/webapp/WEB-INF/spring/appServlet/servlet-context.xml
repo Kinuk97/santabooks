@@ -31,6 +31,7 @@
 			<exclude-mapping path="/sns/view"/>
 			<exclude-mapping path="/sns/reviewall"/>
 			<exclude-mapping path="/sns/detailview"/>
+			<exclude-mapping path="/sns/santabookslist"/>
 			<beans:bean class="com.santabooks.www.interceptor.LoginCheckInterceptor" />
 		</interceptor>
 	</interceptors>

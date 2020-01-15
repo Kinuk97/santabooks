@@ -117,8 +117,8 @@
 		    <if test="category gt 0 and category lt 6">
 		        WHERE category = #{category}
 		    </if>
-		        ORDER BY score ASC
-		) novel WHERE ROWNUM BETWEEN 1 AND 3 ORDER BY novel.score ASC
+		         ORDER BY score DESC nulls last
+		) novel WHERE ROWNUM BETWEEN 1 AND 3 ORDER BY novel.score DESC
 	</select>
 	
 	<insert id="insertNovel" parameterType="com.santabooks.novel.dto.Novel">
