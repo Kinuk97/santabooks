@@ -7,7 +7,7 @@
 <mapper namespace="com.santabooks.mypage.dao.face.MypageDao">
 
 <select id="selectByNo" parameterType="int" resultType="com.santabooks.member.dto.Member">
-		SELECT memberNo, memberName, memberId, memberNick, genre FROM member
+		SELECT memberNo, memberName, memberId, memberNick, genre, subcheck FROM member
 		WHERE 1=1
 			AND memberNo = #{no }
 </select>
