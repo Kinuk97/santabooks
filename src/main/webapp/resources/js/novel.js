@@ -321,9 +321,9 @@ $(document).ready(function() {
 			for (var i = curComment + 1; i <= curComment + 5; i++) {
 				$("li[data-cmtrownum='" + i + "']").show(300);
 			}
+			
 			curComment += 5;
-			console.log(curComment);
-			console.log(maxComment);
+			
 			if (maxComment <= curComment) {
 				if ($(this).text() == '더보기') {
 					$(this).text("모두 접기");

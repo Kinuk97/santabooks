@@ -71,7 +71,7 @@
                     (SELECT round(avg(score), 1) FROM episode WHERE novelNo = n.novelNo) AS score
 					FROM novel n INNER JOIN favorite f
 					ON n.novelNo = f.novelNo
-					WHERE n.memberNo = #{memberNo}
+					WHERE f.memberNo = #{memberNo}
 				) B ORDER BY rnum
 		) BOARD WHERE rnum BETWEEN #{startNo} AND #{endNo}
 				
@@ -82,7 +82,7 @@
 		<when test="tableName == 'favorite'">
 			SELECT count(*) FROM novel n INNER JOIN favorite f
 			ON n.novelNo = f.novelNo
-			WHERE n.memberNo = #{memberNo}
+			WHERE f.memberNo = #{memberNo}
 		</when>
 		<otherwise>
 			SELECT count(*) FROM ${tableName}
@@ -112,13 +112,20 @@
 	<select id="selectBestNovel" resultType="com.santabooks.novel.dto.Novel">
 		SELECT * FROM (
 		    SELECT novel.*, 
-		    <include refid="memberNameAndScore"></include>
+		    (
+			SELECT memberName FROM member WHERE novel.memberNo = memberNo
+			) AS memberName,
+			(
+				SELECT avg(score) FROM episode WHERE novelNo = novel.novelNo
+			) AS score,
+			( SELECT count(*) FROM score WHERE episodeNo IN (SELECT episodeNo FROM episode WHERE novel.novelNo = novelNo)
+			) AS cntScore
 		    FROM novel
 		    <if test="category gt 0 and category lt 6">
 		        WHERE category = #{category}
 		    </if>
 		         ORDER BY score DESC nulls last
-		) novel WHERE ROWNUM BETWEEN 1 AND 3 ORDER BY novel.score DESC
+		) novel WHERE ROWNUM BETWEEN 1 AND 3 ORDER BY novel.score DESC nulls last
 	</select>
 	
 	<insert id="insertNovel" parameterType="com.santabooks.novel.dto.Novel">
