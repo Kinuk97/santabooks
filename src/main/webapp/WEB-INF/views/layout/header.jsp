@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="google-signin-client_id" content="885356568935-shi7r2ikuk7k8snemu76ckiec978dkpe.apps.googleusercontent.com">
 <title>SantaBooks</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -18,7 +19,6 @@
 
 
 <script src="https://apis.google.com/js/platform.js?onload=start" async defer></script>
-<meta name="google-signin-client_id" content="885356568935-shi7r2ikuk7k8snemu76ckiec978dkpe.apps.googleusercontent.com">
 
 <script>
 function start() {
