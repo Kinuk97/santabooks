@@ -16,3 +16,6 @@
 - 리뷰SNS mindo413 <mindo4393@gmail.com>
 - 마이페이지 haein <haein851@naver.com>
 - 로그인 | 회원가입 shinyeonseob <sweetics425@gmail.com>
+
+## 관리자 페이지
+- https://github.com/semzzi/santabooks_admin
